@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Prometheus Alert Rules – Woxsen University Platform
+# ─────────────────────────────────────────────────────────────────────────────
+
+groups:
+  - name: woxsen_api_alerts
+    rules:
+
+      # ── High error rate ────────────────────────────────────────────────────
+      - alert: HighErrorRate
+        expr: |
+          (
+            rate(http_requests_total{status=~"5.."}[5m])
+            /
+            rate(http_requests_total[5m])
+          ) > 0.02
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High 5xx error rate (>2%)"
+          description: "Error rate {{ $value | humanizePercentage }} on {{ $labels.instance }}"
+
+      # ── High API latency ───────────────────────────────────────────────────
+      - alert: HighAPILatency
+        expr: |
+          histogram_quantile(0.95,
+            rate(http_request_duration_seconds_bucket[5m])
+          ) > 1.0
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API p95 latency > 1s"
+          description: "p95 latency is {{ $value }}s on {{ $labels.instance }}"
+
+      # ── API instance down ──────────────────────────────────────────────────
+      - alert: APIDown
+        expr: up{job="woxsen_api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Woxsen API instance is down"
+          description: "Instance {{ $labels.instance }} has been down for > 1 minute"
+
+  - name: woxsen_redis_alerts
+    rules:
+
+      # ── Redis memory pressure ──────────────────────────────────────────────
+      - alert: RedisHighMemory
+        expr: |
+          redis_memory_used_bytes / redis_memory_max_bytes > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis memory > 80%"
+          description: "Redis is using {{ $value | humanizePercentage }} of its max memory"

@@ -1,0 +1,124 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Woxsen University Platform – Docker Compose Stack
+# ─────────────────────────────────────────────────────────────────────────────
+# Services:
+#   api       – FastAPI backend (multiple workers via Gunicorn + Uvicorn)
+#   nginx     – Reverse proxy, TLS termination, static-file server
+#   redis     – In-memory cache for query responses and session data
+#   prometheus – Metrics collection
+#   grafana   – Dashboards / alerting
+#
+# Quick start (dev):
+#   docker-compose up --build
+#
+# Scale to 4 API replicas (requires separate load-balancer setup or traefik):
+#   docker-compose up --build --scale api=4
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+networks:
+  woxsen_net:
+    driver: bridge
+
+volumes:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+  chroma_data:
+
+services:
+
+  # ── FastAPI backend ────────────────────────────────────────────────────────
+  api:
+    build:
+      context: ./woxsen-rag
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./woxsen-rag/.env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - HOST=0.0.0.0
+      - PORT=8000
+      - WORKERS=4
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - woxsen_net
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    volumes:
+      - chroma_data:/app/chroma_db
+
+  # ── Redis ─────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru --save ""
+    networks:
+      - woxsen_net
+    expose:
+      - "6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── NGINX (reverse proxy + static files) ──────────────────────────────────
+  nginx:
+    image: nginx:1.25-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      # Serve the static HTML portals directly from the project root
+      - .:/usr/share/nginx/html:ro
+    depends_on:
+      - api
+    networks:
+      - woxsen_net
+
+  # ── Prometheus ────────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.retention.time=15d"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - woxsen_net
+    expose:
+      - "9090"
+
+  # ── Grafana ───────────────────────────────────────────────────────────────
+  grafana:
+    image: grafana/grafana:10.4.2
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-woxsen_admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+    networks:
+      - woxsen_net
+    ports:
+      - "3000:3000"

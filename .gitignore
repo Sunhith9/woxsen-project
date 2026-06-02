@@ -1,0 +1,46 @@
+# Virtual environments
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Node
+node_modules/
+package-lock.json
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+debug_output.txt
+test_out.txt
+test_out2.txt
+test_gemini2_output.txt
+pip_install_log.txt
+install.log
+install2.log
+install3.log
+
+# Environment files
+.env
+.env.txt
+
+# ChromaDB local data
+chroma_db/
+
+# Backup directory
+.gitignore_backup_dir/
+
+# Gemini
+.gemini/

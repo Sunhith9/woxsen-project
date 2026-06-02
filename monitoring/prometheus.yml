@@ -1,0 +1,38 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Prometheus configuration – Woxsen University Platform
+# ─────────────────────────────────────────────────────────────────────────────
+
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  external_labels:
+    environment: 'woxsen-prod'
+
+# ── Alerting rules ─────────────────────────────────────────────────────────
+rule_files:
+  - "alerts.yml"
+
+# ── Scrape targets ──────────────────────────────────────────────────────────
+scrape_configs:
+
+  # FastAPI backend (prometheus_fastapi_instrumentator exposes /metrics)
+  - job_name: 'woxsen_api'
+    static_configs:
+      - targets: ['api:8000']
+    metrics_path: /metrics
+    scrape_interval: 10s
+
+  # Redis exporter (optional: add redis_exporter container if desired)
+  # - job_name: 'redis'
+  #   static_configs:
+  #     - targets: ['redis_exporter:9121']
+
+  # NGINX exporter (optional: add nginx-prometheus-exporter if desired)
+  # - job_name: 'nginx'
+  #   static_configs:
+  #     - targets: ['nginx_exporter:9113']
+
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

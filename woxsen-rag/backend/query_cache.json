@@ -1,0 +1,188 @@
+{
+    "where should i go": {
+        "type": "rag",
+        "answer": "**[MOCK RAG RESPONSE]**\n\nI don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Mock University Student Handbook 2024",
+            "Mock Admin Directory"
+        ]
+    },
+    "is it open on sunday\\": {
+        "type": "rag",
+        "answer": "**[MOCK RAG RESPONSE]**\n\nI don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Mock University Student Handbook 2024",
+            "Mock Admin Directory"
+        ]
+    },
+    "what should i do": {
+        "type": "rag",
+        "answer": "**[MOCK RAG RESPONSE]**\n\nI don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Mock University Student Handbook 2024",
+            "Mock Admin Directory"
+        ]
+    },
+    "what can u say me": {
+        "type": "rag",
+        "answer": "**[MOCK RAG RESPONSE]**\n\nI don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Mock University Student Handbook 2024",
+            "Mock Admin Directory"
+        ]
+    },
+    "what can i do": {
+        "type": "rag",
+        "answer": "I don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Woxsen University Training DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "cafeteria timings": {
+        "type": "rag",
+        "answer": "Campus cafeteria timings are: Rise is open from 9 AM to 10 PM. Cup of Joe is open from 9 AM to 12 PM.",
+        "sources": [
+            "Woxsen University Training DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "who is dean of sot": {
+        "type": "rag",
+        "answer": "The Dean of School of Technology (SOT) is Pep Lluis Esteva de Rosa.",
+        "sources": [
+            "Woxsen University Training DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "wifi in hostel not wokring": {
+        "type": "rag",
+        "answer": "If the Wi-Fi in your hostel room is not working, please contact the hostel warden directly.",
+        "sources": [
+            "Woxsen University Training DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "hostel wifif issue": {
+        "type": "direct",
+        "id": "hostel",
+        "title": "Hostel Complaint / Issue",
+        "fee": null,
+        "note": null,
+        "contact": "\ud83d\udce7 hostel@woxsen.edu.in | \u260e 040-6810-0100 ext 305",
+        "steps": [
+            {
+                "place": "Hostel Warden Office \u2013 Block H",
+                "detail": "Visit and submit a written complaint with your room number & issue",
+                "timing": "Mon\u2013Sat, 8AM\u20138PM"
+            },
+            {
+                "place": "Resolution Timeline",
+                "detail": "Maintenance issues: 24\u201348 hrs. Other issues: 3\u20135 working days.",
+                "timing": null
+            },
+            {
+                "place": "Escalation",
+                "detail": "If unresolved, escalate to Dean of Student Affairs \u2013 Admin Block Room 301",
+                "timing": null
+            }
+        ]
+    },
+    "hi": {
+        "type": "rag",
+        "answer": "I don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Woxsen University Training DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "when does the library open": {
+        "type": "rag",
+        "answer": "The library timings are from 9:00 AM to 2:00 AM.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "where is lab block": {
+        "type": "rag",
+        "answer": "The CSE labs are located in the Lab Block.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "library timings": {
+        "type": "rag",
+        "answer": "The library timings are from 9:00 AM to 2:00 AM.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "hello": {
+        "type": "rag",
+        "answer": "I don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "tell me about woxsen": {
+        "type": "rag",
+        "answer": "I don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "how do i submit a grievance?": {
+        "type": "rag",
+        "answer": "Yes, you can withdraw a grievance, but it depends on the specific type of grievance you are submitting; not all types can be withdrawn.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "hostel timings": {
+        "type": "rag",
+        "answer": "I don't have specific information on this. Please contact the Admin Office at admin@woxsen.edu.in or call 040-6810-0100.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    },
+    "hostel wifi not working": {
+        "type": "direct",
+        "id": "hostel",
+        "title": "Hostel Complaint / Issue",
+        "fee": null,
+        "note": null,
+        "contact": "\ud83d\udce7 hostel@woxsen.edu.in | \u260e 040-6810-0100 ext 305",
+        "steps": [
+            {
+                "place": "Hostel Warden Office \u2013 Block H",
+                "detail": "Visit and submit a written complaint with your room number & issue",
+                "timing": "Mon\u2013Sat, 8AM\u20138PM"
+            },
+            {
+                "place": "Resolution Timeline",
+                "detail": "Maintenance issues: 24\u201348 hrs. Other issues: 3\u20135 working days.",
+                "timing": null
+            },
+            {
+                "place": "Escalation",
+                "detail": "If unresolved, escalate to Dean of Student Affairs \u2013 Admin Block Room 301",
+                "timing": null
+            }
+        ]
+    },
+    "after grevaince submitted can i withdraw": {
+        "type": "rag",
+        "answer": "Yes, you can withdraw a grievance, but it depends on the specific type of grievance you are submitting; not all types can be withdrawn.",
+        "sources": [
+            "Woxsen Semantic AI DB",
+            "Woxsen Admin Directory"
+        ]
+    }
+}

@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woxsen University – Department Staff Portal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy: #0A1128;
+            --navy2: #0F1D36;
+            --gold: #DC2626;
+            --gold2: #B91C1C;
+            --gold-light: #fef2f2;
+            --cream: #f4f4f5;
+            --text: #000000;
+            --text2: #404040;
+            --border: #e5e5e5;
+            --white: #ffffff;
+            --green: #16a34a;
+            --red: #dc2626;
+            --orange: #ea580c;
+            --blue: #2563eb;
+            --purple: #7c3aed;
+            --sw: 272px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        /* ── LOGIN ── */
+        .login-wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-bg {
+            position: absolute;
+            inset: 0;
+            background: #000000;
+        }
+
+        .login-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, .05) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(220, 38, 38, .05) 0%, transparent 50%);
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, .98);
+            border-radius: 20px;
+            padding: 38px 42px;
+            width: 100%;
+            max-width: 430px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, .5);
+            position: relative;
+            z-index: 1;
+            animation: su .5s ease;
+        }
+
+        @keyframes su {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .login-logo {
+            width: 58px;
+            height: 58px;
+            background: var(--gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin: 0 auto 14px;
+        }
+
+        .login-univ {
+            font-family: 'Cormorant Garamond';
+            font-size: 11px;
+            text-align: center;
+            color: var(--gold);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .login-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 26px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--navy);
+        }
+
+        .login-sub {
+            font-size: 12.5px;
+            color: var(--text2);
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .login-err {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 13px;
+            margin-bottom: 13px;
+            display: none;
+        }
+
+        .login-note {
+            font-size: 11px;
+            color: var(--text2);
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.7;
+        }
+
+        .dept-badge-wrap {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .dept-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--text2);
+            background: var(--white);
+        }
+
+        /* ── LAYOUT ── */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--sw);
+            background: var(--navy);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            z-index: 1001;
+            /* Ensure it's above topbar */
+            border-right: 1px solid #1a1a1a;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .main.full {
+            margin-left: 0;
+        }
+
+        .sb-brand {
+            padding: 22px 20px 16px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .sb-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 6px;
+        }
+
+        .sb-emblem {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .sb-name {
+            font-family: 'Cormorant Garamond';
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sb-name small {
+            display: block;
+            font-family: 'DM Sans';
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            margin-top: 0;
+            letter-spacing: 0.02em;
+        }
+
+        .sb-dept-badge {
+            display: inline-block;
+            background: var(--gold);
+            border: 1px solid var(--gold2);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-top: 14px;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sb-nav {
+            flex: 1;
+            padding: 10px 0;
+            overflow-y: auto;
+        }
+
+        .nav-sec {
+            padding: 14px 22px 4px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            color: rgba(255, 255, 255, .18);
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 22px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, .42);
+            font-size: 13px;
+            font-weight: 500;
+            transition: .2s;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .nav-item.active {
+            color: #fff;
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 3px;
+            background: var(--gold);
+            border-radius: 0 3px 3px 0;
+        }
+
+        .ni {
+            font-size: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nb {
+            margin-left: auto;
+            background: var(--red);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+
+        .sb-footer {
+            padding: 14px 22px;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            font-size: 10px;
+            color: rgba(255, 255, 255, .18);
+            line-height: 1.7;
+        }
+
+        .main {
+            margin-left: var(--sw);
+            min-height: 100vh;
+            width: calc(100% - var(--sw));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: var(--cream);
+        }
+
+        .main.full {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .topbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 0 28px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, .04);
+            gap: 12px;
+        }
+
+        .tb-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .tb-title small {
+            display: block;
+            font-family: 'DM Sans';
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text2);
+            margin-top: 4px;
+        }
+
+        .tb-profile-info {
+            font-size: 12px;
+            color: var(--text2);
+            text-align: right;
+            line-height: 1.3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 140px;
+        }
+
+        .tb-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--navy);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .content {
+            padding: 24px 36px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .dash-hero {
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 24px;
+            height: 400px;
+            background: #000;
+        }
+
+        .dash-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            z-index: 1;
+        }
+
+        .dash-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, .92) 0%, rgba(0, 0, 0, .6) 60%, rgba(0, 0, 0, .15) 100%);
+        }
+
+        .dash-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 28px 32px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .dash-hero-badge {
+            display: inline-block;
+            background: var(--gold);
+            border: 1px solid var(--gold2);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .dash-hero-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .dash-hero-sub {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, .5);
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        /* ── CARDS ── */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+        }
+
+        .card-header {
+            padding: 16px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ct {
+            font-family: 'Cormorant Garamond';
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .sc {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 20px 22px;
+            border: 1px solid var(--border);
+            transition: .25s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+        }
+
+        .sc::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .sc:nth-child(1)::before {
+            background: var(--gold);
+        }
+
+        .sc:nth-child(2)::before {
+            background: #ea580c;
+        }
+
+        .sc:nth-child(3)::before {
+            background: #2563eb;
+        }
+
+        .sc:nth-child(4)::before {
+            background: #16a34a;
+        }
+
+        .sc:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+        }
+
+        .sc-icon {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .sc-n {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 3px;
+            font-family: 'Cormorant Garamond';
+        }
+
+        .sc-l {
+            font-size: 12px;
+            color: var(--text2);
+            font-weight: 500;
+        }
+
+        /* ── ANALYTICS ── */
+        .anl-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .anl-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anl-card.anl-row-full {
+            grid-column: 1 / -1;
+        }
+
+        .anl-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: var(--navy);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .anl-big {
+            font-family: 'Cormorant Garamond';
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .anl-sub {
+            font-size: 11px;
+            color: var(--text2);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            font-weight: 700;
+        }
+
+        .chart-wrap {
+            position: relative;
+            height: 220px;
+            width: 100%;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .bar-label {
+            font-size: 12.5px;
+            width: 140px;
+            flex-shrink: 0;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .bar-bg {
+            flex: 1;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        .bar-num {
+            font-size: 12px;
+            font-weight: 700;
+            width: 35px;
+            text-align: right;
+            color: var(--text2);
+        }
+
+        /* ── TABLE ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead th {
+            padding: 10px 13px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--text2);
+            background: #faf8f4;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #f2ede5;
+            transition: .12s;
+        }
+
+        tbody tr:hover {
+            background: #fdf9f2;
+            cursor: pointer;
+        }
+
+        tbody td {
+            padding: 11px 13px;
+            vertical-align: middle;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        /* ── BADGES ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+        }
+
+        .bp {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .bp::before {
+            background: #ea580c;
+        }
+
+        .bi {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .bi::before {
+            background: var(--blue);
+        }
+
+        .br2 {
+            background: #faf5ff;
+            color: #6d28d9;
+        }
+
+        .br2::before {
+            background: var(--purple);
+        }
+
+        .brs {
+            background: #f0fdf4;
+            color: #15803d;
+        }
+
+        .brs::before {
+            background: var(--green);
+        }
+
+        .bc {
+            background: #f8fafc;
+            color: #64748b;
+        }
+
+        .bc::before {
+            background: #94a3b8;
+        }
+
+        .be {
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+
+        .be::before {
+            background: var(--red);
+        }
+
+        .bcr {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        .bh {
+            background: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #fed7aa;
+        }
+
+        .bm {
+            background: #fefce8;
+            color: #a16207;
+            border: 1px solid #fef08a;
+        }
+
+        .bl {
+            background: #f0fdf4;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* ── FORMS ── */
+        .lbl {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        .inp {
+            width: 100%;
+            padding: 10px 13px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            font-size: 13.5px;
+            font-family: 'DM Sans';
+            color: var(--text);
+            background: var(--white);
+            outline: none;
+            transition: .2s;
+        }
+
+        .inp:focus {
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(20, 30, 70, .08);
+        }
+
+        select.inp {
+            cursor: pointer;
+        }
+
+        textarea.inp {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-p {
+            padding: 11px 26px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--gold) 0%, #b91c1c 100%);
+            box-shadow: 0 2px 8px rgba(220, 38, 38, .25);
+            color: #fff;
+            font-size: 13.5px;
+            font-weight: 700;
+            font-family: 'DM Sans';
+            transition: .2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-p:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(220, 38, 38, .35);
+            filter: brightness(1.1);
+        }
+
+        .btn-s {
+            padding: 11px 20px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            background: var(--white);
+            color: var(--text);
+            font-size: 13.5px;
+            font-weight: 600;
+            font-family: 'DM Sans';
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-s:hover {
+            background: #faf8f4;
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        /* ── FILTER PILLS ── */
+        .fp {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            padding: 6px 15px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            font-size: 12.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: .2s;
+            background: var(--white);
+        }
+
+        .pill.active {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy);
+        }
+
+        .pill:hover:not(.active) {
+            border-color: var(--navy);
+            color: var(--text);
+        }
+
+        /* ── SEARCH ── */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-inp {
+            flex: 1;
+            padding: 9px 14px;
+            border-radius: 4px;
+            border: 1.5px solid var(--border);
+            font-size: 13px;
+            font-family: 'DM Sans';
+            background: var(--white);
+            color: var(--text);
+            outline: none;
+            transition: .2s;
+        }
+
+        .search-inp:focus {
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, .05);
+        }
+
+        /* ── MODAL ── */
+        .modal-ov {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-ov.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, .25);
+            animation: su .3s ease;
+        }
+
+        .mh {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 1;
+        }
+
+        .mt2 {
+            font-family: 'Cormorant Garamond';
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .mc {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            border: none;
+            background: var(--cream);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .mb {
+            padding: 20px 24px 24px;
+        }
+
+        .dg {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 13px;
+            margin-bottom: 14px;
+        }
+
+        .df label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--text2);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .df span {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .ddesc {
+            background: var(--cream);
+            border-radius: 9px;
+            padding: 13px;
+            font-size: 13px;
+            color: var(--text);
+            line-height: 1.6;
+            border-left: 3px solid var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .al {
+            padding: 11px 14px;
+            border-radius: 9px;
+            font-size: 13px;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .al-s {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #15803d;
+        }
+
+        .al-w {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+        }
+
+        .ma {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* ── TIMELINE ── */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-left: 4px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .tli {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 18px;
+            position: relative;
+        }
+
+        .tld {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            flex-shrink: 0;
+            margin-top: 2px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .tld.done {
+            background: var(--green);
+            box-shadow: 0 0 0 2px var(--green);
+            color: #fff;
+        }
+
+        .tld.act {
+            background: var(--gold);
+            box-shadow: 0 0 0 2px var(--gold);
+            color: var(--navy);
+            animation: pulse 2s infinite;
+        }
+
+        .tld.wait {
+            background: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 2px var(--gold)
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(201, 151, 43, .25)
+            }
+        }
+
+        /* ── TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 2000;
+            background: var(--navy);
+            color: #fff;
+            padding: 13px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
+            animation: su .3s ease;
+            border-left: 3px solid var(--gold);
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        /* ── EMPTY STATE ── */
+        .es {
+            text-align: center;
+            padding: 56px 20px;
+        }
+
+        .ei {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .et {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .esb {
+            font-size: 13px;
+            color: var(--text2);
+        }
+
+        /* ── PRIORITY ROW INDICATOR ── */
+        .pri-Critical td:first-child {
+            border-left: 3px solid var(--red);
+        }
+
+        .pri-High td:first-child {
+            border-left: 3px solid var(--orange);
+        }
+
+        /* ── DEPT COLOR STRIP ── */
+        .dept-strip {
+            height: 4px;
+            background: var(--gold);
+            margin-bottom: 0;
+        }
+
+        /* ── MENU BTN (mobile) ── */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        /* ── CSV BTN ── */
+        .btn-csv {
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1.5px solid var(--border);
+            background: var(--white);
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'DM Sans';
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: .2s;
+        }
+
+        .btn-csv:hover {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* ── SECTION TITLE ── */
+        .sec-t {
+            font-family: 'Cormorant Garamond';
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .sec-s {
+            font-size: 13px;
+            color: var(--text2);
+            margin-bottom: 20px;
+        }
+
+        /* ── CHART ── */
+        .chart-wrap {
+            position: relative;
+            height: 200px;
+        }
+
+        @media(max-width: 900px) {
+            :root {
+                --sw: 0px;
+            }
+
+            .sidebar {
+                position: fixed;
+                transform: translateX(-100%);
+                transition: .3s;
+                width: 268px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .menu-btn {
+                display: flex !important;
+            }
+
+
+
+            .anl-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .sidebar.collapsed {
+            width: 70px;
+        }
+
+        .sidebar.collapsed .sb-row,
+        .sidebar.collapsed .sb-tag,
+        .sidebar.collapsed .nav-sec,
+        .sidebar.collapsed .sb-footer,
+        .sidebar.collapsed .nav-item {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .sb-name,
+        .sidebar.collapsed .sb-tag,
+        .sidebar.collapsed .nav-sec,
+        .sidebar.collapsed .sb-footer,
+        .sidebar.collapsed .nav-item {
+            display: none;
+        }
+
+        .sidebar.collapsed .ni {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .sidebar.collapsed .sb-emblem {
+            margin: 0;
+        }
+
+        .main.full {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: flex !important;
+        }
+
+
+        /* ── DEPT PROFILE ── */
+        /* ── DEPT PROFILE ── */
+        .prof-hero {
+            background: var(--navy);
+            border-radius: 8px;
+            padding: 28px;
+            color: #fff;
+            display: flex;
+            gap: 22px;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prof-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 80% 50%, rgba(201, 151, 43, .2) 0%, transparent 60%);
+        }
+
+        .prof-avatar-lg {
+            width: 84px;
+            height: 84px;
+            border-radius: 8px;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prof-hero-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .prof-hero-name {
+            font-family: 'Cormorant Garamond';
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .prof-hero-badge {
+            display: inline-block;
+            background: var(--gold);
+            border: 1px solid var(--gold2);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .prof-meta-row {
+            font-size: 12px;
+            color: rgba(255, 255, 255, .6);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+
+        .prof-meta-row strong {
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .prof-stats-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .prof-stat {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 16px 10px;
+            text-align: center;
+        }
+
+        .prof-stat-n {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Cormorant Garamond';
+            line-height: 1;
+        }
+
+        .prof-stat-l {
+            font-size: 11px;
+            color: var(--text2);
+            margin-top: 4px;
+        }
+
+        .prof-section-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .prof-info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .prof-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .prof-info-icon {
+            font-size: 15px;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .prof-info-label {
+            font-size: 10px;
+            color: var(--text2);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            font-weight: 700;
+        }
+
+        .prof-info-val {
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+
+        /* ── ANALYTICS ── */
+        .anl-title {
+            font-family: 'Cormorant Garamond';
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 14px;
+            color: var(--navy);
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 4px 0;
+            transition: .2s;
+        }
+
+        .bar-label {
+            font-size: 12px;
+            max-width: 42%;
+            flex-shrink: 0;
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bar-bg {
+            flex: 1;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            min-width: 0;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: var(--gold);
+        }
+
+        .bar-row:hover .bar-fill {
+            filter: brightness(1.1);
+            box-shadow: 0 0 10px rgba(201, 151, 43, 0.3);
+        }
+
+        .bar-num {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--navy);
+            min-width: 24px;
+            text-align: right;
+        }
+
+        /* ── ANALYTICS LAYOUT ── */
+        .anl-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .anl-row-full {
+            grid-column: 1 / -1;
+        }
+
+        .anl-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .anl-big {
+            font-family: 'Cormorant Garamond';
+            font-weight: 700;
+            line-height: 1;
+            font-size: 28px;
+        }
+
+        .anl-sub {
+            font-size: 12px;
+            color: var(--text2);
+            margin-top: 4px;
+        }
+
+        @media(max-width: 900px) {
+            .anl-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════ LOGIN GATE ══════════ -->
+    <div id="loginGate" class="login-wrap">
+        <div class="login-bg"></div>
+        <div class="login-pattern"></div>
+        <div class="login-box">
+            <div class="login-logo">🏛️</div>
+            <div class="login-univ">Woxsen University</div>
+            <div class="login-title">Staff Authentication</div>
+            <div style="text-align:center;margin:-10px 0 18px">
+                <span style="background:rgba(219,173,73,0.1);color:var(--gold);font-size:10px;font-weight:800;padding:4px 12px;border:1px solid var(--gold);border-radius:20px;text-transform:uppercase;letter-spacing:1px">Department Portal</span>
+            </div>
+            <div class="login-sub">Access restricted to authorised department personnel only</div>
+            <div class="login-err" id="loginErr"></div>
+            <div style="margin-bottom:13px">
+                <label class="lbl">User ID / Employee ID</label>
+                <input class="inp" id="loginUser" placeholder="e.g. 171635 (6-digit ID)"
+                    onkeydown="if(event.key==='Enter')document.getElementById('loginPass').focus()">
+            </div>
+            <div style="margin-bottom:22px">
+                <label class="lbl">Password</label>
+                <input class="inp" type="password" id="loginPass" placeholder="••••••••"
+                    onkeydown="if(event.key==='Enter')doLogin()">
+            </div>
+            <button class="btn-p" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()">🔓 Sign In to
+                Department Portal</button>
+
+            <div class="login-note" style="margin-top:14px">
+                Each role has unique credentials.<br>
+                Contact the Super Administrator for access issues.
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ DEPARTMENT STAFF APP ══════════ -->
+    <div id="deptApp" style="display:none">
+
+        <nav class="sidebar" id="sidebar">
+            <div class="dept-strip"></div>
+            <div class="sb-brand">
+                <div class="sb-logo-row"
+                    style="display: flex; align-items: center; margin-bottom: 24px; margin-left: -8px;">
+                    <img src="woxsen_wou_symbol.png" alt="WOU Logo"
+                        style="height: 48px; width: auto; flex-shrink: 0; margin-right: 11px;">
+                    <div class="sb-name">Woxsen University<small>Department Staff Portal</small></div>
+                </div>
+                <div class="sb-dept-badge" id="sbDeptBadge">—</div>
+            </div>
+            <div class="sb-nav">
+                <div class="nav-sec">My Department</div>
+                <div class="nav-item active" id="nav-dash" onclick="go('dash',this)"><span class="ni">📊</span>Dashboard
+                </div>
+                <div class="nav-item" id="nav-list" onclick="go('list',this)">
+                    <span class="ni">📋</span>Grievances
+                    <span class="nb" id="nb1" style="display:none">0</span>
+                </div>
+                <div class="nav-item" id="nav-analytics" onclick="go('analytics',this)"><span
+                        class="ni">📈</span>Analytics</div>
+                <div class="nav-item" id="nav-ann" onclick="go('ann',this)">
+                    <span class="ni">📢</span>Announcements
+                    <span class="nb" id="nbAnn" style="display:none">0</span>
+                </div>
+            </div>
+            <div class="sb-footer" id="sbFooter">Woxsen University<br>Kamkole, Sadasivpet<br>Telangana — 502345</div>
+        </nav>
+
+        <div class="main">
+            <div class="topbar">
+                <button class="menu-btn" style="display: flex !important; margin-right: 15px;"
+                    onclick="toggleSidebar()">☰</button>
+                <div class="tb-title" id="tbTitle">Dashboard<small id="tbSub">Department Staff Portal</small></div>
+                <img src="woxsen_wou_symbol.png" alt="WOU Logo"
+                    style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
+                <div style="margin-left:auto;display:flex;gap:15px;align-items:center">
+                    <div class="tb-profile-info" style="text-align:right;cursor:pointer" onclick="go('profile',null)">
+                        <div style="font-weight:700;color:var(--text);font-size:13px" id="tbStaffName">—</div>
+                        <div style="font-size:10px;color:var(--text2);font-weight:500" id="tbDeptLabel">—</div>
+                    </div>
+                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s"
+                        id="tbAvatar" onclick="go('profile',null)"
+                        onmouseover="this.style.transform='scale(1.05)';this.style.borderColor='var(--gold)'"
+                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">👤</div>
+                    <button onclick="doLogout()"
+                        style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
+                        onmouseover="this.style.background='rgba(220,38,38,.2)'"
+                        onmouseout="this.style.background='rgba(220,38,38,.1)'">🚪 Logout</button>
+                </div>
+            </div>
+
+            <div class="content">
+
+                <!-- ── DASHBOARD ── -->
+                <div class="page active" id="pDash">
+                    <div class="dash-hero">
+                        <div class="hero-blur-bg"
+                            style="position:absolute;inset:-20px;background:url('Woxsen1.jpeg') center/cover no-repeat;filter:blur(16px) brightness(0.45);z-index:0;">
+                        </div>
+                        <img class="dash-hero-img" src="Woxsen1.jpeg" alt="Woxsen University Campus">
+                        <div class="dash-hero-overlay"></div>
+                        <div class="dash-hero-content">
+                            <div class="dash-hero-badge">Departmental Operations</div>
+                            <div class="dash-hero-title" id="dashHeroTitle">Welcome to Department<br>Portal Dashboard</div>
+                            <div class="dash-hero-sub">Monitor and resolve grievances assigned to your department. Ensure all
+                                issues are addressed within university guidelines.</div>
+                        </div>
+                    </div>
+
+                    <div class="sec-t" id="dashTitle">Department Dashboard</div>
+                    <div class="sec-s" id="dashSub">Overview of grievances assigned to your department</div>
+
+                    <div class="stats">
+                        <div class="sc">
+                            <div class="sc-icon">📋</div>
+                            <div class="sc-n" id="s1">0</div>
+                            <div class="sc-l">Total Assigned</div>
+                        </div>
+                        <div class="sc">
+                            <div class="sc-icon">🟠</div>
+                            <div class="sc-n" id="s2" style="color:var(--orange)">0</div>
+                            <div class="sc-l">Pending Action</div>
+                        </div>
+                        <div class="sc">
+                            <div class="sc-icon">🔵</div>
+                            <div class="sc-n" id="s3" style="color:var(--blue)">0</div>
+                            <div class="sc-l">In Progress</div>
+                        </div>
+                        <div class="sc">
+                            <div class="sc-icon">✅</div>
+                            <div class="sc-n" id="s4" style="color:var(--green)">0</div>
+                            <div class="sc-l">Resolved</div>
+                        </div>
+                        <div class="sc" id="s5w" style="display:none">
+                            <div class="sc-icon">🔺</div>
+                            <div class="sc-n" id="s5" style="color:#dc2626">0</div>
+                            <div class="sc-l">Overdue / Escalate Now</div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="ct">Recent Grievances</div>
+                                <span style="font-size:11px;color:var(--text2)">Latest 5 assigned to your dept</span>
+                            </div>
+                            <div style="padding:0" id="dRecent">
+                                <div class="es" style="padding:30px">
+                                    <div class="ei">📋</div>
+                                    <div class="et">Loading…</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="ct">Priority Breakdown</div>
+                            </div>
+                            <div style="padding:16px 20px 8px" id="dPriBreak"></div>
+                            <div style="padding:0 20px 18px">
+                                <div class="chart-wrap"><canvas id="dChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── GRIEVANCE LIST ── -->
+                <div class="page" id="pList">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <div class="sec-t">Assigned Grievances</div>
+                        <button class="btn-csv" onclick="exportCSV()">⬇️ Export CSV</button>
+                    </div>
+                    <div class="sec-s" id="listSub">All grievances routed to your department</div>
+
+                    <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+                        <div class="fp" id="filterPills">
+                            <span class="pill active" onclick="filt('all',this)">All</span>
+                            <span class="pill" onclick="filt('Pending',this)">Pending</span>
+                            <span class="pill" onclick="filt('In Progress',this)">In Progress</span>
+                            <span class="pill" onclick="filt('Under Review',this)">Under Review</span>
+                            <span class="pill" onclick="filt('Escalated',this)">Escalated</span>
+                            <span class="pill" onclick="filt('Resolved',this)">Resolved</span>
+                            <span class="pill" onclick="filt('Closed',this)">Closed</span>
+                        </div>
+                    </div>
+                    <div class="search-bar" style="margin-bottom:14px">
+                        <input class="search-inp" id="gSearch" placeholder="🔍  Search by title, ID, student name…"
+                            oninput="renderList()">
+                    </div>
+
+                    <div class="card">
+                        <div style="overflow-x:auto" id="gListWrap">
+                            <div class="es">
+                                <div class="ei">📋</div>
+                                <div class="et">Loading…</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- ── ANNOUNCEMENTS PAGE ── -->
+                <div class="page" id="pAnn">
+                    <div class="sec-t">Announcements & Updates</div>
+                    <div class="sec-s">Important notices from Super Admin and system updates</div>
+                    <div id="annList" style="display:flex;flex-direction:column;gap:15px;margin-top:20px">
+                        <!-- Announcements will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- ── SETTINGS PAGE ── -->
+                <div class="page" id="pSet">
+                    <div class="sec-t">Account Settings</div>
+                    <div class="sec-s">Manage your portal preferences and notification settings.</div>
+
+                    <div class="card" style="max-width:500px">
+                        <div style="padding:18px 22px;border-bottom:1px solid var(--border)">
+                            <div class="ct">⚙️ Preferences</div>
+                        </div>
+                        <div style="padding:22px">
+                            <div
+                                style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                                <span>Email Notifications</span>
+                                <span class="badge bl">Enabled</span>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center">
+                                <span>Theme Mode</span>
+                                <span class="badge bc">System Default</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── PROFILE PAGE ── -->
+                <div class="page" id="pProfile">
+                    <div class="prof-hero">
+                        <div class="prof-avatar-lg" id="dpAvatar">👤</div>
+                        <div class="prof-hero-info">
+                            <div class="prof-hero-badge" id="dpBadgeHero">Department Staff</div>
+                            <div class="prof-hero-name" id="dpName">—</div>
+                            <div class="prof-meta-row">🏢 Role: <strong id="dpRole">—</strong></div>
+                            <div class="prof-meta-row">👤 Username: <strong id="dpUser">—</strong></div>
+                            <div class="prof-meta-row">✉️ <strong id="dpEmail">—</strong></div>
+                            <div class="prof-meta-row">📍 Kamkole, Sadasivpet, Sangareddy, Telangana — 502345</div>
+                        </div>
+                    </div>
+                    <div class="prof-stats-row">
+                        <div class="prof-stat">
+                            <div class="prof-stat-n" id="dps1">0</div>
+                            <div class="prof-stat-l">Total Assigned</div>
+                        </div>
+                        <div class="prof-stat">
+                            <div class="prof-stat-n" id="dps2" style="color:var(--orange)">0</div>
+                            <div class="prof-stat-l">Pending</div>
+                        </div>
+                        <div class="prof-stat">
+                            <div class="prof-stat-n" id="dps3" style="color:var(--blue)">0</div>
+                            <div class="prof-stat-l">In Progress</div>
+                        </div>
+                        <div class="prof-stat">
+                            <div class="prof-stat-n" id="dps4" style="color:var(--green)">0</div>
+                            <div class="prof-stat-l">Resolved</div>
+                        </div>
+                        <div class="prof-stat">
+                            <div class="prof-stat-n" id="dps5" style="color:var(--red)">0</div>
+                            <div class="prof-stat-l">Escalated</div>
+                        </div>
+                    </div>
+                    <div class="prof-section-grid">
+                        <div class="card" style="padding:20px">
+                            <div class="ct" style="margin-bottom:14px">Staff Information</div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">👤</div>
+                                <div>
+                                    <div class="prof-info-label">Full Name</div>
+                                    <div class="prof-info-val" id="dpi1">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon"><img src="woxsen_wou_symbol.png" alt="WOU" style="width:20px;height:20px;object-fit:contain;"></div>
+                                <div>
+                                    <div class="prof-info-label">School / Program</div>
+                                    <div class="prof-info-val" id="dpiSubDept">All Schools</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">🏛️</div>
+                                <div>
+                                    <div class="prof-info-label">Role</div>
+                                    <div class="prof-info-val" id="dpi2">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">🔐</div>
+                                <div>
+                                    <div class="prof-info-label">Username</div>
+                                    <div class="prof-info-val" id="dpi3">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">✉️</div>
+                                <div>
+                                    <div class="prof-info-label">Email</div>
+                                    <div class="prof-info-val" id="dpi4">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">📞</div>
+                                <div>
+                                    <div class="prof-info-label">Phone</div>
+                                    <div class="prof-info-val" id="dpi5">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">📅</div>
+                                <div>
+                                    <div class="prof-info-label">Joined</div>
+                                    <div class="prof-info-val" id="dpi6">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">🏫</div>
+                                <div>
+                                    <div class="prof-info-label">Institution</div>
+                                    <div class="prof-info-val">Woxsen University</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="padding:20px">
+                            <div class="ct" style="margin-bottom:14px">Department Performance</div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">📋</div>
+                                <div>
+                                    <div class="prof-info-label">Total Assigned</div>
+                                    <div class="prof-info-val" id="dpa1">0</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">✅</div>
+                                <div>
+                                    <div class="prof-info-label">Resolved</div>
+                                    <div class="prof-info-val" style="color:var(--green)" id="dpa2">0</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">⏳</div>
+                                <div>
+                                    <div class="prof-info-label">Open / Pending</div>
+                                    <div class="prof-info-val" style="color:var(--orange)" id="dpa3">0</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">🚨</div>
+                                <div>
+                                    <div class="prof-info-label">Escalated</div>
+                                    <div class="prof-info-val" style="color:var(--red)" id="dpa4">0</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">📈</div>
+                                <div>
+                                    <div class="prof-info-label">Resolution Rate</div>
+                                    <div class="prof-info-val" id="dpa5">—</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">🕐</div>
+                                <div>
+                                    <div class="prof-info-label">SLA Policy</div>
+                                    <div class="prof-info-val">Critical:2d · High:5d · Medium:7d · Low:14d</div>
+                                </div>
+                            </div>
+                            <div class="prof-info-row">
+                                <div class="prof-info-icon">📅</div>
+                                <div>
+                                    <div class="prof-info-label">Academic Year</div>
+                                    <div class="prof-info-val">2024 – 25</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🔐 Change Account Password -->
+                    <div class="card" style="margin-bottom:18px">
+                        <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
+                            <div class="ct">🔐 Change Account Password</div>
+                        </div>
+                        <div style="padding:20px">
+                            <div
+                                style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:15px">
+                                <div>
+                                    <label class="lbl">Current Password</label>
+                                    <input type="password" class="inp" id="setOldPass"
+                                        placeholder="Enter current password">
+                                </div>
+                                <div>
+                                    <label class="lbl">New Password</label>
+                                    <input type="password" class="inp" id="setNewPass" placeholder="Enter new password">
+                                </div>
+                                <div>
+                                    <label class="lbl">Confirm New Password</label>
+                                    <input type="password" class="inp" id="setConfPass"
+                                        placeholder="Re-enter new password">
+                                </div>
+                            </div>
+                            <div style="text-align:right">
+                                <button class="btn-p" onclick="changeStaffPassword()">Update Password</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="margin-bottom:18px">
+                        <div
+                            style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+                            <div class="ct">Recent Grievances Handled</div>
+                            <span style="font-size:11px;color:var(--text2)" id="dpRecentSub">—</span>
+                        </div>
+                        <div style="overflow-x:auto" id="dpRecentTable">
+                            <div class="es" style="padding:24px">
+                                <div class="ei">📋</div>
+                                <div class="et">Loading…</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                        <button class="btn-p" onclick="go('list',document.getElementById('nav-list'))">📋 View All Grievances</button>
+                        <button class="btn-s" onclick="go('analytics',document.getElementById('nav-analytics'))">📈 Analytics</button>
+                        <button class="btn-s" onclick="doLogout()">🚪 Logout</button>
+                    </div>
+                </div>
+            
+
+            <!-- ── ANALYTICS PAGE ── -->
+            <div class="page" id="pAnalytics">
+                <div class="sec-t">Department Analytics</div>
+                <div class="sec-s" id="anlSubTitle">Insights and performance benchmarks for your department</div>
+
+                <!-- Top KPI row -->
+                <div class="stats" style="margin-bottom:24px" id="danlStats">
+                    <div class="sc">
+                        <div class="sc-icon">📋</div>
+                        <div class="sc-n" id="da1">0</div>
+                        <div class="sc-l">Total Assigned</div>
+                    </div>
+                    <div class="sc">
+                        <div class="sc-icon">✅</div>
+                        <div class="sc-n" id="da2" style="color:var(--green)">0</div>
+                        <div class="sc-l">Resolved</div>
+                    </div>
+                    <div class="sc">
+                        <div class="sc-icon">📊</div>
+                        <div class="sc-n" id="da3" style="color:var(--blue)">0%</div>
+                        <div class="sc-l">Resolution Rate</div>
+                    </div>
+                    <div class="sc">
+                        <div class="sc-icon">🚨</div>
+                        <div class="sc-n" id="da4" style="color:var(--red)">0</div>
+                        <div class="sc-l">Escalated</div>
+                    </div>
+                </div>
+
+                <div class="anl-grid">
+                    <div class="anl-card">
+                        <div class="anl-title">Grievances by Status</div>
+                        <div id="danlStat"></div>
+                    </div>
+                    <div class="anl-card">
+                        <div class="anl-title">Grievances by Priority</div>
+                        <div id="danlPri"></div>
+                    </div>
+
+                    <div class="anl-card anl-row-full">
+                        <div class="anl-title">Grievances by Sub-Category</div>
+                        <div id="danlSub"></div>
+                    </div>
+
+                    <div class="anl-card">
+                        <div class="anl-title">Weekly Trends</div>
+                        <div class="chart-wrap"><canvas id="danlChart"></canvas></div>
+                    </div>
+
+                    <div class="anl-card">
+                        <div class="anl-title">Department Performance Metrics</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;flex:1">
+                            <div style="text-align:center;padding:15px;background:var(--cream);border-radius:12px;border:1px solid var(--border)">
+                                <div class="anl-big" style="color:var(--green)" id="darResolved">0</div>
+                                <div class="anl-sub">Resolved Total</div>
+                            </div>
+                            <div style="text-align:center;padding:15px;background:var(--cream);border-radius:12px;border:1px solid var(--border)">
+                                <div class="anl-big" style="color:var(--orange)" id="darOpen">0</div>
+                                <div class="anl-sub">Awaiting Action</div>
+                            </div>
+                            <div style="text-align:center;padding:15px;background:var(--cream);border-radius:12px;border:1px solid var(--border)">
+                                <div class="anl-big" style="color:var(--red)" id="darEsc">0</div>
+                                <div class="anl-sub">Escalations</div>
+                            </div>
+                            <div style="text-align:center;padding:15px;background:var(--cream);border-radius:12px;border:1px solid var(--border)">
+                                <div class="anl-big" style="color:var(--blue)" id="darRate">0%</div>
+                                <div class="anl-sub">SLA Status</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:24px">
+                    <button class="btn-p" style="padding:12px 35px" onclick="exportCSV()">⬇️ Export Departmental Report</button>
+                    <button class="btn-s" style="padding:12px 35px" onclick="go('list',document.getElementById('nav-list'))">📋 Browse Records</button>
+                </div>
+            </div>
+
+                <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:24px">
+                    <button class="btn-p" style="padding:12px 30px" onclick="exportCSV()">⬇️ Export Analytical Report</button>
+                    <button class="btn-s" style="padding:12px 30px" onclick="go('list',document.getElementById('nav-list'))">📋 Browse Records</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ══════════ DETAIL / UPDATE MODAL ══════════ -->
+    <div class="modal-ov" id="mOv">
+        <div class="modal">
+            <div class="mh">
+                <div class="mt2" id="mTitle">Grievance Details</div>
+                <button class="mc" onclick="closeM()">✕</button>
+            </div>
+            <div class="mb" id="mBody"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg"></span></div>
+
+    <script>
+        /* ══ CONFIG ══ */
+        // Supabase configuration is now handled server‑side. The front‑end no longer contains keys.
+// const SUPABASE_URL = 'https://...';
+// const SUPABASE_ANON_KEY = '...';
+
+        /* ══ DEPARTMENT STAFF ACCOUNTS ══
+           Each account can ONLY see grievances where g.assigned === their assignedLabel
+           To change passwords, update this object.
+        ══ */
+        // ── ESCALATION CONFIG ──
+        const ESC_LEVELS = ['professor', 'pd', 'pm', 'dean', 'admin'];
+        const ESC_LABELS = { professor: '👨‍🏫 Professor', pd: '📋 Programme Director (PD)', pm: '🏛️ Programme Manager (PM)', dean: '🎓 Dean / Director', admin: '⚖️ Admin Committee' };
+        // Anonymous Masking (#6)
+        function dispName(g) { return g.is_anonymous ? 'Anonymous Student' : (g.name || '—'); }
+        function dispSid(g) { return g.is_anonymous ? 'ANON-' + (g.real_sid || '').slice(-4) : (g.sid || '—'); }
+        const ESC_NEXT = { professor: 'pd', pd: 'pm', pm: 'dean', dean: 'admin', admin: 'admin' };
+        const ESC_HOURS = 24;
+        function getEscLevel(g) { return g.escalation_level || (g.cat === 'Academic' ? 'professor' : 'admin'); }
+        function getAssignedAt(g) { return g.assigned_at ? new Date(g.assigned_at) : new Date(); }
+        function hoursAtLevel(g) { const d = getAssignedAt(g); return isNaN(d) ? 9999 : (Date.now() - d) / 3600000; }
+        function timeUntilEsc(g) { if (['Resolved', 'Closed'].includes(g.status) || g.cat !== 'Academic') return null; const lv = getEscLevel(g); if (lv === 'admin') return null; return ESC_HOURS - hoursAtLevel(g); }
+        function fmtCountdown(rem) { if (rem <= 0) return '<span style="color:#dc2626;font-weight:700">OVERDUE</span>'; const h = Math.floor(rem); const m = Math.floor((rem % 1) * 60); return `<span style="color:${rem < 4 ? '#dc2626' : rem < 12 ? '#c2540a' : '#16774a'};font-weight:700">${h}h ${m}m left</span>`; }
+
+        /* ══ STATE ══ */
+        let G = [], gf = 'all', currentStaff = null;
+
+        /* ══ SUPABASE ══ */
+        const SB_URL = 'https://ohmeixzrfbyccmymzgjp.supabase.co/rest/v1';
+        const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9obWVpeHpyZmJ5Y2NteW16Z2pwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NjgwNDYsImV4cCI6MjA4NzM0NDA0Nn0.QZJYRXYoZxeTTvkKFC6JzQ8Jykbf-RYVUdJwfnEaPxc';
+        async function sbFetch(p, o = {}) {
+            const headers = {
+                'Content-Type': 'application/json',
+                'apikey': SB_KEY,
+                'Authorization': 'Bearer ' + SB_KEY
+            };
+            if (o.prefer) headers['Prefer'] = o.prefer;
+            const opts = { method: o.method || 'GET', headers };
+            if (o.body) opts.body = o.body;
+            return fetch(SB_URL + '/' + p, opts);
+        }
+        async function auditLog(action, grievanceId) {
+            try { await sbFetch('audit_log', { method: 'POST', prefer: 'return=minimal', body: JSON.stringify({ action, actor: currentStaff ? currentStaff.fullname : 'Staff', grievance_id: grievanceId || null, created_at: new Date().toISOString() }) }); } catch (e2) { }
+        }
+
+
+
+        async function loadG() {
+            try {
+                const r = await sbFetch('grievances?order=created_at.asc&select=*');
+                if (!r.ok) throw new Error(r.status);
+                G = await r.json();
+            } catch (e) { G = []; toast('❌', 'Connection error: ' + e.message, 4000); }
+        }
+
+        /* ══ LOGIN ══ */
+        async function doLogin() {
+            const u = document.getElementById('loginUser').value.trim().toLowerCase();
+            const p = document.getElementById('loginPass').value;
+            const err = document.getElementById('loginErr');
+            if (!u || !p) { err.style.display = 'block'; err.textContent = '⚠️ Please enter username and password.'; return; }
+
+            err.style.display = 'none';
+            const btn = document.querySelector('#loginGate .btn-p');
+            if (btn) { btn.disabled = true; btn.textContent = 'Verifying…'; }
+
+            try {
+                // Fetch by username only — password NEVER sent in URL
+                const r = await sbFetch(`staff_accounts?username=eq.${encodeURIComponent(u)}&select=*`);
+                if (!r.ok) throw new Error('Network response was not ok');
+                const users = await r.json();
+
+                if (!users.length) {
+                    err.style.display = 'block';
+                    err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
+                    return;
+                }
+
+                // Plaintext comparison
+                if (p !== users[0].password) {
+                    err.style.display = 'block';
+                    err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
+                    return;
+                }
+
+                const acc = users[0];
+                if (acc.status === 'Terminated') {
+                    err.style.display = 'block';
+                    err.textContent = '🚫 Account Terminated. Access denied.';
+                    return;
+                }
+
+                const DEPT_THEMES = { 'Academic': { emoji: '📚', color: '#eff6ff', textColor: '#1d4ed8' }, 'Administrative': { emoji: '🏛️', color: '#f0fdf4', textColor: '#16774a' }, 'Infrastructure': { emoji: '🏗️', color: '#fff7ed', textColor: '#c2540a' }, 'Ragging': { emoji: '🚨', color: '#fef2f2', textColor: '#b91c1c' }, 'Others': { emoji: '🤝', color: '#faf5ff', textColor: '#6d28d9' } };
+                const DEPT_LABELS = { Academic: 'Exam Cell / HOD', Administrative: 'Admin / Accounts Office', Infrastructure: 'Estate Officer / IT', Ragging: 'Anti-Ragging Committee', Others: 'Student Welfare Office' };
+                const t = DEPT_THEMES[acc.dept] || DEPT_THEMES['Others'];
+
+                currentStaff = {
+                    username: acc.username,
+                    dept: acc.dept,
+                    escalation_level: (acc.dept === 'Academic' ? acc.escalation_level || 'professor' : null),
+                    assignedLabel: (acc.dept !== 'Academic' ? DEPT_LABELS[acc.dept] || 'Unknown' : null),
+                    name: acc.fullname,
+                    emoji: t.emoji,
+                    role: acc.role,
+                    color: t.color,
+                    textColor: t.textColor,
+                    phone: acc.phone,
+                    email: acc.email,
+                    joined: acc.joined,
+                    fullname: acc.fullname,
+                    sub_dept: acc.sub_dept
+                };
+
+                sessionStorage.setItem('dept_user', u);
+                // NOTE: password is never stored in sessionStorage
+                initApp();
+            } catch (e) {
+                err.style.display = 'block';
+                err.textContent = '❌ Connection Error: ' + e.message;
+            } finally {
+                if (btn) { btn.disabled = false; btn.textContent = '🔓 Sign In to Portal'; }
+            }
+        }
+
+        function doLogout() {
+            sessionStorage.removeItem('dept_user');
+            sessionStorage.removeItem('dept_pass');
+            currentStaff = null;
+            document.getElementById('loginGate').style.display = 'flex';
+            document.getElementById('deptApp').style.display = 'none';
+            document.getElementById('loginUser').value = '';
+            document.getElementById('loginPass').value = '';
+            document.getElementById('loginErr').style.display = 'none';
+        }
+
+        function initApp() {
+            document.getElementById('loginGate').style.display = 'none';
+            document.getElementById('deptApp').style.display = 'block';
+            // Set UI labels
+            const schoolMap = { 'School of Business': 'SOB', 'School of Technology': 'SOT', 'School of Art & Design': 'SOAD', 'School of Law': 'SOL', 'School of Liberal Arts & Humanities': 'SOLA', 'School of Architecture & Planning': 'SOAP' };
+            const sShort = schoolMap[currentStaff.sub_dept] || currentStaff.sub_dept || '';
+            const domain = (sShort ? sShort + ' - ' : '') + currentStaff.dept;
+
+            const updateText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+            
+            updateText('sbEmoji', currentStaff.emoji);
+            updateText('tbAvatar', currentStaff.emoji);
+            updateText('sbDeptBadge', domain + ' Hub');
+            updateText('tbStaffName', currentStaff.name);
+            updateText('tbDeptLabel', domain + ' Portal');
+            updateText('dashTitle', currentStaff.name + ' — ' + (sShort || 'University'));
+            updateText('dashSub', 'Grievances assigned to: ' + domain);
+            updateText('listSub', 'Showing only grievances assigned to: ' + domain);
+            
+            renderDash();
+            renderAnnouncements();
+        }
+
+        /* ══ ANNOUNCEMENTS ══ */
+        function renderAnnouncements() {
+            const list = JSON.parse(localStorage.getItem('wox_announcements') || '[]');
+            const el = document.getElementById('annList');
+            if (!el) return;
+
+            // Notification Badge
+            const b = document.getElementById('nbAnn');
+            if (b) {
+                if (list.length > 0) {
+                    b.style.display = 'inline-block';
+                    b.textContent = list.length;
+                } else {
+                    b.style.display = 'none';
+                }
+            }
+
+            if (!list.length) {
+                el.innerHTML = `<div class="es" style="padding:40px;background:white;border-radius:12px;border:1px dashed var(--border)">
+                    <div class="ei">📢</div>
+                    <div class="et">No announcements yet.</div>
+                </div>`;
+                return;
+            }
+
+            el.innerHTML = list.map(a => `
+                <div class="card" style="padding:20px;display:flex;gap:15px;align-items:flex-start">
+                    <div style="width:44px;height:44px;border-radius:10px;background:#f0f7ff;color:#1e40af;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
+                        ${a.type === 'promotion' ? '🚀' : a.type === 'info' ? 'ℹ️' : '📢'}
+                    </div>
+                    <div style="flex:1">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+                            <span style="font-weight:700;font-size:16px">${a.title}</span>
+                            <span style="font-size:11px;color:var(--text2)">${new Date(a.created).toLocaleString()}</span>
+                        </div>
+                        <div style="font-size:14px;color:var(--text);line-height:1.6">${a.body}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* ══ FILTER: Only this role/dept's grievances ══ */
+        function myGrievances() {
+            if (currentStaff.escalation_level) {
+                // Academic hierarchy
+                return G.filter(g => {
+                    const isAtLevel = g.cat === 'Academic' && getEscLevel(g) === currentStaff.escalation_level && !['Resolved', 'Closed'].includes(g.status);
+                    if (!isAtLevel) return false;
+                    if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
+                        return g.dept === currentStaff.sub_dept;
+                    }
+                    return true;
+                });
+            }
+            // Non-Academic (Admin, Infrastructure, etc.)
+            return G.filter(g => {
+                const isAssigned = g.assigned === currentStaff.assignedLabel && !['Resolved', 'Closed'].includes(g.status);
+                if (!isAssigned) return false;
+                if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
+                    return g.dept === currentStaff.sub_dept;
+                }
+                return true;
+            });
+        }
+        function myGrievancesAll() {
+            if (currentStaff.escalation_level) {
+                // All relevant academic grievances
+                return G.filter(g => {
+                    const isRelevant = g.cat === 'Academic' && (getEscLevel(g) === currentStaff.escalation_level || ESC_LEVELS.indexOf(getEscLevel(g)) > ESC_LEVELS.indexOf(currentStaff.escalation_level) || ['Resolved', 'Closed'].includes(g.status));
+                    if (!isRelevant) return false;
+                    if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
+                        return g.dept === currentStaff.sub_dept;
+                    }
+                    return true;
+                });
+            }
+            // All relevant non-academic grievances
+            return G.filter(g => {
+                const isAssigned = g.assigned === currentStaff.assignedLabel;
+                if (!isAssigned) return false;
+                if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
+                    return g.dept === currentStaff.sub_dept;
+                }
+                return true;
+            });
+        }
+
+        /* ══ NAVIGATION ══ */
+        function toggleSidebar() {
+            const sb = document.getElementById('sidebar');
+            const main = document.querySelector('.main');
+            if (window.innerWidth > 900) {
+                sb.classList.toggle('collapsed');
+                main.classList.toggle('full');
+            } else {
+                sb.classList.toggle('open');
+            }
+        }
+
+        function go(n, el) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
+            document.getElementById('p' + n.charAt(0).toUpperCase() + n.slice(1)).classList.add('active');
+            if (el) el.classList.add('active');
+            const map = { dash: 'Dashboard', list: 'Assigned Grievances', profile: 'My Profile', analytics: 'Analytics', ann: 'Announcements' };
+            document.getElementById('tbTitle').childNodes[0].textContent = map[n] || n;
+            if (n === 'dash') renderDash();
+            if (n === 'list') renderList();
+            if (n === 'profile') renderDeptProfile();
+            if (n === 'analytics') renderDeptAnalytics();
+            if (n === 'ann') renderAnnouncements();
+
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        async function changeStaffPassword() {
+            const oldP = document.getElementById('setOldPass').value;
+            const newP = document.getElementById('setNewPass').value;
+            const confP = document.getElementById('setConfPass').value;
+            const user = currentStaff.username;
+
+            if (!oldP || !newP || !confP) { toast('⚠️', 'Fill all password fields.'); return; }
+            if (newP !== confP) { toast('❌', 'New passwords do not match!'); return; }
+            if (newP.length < 8) { toast('❌', 'Password must be at least 8 characters.'); return; }
+
+            try {
+                // Fetch record, verify old password by hash comparison
+                const r1 = await sbFetch('staff_accounts?username=eq.' + encodeURIComponent(user) + '&select=password');
+                const d1 = await r1.json();
+                if (!d1 || !d1.length) { toast('❌', 'Account not found!'); return; }
+                if (oldP !== d1[0].password) { toast('❌', 'Current password incorrect!'); return; }
+
+                // Store new plaintext password
+                const r2 = await sbFetch('staff_accounts?username=eq.' + encodeURIComponent(user), {
+                    method: 'PATCH',
+                    prefer: 'return=minimal',
+                    body: JSON.stringify({ password: newP })
+                });
+
+                if (r2.ok) {
+                    toast('✅', 'Password updated successfully!');
+                    document.getElementById('setOldPass').value = '';
+                    document.getElementById('setNewPass').value = '';
+                    document.getElementById('setConfPass').value = '';
+                } else {
+                    throw new Error('Update failed');
+                }
+            } catch (e) {
+                toast('❌', 'Error updating password: ' + e.message);
+            }
+        }
+
+        /* ══ DEPT PROFILE PAGE ══ */
+        async function renderDeptProfile() {
+            if (!currentStaff) return;
+            await loadG();
+            const d = myGrievances();
+            const t = d.length;
+            const res = d.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
+            const pend = d.filter(x => x.status === 'Pending').length;
+            const ip = d.filter(x => ['In Progress', 'Under Review'].includes(x.status)).length;
+            const esc = d.filter(x => x.status === 'Escalated').length;
+            const open = pend + ip;
+            const rate = t ? Math.round(res / t * 100) : 0;
+            // Hero
+            const el = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+            el('dpAvatar', currentStaff.emoji);
+            el('dpName', currentStaff.fullname);
+            el('dpRole', currentStaff.role);
+            const schoolMap = { 'School of Business': 'SOB', 'School of Technology': 'SOT', 'School of Art & Design': 'SOAD', 'School of Law': 'SOL', 'School of Liberal Arts & Humanities': 'SOLA', 'School of Architecture & Planning': 'SOAP' };
+            const sShort = schoolMap[currentStaff.sub_dept] || currentStaff.sub_dept || '';
+            el('dpBadgeHero', (sShort ? sShort + ' - ' : '') + currentStaff.dept + ' Department');
+            el('dpUser', currentStaff.username);
+            el('dpEmail', currentStaff.email || currentStaff.username + '@woxsen.edu.in');
+            // Stats row
+            ['dps1', 'dps2', 'dps3', 'dps4', 'dps5'].forEach((id, i) => el(id, [t, pend, ip, res, esc][i]));
+            // Info card
+            el('dpi1', currentStaff.fullname);
+            el('dpi2', currentStaff.role);
+            el('dpi3', currentStaff.username);
+            el('dpi4', currentStaff.email || currentStaff.username + '@woxsen.edu.in');
+            el('dpi5', currentStaff.phone || 'Ext. via Admin');
+            el('dpi6', currentStaff.joined || 'N/A');
+            const subDept = document.getElementById('dpiSubDept');
+            if (subDept) subDept.textContent = currentStaff.sub_dept || 'All Schools';
+            // Performance card
+            ['dpa1', 'dpa2', 'dpa3', 'dpa4'].forEach((id, i) => el(id, [t, res, open, esc][i]));
+            el('dpa5', t ? rate + '%' : '—');
+            // Recent table
+            const sub = document.getElementById('dpRecentSub'); if (sub) sub.textContent = t + ' grievance' + (t !== 1 ? 's' : '') + ' total';
+            const tbl = document.getElementById('dpRecentTable');
+            if (!d.length) { tbl.innerHTML = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No grievances yet</div></div>'; return; }
+            tbl.innerHTML = '<table><thead><tr><th>ID</th><th>Student</th><th>Title</th><th>Priority</th><th>Date</th><th>Status</th></tr></thead><tbody>' +
+                d.slice().reverse().slice(0, 8).map(g => `<tr>
+                    <td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}${g.reopen_count && g.reopen_count > 0 ? "<span style='font-size:9px;background:#fef9c3;color:#854d0e;border-radius:20px;padding:1px 6px;margin-left:4px;font-weight:700'>&#128260;</span>" : ""}</td>
+                    <td><div style="font-weight:600;font-size:12px">${dispName(g)}</div><div style="font-size:10px;color:var(--text2)">${g.sid}</div></td>
+                    <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${g.title}</td>
+                    <td>${ptag(g.pri)}</td>
+                    <td style="font-size:11px;color:var(--text2)">${g.date}</td>
+                    <td>${stag(g.status)}</td>
+                </tr>`).join('') + '</tbody></table>';
+        }
+
+        /* ══ DEPT ANALYTICS PAGE ══ */
+        async function renderDeptAnalytics() {
+            if (!currentStaff) return;
+            await loadG();
+            const d = currentStaff.escalation_level ? myGrievancesAll() : myGrievances();
+            const t = d.length;
+            const res = d.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
+            const esc = d.filter(x => x.status === 'Escalated').length;
+            const open = d.filter(x => !['Resolved', 'Closed'].includes(x.status)).length;
+            const rate = t ? Math.round(res / t * 100) : 0;
+            const el = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
+            ['da1', 'da2', 'da3', 'da4'].forEach((id, i) => el(id, [t, res, rate + '%', esc][i]));
+            ['darResolved', 'darOpen', 'darEsc', 'darRate'].forEach((id, i) => el(id, [res, open, esc, rate + '%'][i]));
+            const sc = { Pending: '#ea580c', 'In Progress': '#1a56db', 'Under Review': '#7c3aed', Resolved: '#059669', Escalated: '#dc2626', Closed: '#64748b' };
+            const pc = { Critical: '#dc2626', High: '#ea580c', Medium: '#c9972b', Low: '#059669' };
+            function makeBar(containerId, counts, colorMap) {
+                const e = document.getElementById(containerId); if (!e) return;
+                const max = Math.max(...Object.values(counts), 1);
+                if (!Object.keys(counts).length) { e.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text2);font-size:12px">No data yet</div>'; return; }
+
+                const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+                e.innerHTML = sorted.map(([k, v]) => {
+                    const color = colorMap[k] || colorMap['default'] || '#64748b';
+                    return `<div class="bar-row" style="cursor:default">
+                        <div class="bar-label">${k}</div>
+                        <div class="bar-bg">
+                            <div class="bar-fill" style="width:${Math.round(v / max * 100)}%; background:${color}; opacity: 0.9"></div>
+                        </div>
+                        <div class="bar-num">${v}</div>
+                    </div>`;
+                }).join('');
+            }
+            const statC = {}, priC = {}, subC = {};
+            d.forEach(x => { statC[x.status] = (statC[x.status] || 0) + 1; priC[x.pri] = (priC[x.pri] || 0) + 1; subC[x.sub] = (subC[x.sub] || 0) + 1; });
+            makeBar('danlStat', statC, sc);
+            makeBar('danlPri', priC, pc);
+            makeBar('danlSub', subC, { 'default': 'linear-gradient(90deg, #1d4ed8, #60a5fa)' });
+            // Chart
+            const ctx = document.getElementById('danlChart');
+            if (ctx && Object.keys(priC).length) {
+                if (window._danlChart) window._danlChart.destroy();
+                window._danlChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: Object.keys(priC),
+                        datasets: [{
+                            data: Object.values(priC),
+                            backgroundColor: Object.keys(priC).map(k => pc[k] || '#64748b'),
+                            borderWidth: 0,
+                            hoverOffset: 12,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '65%',
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    padding: 20,
+                                    usePointStyle: true,
+                                    font: { size: 12, family: 'DM Sans', weight: '500' }
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#0a1628',
+                                padding: 12,
+                                titleFont: { size: 14, family: 'DM Sans' },
+                                bodyFont: { size: 13, family: 'DM Sans' },
+                                cornerRadius: 10,
+                                displayColors: true
+                            }
+                        }
+                    }
+                });
+            } else if (ctx) {
+                ctx.parentElement.innerHTML = '<div class="es" style="padding:20px"><div class="ei">📊</div><div class="et">No data to chart yet</div></div>';
+            }
+        }
+
+        function filt(f, el) {
+            gf = f;
+            document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
+            renderList();
+        }
+
+        /* ══ DASHBOARD ══ */
+        async function renderDash() {
+            await loadG();
+            const d = myGrievances();
+            const t = d.length, p = d.filter(x => x.status === 'Pending').length,
+                ip = d.filter(x => ['In Progress', 'Under Review', 'Escalated'].includes(x.status)).length,
+                r = d.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
+            ['s1', 's2', 's3', 's4'].forEach((id, i) => { const el = document.getElementById(id); if (el) el.textContent = [t, p, ip, r][i]; });
+            // Overdue escalations
+            const overdue = d.filter(g => { const rem = timeUntilEsc(g); return rem !== null && rem <= 0; }).length;
+            const ovEl = document.getElementById('s5'); if (ovEl) ovEl.textContent = overdue;
+            const ovW = document.getElementById('s5w'); if (ovW) ovW.style.display = overdue > 0 ? '' : 'none';
+
+            // Badge counter
+            const nb = document.getElementById('nb1');
+            nb.style.display = p > 0 ? '' : 'none';
+            nb.textContent = p;
+
+            // Recent grievances table
+            const rec = document.getElementById('dRecent');
+            if (!t) { rec.innerHTML = '<div class="es" style="padding:28px"><div class="ei">📋</div><div class="et">No grievances assigned yet</div></div>'; }
+            else {
+                rec.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Student</th><th>Title</th><th>Priority</th><th>Status</th></tr></thead><tbody>' +
+                    d.slice().reverse().slice(0, 5).map(g => `<tr onclick="openDetail('${g.id}')" title="Click to view">
+                    <td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}</td>
+                    <td><div style="font-weight:600;font-size:12px">${dispName(g)}</div><div style="font-size:10px;color:var(--text2)">${g.sid}</div></td>
+                    <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${g.title}</td>
+                    <td>${ptag(g.pri)}</td><td>${stag(g.status)}</td></tr>`).join('') +
+                    '</tbody></table></div>';
+            }
+
+            // Priority breakdown
+            const pris = {};
+            d.forEach(x => { pris[x.pri] = (pris[x.pri] || 0) + 1; });
+            const pc = { Critical: '#b91c1c', High: '#c2540a', Medium: '#a16207', Low: '#16774a' };
+            document.getElementById('dPriBreak').innerHTML = Object.entries(pris).map(([pr, n]) =>
+                `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+                <div style="width:8px;height:8px;border-radius:50%;background:${pc[pr] || '#64748b'};flex-shrink:0"></div>
+                <span style="flex:1;font-size:12px">${pr}</span>
+                <div style="width:55px;height:4px;background:#f1f5f9;border-radius:4px;overflow:hidden">
+                    <div style="width:${t ? Math.round(n / t * 100) : 0}%;height:100%;background:${pc[pr] || '#64748b'};border-radius:4px"></div>
+                </div>
+                <span style="font-size:12px;font-weight:700">${n}</span>
+            </div>`).join('');
+
+            // Chart
+            const ctx = document.getElementById('dChart');
+            if (ctx && Object.keys(pris).length) {
+                if (window._chart) window._chart.destroy();
+                window._chart = new Chart(ctx, {
+                    type: 'doughnut', data: {
+                        labels: Object.keys(pris),
+                        datasets: [{ data: Object.values(pris), backgroundColor: Object.keys(pris).map(k => pc[k] || '#64748b'), borderWidth: 2, borderColor: '#fff', hoverOffset: 5 }]
+                    }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'DM Sans', size: 11 }, boxWidth: 10, padding: 10 } } }, cutout: '60%' }
+                });
+            }
+        }
+
+        /* ══ GRIEVANCE LIST ══ */
+        let dPage = 1; const dPerPage = 25;
+        async function renderList() {
+            await loadG();
+            const d = gf === 'resolved' ? myGrievancesAll() : myGrievances();
+            const q = document.getElementById('gSearch').value.toLowerCase();
+            let list = gf === 'all' ? d : gf === 'resolved' ? d.filter(x => ['Resolved', 'Closed'].includes(x.status)) : d.filter(x => x.status === gf);
+            if (q) list = list.filter(x => (x.title || '').toLowerCase().includes(q) || (x.id || '').toLowerCase().includes(q) || (x.name || '').toLowerCase().includes(q) || (x.description || '').toLowerCase().includes(q) || (x.sid || '').toLowerCase().includes(q));
+            list = list.slice().reverse();
+            const wrap = document.getElementById('gListWrap');
+            if (!list.length) { wrap.innerHTML = `<div class="es"><div class="ei">📂</div><div class="et">${q ? 'No matching grievances' : 'No grievances in this filter'}</div></div>`; return; }
+            const total = list.length;
+            const totalPages = Math.ceil(total / dPerPage) || 1;
+            if (dPage > totalPages) dPage = Math.max(1, totalPages);
+            const pStart = (dPage - 1) * dPerPage;
+            const pageList = list.slice(pStart, pStart + dPerPage);
+            const isAcadHier = !!currentStaff.escalation_level;
+            wrap.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Student</th><th>School</th><th>Category</th><th>Title / Description</th><th>Priority</th><th>Date</th>' + (isAcadHier ? '<th>⏰ Time Left</th>' : '') + '<th>Status</th><th>Actions</th></tr></thead><tbody>' +
+                pageList.map(g => {
+                    const rem = timeUntilEsc(g);
+                    const timerCell = isAcadHier ? `<td style="white-space:nowrap">${rem === null ? '—' : fmtCountdown(rem)}</td>` : '';
+                    // Manual escalation buttons removed to enforce de-escalation only
+                    return `<tr class="pri-${g.pri}"><td style="font-weight:700;color:var(--gold);font-size:11px;white-space:nowrap">${g.id}</td>
+                  <td><div style="font-weight:600;font-size:13px">${dispName(g)}</div><div style="font-size:10px;color:var(--text2)">${g.sid}</div></td>
+                  <td style="font-size:11px;color:var(--text2)">${g.dept}</td>
+                  <td style="font-size:12px">${g.cat}</td>
+                  <td style="max-width:150px"><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600">${g.title}</div><div style="font-size:10px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${(g.description || '').slice(0, 60)}…</div></td>
+                  <td>${ptag(g.pri)}</td>
+                  <td style="font-size:11px;color:var(--text2);white-space:nowrap">${g.date}</td>
+                  ${timerCell}
+                  <td>${stag(g.status)}</td>
+                  <td style="white-space:nowrap;display:flex;gap:5px;flex-wrap:wrap;min-width:160px"><button class="btn-p" style="padding:4px 10px;font-size:11px" onclick="openDetail('${g.id}')">✏️ Update</button></td>
+                  </tr>`;
+                }).join('') + '</tbody></table></div>';
+            if (totalPages > 1) {
+                wrap.insertAdjacentHTML('beforeend', `<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 0;border-top:1px solid var(--border)"><button onclick="dPage=Math.max(1,dPage-1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === 1 ? 'opacity:.4' : ''}">← Prev</button><span style="font-size:12px;color:var(--text2)">Page ${dPage} / ${totalPages} · ${total} records</span><button onclick="dPage=Math.min(${totalPages},dPage+1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === totalPages ? 'opacity:.4' : ''}">Next →</button></div>`);
+            }
+        }
+
+        /* ══ OPEN DETAIL + UPDATE MODAL ══ */
+        async function openDetail(id) {
+            await loadG();
+            // SECURITY: only allow viewing grievances from this department
+            const g = myGrievances().find(x => x.id === id);
+            if (!g) { toast('❌', 'Grievance not found or not in your department.'); return; }
+
+            document.getElementById('mTitle').textContent = g.id + ' — ' + dispName(g);
+            const statusOptions = ['Pending', 'In Progress', 'Under Review', 'Resolved', 'Escalated', 'Closed']
+                .map(s => `<option ${g.status === s ? 'selected' : ''}>${s}</option>`).join('');
+
+            const etaMap = { Critical: 2, High: 5, Medium: 7, Low: 14 };
+            const days = etaMap[g.pri] || 7;
+            const subDate = new Date(g.date); const eta = new Date(subDate); eta.setDate(eta.getDate() + days);
+            const etaStr = ['Resolved', 'Closed'].includes(g.status) ? '✅ Resolved' : ('⏱ ' + eta.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }));
+
+            document.getElementById('mBody').innerHTML = `
+            <div style="display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap">${stag(g.status)} ${ptag(g.pri)}</div>
+            <div style="font-family:'Cormorant Garamond';font-size:18px;font-weight:600;margin-bottom:3px">${g.title}</div>
+            <div style="font-size:12px;color:var(--text2);margin-bottom:14px">By <strong>${g.name}</strong> (${g.sid}) · ${g.dept} · ${g.year}</div>
+            <div class="dg" style="margin-bottom:14px">
+                <div class="df"><label>Category</label><span>${g.cat}</span></div>
+                <div class="df"><label>Sub-Type</label><span>${g.sub}</span></div>
+                <div class="df"><label>Priority</label><span>${ptag(g.pri)}</span></div>
+                <div class="df"><label>Email</label><span><a href="mailto:${g.email}" style="color:var(--blue)">${g.email}</a></span></div>
+                <div class="df"><label>Phone</label><span>${g.phone || '—'}</span></div>
+                <div class="df"><label>Submitted</label><span>${g.date}</span></div>
+                <div class="df"><label>SLA Deadline</label><span style="color:var(--gold);font-weight:700">${etaStr}</span></div>
+                ${g.cat === 'Academic' ? `<div class="df"><label>Escalation Level</label><span style="font-weight:700;color:var(--blue)">${ESC_LABELS[getEscLevel(g)]}</span></div>` : ''}
+                ${g.assigned_at && g.cat === 'Academic' ? `<div class="df"><label>At Level Since</label><span>${new Date(g.assigned_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}</span></div>` : ''}
+            </div>
+            <div class="ddesc">${g.description}</div>
+            ${g.docs ? `<div style="font-size:12px;margin-bottom:13px;padding:10px;background:var(--cream);border-radius:8px;display:flex;flex-direction:column;gap:8px"><strong>📎 Evidence / Attachments Submitted:</strong><div style="display:flex;flex-wrap:wrap;gap:8px">` + g.docs.split(',').map(d => `<button onclick="downloadDoc('${g.id}', '${encodeURIComponent(d.trim())}')" class="btn-s" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;cursor:pointer"><span style="font-size:14px">📄</span> View ${d.trim()}</button>`).join('') + `</div></div>` : ''}
+            ${g.remarks ? `<div class="al al-s">✅ <div><strong>Previous Remarks:</strong> ${g.remarks}</div></div>` : ''}
+            <div style="height:1px;background:var(--border);margin:14px 0"></div>
+            <div style="font-family:'Cormorant Garamond';font-size:16px;font-weight:600;margin-bottom:12px">Update Grievance</div>
+            <div style="margin-bottom:12px;display:flex;gap:15px;flex-wrap:wrap">
+                <div style="flex:1;min-width:200px">
+                    <label class="lbl">Update Status</label>
+                    <select class="inp" id="mSt">${statusOptions}</select>
+                </div>
+                ${(() => {
+                    if (g.cat !== 'Academic' || !currentStaff.escalation_level) return '';
+                    const currentIdx = ESC_LEVELS.indexOf(currentStaff.escalation_level);
+                    const lowerLevels = ESC_LEVELS.filter((_, idx) => idx < currentIdx);
+                    if (lowerLevels.length === 0) return '';
+                    return `
+                    <div style="flex:1;min-width:200px">
+                        <label class="lbl">Assign / De-escalate To</label>
+                        <select class="inp" id="mEscTo">
+                            <option value="">-- Keep at Current Level --</option>
+                            ${lowerLevels.map(k => `<option value="${k}">${ESC_LABELS[k]}</option>`).join('')}
+                        </select>
+                    </div>`;
+                })()}
+            </div>
+            <div style="margin-bottom:4px">
+                <label class="lbl">Action Taken / Remarks <span style="color:var(--red)">*</span></label>
+                <textarea class="inp" id="mRem" style="min-height:90px" placeholder="Describe the action taken, steps in progress, or resolution details...">${g.remarks || ''}</textarea>
+            </div>
+            <div style="font-size:11px;color:var(--text2);margin-bottom:14px">Your remarks will be visible to the student in the tracking portal.</div>
+            <div class="ma">
+                <button class="btn-p" onclick="saveUpdate('${g.id}')">💾 Save Update</button>
+                <button class="btn-s" onclick="closeM()">Cancel</button>
+            </div>`;
+
+            document.getElementById('mOv').classList.add('open');
+        }
+
+        async function downloadDoc(gId, dName) {
+            try {
+                toast('⏳', 'Downloading ' + decodeURIComponent(dName) + '...');
+                const r = await fetch(BACKEND_URL + '/api/v1/storage/download/' + encodeURIComponent(gId) + '/' + dName);
+                if (!r.ok) throw new Error(r.statusText);
+                const blob = await r.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = decodeURIComponent(dName);
+                a.click();
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                toast('❌', 'Download failed: ' + e.message);
+            }
+        }
+
+        /* Manual escalation functions removed to enforce de-escalation only */
+
+        /* ══ SAVE UPDATE ══ */
+        async function saveUpdate(id) {
+            const status = document.getElementById('mSt').value;
+            const remarks = document.getElementById('mRem').value.trim();
+            const escToEl = document.getElementById('mEscTo');
+            const targetEscLevel = escToEl ? escToEl.value : '';
+
+            if (!remarks) { toast('⚠️', 'Please enter remarks before saving.'); return; }
+            const g = G.find(x => x.id === id);
+
+            const isTargetEscalation = targetEscLevel && targetEscLevel !== getEscLevel(g);
+            const finalStatus = isTargetEscalation ? 'Escalated' : status;
+
+            const payload = { status: finalStatus, remarks };
+            if (finalStatus === 'Resolved' || finalStatus === 'Closed') {
+                payload.resolved_by = currentStaff.fullname + ' (' + currentStaff.username + ')';
+                payload.resolved_at_level = ESC_LABELS[currentStaff.escalation_level] || currentStaff.name;
+                payload.resolved_at = new Date().toISOString();
+            }
+
+            if (isTargetEscalation) {
+                payload.escalation_level = targetEscLevel;
+                payload.assigned_at = new Date().toISOString();
+                const hist = (() => { try { return JSON.parse(g.escalation_history || '[]'); } catch (e) { return []; } })();
+                hist.push({ from: getEscLevel(g), to: targetEscLevel, at: new Date().toISOString(), reason: 'Update Modal Assignment', by: currentStaff.username });
+                payload.escalation_history = JSON.stringify(hist);
+            }
+
+            try {
+                const r = await sbFetch('grievances?id=eq.' + encodeURIComponent(id), {
+                    method: 'PATCH', prefer: 'return=minimal',
+                    body: JSON.stringify(payload)
+                });
+                if (!r.ok) throw new Error(r.status);
+            } catch (e) { toast('❌', 'Update failed: ' + e.message); return; }
+
+            if (isTargetEscalation) {
+                auditLog(id + ' escalated to ' + ESC_LABELS[targetEscLevel], id, currentStaff.fullname);
+            } else {
+                auditLog(id + ' updated to ' + finalStatus + (remarks ? ' | ' + remarks.slice(0, 60) : ''), id, currentStaff.fullname);
+            }
+
+            await loadG(); renderDash(); renderList();
+            closeM();
+            toast('✅', id + ' updated → ' + finalStatus);
+        }
+
+        /* ══ CSV EXPORT ══ */
+        async function exportCSV() {
+            await loadG();
+            const list = myGrievances();
+            if (!list.length) { toast('ℹ️', 'No grievances to export.'); return; }
+            const headers = ['ID', 'Student ID', 'Name', 'Department', 'Year', 'Email', 'Category', 'Sub-Type', 'Priority', 'Title', 'Description', 'Date', 'Status', 'Remarks'];
+            const rows = list.map(g => [g.id, g.sid, g.name, g.dept, g.year, g.email, g.cat, g.sub, g.pri, '"' + (g.title || '').replace(/"/g, '""') + '"', '"' + (g.description || '').replace(/"/g, '""') + '"', g.date, g.status, '"' + (g.remarks || '').replace(/"/g, '""') + '"']);
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+            a.download = 'Woxsen_' + (currentStaff ? currentStaff.dept : 'Dept') + '_Grievances_' + new Date().toISOString().slice(0, 10) + '.csv';
+            a.click(); toast('⬇️', 'CSV downloaded!');
+        }
+
+        /* ══ UTILITIES ══ */
+        function closeM() { document.getElementById('mOv').classList.remove('open'); }
+        function stag(s) { const m = { Pending: 'bp', 'In Progress': 'bi', 'Under Review': 'br2', Resolved: 'brs', Closed: 'bc', Escalated: 'be' }; return `<span class="badge ${m[s] || 'bc'}">${s}</span>`; }
+        function ptag(p) { const m = { Critical: 'bcr', High: 'bh', Medium: 'bm', Low: 'bl' }; return `<span class="badge ${m[p] || 'bl'}" style="font-size:10px">${p}</span>`; }
+        function toast(icon, msg, dur = 3500) { const t = document.getElementById('toast'); document.getElementById('tIcon').textContent = icon; document.getElementById('tMsg').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
+
+        /* ══ INIT ══ */
+        window.addEventListener('DOMContentLoaded', () => {
+            const u = sessionStorage.getItem('dept_user');
+            const p = sessionStorage.getItem('dept_pass');
+            if (u && p) {
+                document.getElementById('loginUser').value = u;
+                document.getElementById('loginPass').value = p;
+                doLogin();
+            }
+        });
+    </script>
+</body>
+
+</html>
