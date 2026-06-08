@@ -1865,6 +1865,67 @@
             color: var(--text2);
         }
 
+        /* ── Sidebar overlay for mobile ── */
+        .sb-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 99;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar.open ~ .main .sb-overlay,
+        .sb-overlay.show { display: block; }
+
+        /* ── WS live badge ── */
+        .ws-dot {
+            display: inline-block;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #94a3b8;
+            margin-left: 6px;
+            vertical-align: middle;
+            transition: background .4s;
+        }
+        .ws-dot.live { background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.25); }
+
+        /* ── Mobile: tables become card stacks ── */
+        @media(max-width:640px) {
+            table thead { display: none; }
+            table tbody tr {
+                display: block;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                margin-bottom: 10px;
+                padding: 10px 12px;
+                background: var(--white);
+            }
+            table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 0;
+                border: none;
+                font-size: 12.5px;
+            }
+            table tbody td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: .05em;
+                color: var(--text2);
+                flex-shrink: 0;
+                margin-right: 8px;
+            }
+            .topbar { gap: 8px; }
+            .topbar .tb-profile-info { display: none; }
+            .topbar button[onclick*="stuLogout"] span { display: none; }
+            .topbar button[onclick*="stuLogout"] { padding: 7px 10px; }
+            .ir-box { border-radius: 0; }
+            .ir-chat-messages { height: 180px; }
+        }
+
         @media(max-width:900px) {
             :root {
                 --sw: 0px;
@@ -2671,10 +2732,13 @@
             </div>
         </nav>
 
+        <!-- Mobile sidebar overlay -->
+        <div class="sb-overlay" id="sbOverlay" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.remove('show')"></div>
+
         <div class="main">
             <div class="topbar">
                 <button class="menu-btn"
-                    onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))">☰</button>
                 <div class="tb-title" id="tbTitle">Dashboard<small>Woxsen University Grievance Management System</small>
                 </div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
@@ -4392,6 +4456,9 @@
                 const ndMobile = document.getElementById('stuNameDisplayMobile');
                 if (ndMobile) ndMobile.textContent = currentStudent.full_name;
 
+                // Connect WebSocket for real-time updates
+                wsConnect(currentStudent.student_id);
+
                 renderDash();
                 badges();
                 renderProfile();
@@ -4442,12 +4509,99 @@
         }
 
         function stuLogout() {
+            wsDisconnect();
             ['stu_id', 'stu_email', 'stu_name', 'stu_dept', 'stu_year', 'stu_in'].forEach(k => sessionStorage.removeItem(k));
             document.getElementById('studentLogin').style.display = 'flex';
             document.getElementById('studentApp').style.display = 'none';
             if (document.getElementById('floatingChatbotBtn')) document.getElementById('floatingChatbotBtn').style.display = 'none';
             ['stuId', 'stuPass'].forEach(x => { document.getElementById(x).value = ''; });
             document.getElementById('stuErr').style.display = 'none';
+        }
+
+        /* ══════════════════════════════════════════════════
+           REAL-TIME WEBSOCKET CLIENT
+           Connects after login, shows live status toasts.
+        ══════════════════════════════════════════════════ */
+        let _ws = null, _wsReconnectTimer = null, _wsStudentId = null;
+
+        function wsConnect(studentId) {
+            _wsStudentId = studentId;
+            if (_ws && _ws.readyState === WebSocket.OPEN) return;
+            try {
+                _ws = new WebSocket(`ws://localhost:8000/ws?student_id=${encodeURIComponent(studentId)}`);
+
+                _ws.onopen = () => {
+                    console.log('[WS] Connected');
+                    wsSetDot(true);
+                    if (_wsReconnectTimer) { clearTimeout(_wsReconnectTimer); _wsReconnectTimer = null; }
+                    // Keepalive ping every 30s
+                    _ws._ping = setInterval(() => { if (_ws.readyState === WebSocket.OPEN) _ws.send('ping'); }, 30000);
+                };
+
+                _ws.onmessage = (e) => {
+                    try {
+                        const msg = JSON.parse(e.data);
+                        wsHandleMessage(msg);
+                    } catch (_) {}
+                };
+
+                _ws.onclose = () => {
+                    console.log('[WS] Disconnected — reconnecting in 5s…');
+                    wsSetDot(false);
+                    if (_ws._ping) clearInterval(_ws._ping);
+                    // Auto-reconnect if still logged in
+                    if (_wsStudentId) {
+                        _wsReconnectTimer = setTimeout(() => wsConnect(_wsStudentId), 5000);
+                    }
+                };
+
+                _ws.onerror = () => { _ws.close(); };
+            } catch (err) {
+                console.warn('[WS] Could not connect:', err.message);
+            }
+        }
+
+        function wsDisconnect() {
+            _wsStudentId = null;
+            if (_wsReconnectTimer) { clearTimeout(_wsReconnectTimer); _wsReconnectTimer = null; }
+            if (_ws) { if (_ws._ping) clearInterval(_ws._ping); _ws.close(); _ws = null; }
+            wsSetDot(false);
+        }
+
+        function wsSetDot(live) {
+            document.querySelectorAll('.ws-dot').forEach(d => d.classList.toggle('live', live));
+        }
+
+        function wsHandleMessage(msg) {
+            if (msg.event === 'status_change') {
+                const gid = msg.grievance_id || '';
+                const status = msg.status || '';
+                const icons = { Resolved: '✅', Escalated: '🚨', Closed: '🔒', 'In Progress': '⚙️', 'Under Review': '🔍', Pending: '⏳' };
+                const icon = icons[status] || '📋';
+                toast(icon, `Grievance ${gid} updated to <strong>${status}</strong>`, 5000);
+
+                // Live-update the grievance card in the list if visible
+                const g = G.find(x => x.id === gid);
+                if (g) {
+                    g.status = status;
+                    // Re-render badges silently
+                    badges();
+                    // If on the grievance list page, re-render
+                    const listPage = document.getElementById('pList');
+                    if (listPage && listPage.classList.contains('active')) renderCards();
+                    // Also refresh dashboard
+                    const dashPage = document.getElementById('pDashboard');
+                    if (dashPage && dashPage.classList.contains('active')) renderDash();
+                }
+
+                // Bump notification badge
+                const nb2 = document.getElementById('nb2');
+                if (nb2) {
+                    const cur = parseInt(nb2.textContent || '0', 10);
+                    nb2.textContent = cur + 1;
+                    nb2.style.display = 'inline';
+                }
+            }
         }
 
         /* ── DARK MODE ── */

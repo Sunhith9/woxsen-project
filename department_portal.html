@@ -1226,29 +1226,57 @@
         }
 
         @media(max-width: 900px) {
-            :root {
-                --sw: 0px;
-            }
-
+            :root { --sw: 0px; }
             .sidebar {
                 position: fixed;
                 transform: translateX(-100%);
                 transition: .3s;
                 width: 268px;
             }
+            .sidebar.open { transform: translateX(0); }
+            .menu-btn { display: flex !important; }
+            .anl-grid { grid-template-columns: 1fr !important; }
+        }
 
-            .sidebar.open {
-                transform: translateX(0);
+        /* ── Mobile overlay ── */
+        .sb-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+            z-index: 99;
+            backdrop-filter: blur(2px);
+        }
+        .sb-overlay.show { display: block; }
+
+        /* ── Mobile: tables → card stacks ── */
+        @media(max-width: 640px) {
+            table thead { display: none; }
+            table tbody tr {
+                display: block;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                margin-bottom: 10px;
+                padding: 10px 12px;
+                background: #fff;
             }
-
-            .menu-btn {
-                display: flex !important;
+            table tbody td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 0;
+                border: none;
+                font-size: 12.5px;
             }
-
-
-
-            .anl-grid {
-                grid-template-columns: 1fr !important;
+            table tbody td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: .05em;
+                color: #888;
+                flex-shrink: 0;
+                margin-right: 8px;
             }
         }
 
@@ -1606,10 +1634,13 @@
             <div class="sb-footer" id="sbFooter">Woxsen University<br>Kamkole, Sadasivpet<br>Telangana — 502345</div>
         </nav>
 
+        <!-- Mobile sidebar overlay -->
+        <div class="sb-overlay" id="sbOverlay" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.remove('show')"></div>
+
         <div class="main">
             <div class="topbar">
                 <button class="menu-btn" style="display: flex !important; margin-right: 15px;"
-                    onclick="toggleSidebar()">☰</button>
+                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))">☰</button>
                 <div class="tb-title" id="tbTitle">Dashboard<small id="tbSub">Department Staff Portal</small></div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
                     style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
