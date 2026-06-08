@@ -4048,72 +4048,40 @@
             _irChatHistory.push({ role: 'user', parts: [{ text: msg }] });
             irChatShowTyping();
 
-            const GEMINI_API_KEY = 'AIzaSyBRFZdgiDuw9b4pHstM3S9nf09-4gt8gvw';
-            const MODELS = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-8b', 'gemini-pro'];
-
-            const systemPrompt = 'You are the official AI assistant for Woxsen University Student Grievance Portal. Help students with grievances (academic, hostel, WiFi, fee, ID card, exams), university policies, department contacts, and SLA timelines (Critical=2 days, High=5 days, Medium=7 days, Low=14 days). Currently helping with: ' + (_irContextTitle || 'a general enquiry') + '. Be helpful, empathetic and concise. Format responses with line breaks for readability.';
-
-            const contents = _irChatHistory.slice(-10);
-            let replied = false;
-            let lastError = '';
-
-            for (let i = 0; i < MODELS.length; i++) {
-                const model = MODELS[i];
-                const url = 'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + GEMINI_API_KEY;
-                try {
-                    const r = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            system_instruction: { parts: [{ text: systemPrompt }] },
-                            contents: contents,
-                            generationConfig: { temperature: 0.7, maxOutputTokens: 800 }
-                        })
-                    });
-                    irChatRemoveTyping();
-                    if (r.ok) {
-                        const data = await r.json();
-                        const rawText = (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) || '';
-                        if (rawText) {
-                            _irChatHistory.push({ role: 'model', parts: [{ text: rawText }] });
-                            const html = rawText
-                                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                                .replace(/\*(.+?)\*/g, '<em>$1</em>')
-                                .replace(/\n\n/g, '<br><br>')
-                                .replace(/\n/g, '<br>')
-                                .replace(/^[-*] (.+)/gm, '&bull; $1');
-                            irChatAddMsg('bot', html, true);
-                            replied = true;
-                            break;
-                        }
-                    } else {
-                        let ed = {};
-                        try { ed = await r.json(); } catch(ex){}
-                        lastError = (ed.error && ed.error.message) ? ed.error.message : ('HTTP ' + r.status);
-                        console.warn('[Gemini ' + model + ']', lastError);
-                        // quota/auth errors — no point trying same key on other models
-                        if (r.status === 400 || r.status === 403 || (lastError && lastError.includes('free_tier'))) break;
-                    }
-                } catch (e) {
-                    irChatRemoveTyping();
-                    lastError = e.message;
-                    console.warn('[Gemini ' + model + '] fetch error:', e);
-                    break;
-                }
-            }
-
-            if (!replied) {
+            // Call our own backend — keeps the API key secure and consistent
+            const API_URL = (typeof RAG_BACKEND !== 'undefined' ? RAG_BACKEND : 'http://localhost:8000') + '/chat';
+            try {
+                const r = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: msg })
+                });
                 irChatRemoveTyping();
-                const isQuota = lastError && (lastError.includes('Quota') || lastError.includes('free_tier') || lastError.includes('quota'));
-                const isNetwork = lastError && (lastError.includes('fetch') || lastError.includes('network') || lastError.includes('Failed'));
-                let prefix = '';
-                if (isQuota) {
-                    prefix = '<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:8px 10px;margin-bottom:8px;font-size:12px">⚠️ <strong>API limit reached.</strong> Showing offline answer:</div>';
-                } else if (isNetwork) {
-                    prefix = '<div style="background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:8px 10px;margin-bottom:8px;font-size:12px">⚠️ <strong>No internet connection.</strong> Showing offline answer:</div>';
+                if (r.ok) {
+                    const data = await r.json();
+                    const rawText = data.answer || '';
+                    if (rawText) {
+                        _irChatHistory.push({ role: 'model', parts: [{ text: rawText }] });
+                        const html = rawText
+                            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                            .replace(/\n\n/g, '<br><br>')
+                            .replace(/\n/g, '<br>')
+                            .replace(/^[-*] (.+)/gm, '&bull; $1');
+                        irChatAddMsg('bot', html, true);
+                    } else {
+                        irChatAddMsg('bot', getFallbackResponse(msg), true);
+                    }
+                } else {
+                    console.warn('[Chat backend] HTTP', r.status);
+                    irChatAddMsg('bot', getFallbackResponse(msg), true);
                 }
-                irChatAddMsg('bot', prefix + getFallbackResponse(msg), true);
+            } catch (e) {
+                irChatRemoveTyping();
+                console.warn('[Chat backend] fetch error:', e);
+                irChatAddMsg('bot', getFallbackResponse(msg), true);
             }
+
 
             if (sendBtn) sendBtn.disabled = false;
             const ci = document.getElementById('irChatInput');
