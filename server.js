@@ -30,13 +30,13 @@ const server = http.createServer((req, res) => {
 
     // Route matching like Nginx
     if (pathname === '/') {
-        serveFile(path.join(__dirname, 'landing.html'), res);
+        serveFile(path.join(__dirname, 'index.html'), res);
     } else if (pathname === '/admin') {
         serveFile(path.join(__dirname, 'Woxsen_Admin_Panel.html'), res);
     } else if (pathname === '/department') {
         serveFile(path.join(__dirname, 'department_portal.html'), res);
     } else if (pathname === '/student') {
-        serveFile(path.join(__dirname, 'index.html'), res);
+        serveFile(path.join(__dirname, 'student_portal.html'), res);
     } else {
         // Serve static asset file directly
         const filePath = path.join(__dirname, pathname);
@@ -88,8 +88,8 @@ server.listen(PORT, () => {
     console.log(`🚀 Woxsen University Frontend Server running at:`);
     console.log(`   http://localhost:${PORT}/`);
     console.log(`\nRoutes mapped:`);
-    console.log(`   /           -> landing.html`);
-    console.log(`   /student    -> index.html`);
+    console.log(`   /           -> index.html`);
+    console.log(`   /student    -> student_portal.html`);
     console.log(`   /admin      -> Woxsen_Admin_Panel.html`);
     console.log(`   /department -> department_portal.html`);
     console.log('==================================================\n');
