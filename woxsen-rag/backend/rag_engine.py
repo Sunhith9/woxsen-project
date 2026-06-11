@@ -234,7 +234,7 @@ CRITICAL INSTRUCTIONS:
         return 0
 
     def get_stats(self) -> dict:
-        return {"total_chunks": 5, "sources": ["Mock University Student Handbook 2024", "Mock Admin Directory"]}
+        return {"total_chunks": 5, "sources": [{"id": "doc1", "source": "Mock University Student Handbook 2024"}, {"id": "doc2", "source": "Mock Admin Directory"}]}
 
     def delete_source(self, source_name: str) -> int:
         return 0

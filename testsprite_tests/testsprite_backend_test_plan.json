@@ -1,0 +1,27 @@
+[
+  {
+    "id": "TC001",
+    "title": "health check endpoint returns service status",
+    "description": "Verify that a GET request to the /health endpoint returns a successful response indicating the backend service is available and operational."
+  },
+  {
+    "id": "TC002",
+    "title": "chat endpoint returns chatbot response",
+    "description": "Test that a POST request to the /chat endpoint with a valid support question returns an appropriate answer from either the FAQ matching or the RAG pipeline."
+  },
+  {
+    "id": "TC003",
+    "title": "stats endpoint returns knowledge base statistics",
+    "description": "Ensure that a GET request to the /stats endpoint returns accurate and complete statistics about the indexed vector database in the knowledge base."
+  },
+  {
+    "id": "TC004",
+    "title": "docs list endpoint returns ingested documents",
+    "description": "Check that a GET request to the /docs-list endpoint returns a list of all documents that have been ingested and indexed in the knowledge base."
+  },
+  {
+    "id": "TC005",
+    "title": "ingest endpoint processes and indexes document",
+    "description": "Validate that a POST request to the /ingest endpoint with a supported document file (PDF, DOCX, or TXT) successfully uploads, processes, and indexes the document, returning a confirmation response."
+  }
+]

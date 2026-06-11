@@ -1,0 +1,321 @@
+[
+  {
+    "id": "TC001",
+    "title": "Register a grievance with required details and see confirmation",
+    "description": "This verifies that a student can open the grievance form, provide category, description, and urgency, submit it, and see a registration confirmation.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the grievance registration form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance category"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance description"
+      },
+      {
+        "type": "action",
+        "description": "Select a grievance urgency level"
+      },
+      {
+        "type": "action",
+        "description": "Submit the grievance form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a grievance confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Ask a question in student chat and receive an answer",
+    "description": "This verifies that a student can open chat on the student portal, send a question, and receive an assistant response.",
+    "category": "Student RAG Chat",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the chat widget"
+      },
+      {
+        "type": "action",
+        "description": "Type a question into the chat input"
+      },
+      {
+        "type": "action",
+        "description": "Send the message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an assistant answer is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Send a chat question by pressing Enter",
+    "description": "This verifies that a student can submit a chat message with the keyboard and receive an assistant response.",
+    "category": "Student RAG Chat",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the chat widget"
+      },
+      {
+        "type": "action",
+        "description": "Type a question into the chat input"
+      },
+      {
+        "type": "action",
+        "description": "Press Enter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an assistant answer is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Open the landing page and navigate to the student portal",
+    "description": "This verifies that a user can start on the landing page and reach the student portal without being blocked.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the student portal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the student portal is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Submit a grievance with a different urgency level",
+    "description": "This verifies that a student can register a grievance using another valid urgency selection and still complete submission successfully.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the grievance registration form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance category"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance description"
+      },
+      {
+        "type": "action",
+        "description": "Select a different grievance urgency level"
+      },
+      {
+        "type": "action",
+        "description": "Submit the grievance form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a grievance confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Open the landing page and navigate to the admin panel",
+    "description": "This verifies that a user can start on the landing page and reach the admin panel without being blocked.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the admin panel"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin panel is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC007",
+    "title": "Ask a follow-up question in the same chat session",
+    "description": "This verifies that a student can continue the conversation with a follow-up question and receive another assistant response.",
+    "category": "Student RAG Chat",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the chat widget"
+      },
+      {
+        "type": "action",
+        "description": "Type a question into the chat input"
+      },
+      {
+        "type": "action",
+        "description": "Send the message"
+      },
+      {
+        "type": "action",
+        "description": "Type a follow-up question into the chat input"
+      },
+      {
+        "type": "action",
+        "description": "Send the message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a follow-up assistant answer is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC008",
+    "title": "Open the landing page and navigate to the department portal",
+    "description": "This verifies that a user can start on the landing page and reach the department portal without being blocked.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the department portal"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the department portal is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC009",
+    "title": "Submit a long chat question and receive a response",
+    "description": "This verifies that a student can send a longer natural-language question in chat and still receive an assistant response.",
+    "category": "Student RAG Chat",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the chat widget"
+      },
+      {
+        "type": "action",
+        "description": "Type a long question into the chat input"
+      },
+      {
+        "type": "action",
+        "description": "Send the message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an assistant answer is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC010",
+    "title": "Block grievance submission when required details are missing",
+    "description": "This verifies that the grievance form shows validation feedback and does not submit when required details are incomplete.",
+    "category": "Grievance Registration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the grievance registration form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the grievance form without completing the required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a grievance validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance is not registered"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC011",
+    "title": "Submit an empty chat message and stay in the conversation",
+    "description": "This verifies that an empty chat input is not accepted as a valid user message and the chat remains available for correction.",
+    "category": "Student RAG Chat",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /student"
+      },
+      {
+        "type": "action",
+        "description": "Open the chat widget"
+      },
+      {
+        "type": "action",
+        "description": "Submit an empty message from the chat input"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the chat input remains available"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no assistant answer is displayed for the empty submission"
+      }
+    ],
+    "priority": "Low"
+  }
+]

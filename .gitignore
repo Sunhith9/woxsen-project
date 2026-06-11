@@ -44,3 +44,5 @@ chroma_db/
 
 # Gemini
 .gemini/
+
+testsprite_tests\tmp\config.json

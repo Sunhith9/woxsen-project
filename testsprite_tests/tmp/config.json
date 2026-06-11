@@ -1,0 +1,23 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "woxsen",
+    "projectPath": "c:\\class notes\\SEM - IV\\projects\\woxsen",
+    "testIds": [
+      "TC001",
+      "TC002",
+      "TC003",
+      "TC004",
+      "TC005"
+    ],
+    "additionalInstruction": "",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-DRrwj4RSQC4G6_x09qNu3rQ79i39LLj4VV11gz3m9odDhcA8JqVSEAoLFyZ8I097Wb7-39Zf3EnfvYkG9g2hAq4fJida78WCfsradB4icqBbdTs_E5nWujA20jNFXz56EW0"
+    }
+  },
+  "serverPort": 54459
+}

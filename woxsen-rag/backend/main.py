@@ -148,7 +148,8 @@ rag_engine = RAGEngine()
 # ── Request / Response models ──────────────────────────────────────────────────
 
 class ChatRequest(BaseModel):
-    message: str
+    message: Optional[str] = None
+    question: Optional[str] = None
     conversation_id: Optional[str] = None
 
 
@@ -279,10 +280,11 @@ async def chat(request: ChatRequest):
         1. Try Layer 1 (direct keyword match) → instant answer
         2. If no match → Layer 2 RAG pipeline (Gemini)
     """
-    if not request.message or not request.message.strip():
-        raise HTTPException(status_code=400, detail="Message cannot be empty")
+    msg = request.message or request.question
+    if not msg or not msg.strip():
+        raise HTTPException(status_code=400, detail="Message or question cannot be empty")
 
-    query = request.message.strip()
+    query = msg.strip()
     logger.info(f"Chat query: {query[:80]}")
 
     # Layer 1
