@@ -2123,7 +2123,7 @@
         const ESC_LABELS = { professor: '👨‍🏫 Professor', pd: '📋 Programme Director (PD)', pm: '🏛️ Programme Manager (PM)', dean: '🎓 Dean / Director', admin: '⚖️ Admin Committee' };
         // Anonymous Masking (#6)
         function dispName(g) { return g.is_anonymous ? 'Anonymous Student' : (g.name || '—'); }
-        function dispSid(g) { return g.is_anonymous ? 'ANON-' + (g.sid || '').slice(-4) : (g.sid || '—'); }
+        function dispSid(g) { return g.is_anonymous ? 'Hidden' : (g.sid || '—'); }
         const ESC_NEXT = { professor: 'pd', pd: 'pm', pm: 'dean', dean: 'admin', admin: 'admin' };
         const ESC_HOURS = 24;
         function getEscLevel(g) { return g.escalation_level || (g.cat === 'Academic' ? 'professor' : 'admin'); }
@@ -2748,7 +2748,7 @@
         async function openDetail(id) {
             await loadG();
             // SECURITY: only allow viewing grievances from this department
-            const g = myGrievances().find(x => x.id === id);
+            const g = myGrievancesAll().find(x => x.id === id);
             if (!g) { toast('❌', 'Grievance not found or not in your department.'); return; }
 
             document.getElementById('mTitle').textContent = g.id + ' — ' + dispName(g);

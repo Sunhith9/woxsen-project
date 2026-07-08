@@ -3373,7 +3373,7 @@
                     var rem = timeUntilEsc(g);
                     var timerCell = g.cat === 'Academic' ? ('<td style="font-size:11px;white-space:nowrap">' + (rem === null ? '—' : rem <= 0 ? '<span style="color:#dc2626;font-weight:700">OVERDUE</span>' : rem < 6 ? '<span style="color:#c2540a;font-weight:700">' + Math.floor(rem) + 'h ' + Math.floor((rem % 1) * 60) + 'm</span>' : '<span style="color:#16774a">' + Math.floor(rem) + 'h left</span>') + '</td>') : '<td style="color:var(--text2);font-size:11px">—</td>';
                     var nameCell = g.is_anonymous ? 'Anonymous Student' : g.name;
-                    var sidCell = g.is_anonymous ? 'ANON-' + (g.sid || '').slice(-4) : g.sid;
+                    var sidCell = g.is_anonymous ? 'Hidden' : g.sid;
                     return '<tr>' +
                         '<td><input type="checkbox" class="gchk" value="' + g.id + '" style="width:14px;height:14px"></td>' +
                         '<td style="font-weight:700;color:var(--gold);font-size:11px;white-space:nowrap">' + g.id + '</td>' +
@@ -3463,7 +3463,7 @@
                 var dName = g.name, dSid = g.sid;
                 if (g.is_anonymous) {
                     dName = 'Anonymous Student';
-                    dSid = 'ANON-' + (g.sid || '').slice(-4);
+                    dSid = 'Hidden';
                     anonBanner = '<div style="background:#fef9c3;border:1.5px solid #fde047;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#854d0e;display:flex;gap:10px;align-items:center">&#128373; <div><strong>Anonymous Submission — Super Admin View</strong><br>Real Name: <strong>' + (g.name || '—') + '</strong> &nbsp;|&nbsp; Student ID: <strong>' + (g.sid || '—') + '</strong></div></div>';
                 }
                 document.getElementById('mBody').innerHTML = anonBanner + '<div style="display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap">' + stag(g.status) + ' ' + ptag(g.pri) + '</div>' +
@@ -4022,7 +4022,7 @@
                                 <td style="font-weight:700;color:var(--gold);font-size:11px">${r.g.id}</td>
                                 <td>
                                     <div style="font-weight:600;font-size:12px">${r.g.is_anonymous ? 'Anonymous Student' : r.g.name}</div>
-                                    <div style="font-size:10px;color:var(--text2)">${r.g.is_anonymous ? 'ANON-' + (r.g.sid || '').slice(-4) : r.g.sid}</div>
+                                    <div style="font-size:10px;color:var(--text2)">${r.g.is_anonymous ? 'Hidden' : r.g.sid}</div>
                                 </td>
                                 <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${r.g.title}</td>
                                 <td>${ptag(r.g.pri)}</td>

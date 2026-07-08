@@ -4423,6 +4423,20 @@
                     </div>
                 </div>`;
             document.getElementById('irModal').classList.add('open');
+            if (!hasSteps) {
+                setTimeout(() => {
+                    const btn = document.getElementById('irChatToggleBtn');
+                    const body = document.getElementById('irChatBody');
+                    if (btn && body) {
+                        btn.classList.add('copen');
+                        body.classList.add('copen');
+                        setTimeout(() => {
+                            const inp = document.getElementById('irChatInput');
+                            if (inp) inp.focus();
+                        }, 200);
+                    }
+                }, 300);
+            }
         }
 
         function irChatToggle() {
