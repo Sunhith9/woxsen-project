@@ -2305,8 +2305,11 @@
             if (currentStaff.escalation_level) {
                 // Academic hierarchy
                 return G.filter(g => {
+                    const isSelectedProf = g.route_choice === 'professor_only' && 
+                                           getEscLevel(g) === 'professor' && 
+                                           (g.professor || '').toLowerCase().includes(currentStaff.fullname.toLowerCase());
                     const isAtLevel = g.cat === 'Academic' && getEscLevel(g) === currentStaff.escalation_level && !['Resolved', 'Closed'].includes(g.status);
-                    if (!isAtLevel) return false;
+                    if (!isAtLevel && !isSelectedProf) return false;
                     
                     if (g.route_choice === 'professor_only' && getEscLevel(g) === 'professor') {
                         const profs = (g.professor || '').toLowerCase();
@@ -2334,8 +2337,11 @@
             if (currentStaff.escalation_level) {
                 // All relevant academic grievances
                 return G.filter(g => {
+                    const isSelectedProf = g.route_choice === 'professor_only' && 
+                                           getEscLevel(g) === 'professor' && 
+                                           (g.professor || '').toLowerCase().includes(currentStaff.fullname.toLowerCase());
                     const isRelevant = g.cat === 'Academic' && (getEscLevel(g) === currentStaff.escalation_level || ESC_LEVELS.indexOf(getEscLevel(g)) > ESC_LEVELS.indexOf(currentStaff.escalation_level) || ['Resolved', 'Closed'].includes(g.status));
-                    if (!isRelevant) return false;
+                    if (!isRelevant && !isSelectedProf) return false;
                     
                     if (g.route_choice === 'professor_only' && getEscLevel(g) === 'professor') {
                         const profs = (g.professor || '').toLowerCase();
