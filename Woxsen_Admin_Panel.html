@@ -2693,6 +2693,50 @@
                     </div>
                 </div><!-- end .fg grid -->
 
+                <!-- Academic Assignments Builder -->
+                <div id="sfAcademicAssignmentsWrap" style="background:#f8fafc; padding:15px; border-radius:10px; margin-bottom:15px; border:1px solid var(--border); display:none;">
+                    <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--navy)">Academic Role & Year Assignments</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
+                        <div>
+                            <label class="lbl" style="font-size:10px">School</label>
+                            <select class="inp" id="sfAssSchool" style="background:#fff; padding:6px; font-size:11px;">
+                                <option value="School of Business">SOB (Business)</option>
+                                <option value="School of Technology" selected>SOT (Tech)</option>
+                                <option value="School of Art & Design">SOAD (Arts)</option>
+                                <option value="School of Law">SOL (Law)</option>
+                                <option value="School of Liberal Arts & Humanities">SOLA (Liberal)</option>
+                                <option value="School of Architecture & Planning">SOAP (Arch)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="lbl" style="font-size:10px">Year</label>
+                            <select class="inp" id="sfAssYear" style="background:#fff; padding:6px; font-size:11px;">
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="Dean">Dean / School Level</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="lbl" style="font-size:10px">Role</label>
+                            <select class="inp" id="sfAssRole" style="background:#fff; padding:6px; font-size:11px;">
+                                <option value="Professor">Professor</option>
+                                <option value="Programme Director">PD</option>
+                                <option value="Programme Manager">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-s" type="button" onclick="addModalAssignment()" style="width:100%; padding:8px; font-size:11px; background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8; font-weight:700; cursor:pointer;">➕ Add Assignment</button>
+                    
+                    <div style="margin-top:12px;">
+                        <label class="lbl" style="font-size:10px">Active Assignments list:</label>
+                        <div id="sfAssList" style="display:flex; flex-wrap:wrap; gap:6px; min-height:34px; padding:6px; background:#fff; border:1px solid var(--border); border-radius:6px; align-items:center;">
+                            <span style="font-size:11px; color:var(--text2); font-style:italic;">No assignments added yet. Add one above.</span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Auth Section (new mode only) -->
                 <div id="sfAuthSection"
                     style="background:#f8fafc;padding:15px;border-radius:10px;margin-bottom:15px;border:1px solid var(--border)">
@@ -4196,18 +4240,87 @@
                 }).join('');
             }
 
+            var _modalAssignments = [];
+
+            function renderModalAssignments() {
+                var el = document.getElementById('sfAssList');
+                if (!el) return;
+
+                if (_modalAssignments.length === 0) {
+                    el.innerHTML = '<span style="font-size:11px; color:var(--text2); font-style:italic;">No assignments added yet. Add one above.</span>';
+                    document.getElementById('sfUser').value = '';
+                    document.getElementById('sfRole').value = '';
+                    document.getElementById('sfSubDept').value = '';
+                    return;
+                }
+
+                var schoolCodes = { 'School of Business': 'SOB', 'School of Technology': 'SOT', 'School of Art & Design': 'SOAD', 'School of Law': 'SOL', 'School of Liberal Arts & Humanities': 'SOLA', 'School of Architecture & Planning': 'SOAP' };
+
+                el.innerHTML = _modalAssignments.map((a, idx) => {
+                    var schShort = schoolCodes[a.school] || a.school;
+                    var rShort = a.role === 'Programme Director' ? 'PD' : a.role === 'Programme Manager' ? 'PM' : 'Prof';
+                    return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
+                        🏫 ${schShort} · ${a.year.replace(' Year','')} · ${rShort}
+                        <span onclick="removeModalAssignment(${idx})" style="color:var(--red);cursor:pointer;font-weight:900;margin-left:2px">✕</span>
+                    </span>`;
+                }).join('');
+
+                var generatedUsernames = _modalAssignments.map(a => a.id).join(', ');
+                document.getElementById('sfUser').value = generatedUsernames;
+
+                var generatedRoles = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
+                document.getElementById('sfRole').value = generatedRoles;
+
+                var uniqueSchools = _modalAssignments.map(a => a.school).filter((v, i, self) => self.indexOf(v) === i);
+                document.getElementById('sfSubDept').value = uniqueSchools.join(', ');
+            }
+
+            function addModalAssignment() {
+                var school = document.getElementById('sfAssSchool').value;
+                var year = document.getElementById('sfAssYear').value;
+                var role = document.getElementById('sfAssRole').value;
+
+                var schoolCodes = { 'School of Business': '10', 'School of Technology': '20', 'School of Art & Design': '30', 'School of Law': '40', 'School of Liberal Arts & Humanities': '50', 'School of Architecture & Planning': '60' };
+                var yearCodes = { 'Dean': '00', '1st Year': '01', '2nd Year': '02', '3rd Year': '03', '4th Year': '04' };
+                var roleCodes = { 'Dean': '00', 'Programme Director': '01', 'Programme Manager': '02', 'Professor': '03' };
+
+                if (year === 'Dean') {
+                    role = 'Dean';
+                }
+
+                var sCode = schoolCodes[school];
+                var yCode = yearCodes[year];
+                var rCode = roleCodes[role];
+
+                var generatedId = sCode + yCode + rCode;
+
+                if (_modalAssignments.some(a => a.id === generatedId)) {
+                    toast('⚠️', 'This assignment has already been added.');
+                    return;
+                }
+
+                _modalAssignments.push({ school, year, role, id: generatedId });
+                renderModalAssignments();
+            }
+
+            function removeModalAssignment(idx) {
+                _modalAssignments.splice(idx, 1);
+                renderModalAssignments();
+            }
+
             function openStaffModal(id) {
                 document.getElementById('mStaff').classList.add('open');
                 var isEdit = !!id;
                 document.getElementById('sfId').value = id || '';
                 document.getElementById('mStaffTitle').textContent = isEdit ? 'Edit Staff Account' : 'Add New Staff';
-                toggleSubDept();
 
                 var passWarning = document.getElementById('sfPassWarning');
                 var passWrap = document.getElementById('sfPassWrapper');
                 var uInp = document.getElementById('sfUser');
-
                 var acts = document.getElementById('sfActions');
+
+                _modalAssignments = [];
+
                 if (isEdit) {
                     var s = STAFF_LIST.find(function (x) { return String(x.id) === String(id); });
                     document.getElementById('sfName').value = s.fullname || '';
@@ -4221,6 +4334,26 @@
                     document.getElementById('sfReason').value = '';
                     document.getElementById('sfAuthSection').style.display = 'none';
                     passWarning.style.display = 'block';
+
+                    if (s.dept === 'Academic' && s.username) {
+                        var ids = String(s.username).split(',').map(x => x.trim());
+                        var schoolCodes = { '10': 'School of Business', '20': 'School of Technology', '30': 'School of Art & Design', '40': 'School of Law', '50': 'School of Liberal Arts & Humanities', '60': 'School of Architecture & Planning' };
+                        var yearCodes = { '00': 'Dean', '01': '1st Year', '02': '2nd Year', '03': '3rd Year', '04': '4th Year' };
+                        var roleCodes = { '00': 'Dean', '01': 'Programme Director', '02': 'Programme Manager', '03': 'Professor' };
+                        ids.forEach(idVal => {
+                            if (/^\d{6}$/.test(idVal)) {
+                                var sCode = idVal.substring(0, 2);
+                                var yCode = idVal.substring(2, 4);
+                                var rCode = idVal.substring(4, 6);
+                                var sch = schoolCodes[sCode];
+                                var yr = yearCodes[yCode];
+                                var rl = roleCodes[rCode];
+                                if (sch && yr && rl) {
+                                    _modalAssignments.push({ school: sch, year: yr, role: rl, id: idVal });
+                                }
+                            }
+                        });
+                    }
 
                     var isActive = (s.status !== 'Terminated');
                     var tb = isActive ? '<button class="btn-s" style="color:#b91c1c;border-color:#fecaca" onclick="termStaff(\'' + s.id + '\')">🚫 Terminate</button>' : '<button class="btn-s" style="color:var(--green);border-color:#bbf7d0" onclick="reactivateStaff(\'' + s.id + '\')">✅ Reactivate</button>';
@@ -4243,15 +4376,30 @@
                     passWarning.style.display = 'none';
                     acts.innerHTML = '<button class="btn-s" onclick="document.getElementById(\'mStaff\').classList.remove(\'open\')">Cancel</button><button class="btn-p" id="sfSaveBtn" onclick="saveStaff()">💾 Save Account</button>';
                 }
+
+                toggleSubDept();
+                if (document.getElementById('sfDept').value === 'Academic') {
+                    renderModalAssignments();
+                }
             }
+
             function toggleSubDept() {
                 var d = document.getElementById('sfDept').value;
                 var w = document.getElementById('sfSubDeptWrap');
+                var aWrap = document.getElementById('sfAcademicAssignmentsWrap');
+                var roleInp = document.getElementById('sfRole');
+                var userInp = document.getElementById('sfUser');
+
                 if (d === 'Academic') {
-                    w.style.display = 'block';
+                    if (w) w.style.display = 'none';
+                    if (aWrap) aWrap.style.display = 'block';
+                    if (roleInp) { roleInp.disabled = true; roleInp.placeholder = 'Auto-generated from assignments...'; }
+                    if (userInp) { userInp.disabled = true; userInp.placeholder = 'Auto-generated from assignments...'; }
                 } else {
-                    w.style.display = 'none';
-                    document.getElementById('sfSubDept').value = '';
+                    if (w) w.style.display = 'block';
+                    if (aWrap) aWrap.style.display = 'none';
+                    if (roleInp) { roleInp.disabled = false; roleInp.placeholder = 'e.g. Professor'; roleInp.value = ''; }
+                    if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; userInp.value = ''; }
                 }
             }
 
@@ -4259,10 +4407,16 @@
                 var id = document.getElementById('sfId').value;
                 var isEdit = !!id;
 
+                var deptVal = document.getElementById('sfDept').value;
+                if (deptVal === 'Academic' && _modalAssignments.length === 0) {
+                    toast('⚠️', 'Please add at least one role/year assignment for academic staff.');
+                    return;
+                }
+
                 var obj = {
                     fullname: document.getElementById('sfName').value.trim(),
                     role: document.getElementById('sfRole').value.trim(),
-                    dept: document.getElementById('sfDept').value,
+                    dept: deptVal,
                     email: document.getElementById('sfEmail').value.trim(),
                     phone: document.getElementById('sfPhone').value.trim(),
                     joined: document.getElementById('sfJoined').value.trim(),
@@ -4274,10 +4428,11 @@
                 var user = document.getElementById('sfUser').value.trim();
                 var pass = document.getElementById('sfPass').value.trim();
 
+                obj.username = user;
+
                 if (!isEdit) {
                     if (!user || !pass) { toast('⚠️', 'Username and Password required.'); return; }
-                    obj.username = user;
-                    obj.password = pass; // Store plaintext password
+                    obj.password = pass;
                     obj.status = 'Active';
                 }
 

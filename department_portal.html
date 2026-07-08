@@ -1861,6 +1861,13 @@
                                     <div class="prof-info-val" id="dpi2">—</div>
                                 </div>
                             </div>
+                            <div class="prof-info-row" id="dpiAssignmentsRow" style="display:none">
+                                <div class="prof-info-icon">🏫</div>
+                                <div>
+                                    <div class="prof-info-label">Active Assignments</div>
+                                    <div class="prof-info-val" id="dpiAssignmentsList" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px">—</div>
+                                </div>
+                            </div>
                             <div class="prof-info-row">
                                 <div class="prof-info-icon">🔐</div>
                                 <div>
@@ -2505,6 +2512,32 @@
             el('dpi4', currentStaff.email || currentStaff.username + '@woxsen.edu.in');
             el('dpi5', currentStaff.phone || 'Ext. via Admin');
             el('dpi6', currentStaff.joined || 'N/A');
+
+            // Render active assignments list on profile page
+            const assRow = document.getElementById('dpiAssignmentsRow');
+            const assList = document.getElementById('dpiAssignmentsList');
+            if (assRow && assList) {
+                if (currentStaff.escalation_level) {
+                    assRow.style.display = 'flex';
+                    const ids = String(currentStaff.username || '').split(',').map(s => s.trim());
+                    const schoolCodes = { '10': 'SOB', '20': 'SOT', '30': 'SOAD', '40': 'SOL', '50': 'SOLA', '60': 'SOAP' };
+                    const yearCodes = { '00': 'Dean', '01': '1st Yr', '02': '2nd Yr', '03': '3rd Yr', '04': '4th Yr' };
+                    const roleCodes = { '00': 'Dean', '01': 'PD', '02': 'PM', '03': 'Prof' };
+
+                    assList.innerHTML = ids.map(id => {
+                        if (!/^\d{6}$/.test(id)) return '';
+                        const sCode = id.substring(0, 2);
+                        const yCode = id.substring(2, 4);
+                        const rCode = id.substring(4, 6);
+                        const sch = schoolCodes[sCode] || 'Unknown';
+                        const yr = yearCodes[yCode] || '';
+                        const rl = roleCodes[rCode] || '';
+                        return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-block;">🏫 ${sch} · ${yr} · ${rl}</span>`;
+                    }).join('') || '<span style="color:var(--text2);font-style:italic;">No active assignments parsed</span>';
+                } else {
+                    assRow.style.display = 'none';
+                }
+            }
             const subDept = document.getElementById('dpiSubDept');
             if (subDept) subDept.textContent = currentStaff.sub_dept || 'All Schools';
             // Performance card
