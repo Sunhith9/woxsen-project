@@ -4329,7 +4329,12 @@
             _irChatHistory = [];
             _irContextTitle = item.title;
 
-            const stepsHTML = item.steps.map((s, i) => `
+            const hasSteps = !!(item.steps && item.steps.length);
+            const modalTitle = hasSteps ? "We found an instant solution!" : "Grievance Submitted Successfully!";
+            const modalSub = hasSteps ? "Resolve this yourself — no need to wait for admin" : "Your grievance has been safely recorded";
+            const alertIcon = hasSteps ? "⚡" : (item.icon || "📝");
+
+            const stepsHTML = item.steps ? item.steps.map((s, i) => `
                 <div class="ir-step">
                     <div class="ir-step-left">
                         <div class="ir-step-num">${i + 1}</div>
@@ -4340,16 +4345,16 @@
                         <div class="ir-step-detail">${s.detail}</div>
                         ${s.timing ? `<div class="ir-step-timing">⏰ ${s.timing}</div>` : ''}
                     </div>
-                </div>`).join('');
+                </div>`).join('') : '';
 
             document.getElementById('irModal').innerHTML = `
                 <div class="ir-box">
                     <div class="ir-header">
                         <div class="ir-header-top">
-                            <div class="ir-icon">${item.icon}</div>
+                            <div class="ir-icon">${item.icon || alertIcon}</div>
                             <div>
-                                <h2>We found an instant solution!</h2>
-                                <p>Resolve this yourself — no need to wait for admin</p>
+                                <h2>${modalTitle}</h2>
+                                <p>${modalSub}</p>
                             </div>
                         </div>
                         <div class="ir-submitted-banner">
@@ -4361,15 +4366,15 @@
                         </div>
                     </div>
                     <div class="ir-body">
-                        <div class="ir-alert">
-                            <div class="ir-alert-icon">⚡</div>
+                        <div class="ir-alert" style="${hasSteps ? '' : 'background:#f0fdf4;border-color:#bbf7d0;color:#166534;'}">
+                            <div class="ir-alert-icon">${alertIcon}</div>
                             <div class="ir-alert-text">
-                                <h4>${item.title}</h4>
-                                <p>${item.alert}</p>
+                                <h4 style="${hasSteps ? '' : 'color:#15803d;'}">${item.title}</h4>
+                                <p style="${hasSteps ? '' : 'color:#166534;'}">${item.alert}</p>
                             </div>
                         </div>
 
-                        ${item.steps && item.steps.length ? `
+                        ${hasSteps ? `
                         <div class="ir-section-label">Step-by-step resolution</div>
                         <div class="ir-steps">${stepsHTML}</div>
                         ` : ''}
@@ -4379,8 +4384,13 @@
                         ${item.contact ? `<div class="ir-contact">📞 ${item.contact}</div>` : ''}
 
                         <div class="ir-actions">
-                            <button type="button" class="ir-btn-primary" onclick="irDone()">✅ Got it — I'll resolve this</button>
-                            <button type="button" class="ir-btn-secondary" onclick="irTrack()">🔍 Track my grievance</button>
+                            ${hasSteps ? `
+                                <button type="button" class="ir-btn-primary" onclick="irDone()">✅ Got it — I'll resolve this</button>
+                                <button type="button" class="ir-btn-secondary" onclick="irTrack()">🔍 Track my grievance</button>
+                            ` : `
+                                <button type="button" class="ir-btn-primary" style="flex:1" onclick="irDone()">Close</button>
+                                <button type="button" class="ir-btn-secondary" style="flex:1;background:var(--blue);color:white;border:none;" onclick="irTrack()">🔍 Track Grievance</button>
+                            `}
                         </div>
                         <div class="ir-also-filed">
                             Your grievance <strong>${grievanceId}</strong> is also on record and will be reviewed by the admin team if the issue persists.
@@ -4865,12 +4875,12 @@
                 // ── TRIGGER AI RAG CHATBOT ──
                 const profSummary = _selectedProfs.length > 0 ? _selectedProfs.join(', ') : professor;
                 const irItem = irMatch(title, description) || {
-                    title: "Ask about: " + title,
+                    title: title,
                     steps: [],
                     alert: isProfBox && routeChoice === 'professor_only'
                         ? `Your complaint has been sent ${isAnonymous ? '<strong>anonymously</strong> ' : ''}to <strong>${profSummary || assignedTo}</strong>. If unresolved within 48 hours, it will auto-escalate to the HOD. You can ask our AI assistant any questions.`
-                        : "You can ask our AI assistant any follow-up questions about this grievance.",
-                    icon: isProfBox ? '👨‍🏫' : '🤖'
+                        : "Your grievance has been successfully submitted and forwarded to the concerned department. You can ask our AI assistant any follow-up questions.",
+                    icon: isProfBox ? '👨‍🏫' : '📋'
                 };
                 irShow(irItem, id);
                 window._submitGBusy = false;
