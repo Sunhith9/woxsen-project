@@ -2264,6 +2264,291 @@
             display: flex;
         }
 
+        /* ── PROFESSOR COMPLAINT SECTION ── */
+        .prof-complaint-box {
+            display: none;
+            grid-column: 1/-1;
+            background: linear-gradient(135deg, #fff7ed 0%, #fef9f0 100%);
+            border: 1.5px solid #fed7aa;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-top: 4px;
+            animation: fadeInDown .25s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity:0; transform:translateY(-8px) }
+            to   { opacity:1; transform:translateY(0) }
+        }
+        .prof-complaint-box.show { display: block; }
+        .prof-complaint-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .route-toggle {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .route-option {
+            flex: 1;
+            min-width: 180px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            transition: .2s;
+            background: #fff;
+            position: relative;
+        }
+        .route-option:hover { border-color: #f59e0b; }
+        .route-option.selected {
+            border-color: #d97706;
+            background: #fffbeb;
+            box-shadow: 0 0 0 3px rgba(217,119,6,.12);
+        }
+        .route-option input[type=radio] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .route-opt-icon { font-size: 22px; margin-bottom: 5px; }
+        .route-opt-title {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #0a1128;
+            margin-bottom: 2px;
+        }
+        .route-opt-desc {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.45;
+        }
+        .route-option.selected .route-opt-title { color: #92400e; }
+        .escalate-note {
+            margin-top: 12px;
+            background: #fff;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 11.5px;
+            color: #92400e;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        /* ── MULTI-PROFESSOR CHIP PICKER ── */
+        .prof-chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 8px;
+            min-height: 36px;
+        }
+        .prof-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 11px;
+            border-radius: 20px;
+            border: 1.5px solid #e5e7eb;
+            background: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: .18s;
+            color: #374151;
+            position: relative;
+        }
+        .prof-chip:hover { border-color: #f59e0b; color: #92400e; background: #fffbeb; }
+        .prof-chip.selected {
+            background: #0a1128;
+            color: #fff;
+            border-color: #0a1128;
+            font-weight: 600;
+        }
+        .prof-chip.selected:hover { background: #1a2a40; border-color: #1a2a40; }
+        .prof-chip-count {
+            background: rgba(220,38,38,.18);
+            color: #dc2626;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 10px;
+            margin-left: 2px;
+        }
+        .prof-chip.selected .prof-chip-count {
+            background: rgba(255,255,255,.2);
+            color: #fbbf24;
+        }
+        .prof-chip-checkmark {
+            font-size: 11px;
+            margin-right: 1px;
+        }
+        .selected-profs-summary {
+            margin-top: 8px;
+            font-size: 11.5px;
+            color: #15803d;
+            font-weight: 600;
+            min-height: 18px;
+        }
+
+        /* ── ANONYMOUS TOGGLE ── */
+        .anon-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 14px;
+            background: #fff;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 10px;
+            margin-top: 14px;
+            cursor: pointer;
+            transition: .18s;
+            gap: 12px;
+        }
+        .anon-toggle-row:hover { border-color: #94a3b8; }
+        .anon-toggle-row.anon-on {
+            background: #fef2f2;
+            border-color: #fca5a5;
+        }
+        .anon-toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        .anon-toggle-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .anon-toggle-text {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #374151;
+        }
+        .anon-toggle-text small {
+            display: block;
+            font-size: 11px;
+            font-weight: 400;
+            color: #6b7280;
+            margin-top: 1px;
+        }
+        .anon-toggle-row.anon-on .anon-toggle-text { color: #b91c1c; }
+        .toggle-switch {
+            width: 40px;
+            height: 22px;
+            background: #d1d5db;
+            border-radius: 100px;
+            position: relative;
+            transition: .2s;
+            flex-shrink: 0;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            transition: .2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        }
+        .anon-on .toggle-switch {
+            background: #dc2626;
+        }
+        .anon-on .toggle-switch::after {
+            left: calc(100% - 19px);
+        }
+        .anon-warn {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #b91c1c;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 7px;
+            padding: 7px 11px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
+        .anon-warn.show { display: flex; }
+
+        /* ── LIVE COUNTDOWN TIMER ── */
+        .esc-countdown-box {
+            background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%);
+            border: 1.5px solid #fcd34d;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            display: none;
+        }
+        .esc-countdown-box.show { display: block; }
+        .esc-countdown-header {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .esc-countdown-digits {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .esc-digit-block {
+            background: #0a1128;
+            color: #fbbf24;
+            border-radius: 8px;
+            padding: 8px 12px;
+            text-align: center;
+            min-width: 52px;
+        }
+        .esc-digit-num {
+            font-family: 'Cormorant Garamond';
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .esc-digit-label {
+            font-size: 9px;
+            color: rgba(255,255,255,.5);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-top: 2px;
+        }
+        .esc-digit-sep {
+            font-size: 22px;
+            font-weight: 700;
+            color: #92400e;
+        }
+        .esc-countdown-dest {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #78350f;
+        }
+        .esc-countdown-dest strong { color: #92400e; }
+        .esc-expired {
+            background: #fef2f2;
+            border-color: #fecaca;
+        }
+        .esc-expired .esc-digit-block { background: #dc2626; }
+
         /* ── RATING STARS ── */
         .stars {
             display: flex;
@@ -2879,7 +3164,7 @@
                                 <div><label class="lbl">Phone Number</label><input class="inp" id="fPhone"
                                         placeholder="+91 XXXXX XXXXX"></div>
                                 <div><label class="lbl">Category <span>*</span></label>
-                                    <select class="inp" id="fCat" onchange="loadSub()">
+                                    <select class="inp" id="fCat" onchange="loadSub(); checkProfSection()">
                                         <option value="">-- Select Category --</option>
                                         <option>Academic</option>
                                         <option>Administrative</option>
@@ -2894,6 +3179,62 @@
                                         id="fSub">
                                         <option value="">-- Select Category First --</option>
                                     </select></div>
+
+                                <!-- ── PROFESSOR COMPLAINT SECTION ── -->
+                                <div class="prof-complaint-box" id="profComplaintBox">
+                                    <div class="prof-complaint-title">👨‍🏫 Professor Complaint Details</div>
+
+                                    <!-- Multi-professor chip picker -->
+                                    <div>
+                                        <label class="lbl">Concerned Professor(s) <span style="color:var(--red)">*</span>
+                                            <span style="font-size:10px;color:var(--text2);font-weight:400;text-transform:none;letter-spacing:0"> — select one or more</span>
+                                        </label>
+                                        <div style="font-size:11px;color:var(--text2);margin-bottom:8px">
+                                            ℹ️ Select your <strong>School</strong> and <strong>Year</strong> first to load faculty. Click chips to select professors.
+                                        </div>
+                                        <div class="prof-chip-list" id="profChipList">
+                                            <span style="font-size:12px;color:var(--text2);font-style:italic">Select School &amp; Year above to load faculty list…</span>
+                                        </div>
+                                        <div class="selected-profs-summary" id="selectedProfsSummary"></div>
+                                    </div>
+
+                                    <!-- Anonymous toggle -->
+                                    <div class="anon-toggle-row" id="anonToggleRow" onclick="toggleAnon()">
+                                        <div class="anon-toggle-label">
+                                            <div class="anon-toggle-icon" id="anonIcon">👤</div>
+                                            <div class="anon-toggle-text">
+                                                <span id="anonLabel">File as Identified</span>
+                                                <small id="anonSub">Professor will know your name and student ID.</small>
+                                            </div>
+                                        </div>
+                                        <div class="toggle-switch" id="anonSwitch"></div>
+                                    </div>
+                                    <div class="anon-warn" id="anonWarn">
+                                        🔒 Your identity is hidden from the professor. Admin can still see who filed this complaint.
+                                    </div>
+
+                                    <div style="margin-top:14px">
+                                        <label class="lbl">Send Complaint To <span style="color:var(--red)">*</span></label>
+                                        <div class="route-toggle">
+                                            <label class="route-option" id="routeOpt1" onclick="selectRoute('professor_only')">
+                                                <input type="radio" name="routeChoice" value="professor_only" id="rProfOnly">
+                                                <div class="route-opt-icon">👤</div>
+                                                <div class="route-opt-title">Only to Selected Professor(s)</div>
+                                                <div class="route-opt-desc">Sent privately to chosen professor(s) first. If unresolved, escalates to HOD → Dean.</div>
+                                            </label>
+                                            <label class="route-option" id="routeOpt2" onclick="selectRoute('all_staff')">
+                                                <input type="radio" name="routeChoice" value="all_staff" id="rAllStaff">
+                                                <div class="route-opt-icon">👥</div>
+                                                <div class="route-opt-title">All Staff (Current Behaviour)</div>
+                                                <div class="route-opt-desc">Sent to all department staff and the grievance committee simultaneously.</div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="escalate-note" id="escNote" style="display:none">
+                                        <span>⏰</span>
+                                        <span id="escNoteText">If the professor does not respond within <strong>48 hours</strong>, your complaint will be <strong>automatically escalated</strong> to the HOD, and then to the Dean if still unresolved.</span>
+                                    </div>
+                                </div>
                                 <div><label class="lbl">Priority</label><select class="inp" id="fPri">
                                         <option>Medium</option>
                                         <option>Low</option>
@@ -3026,6 +3367,18 @@
                         </div>
                     </div>
                     <div id="tResult" style="display:none">
+                        <!-- LIVE ESCALATION COUNTDOWN TIMER -->
+                        <div class="esc-countdown-box" id="escCountdownBox">
+                            <div class="esc-countdown-header">⏱️ Escalation Countdown</div>
+                            <div class="esc-countdown-digits" id="escCountdownDigits">
+                                <div class="esc-digit-block"><div class="esc-digit-num" id="cdHH">00</div><div class="esc-digit-label">Hours</div></div>
+                                <div class="esc-digit-sep">:</div>
+                                <div class="esc-digit-block"><div class="esc-digit-num" id="cdMM">00</div><div class="esc-digit-label">Mins</div></div>
+                                <div class="esc-digit-sep">:</div>
+                                <div class="esc-digit-block"><div class="esc-digit-num" id="cdSS">00</div><div class="esc-digit-label">Secs</div></div>
+                            </div>
+                            <div class="esc-countdown-dest" id="escCountdownDest">until escalation to <strong id="escCountdownTo">HOD</strong></div>
+                        </div>
                         <div class="card" style="margin-bottom:14px">
                             <div
                                 style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
@@ -4209,6 +4562,214 @@
             }
         }
 
+        // ── PROFESSOR DATA PER SCHOOL + YEAR ──
+        const PROF_DATA = {
+            'School of Technology': {
+                '1st Year': ['Dr. R. Srinivas', 'Dr. P. Kavitha', 'Prof. A. Mehta', 'Dr. N. Reddy', 'Prof. S. Rao'],
+                '2nd Year': ['Dr. M. Sharma', 'Prof. K. Naidu', 'Dr. T. Verma', 'Prof. L. Gupta', 'Dr. H. Patel'],
+                '3rd Year': ['Dr. S. Kumar', 'Prof. B. Singh', 'Dr. V. Agarwal', 'Prof. C. Rao', 'Dr. J. Iyer'],
+                '4th Year': ['Dr. A. Choudhary', 'Prof. R. Das', 'Dr. F. Kapoor', 'Prof. G. Nair', 'Dr. D. Mishra'],
+                'PhD':       ['Dr. R. Srinivas', 'Dr. M. Sharma', 'Dr. S. Kumar']
+            },
+            'School of Business': {
+                '1st Year': ['Prof. N. Joshi', 'Dr. S. Pillai', 'Prof. A. Khanna', 'Dr. P. Reddy', 'Prof. V. Raj'],
+                '2nd Year': ['Dr. K. Menon', 'Prof. T. Bose', 'Dr. L. Saxena', 'Prof. R. Rao', 'Dr. G. Mathew'],
+                '3rd Year': ['Dr. H. Shah', 'Prof. C. Iyer', 'Dr. D. Singh', 'Prof. J. Verma', 'Dr. B. Nair'],
+                '4th Year': ['Dr. F. Pandey', 'Prof. E. Kumar', 'Dr. A. Das', 'Prof. M. Gupta'],
+                'PhD':       ['Dr. S. Pillai', 'Dr. K. Menon']
+            },
+            'School of Art & Design': {
+                '1st Year': ['Prof. S. Anand', 'Dr. T. Krishnan', 'Prof. A. Raju'],
+                '2nd Year': ['Prof. B. Mehta', 'Dr. L. Rao', 'Prof. K. Dev'],
+                '3rd Year': ['Dr. P. Bhat', 'Prof. R. Sharma', 'Dr. C. Ghosh'],
+                '4th Year': ['Prof. V. Nair', 'Dr. J. Arora'],
+                'PhD':       ['Dr. T. Krishnan']
+            },
+            'School of Law': {
+                '1st Year': ['Dr. A. Sood', 'Prof. N. Tiwari', 'Dr. S. Malhotra'],
+                '2nd Year': ['Prof. R. Chawla', 'Dr. P. Aggarwal', 'Prof. V. Sen'],
+                '3rd Year': ['Dr. K. Bhatia', 'Prof. M. Kapoor', 'Dr. G. Jain'],
+                '4th Year': ['Dr. L. Arora', 'Prof. T. Gill'],
+                'PhD':       ['Dr. A. Sood']
+            },
+            'School of Liberal Arts & Humanities': {
+                '1st Year': ['Dr. S. Bose', 'Prof. A. Chatterjee', 'Dr. R. Lal'],
+                '2nd Year': ['Prof. P. Roy', 'Dr. M. Dubey', 'Prof. K. Biswas'],
+                '3rd Year': ['Dr. T. Das', 'Prof. N. Banerjee'],
+                '4th Year': ['Dr. V. Mukherjee', 'Prof. G. Dey'],
+                'PhD':       ['Dr. S. Bose']
+            },
+            'School of Architecture & Planning': {
+                '1st Year': ['Prof. A. Kulkarni', 'Dr. S. Joshi', 'Prof. N. Patil'],
+                '2nd Year': ['Dr. R. Deshmukh', 'Prof. P. Pawar', 'Dr. V. More'],
+                '3rd Year': ['Prof. K. Shinde', 'Dr. T. Jadhav'],
+                '4th Year': ['Dr. M. Gaikwad', 'Prof. L. Deshpande'],
+                'PhD':       ['Dr. S. Joshi']
+            }
+        };
+
+        let _selectedRoute = ''; // 'professor_only' or 'all_staff'
+        let _selectedProfs = []; // multi-professor array
+        let _isAnonymous = false; // anonymous toggle
+        let _cdInterval = null;  // countdown interval handle
+
+        // ── COMPLAINT COUNT PER PROFESSOR (simulated social proof) ──
+        // In production, fetch this from Supabase: SELECT professor, COUNT(*) FROM grievances GROUP BY professor
+        function getProfComplaintCount(profName) {
+            // Deterministic pseudo-random based on name so it's consistent across sessions
+            const seed = profName.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+            return (seed % 7); // 0–6 complaints shown
+        }
+
+        function checkProfSection() {
+            const cat = document.getElementById('fCat').value;
+            const box = document.getElementById('profComplaintBox');
+            if (cat === 'Academic' || cat === 'CSE' || cat === 'AIML') {
+                box.classList.add('show');
+                populateProfChips();
+            } else {
+                box.classList.remove('show');
+                _selectedRoute = '';
+                _selectedProfs = [];
+            }
+        }
+
+        function populateProfChips() {
+            const dept = document.getElementById('fDept').value;
+            const year = document.getElementById('fYear').value;
+            const container = document.getElementById('profChipList');
+            _selectedProfs = [];
+            updateSelectedProfsSummary();
+            if (!dept || !year) {
+                container.innerHTML = '<span style="font-size:12px;color:var(--text2);font-style:italic">Select School & Year above to load faculty list…</span>';
+                return;
+            }
+            const list = (PROF_DATA[dept] || {})[year] || [];
+            if (!list.length) {
+                container.innerHTML = '<span style="font-size:12px;color:var(--text2)">No faculty data for this selection.</span>';
+                return;
+            }
+            container.innerHTML = list.map(p => {
+                const count = getProfComplaintCount(p);
+                const countBadge = count > 0 ? `<span class="prof-chip-count">${count} complaint${count > 1 ? 's' : ''}</span>` : '';
+                return `<div class="prof-chip" id="chip_${btoa(p).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_')}" onclick="toggleProfChip('${p.replace(/'/g, "\\'")}')">
+                    <span class="prof-chip-checkmark" id="chk_${btoa(p).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_')}"></span>
+                    ${p}${countBadge}
+                </div>`;
+            }).join('');
+        }
+
+        function toggleProfChip(profName) {
+            const key = btoa(profName).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
+            const chip = document.getElementById('chip_' + key);
+            const chk  = document.getElementById('chk_' + key);
+            if (!chip) return;
+            const idx = _selectedProfs.indexOf(profName);
+            if (idx === -1) {
+                _selectedProfs.push(profName);
+                chip.classList.add('selected');
+                if (chk) chk.textContent = '✓ ';
+            } else {
+                _selectedProfs.splice(idx, 1);
+                chip.classList.remove('selected');
+                if (chk) chk.textContent = '';
+            }
+            updateSelectedProfsSummary();
+            updateRouteNote();
+        }
+
+        function updateSelectedProfsSummary() {
+            const el = document.getElementById('selectedProfsSummary');
+            if (!el) return;
+            if (_selectedProfs.length === 0) { el.textContent = ''; return; }
+            el.textContent = '✅ Selected: ' + _selectedProfs.join(', ');
+        }
+
+        // ── ANONYMOUS TOGGLE ──
+        function toggleAnon() {
+            _isAnonymous = !_isAnonymous;
+            const row  = document.getElementById('anonToggleRow');
+            const icon = document.getElementById('anonIcon');
+            const label= document.getElementById('anonLabel');
+            const sub  = document.getElementById('anonSub');
+            const warn = document.getElementById('anonWarn');
+            if (_isAnonymous) {
+                row.classList.add('anon-on');
+                icon.textContent = '🕵️';
+                label.textContent = 'File Anonymously';
+                sub.textContent = 'Professor will NOT know your identity.';
+                warn.classList.add('show');
+            } else {
+                row.classList.remove('anon-on');
+                icon.textContent = '👤';
+                label.textContent = 'File as Identified';
+                sub.textContent = 'Professor will know your name and student ID.';
+                warn.classList.remove('show');
+            }
+        }
+
+        function selectRoute(val) {
+            _selectedRoute = val;
+            document.getElementById('routeOpt1').classList.toggle('selected', val === 'professor_only');
+            document.getElementById('routeOpt2').classList.toggle('selected', val === 'all_staff');
+            document.getElementById('rProfOnly').checked = (val === 'professor_only');
+            document.getElementById('rAllStaff').checked = (val === 'all_staff');
+            updateRouteNote();
+        }
+
+        function updateRouteNote() {
+            const note = document.getElementById('escNote');
+            const txt  = document.getElementById('escNoteText');
+            if (_selectedRoute === 'professor_only' && _selectedProfs.length > 0) {
+                const names = _selectedProfs.length === 1
+                    ? `<strong>${_selectedProfs[0]}</strong>`
+                    : `<strong>${_selectedProfs.slice(0,-1).join(', ')}</strong> and <strong>${_selectedProfs[_selectedProfs.length-1]}</strong>`;
+                txt.innerHTML = `If ${names} ${_selectedProfs.length > 1 ? 'do' : 'does'} not respond within <strong>48 hours</strong>, your complaint will be <strong>automatically escalated</strong> to the HOD → Dean.`;
+                note.style.display = 'flex';
+            } else {
+                note.style.display = 'none';
+            }
+        }
+
+        // Re-populate chips when dept or year changes
+        document.addEventListener('change', function(e) {
+            if (e.target.id === 'fDept' || e.target.id === 'fYear') {
+                populateProfChips();
+                updateRouteNote();
+            }
+        });
+
+        // ── LIVE COUNTDOWN TIMER ──
+        function startCountdown(targetMs, destLabel) {
+            if (_cdInterval) clearInterval(_cdInterval);
+            const box = document.getElementById('escCountdownBox');
+            const toEl = document.getElementById('escCountdownTo');
+            if (toEl) toEl.textContent = destLabel;
+
+            function tick() {
+                const remaining = targetMs - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(_cdInterval);
+                    box.classList.add('esc-expired');
+                    document.getElementById('cdHH').textContent = '00';
+                    document.getElementById('cdMM').textContent = '00';
+                    document.getElementById('cdSS').textContent = '00';
+                    document.getElementById('escCountdownDest').innerHTML = '<strong style="color:#dc2626">Escalation overdue — processing now</strong>';
+                    return;
+                }
+                box.classList.remove('esc-expired');
+                const totalSecs = Math.floor(remaining / 1000);
+                const hh = String(Math.floor(totalSecs / 3600)).padStart(2, '0');
+                const mm = String(Math.floor((totalSecs % 3600) / 60)).padStart(2, '0');
+                const ss = String(totalSecs % 60).padStart(2, '0');
+                document.getElementById('cdHH').textContent = hh;
+                document.getElementById('cdMM').textContent = mm;
+                document.getElementById('cdSS').textContent = ss;
+            }
+            tick();
+            _cdInterval = setInterval(tick, 1000);
+        }
+
         async function submitG() {
             if (window._submitGBusy) return;
             window._submitGBusy = true;
@@ -4224,6 +4785,26 @@
                     window._submitGBusy = false;
                     return;
                 }
+
+                // ── PROFESSOR COMPLAINT VALIDATION ──
+                const isProfBox = document.getElementById('profComplaintBox').classList.contains('show');
+                const professor = isProfBox && _selectedProfs.length > 0 ? _selectedProfs.join(', ') : '';
+                const routeChoice = isProfBox ? _selectedRoute : 'all_staff';
+                const isAnonymous = isProfBox ? _isAnonymous : false;
+
+                if (isProfBox) {
+                    if (_selectedProfs.length === 0) {
+                        toast('⚠️', 'Please select at least one professor from the list.');
+                        window._submitGBusy = false;
+                        return;
+                    }
+                    if (!routeChoice) {
+                        toast('⚠️', 'Please select who to send the complaint to.');
+                        window._submitGBusy = false;
+                        return;
+                    }
+                }
+
                 // ── WEEKEND RESTRICTION ──
                 if (isWeekend() && (cat === 'Academic' || cat === 'Administrative')) {
                     const pri = v('fPri') || 'Medium';
@@ -4238,36 +4819,57 @@
                 const now = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
                 const docs = uploadedFiles.length ? await uploadFiles(id) : '';
                 const initLv = cat === 'Academic' ? 'professor' : 'admin';
+
+                // Determine assigned party based on routing choice
+                let assignedTo;
+                if (isProfBox && routeChoice === 'professor_only') {
+                    assignedTo = professor; // professor name(s)
+                } else {
+                    assignedTo = DEPT[cat] || 'Grievance Committee';
+                }
+
                 const newG = {
                     id, sid, name, dept, year, email, phone: v('fPhone'), cat, sub,
                     pri: v('fPri') || 'Medium', title, description, docs, date: now,
-                    status: 'Pending', assigned: DEPT[cat] || 'Grievance Committee', remarks: '',
+                    status: 'Pending',
+                    assigned: assignedTo,
+                    professor: professor || '',
+                    route_choice: routeChoice || 'all_staff',
+                    is_anonymous: isAnonymous,
+                    remarks: '',
                     escalation_level: initLv, assigned_at: new Date().toISOString(),
-                    escalation_history: JSON.stringify([{ from: 'submitted', to: initLv, at: new Date().toISOString() }])
+                    escalation_history: JSON.stringify([{ from: 'submitted', to: initLv, at: new Date().toISOString(), route: routeChoice, anonymous: isAnonymous }])
                 };
 
                 const ok = await saveG(newG);
-                if (!ok) {
-                    window._submitGBusy = false;
-                    return;
-                }
+                if (!ok) { window._submitGBusy = false; return; }
                 G.push(newG);
                 uploadedFiles = [];
                 renderFileList();
                 clearF();
+                _selectedRoute = '';
+                _selectedProfs = [];
+                _isAnonymous = false;
+                document.getElementById('profComplaintBox').classList.remove('show');
+                document.getElementById('routeOpt1').classList.remove('selected');
+                document.getElementById('routeOpt2').classList.remove('selected');
+                // Reset anon toggle
+                const aRow = document.getElementById('anonToggleRow');
+                if (aRow) aRow.classList.remove('anon-on');
+                const aWarn = document.getElementById('anonWarn');
+                if (aWarn) aWarn.classList.remove('show');
                 badges();
 
-                // ── TRIGGER AI RAG CHATBOT EVERY TIME ──
-                // Always show the AI modal so the student can ask 
-                // the LLM about the grievance they just filed.
+                // ── TRIGGER AI RAG CHATBOT ──
+                const profSummary = _selectedProfs.length > 0 ? _selectedProfs.join(', ') : professor;
                 const irItem = irMatch(title, description) || {
                     title: "Ask about: " + title,
                     steps: [],
-                    alert: "You can ask our AI assistant any follow-up questions about this grievance.",
-                    icon: '🤖'
+                    alert: isProfBox && routeChoice === 'professor_only'
+                        ? `Your complaint has been sent ${isAnonymous ? '<strong>anonymously</strong> ' : ''}to <strong>${profSummary || assignedTo}</strong>. If unresolved within 48 hours, it will auto-escalate to the HOD. You can ask our AI assistant any questions.`
+                        : "You can ask our AI assistant any follow-up questions about this grievance.",
+                    icon: isProfBox ? '👨‍🏫' : '🤖'
                 };
-
-                // Show instant resolution modal immediately
                 irShow(irItem, id);
                 window._submitGBusy = false;
             } catch (e) { console.error(e); window._submitGBusy = false; }
@@ -4336,6 +4938,7 @@
             if (g.remarks) { rb.style.display = 'block'; rb.innerHTML = '<div class="al al-s">✅ <div><strong>Resolution:</strong> ' + g.remarks + '</div></div>'; } else rb.style.display = 'none';
             // ── ESCALATION HIERARCHY ──
             const escBox = document.getElementById('tEscBox');
+            const cdBox  = document.getElementById('escCountdownBox');
             if (g.cat === 'Academic' && escBox) {
                 const curLv = getEscLevel(g);
                 const curIdx = ESC_LEVELS.indexOf(curLv);
@@ -4354,7 +4957,31 @@
                     return '<div style="display:flex;align-items:center"><div style="background:' + bg + ';border:2px solid ' + brd + ';border-radius:9px;padding:7px 9px;text-align:center;min-width:72px;flex-shrink:0"><div style="font-size:14px;font-weight:700;color:' + col + '">' + ico + '</div><div style="font-size:9px;font-weight:600;color:' + col + ';margin-top:1px;line-height:1.3">' + ESC_LABELS[lv].split(' ').slice(1).join(' ') + '</div></div>' + (i < ESC_LEVELS.length - 1 ? '<div style="color:#cbd5e1;font-size:16px;padding:0 3px">›</div>' : '') + '</div>';
                 }).join('');
                 escBox.innerHTML = '<div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:9px;text-transform:uppercase;letter-spacing:.06em">📊 Academic Escalation Path</div><div style="display:flex;align-items:stretch;overflow-x:auto;padding-bottom:4px">' + levDots + '</div><div style="font-size:12px;color:var(--text2);margin-top:8px">🎯 Current Handler: <strong style="color:var(--navy)">' + ESC_LABELS[curLv] + '</strong>' + (sSch ? ' · ' + sSch : '') + '</div>' + (hist.filter(h => h.reason === 'auto_24hr').length ? '<div style="font-size:11px;color:var(--text2);margin-top:3px">⚡ Auto-escalated ' + hist.filter(h => h.reason === 'auto_24hr').length + ' time(s) due to 24h inactivity</div>' : '') + remHtml;
-            } else if (escBox) escBox.style.display = 'none';
+
+                // ── SHOW COUNTDOWN TIMER if professor_only route & pending ──
+                if (g.route_choice === 'professor_only' && !resolved && g.assigned_at) {
+                    const assignedAt = new Date(g.assigned_at).getTime();
+                    const escTarget = assignedAt + (48 * 60 * 60 * 1000); // 48 hours
+                    const nextLabel = ESC_LABELS[ESC_NEXT[curLv]] || 'HOD';
+                    cdBox.classList.add('show');
+                    // Show professor info in countdown dest
+                    const profInfo = g.professor ? ` (awaiting <strong>${g.professor}</strong>)` : '';
+                    document.getElementById('escCountdownDest').innerHTML = `${profInfo} → escalates to <strong id="escCountdownTo">${nextLabel}</strong>`;
+                    startCountdown(escTarget, nextLabel);
+                } else {
+                    cdBox.classList.remove('show');
+                    if (_cdInterval) { clearInterval(_cdInterval); _cdInterval = null; }
+                }
+
+                // Show anonymous badge if applicable
+                if (g.is_anonymous) {
+                    escBox.innerHTML += '<div style="margin-top:8px;background:#fef2f2;border:1px solid #fecaca;border-radius:7px;padding:7px 11px;font-size:11.5px;color:#b91c1c;display:flex;gap:6px;align-items:center">🔒 This complaint was filed <strong>anonymously</strong> — professor cannot see student identity.</div>';
+                }
+            } else if (escBox) {
+                escBox.style.display = 'none';
+                if (cdBox) cdBox.classList.remove('show');
+                if (_cdInterval) { clearInterval(_cdInterval); _cdInterval = null; }
+            }
             // Standard timeline
             const sm = { 'Pending': 1, 'In Progress': 2, 'Under Review': 2, 'Escalated': 2, 'Resolved': 3, 'Closed': 4 };
             const cur = sm[g.status] || 0;
