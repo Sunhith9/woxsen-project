@@ -3174,7 +3174,14 @@
                 G.forEach(function (g) {
                     if (['Resolved', 'Closed'].includes(g.status)) return;
                     if (g.cat === 'Academic') {
-                        var school = g.dept;
+                        var school = g.dept || '';
+                        if (school.includes('Architecture')) school = 'School of Architecture & Planning';
+                        if (school.includes('Art & Design') || school.includes('Arts & Design')) school = 'School of Art & Design';
+                        if (school.includes('Business')) school = 'School of Business';
+                        if (school.includes('Technology')) school = 'School of Technology';
+                        if (school.includes('Law')) school = 'School of Law';
+                        if (school.includes('Liberal')) school = 'School of Liberal Arts & Humanities';
+
                         if (workloads.hasOwnProperty(school)) {
                             workloads[school]++;
                         }
