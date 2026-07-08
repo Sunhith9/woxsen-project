@@ -4623,18 +4623,10 @@
         let _isAnonymous = false; // anonymous toggle
         let _cdInterval = null;  // countdown interval handle
 
-        // ── COMPLAINT COUNT PER PROFESSOR (simulated social proof) ──
-        // In production, fetch this from Supabase: SELECT professor, COUNT(*) FROM grievances GROUP BY professor
-        function getProfComplaintCount(profName) {
-            // Deterministic pseudo-random based on name so it's consistent across sessions
-            const seed = profName.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-            return (seed % 7); // 0–6 complaints shown
-        }
-
         function checkProfSection() {
             const cat = document.getElementById('fCat').value;
             const box = document.getElementById('profComplaintBox');
-            if (cat === 'Academic' || cat === 'CSE' || cat === 'AIML') {
+            if (cat === 'Academic') {
                 box.classList.add('show');
                 populateProfChips();
             } else {
@@ -4660,11 +4652,9 @@
                 return;
             }
             container.innerHTML = list.map(p => {
-                const count = getProfComplaintCount(p);
-                const countBadge = count > 0 ? `<span class="prof-chip-count">${count} complaint${count > 1 ? 's' : ''}</span>` : '';
                 return `<div class="prof-chip" id="chip_${btoa(p).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_')}" onclick="toggleProfChip('${p.replace(/'/g, "\\'")}')">
                     <span class="prof-chip-checkmark" id="chk_${btoa(p).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_')}"></span>
-                    ${p}${countBadge}
+                    ${p}
                 </div>`;
             }).join('');
         }
