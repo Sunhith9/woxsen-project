@@ -3051,7 +3051,7 @@
             <div class="content">
 
                 <div class="page active" id="pDashboard">
-                    <div class="ann-banner">📢 <div><strong>Woxsen University</strong> — Academic Year 2024–25 · All
+                    <div class="ann-banner" id="dashAnnBanner">📢 <div><strong>Woxsen University</strong> — Academic Year 2024–25 · All
                             grievances are reviewed within SLA deadlines. Anti-Ragging helpline:
                             <strong>1800-180-5522</strong> (24×7)
                         </div>
@@ -3542,7 +3542,7 @@
 
                 <!-- PROFILE PAGE -->
                 <div class="page" id="pProfile">
-                    <div class="ann-banner">📢 <span><strong>Academic Year 2024–28</strong> — All grievances are
+                    <div class="ann-banner" id="profAnnBanner">📢 <span><strong>Academic Year 2024–28</strong> — All grievances are
                             reviewed within SLA. Contact Student Welfare if you need urgent help.</span></div>
 
                     <!-- Hero banner -->
@@ -4876,8 +4876,134 @@
             } catch (e) { console.error(e); window._submitGBusy = false; }
         }
         function clearF() { ['fPhone', 'fTitle', 'fDesc'].forEach(x => { const el = document.getElementById(x); if (el) el.value = ''; }); const _sid = sessionStorage.getItem('stu_id'), _em = sessionStorage.getItem('stu_email'), _nm = sessionStorage.getItem('stu_name'); if (_sid) { const e = document.getElementById('fSid'); if (e) e.value = _sid; } if (_em) { const e = document.getElementById('fEmail'); if (e) e.value = _em; } if (_nm) { const e = document.getElementById('fName'); if (e) e.value = _nm; } ['fDept', 'fYear', 'fCat', 'fPri'].forEach(x => document.getElementById(x).selectedIndex = 0); document.getElementById('fDate').value = ''; loadSub(); uploadedFiles = []; renderFileList(); }
+        let _announcements = [];
+        let _currentAnnIdx = 0;
+        let _annInterval = null;
+
+        async function loadStudentAnnouncements() {
+            try {
+                const r = await sbFetch('announcements?select=*&order=created_at.desc');
+                if (r.ok) {
+                    const data = await r.json();
+                    const now = Date.now();
+                    _announcements = data.filter(a => !a.expires_at || new Date(a.expires_at).getTime() > now);
+                    renderStudentAnnouncements();
+                    startAnnCarousel();
+                }
+            } catch (e) {
+                console.error("Failed to load announcements:", e);
+            }
+        }
+
+        function renderStudentAnnouncements() {
+            const dashBanner = document.getElementById('dashAnnBanner');
+            const profBanner = document.getElementById('profAnnBanner');
+            
+            if (_announcements.length === 0) {
+                if (dashBanner) {
+                    dashBanner.innerHTML = `📢 <div style="flex:1"><strong>Woxsen University</strong> — Academic Year 2024–25 · All grievances are reviewed within SLA deadlines. Anti-Ragging helpline: <strong>1800-180-5522</strong> (24×7)</div>`;
+                }
+                if (profBanner) {
+                    profBanner.innerHTML = `📢 <div style="flex:1"><strong>Academic Year 2024–28</strong> — All grievances are reviewed within SLA. Contact Student Welfare if you need urgent help.</div>`;
+                }
+                return;
+            }
+
+            const current = _announcements[_currentAnnIdx];
+            const icons = { info: '📢', warning: '⚠️', urgent: '🚨', success: '✅' };
+            const colors = { info: 'rgba(201, 151, 43, .1)', warning: 'rgba(245, 158, 11, .1)', urgent: 'rgba(239, 68, 68, .1)', success: 'rgba(16, 185, 129, .1)' };
+            const borders = { info: 'rgba(201, 151, 43, .25)', warning: 'rgba(245, 158, 11, .3)', urgent: 'rgba(239, 68, 68, .3)', success: 'rgba(16, 185, 129, .3)' };
+            
+            const typeLabel = current.type ? current.type.toUpperCase() : 'INFO';
+            const icon = icons[current.type] || '📢';
+            const bgColor = colors[current.type] || colors.info;
+            const borderCol = borders[current.type] || borders.info;
+
+            const html = `
+                <div style="font-size: 16px; flex-shrink: 0;">${icon}</div>
+                <div style="flex: 1; min-width: 0; display:flex; flex-direction:column; justify-content:center;">
+                    <div style="font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                        <span style="background:${borderCol}; color:var(--text); padding: 1px 6px; border-radius: 4px; font-size: 9px; font-weight: 800;">${typeLabel}</span>
+                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: left;">${current.title}</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text2); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; text-align: left;" onclick="openAnnDetailsModal(${_currentAnnIdx})">
+                        ${current.body} <span style="color:var(--gold); font-weight: 700; text-decoration: underline; margin-left: 5px;">Read more →</span>
+                    </div>
+                </div>
+                ${_announcements.length > 1 ? `
+                <div style="display: flex; gap: 4px; align-items: center; margin-left: 10px; flex-shrink: 0;">
+                    <button onclick="prevAnn(event)" style="background: none; border: none; font-size: 16px; cursor: pointer; color: var(--text2); padding: 0 4px;">⟨</button>
+                    <span style="font-size: 10px; color: var(--text2); min-width: 25px; text-align: center;">${_currentAnnIdx + 1}/${_announcements.length}</span>
+                    <button onclick="nextAnn(event)" style="background: none; border: none; font-size: 16px; cursor: pointer; color: var(--text2); padding: 0 4px;">⟩</button>
+                </div>
+                ` : ''}
+            `;
+
+            if (dashBanner) {
+                dashBanner.style.background = bgColor;
+                dashBanner.style.borderColor = borderCol;
+                dashBanner.innerHTML = html;
+            }
+            if (profBanner) {
+                profBanner.style.background = bgColor;
+                profBanner.style.borderColor = borderCol;
+                profBanner.innerHTML = html;
+            }
+        }
+
+        function startAnnCarousel() {
+            if (_annInterval) clearInterval(_annInterval);
+            if (_announcements.length <= 1) return;
+            _annInterval = setInterval(() => {
+                _currentAnnIdx = (_currentAnnIdx + 1) % _announcements.length;
+                renderStudentAnnouncements();
+            }, 6000);
+        }
+
+        function prevAnn(e) {
+            e.stopPropagation();
+            if (_announcements.length <= 1) return;
+            _currentAnnIdx = (_currentAnnIdx - 1 + _announcements.length) % _announcements.length;
+            renderStudentAnnouncements();
+            startAnnCarousel();
+        }
+
+        function nextAnn(e) {
+            e.stopPropagation();
+            if (_announcements.length <= 1) return;
+            _currentAnnIdx = (_currentAnnIdx + 1) % _announcements.length;
+            renderStudentAnnouncements();
+            startAnnCarousel();
+        }
+
+        function openAnnDetailsModal(idx) {
+            const current = _announcements[idx];
+            if (!current) return;
+            const dt = new Date(current.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            
+            document.getElementById('mTitle').textContent = '📢 University Announcement';
+            document.getElementById('mBody').innerHTML = `
+                <div style="font-family:'Cormorant Garamond';font-size:22px;font-weight:700;margin-bottom:8px;color:var(--navy)">
+                    ${current.title}
+                </div>
+                <div style="font-size:12px;color:var(--text2);margin-bottom:15px;display:flex;gap:12px;flex-wrap:wrap">
+                    <span>📅 Posted: <strong>${dt}</strong></span>
+                    <span>📂 Tag: <strong>${current.tag || 'General'}</strong></span>
+                    <span>📍 Location: <strong>${current.location || 'Woxsen Campus'}</strong></span>
+                </div>
+                <div style="font-size:14px;color:var(--text);line-height:1.6;background:#f8fafc;padding:15px;border-radius:10px;border:1px solid var(--border);margin-bottom:20px;white-space:pre-line">
+                    ${current.body}
+                </div>
+                <div style="text-align:right">
+                    <button class="btn-s" onclick="closeM()" style="cursor:pointer;padding:8px 16px;background:var(--navy);color:var(--white);border:none;border-radius:8px">Close</button>
+                </div>
+            `;
+            document.getElementById('mOv').classList.add('open');
+        }
+
         function v(id) { return document.getElementById(id).value.trim(); }
         async function renderDash() {
+            await loadStudentAnnouncements();
             await loadG(); const t = G.length, p = G.filter(x => x.status === 'Pending').length, ip = G.filter(x => x.status === 'In Progress').length, r = G.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;['s1', 's2', 's3', 's4'].forEach((id, i) => document.getElementById(id).textContent = [t, p, ip, r][i]); const rec = document.getElementById('dRecent'); if (!t) { rec.innerHTML = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No grievances yet</div></div>'; return; } rec.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead><tbody>' + G.slice(-5).reverse().map(g => `<tr><td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}</td><td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.title}</td><td>${g.cat}</td><td>${ptag(g.pri)}</td><td>${stag(g.status)}</td></tr>`).join('') + '</tbody></table></div>'; const cats = {}; G.forEach(x => { cats[x.cat] = (cats[x.cat] || 0) + 1; }); const cc = { Academic: '#1a56db', Administrative: '#059669', Infrastructure: '#ea580c', Ragging: '#dc2626', Others: '#7c3aed' }; document.getElementById('dOverview').innerHTML = Object.entries(cats).map(([c, n]) => `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="width:8px;height:8px;border-radius:50%;background:${cc[c] || '#64748b'};flex-shrink:0"></div><span style="flex:1;font-size:12px">${c}</span><div style="width:60px;height:4px;background:#f1f5f9;border-radius:4px;overflow:hidden"><div style="width:${Math.round(n / t * 100)}%;height:100%;background:${cc[c] || '#64748b'};border-radius:4px"></div></div><span style="font-size:12px;font-weight:700">${n}</span></div>`).join('');
             // Chart.js Pie
             const ctx = document.getElementById('dChart');
