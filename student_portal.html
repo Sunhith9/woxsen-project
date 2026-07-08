@@ -3216,18 +3216,18 @@
                                     <div style="margin-top:14px">
                                         <label class="lbl">Send Complaint To <span style="color:var(--red)">*</span></label>
                                         <div class="route-toggle">
-                                            <label class="route-option" id="routeOpt1" onclick="selectRoute('professor_only')">
+                                            <div class="route-option" id="routeOpt1" onclick="selectRoute('professor_only')">
                                                 <input type="radio" name="routeChoice" value="professor_only" id="rProfOnly">
                                                 <div class="route-opt-icon">👤</div>
                                                 <div class="route-opt-title">Only to Selected Professor(s)</div>
                                                 <div class="route-opt-desc">Sent privately to chosen professor(s) first. If unresolved, escalates to HOD → Dean.</div>
-                                            </label>
-                                            <label class="route-option" id="routeOpt2" onclick="selectRoute('all_staff')">
+                                            </div>
+                                            <div class="route-option" id="routeOpt2" onclick="selectRoute('all_staff')">
                                                 <input type="radio" name="routeChoice" value="all_staff" id="rAllStaff">
                                                 <div class="route-opt-icon">👥</div>
                                                 <div class="route-opt-title">All Staff (Current Behaviour)</div>
                                                 <div class="route-opt-desc">Sent to all department staff and the grievance committee simultaneously.</div>
-                                            </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="escalate-note" id="escNote" style="display:none">
