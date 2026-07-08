@@ -2342,6 +2342,15 @@
                                 <option value="School of Architecture &amp; Planning">SOAP – School of Architecture
                                 </option>
                             </select>
+                            <select class="inp" style="max-width:180px;margin:0;display:none" id="sfYearFilter"
+                                onchange="staffYearFilter(this.value)">
+                                <option value="">All Years</option>
+                                <option value="Dean">Dean / School Level</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                            </select>
                             <select class="inp" style="max-width:150px;margin:0" id="sfStatusFilter"
                                 onchange="staffStatusFilter(this.value)">
                                 <option value="">All Status</option>
@@ -3926,23 +3935,42 @@
             var staffQ = '';
             var sfDeptFilterVal = '';
             var sfSchoolFilterVal = '';
+            var sfYearFilterVal = '';
             var sfStatusFilterVal = '';
 
             function staffSearch(q) { staffQ = q.toLowerCase(); renderStaff(); }
 
             function staffDeptFilter(val) {
                 sfDeptFilterVal = val;
-                // Only show school filter if Academic is selected
+                // Only show school & year filter if Academic is selected
                 document.getElementById('sfSchoolFilter').style.display = (val === 'Academic') ? 'inline-block' : 'none';
+                document.getElementById('sfYearFilter').style.display = (val === 'Academic') ? 'inline-block' : 'none';
                 if (val !== 'Academic') {
                     sfSchoolFilterVal = '';
                     document.getElementById('sfSchoolFilter').value = '';
+                    sfYearFilterVal = '';
+                    document.getElementById('sfYearFilter').value = '';
                 }
                 renderStaff();
             }
 
             function staffSchoolFilter(val) { sfSchoolFilterVal = val; renderStaff(); }
+            function staffYearFilter(val) { sfYearFilterVal = val; renderStaff(); }
             function staffStatusFilter(val) { sfStatusFilterVal = val; renderStaff(); }
+
+            function getStaffYear(s) {
+                if (s.dept !== 'Academic') return '';
+                var u = String(s.username || '');
+                if (u.length === 6) {
+                    var yrDigits = u.substring(2, 4);
+                    if (yrDigits === '01') return '1st Year';
+                    if (yrDigits === '02') return '2nd Year';
+                    if (yrDigits === '03') return '3rd Year';
+                    if (yrDigits === '04') return '4th Year';
+                    if (yrDigits === '00') return 'Dean / School Level';
+                }
+                return '';
+            }
 
             var DEPT_LABELS = { Academic: 'Exam Cell / HOD', Administrative: 'Admin / Accounts Office', Infrastructure: 'Estate Officer / IT', Ragging: 'Anti-Ragging Committee', Others: 'Student Welfare Office' };
 
@@ -3964,7 +3992,17 @@
                     // 3. School Filter (only applies if Dept is Academic)
                     if (sfSchoolFilterVal && s.sub_dept !== sfSchoolFilterVal) return false;
 
-                    // 4. Status Filter
+                    // 4. Year Filter (only applies if Dept is Academic)
+                    if (sfYearFilterVal) {
+                        var yr = getStaffYear(s);
+                        if (sfYearFilterVal === 'Dean') {
+                            if (yr !== 'Dean / School Level') return false;
+                        } else {
+                            if (yr !== sfYearFilterVal) return false;
+                        }
+                    }
+
+                    // 5. Status Filter
                     if (sfStatusFilterVal) {
                         var isActive = s.status !== 'Terminated';
                         if (sfStatusFilterVal === 'Active' && !isActive) return false;
@@ -3973,7 +4011,34 @@
 
                     return true;
                 });
+
+                // Sort academic staff by School, then Year, then Role
+                list.sort(function (a, b) {
+                    if (a.dept === 'Academic' && b.dept === 'Academic') {
+                        // School comparison
+                        var sA = a.sub_dept || '';
+                        var sB = b.sub_dept || '';
+                        if (sA !== sB) return sA.localeCompare(sB);
+
+                        // Year comparison (Dean/00 first, then 01, 02, 03, 04)
+                        var uA = String(a.username || '');
+                        var uB = String(b.username || '');
+                        var yA = uA.length === 6 ? uA.substring(2, 4) : '99';
+                        var yB = uB.length === 6 ? uB.substring(2, 4) : '99';
+                        if (yA !== yB) return yA.localeCompare(yB);
+
+                        // Role comparison (PD/01 first, then PM/02, then Professor/03)
+                        var rA = uA.length === 6 ? uA.substring(4, 6) : '99';
+                        var rB = uB.length === 6 ? uB.substring(4, 6) : '99';
+                        return rA.localeCompare(rB);
+                    }
+                    return 0;
+                });
+
                 var el = document.getElementById('staffGrid');
+                if (document.getElementById('staffCount')) {
+                    document.getElementById('staffCount').textContent = list.length;
+                }
                 if (!list.length) { el.innerHTML = '<div class="es" style="padding:40px;grid-column:1/-1"><div class="ei">👥</div><div class="et">No staff found</div></div>'; return; }
                 el.innerHTML = list.map(function (s) {
                     var t = DEPT_THEMES[s.dept] || DEPT_THEMES['Others'];
@@ -3992,11 +4057,14 @@
                     var isActive = (s.status !== 'Terminated');
                     var statBadge = isActive ? '<span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">Active</span>' : '<span style="background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">Terminated</span>';
 
+                    var yr = getStaffYear(s);
+                    var yrBadge = (yr && yr !== 'Dean / School Level') ? ' <span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700;margin-left:4px">' + yr + '</span>' : '';
+
                     return '<div class="staff-card" style="display:block;padding:0;overflow:hidden;opacity:' + (isActive ? 1 : 0.6) + '">' +
                         '<div style="background:' + t.color + ';padding:20px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)">' +
                         '<div style="width:52px;height:52px;border-radius:14px;background:' + t.textColor + '22;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">' + t.emoji + '</div>' +
                         '<div style="flex:1"><div class="staff-name">' + s.fullname + ' ' + statBadge + '</div>' +
-                        '<div style="font-size:12px;color:var(--text2);margin-top:2px">' + s.role + ' &middot; ' + s.dept + '</div>' +
+                        '<div style="font-size:12px;color:var(--text2);margin-top:2px">' + s.role + yrBadge + ' &middot; ' + s.dept + '</div>' +
                         (s.sub_dept ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px">🏫 ' + s.sub_dept + '</div>' : '') +
                         '<div style="margin-top:7px;display:inline-block;padding:3px 12px;border-radius:100px;background:' + t.color + ';color:' + t.textColor + ';border:1px solid ' + t.textColor + '44;font-size:11px;font-weight:700">ID: ' + s.username + '</div></div>' +
                         '</div>' +
