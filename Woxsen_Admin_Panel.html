@@ -4043,16 +4043,40 @@
 
             function getStaffYear(s) {
                 if (s.dept !== 'Academic') return '';
-                var u = String(s.username || '');
-                if (u.length === 6) {
-                    var yrDigits = u.substring(2, 4);
-                    if (yrDigits === '01') return '1st Year';
-                    if (yrDigits === '02') return '2nd Year';
-                    if (yrDigits === '03') return '3rd Year';
-                    if (yrDigits === '04') return '4th Year';
-                    if (yrDigits === '00') return 'Dean / School Level';
-                }
-                return '';
+                var ids = String(s.username || '').split(',').map(x => x.trim());
+                var years = [];
+                ids.forEach(id => {
+                    if (id.length === 6) {
+                        var yrDigits = id.substring(2, 4);
+                        if (yrDigits === '01') years.push('1st Year');
+                        if (yrDigits === '02') years.push('2nd Year');
+                        if (yrDigits === '03') years.push('3rd Year');
+                        if (yrDigits === '04') years.push('4th Year');
+                        if (yrDigits === '00') years.push('Dean / School Level');
+                    }
+                });
+                return years.join(', ');
+            }
+
+            function getStaffAssignmentsHtml(s) {
+                if (s.dept !== 'Academic') return '';
+                var ids = String(s.username || '').split(',').map(x => x.trim());
+                var schoolCodes = { '10': 'SOB', '20': 'SOT', '30': 'SOAD', '40': 'SOL', '50': 'SOLA', '60': 'SOAP' };
+                const yearCodes = { '00': 'Dean', '01': '1st Yr', '02': '2nd Yr', '03': '3rd Yr', '04': '4th Yr' };
+                const roleCodes = { '00': 'Dean', '01': 'PD', '02': 'PM', '03': 'Prof' };
+
+                return ids.map(id => {
+                    if (!/^\d{6}$/.test(id)) return '';
+                    var sCode = id.substring(0, 2);
+                    var yCode = id.substring(2, 4);
+                    var rCode = id.substring(4, 6);
+
+                    var sch = schoolCodes[sCode] || 'Unknown';
+                    var yr = yearCodes[yCode] || '';
+                    var role = roleCodes[rCode] || '';
+
+                    return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:1px 6px;font-size:10px;font-weight:700;margin-right:4px;display:inline-block;margin-top:2px;">🏫 ${sch} · ${yr} · ${role}</span>`;
+                }).join('');
             }
 
             var DEPT_LABELS = { Academic: 'Exam Cell / HOD', Administrative: 'Admin / Accounts Office', Infrastructure: 'Estate Officer / IT', Ragging: 'Anti-Ragging Committee', Others: 'Student Welfare Office' };
@@ -4079,9 +4103,9 @@
                     if (sfYearFilterVal) {
                         var yr = getStaffYear(s);
                         if (sfYearFilterVal === 'Dean') {
-                            if (yr !== 'Dean / School Level') return false;
+                            if (!yr.includes('Dean / School Level')) return false;
                         } else {
-                            if (yr !== sfYearFilterVal) return false;
+                            if (!yr.includes(sfYearFilterVal)) return false;
                         }
                     }
 
@@ -4104,8 +4128,8 @@
                         if (sA !== sB) return sA.localeCompare(sB);
 
                         // Year comparison (Dean/00 first, then 01, 02, 03, 04)
-                        var uA = String(a.username || '');
-                        var uB = String(b.username || '');
+                        var uA = String(a.username || '').split(',')[0].trim();
+                        var uB = String(b.username || '').split(',')[0].trim();
                         var yA = uA.length === 6 ? uA.substring(2, 4) : '99';
                         var yB = uB.length === 6 ? uB.substring(2, 4) : '99';
                         if (yA !== yB) return yA.localeCompare(yB);
@@ -4140,15 +4164,17 @@
                     var isActive = (s.status !== 'Terminated');
                     var statBadge = isActive ? '<span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">Active</span>' : '<span style="background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700">Terminated</span>';
 
-                    var yr = getStaffYear(s);
-                    var yrBadge = (yr && yr !== 'Dean / School Level') ? ' <span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700;margin-left:4px">' + yr + '</span>' : '';
+                    var assignHtml = getStaffAssignmentsHtml(s);
+                    var roleRow = s.dept === 'Academic' && assignHtml ? 
+                        '<div style="margin-top:4px">' + assignHtml + '</div>' : 
+                        '<div style="font-size:12px;color:var(--text2);margin-top:2px">' + s.role + ' &middot; ' + s.dept + '</div>';
 
                     return '<div class="staff-card" style="display:block;padding:0;overflow:hidden;opacity:' + (isActive ? 1 : 0.6) + '">' +
                         '<div style="background:' + t.color + ';padding:20px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)">' +
                         '<div style="width:52px;height:52px;border-radius:14px;background:' + t.textColor + '22;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">' + t.emoji + '</div>' +
                         '<div style="flex:1"><div class="staff-name">' + s.fullname + ' ' + statBadge + '</div>' +
-                        '<div style="font-size:12px;color:var(--text2);margin-top:2px">' + s.role + yrBadge + ' &middot; ' + s.dept + '</div>' +
-                        (s.sub_dept ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px">🏫 ' + s.sub_dept + '</div>' : '') +
+                        roleRow +
+                        (s.sub_dept && s.dept !== 'Academic' ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px">🏫 ' + s.sub_dept + '</div>' : '') +
                         '<div style="margin-top:7px;display:inline-block;padding:3px 12px;border-radius:100px;background:' + t.color + ';color:' + t.textColor + ';border:1px solid ' + t.textColor + '44;font-size:11px;font-weight:700">ID: ' + s.username + '</div></div>' +
                         '</div>' +
                         '<div style="padding:18px 22px">' +

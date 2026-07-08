@@ -2168,19 +2168,22 @@
             if (btn) { btn.disabled = true; btn.textContent = 'Verifying…'; }
 
             try {
-                // Fetch by username only — password NEVER sent in URL
-                const r = await sbFetch(`staff_accounts?username=eq.${encodeURIComponent(u)}&select=*`);
+                // Fetch using ilike wildcard to support comma-separated linked IDs
+                const r = await sbFetch(`staff_accounts?username=ilike.*${encodeURIComponent(u)}*&select=*`);
                 if (!r.ok) throw new Error('Network response was not ok');
                 const users = await r.json();
 
-                if (!users.length) {
+                // Find exact match in comma-separated list
+                const acc = users.find(x => String(x.username || '').split(',').map(s => s.trim().toLowerCase()).includes(u));
+
+                if (!acc) {
                     err.style.display = 'block';
                     err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
                     return;
                 }
 
                 // Plaintext comparison
-                if (p !== users[0].password) {
+                if (p !== acc.password) {
                     err.style.display = 'block';
                     err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
                     return;
@@ -2327,61 +2330,75 @@
         }
 
         /* ══ FILTER: Only this role/dept's grievances ══ */
-        function myGrievances() {
-            if (currentStaff.escalation_level) {
-                // Academic hierarchy
-                return G.filter(g => {
-                    const isSelectedProf = g.route_choice === 'professor_only' && 
-                                           getEscLevel(g) === 'professor' && 
-                                           (g.professor || '').toLowerCase().includes(currentStaff.fullname.toLowerCase());
-                    const isAtLevel = g.cat === 'Academic' && getEscLevel(g) === currentStaff.escalation_level && !['Resolved', 'Closed'].includes(g.status);
-                    if (!isAtLevel && !isSelectedProf) return false;
-                    
-                    if (g.route_choice === 'professor_only' && getEscLevel(g) === 'professor') {
-                        const profs = (g.professor || '').toLowerCase();
-                        const staffName = currentStaff.fullname.toLowerCase();
-                        if (!profs.includes(staffName)) return false;
-                    }
-
-                    if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
-                        return g.dept === currentStaff.sub_dept;
-                    }
-                    return true;
-                });
-            }
-            // Non-Academic (Admin, Infrastructure, etc.)
-            return G.filter(g => {
-                const isAssigned = g.assigned === currentStaff.assignedLabel && !['Resolved', 'Closed'].includes(g.status);
+        function hasAssignmentFor(g, isAllList = false) {
+            // For non-academic staff, use the original assignedLabel mapping
+            if (!currentStaff.escalation_level) {
+                const isAssigned = g.assigned === currentStaff.assignedLabel;
                 if (!isAssigned) return false;
                 if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
                     return g.dept === currentStaff.sub_dept;
                 }
                 return true;
-            });
+            }
+
+            // Academic staff assignments parsing
+            const ids = String(currentStaff.username || '').split(',').map(s => s.trim());
+            
+            // Check if explicitly selected professor for professor_only routing
+            const isSelectedProf = g.route_choice === 'professor_only' && 
+                                   getEscLevel(g) === 'professor' && 
+                                   (g.professor || '').toLowerCase().includes(currentStaff.fullname.toLowerCase());
+            
+            if (isSelectedProf) {
+                if (!isAllList && !['Resolved', 'Closed'].includes(g.status)) return true;
+                if (isAllList) return true;
+            }
+
+            const schoolCodes = { '10': 'School of Business', '20': 'School of Technology', '30': 'School of Art & Design', '40': 'School of Law', '50': 'School of Liberal Arts & Humanities', '60': 'School of Architecture & Planning' };
+            const yearCodes = { '00': 'Dean', '01': '1st Year', '02': '2nd Year', '03': '3rd Year', '04': '4th Year' };
+            const roleCodes = { '00': 'dean', '01': 'pd', '02': 'pm', '03': 'professor' };
+
+            for (const id of ids) {
+                if (!/^\d{6}$/.test(id)) continue;
+                
+                const sCode = id.substring(0, 2);
+                const yCode = id.substring(2, 4);
+                const rCode = id.substring(4, 6);
+
+                const targetSchool = schoolCodes[sCode];
+                const targetYear = yearCodes[yCode];
+                const targetEsc = roleCodes[rCode];
+
+                // School match
+                if (g.dept !== targetSchool) continue;
+
+                // Year match (Dean matches all years)
+                if (yCode !== '00' && g.year !== targetYear) continue;
+
+                // Escalation level match
+                if (isAllList) {
+                    const isRelevant = getEscLevel(g) === targetEsc || 
+                                       ESC_LEVELS.indexOf(getEscLevel(g)) > ESC_LEVELS.indexOf(targetEsc) || 
+                                       ['Resolved', 'Closed'].includes(g.status);
+                    if (isRelevant) return true;
+                } else {
+                    const isActiveAtLevel = getEscLevel(g) === targetEsc && !['Resolved', 'Closed'].includes(g.status);
+                    if (isActiveAtLevel) return true;
+                }
+            }
+
+            return false;
         }
+
+        function myGrievances() {
+            return G.filter(g => hasAssignmentFor(g, false));
+        }
+
         function myGrievancesAll() {
             if (currentStaff.escalation_level) {
-                // All relevant academic grievances
-                return G.filter(g => {
-                    const isSelectedProf = g.route_choice === 'professor_only' && 
-                                           getEscLevel(g) === 'professor' && 
-                                           (g.professor || '').toLowerCase().includes(currentStaff.fullname.toLowerCase());
-                    const isRelevant = g.cat === 'Academic' && (getEscLevel(g) === currentStaff.escalation_level || ESC_LEVELS.indexOf(getEscLevel(g)) > ESC_LEVELS.indexOf(currentStaff.escalation_level) || ['Resolved', 'Closed'].includes(g.status));
-                    if (!isRelevant && !isSelectedProf) return false;
-                    
-                    if (g.route_choice === 'professor_only' && getEscLevel(g) === 'professor') {
-                        const profs = (g.professor || '').toLowerCase();
-                        const staffName = currentStaff.fullname.toLowerCase();
-                        if (!profs.includes(staffName)) return false;
-                    }
-
-                    if (currentStaff.sub_dept && currentStaff.sub_dept !== "") {
-                        return g.dept === currentStaff.sub_dept;
-                    }
-                    return true;
-                });
+                return G.filter(g => hasAssignmentFor(g, true));
             }
-            // All relevant non-academic grievances
+            // Non-academic all
             return G.filter(g => {
                 const isAssigned = g.assigned === currentStaff.assignedLabel;
                 if (!isAssigned) return false;
