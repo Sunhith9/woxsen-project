@@ -4332,7 +4332,12 @@
                     document.getElementById('sfSubDept').value = s.sub_dept || '';
                     document.getElementById('sfReasonWrap').style.display = 'block';
                     document.getElementById('sfReason').value = '';
-                    document.getElementById('sfAuthSection').style.display = 'none';
+                    
+                    // Show Username but hide Password wrapper during edit
+                    document.getElementById('sfAuthSection').style.display = 'block';
+                    uInp.value = s.username || '';
+                    uInp.disabled = (s.dept === 'Academic');
+                    passWrap.style.display = 'none';
                     passWarning.style.display = 'block';
 
                     if (s.dept === 'Academic' && s.username) {
@@ -4398,8 +4403,8 @@
                 } else {
                     if (w) w.style.display = 'block';
                     if (aWrap) aWrap.style.display = 'none';
-                    if (roleInp) { roleInp.disabled = false; roleInp.placeholder = 'e.g. Professor'; roleInp.value = ''; }
-                    if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; userInp.value = ''; }
+                    if (roleInp) { roleInp.disabled = false; roleInp.placeholder = 'e.g. Professor'; }
+                    if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; }
                 }
             }
 
