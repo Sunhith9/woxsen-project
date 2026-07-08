@@ -3156,6 +3156,82 @@
                         '<div style="width:' + pct + '%;height:100%;background:' + col + ';border-radius:4px"></div></div>' +
                         '<span style="font-size:12px;font-weight:700">' + n + '</span></div>';
                 }).join('');
+
+                // Department Workload Grouping
+                var workloads = {
+                    'School of Business': 0,
+                    'School of Technology': 0,
+                    'School of Art & Design': 0,
+                    'School of Law': 0,
+                    'School of Liberal Arts & Humanities': 0,
+                    'School of Architecture & Planning': 0,
+                    'Administrative': 0,
+                    'Infrastructure': 0,
+                    'Ragging': 0,
+                    'Others': 0
+                };
+
+                G.forEach(function (g) {
+                    if (['Resolved', 'Closed'].includes(g.status)) return;
+                    if (g.cat === 'Academic') {
+                        var school = g.dept;
+                        if (workloads.hasOwnProperty(school)) {
+                            workloads[school]++;
+                        }
+                    } else {
+                        var deptMap = {
+                            'Admin / Accounts Office': 'Administrative',
+                            'Estate Officer / IT': 'Infrastructure',
+                            'Anti-Ragging Committee': 'Ragging',
+                            'Student Welfare Office': 'Others'
+                        };
+                        var key = deptMap[g.assigned];
+                        if (key && workloads.hasOwnProperty(key)) {
+                            workloads[key]++;
+                        }
+                    }
+                });
+
+                var deptDetails = {
+                    'School of Business': { name: 'SOB (Business)', emoji: '💼', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Technology': { name: 'SOT (Technology)', emoji: '💻', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Art & Design': { name: 'SOAD (Arts)', emoji: '🎨', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Law': { name: 'SOL (Law)', emoji: '⚖️', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Liberal Arts & Humanities': { name: 'SOLA (Liberal)', emoji: '🎭', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Architecture & Planning': { name: 'SOAP (Arch)', emoji: '📐', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'Administrative': { name: 'Administrative', emoji: '🏛️', color: '#f0fdf4', textColor: '#16774a' },
+                    'Infrastructure': { name: 'Infrastructure', emoji: '🏗️', color: '#fff7ed', textColor: '#c2540a' },
+                    'Ragging': { name: 'Anti-Ragging', emoji: '🚨', color: '#fef2f2', textColor: '#b91c1c' },
+                    'Others': { name: 'Student Welfare', emoji: '🤝', color: '#faf5ff', textColor: '#6d28d9' }
+                };
+
+                var activeLoads = Object.entries(workloads).map(function (entry) {
+                    var key = entry[0], count = entry[1];
+                    var details = deptDetails[key];
+                    return { key: key, name: details.name, emoji: details.emoji, count: count, color: details.color, textColor: details.textColor };
+                });
+
+                activeLoads.sort(function (a, b) { return b.count - a.count; });
+
+                var totalActive = G.filter(function (x) { return !['Resolved', 'Closed'].includes(x.status); }).length;
+                var loadEl = document.getElementById('dDeptLoad');
+                if (loadEl) {
+                    if (totalActive === 0) {
+                        loadEl.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2);font-size:13px">🎉 All departments are clear! No active grievances.</div>';
+                    } else {
+                        loadEl.innerHTML = activeLoads.map(function (d) {
+                            var pct = totalActive ? Math.round(d.count / totalActive * 100) : 0;
+                            if (d.count === 0) return '';
+                            return '<div style="margin-bottom:12px">' +
+                                '<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;align-items:center">' +
+                                '<span>' + d.emoji + ' <strong>' + d.name + '</strong></span>' +
+                                '<span style="font-weight:700;color:' + d.textColor + ';background:' + d.color + ';padding:2px 8px;border-radius:20px;font-size:11px">' + d.count + ' active</span>' +
+                                '</div>' +
+                                '<div class="prog-bar"><div class="prog-fill" style="background:' + d.textColor + ';width:' + pct + '%"></div></div>' +
+                                '</div>';
+                        }).join('');
+                    }
+                }
             }
 
             function renderAdminProfile() {
