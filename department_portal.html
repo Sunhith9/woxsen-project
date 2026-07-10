@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woxsen University – Department Staff Portal</title>
+    <title>Woxsen University  Department Staff Portal</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
@@ -17,18 +17,21 @@
         }
 
         :root {
-            --navy: #0A1128;
-            --navy2: #0F1D36;
-            --gold: #DC2626;
-            --gold2: #B91C1C;
-            --gold-light: #fef2f2;
-            --cream: #f4f4f5;
-            --text: #000000;
-            --text2: #404040;
-            --border: #e5e5e5;
-            --white: #ffffff;
+            --navy: #1A0A12;
+            --navy2: #2D1520;
+            --primary: #E91E63;
+            --primary-dark: #D81B60;
+            --primary-light: #F06292;
+            --gold: #E91E63;
+            --gold2: #D81B60;
+            --gold-light: #FCE4EC;
+            --cream: #FDF5F6;
+            --text: #2D2D2D;
+            --text2: #666666;
+            --border: #E5E5E5;
+            --white: #FFFFFF;
             --green: #16a34a;
-            --red: #dc2626;
+            --red: #E91E63;
             --orange: #ea580c;
             --blue: #2563eb;
             --purple: #7c3aed;
@@ -42,12 +45,12 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
         }
 
-        /* ── LOGIN ── */
+        /*  LOGIN  */
         .login-wrap {
             min-height: 100vh;
             display: flex;
@@ -59,8 +62,9 @@
 
         .login-bg {
             position: absolute;
-            inset: 0;
-            background: #000000;
+            inset: -10px;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.4), rgba(10, 22, 40, 0.65)), url('woxsen.jpeg') center/cover no-repeat;
+            filter: blur(5px);
         }
 
         .login-pattern {
@@ -106,7 +110,7 @@
         }
 
         .login-univ {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 11px;
             text-align: center;
             color: var(--gold);
@@ -117,7 +121,7 @@
         }
 
         .login-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 26px;
             font-weight: 700;
             text-align: center;
@@ -169,7 +173,7 @@
             background: var(--white);
         }
 
-        /* ── LAYOUT ── */
+        /*  LAYOUT  */
         .sidebar {
             position: fixed;
             left: 0;
@@ -219,7 +223,7 @@
         }
 
         .sb-name {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 16px;
             font-weight: 700;
             line-height: 1.2;
@@ -230,7 +234,7 @@
 
         .sb-name small {
             display: block;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-size: 10px;
             color: rgba(255, 255, 255, 0.4);
             font-weight: 400;
@@ -290,7 +294,7 @@
 
         .nav-item.active {
             color: #fff;
-            background: rgba(220, 38, 38, 0.1);
+            background: rgba(233, 30, 99, 0.15);
         }
 
         .nav-item.active::before {
@@ -357,7 +361,7 @@
         }
 
         .tb-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 20px;
             font-weight: 600;
             color: var(--navy);
@@ -365,7 +369,7 @@
 
         .tb-title small {
             display: block;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-size: 11px;
             font-weight: 400;
             color: var(--text2);
@@ -384,7 +388,7 @@
         }
 
         .tb-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 20px;
             font-weight: 600;
             color: var(--navy);
@@ -455,7 +459,7 @@
         }
 
         .dash-hero-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 28px;
             font-weight: 700;
             color: #fff;
@@ -470,7 +474,7 @@
             line-height: 1.6;
         }
 
-        /* ── CARDS ── */
+        /*  CARDS  */
         .card {
             background: var(--white);
             border-radius: 8px;
@@ -489,7 +493,7 @@
         }
 
         .ct {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 17px;
             font-weight: 600;
         }
@@ -552,7 +556,7 @@
             font-weight: 700;
             line-height: 1;
             margin-bottom: 3px;
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
         }
 
         .sc-l {
@@ -561,7 +565,7 @@
             font-weight: 500;
         }
 
-        /* ── ANALYTICS ── */
+        /*  ANALYTICS  */
         .anl-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -583,7 +587,7 @@
         }
 
         .anl-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 17px;
             font-weight: 600;
             margin-bottom: 18px;
@@ -593,7 +597,7 @@
         }
 
         .anl-big {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 44px;
             font-weight: 700;
             line-height: 1;
@@ -651,7 +655,7 @@
             color: var(--text2);
         }
 
-        /* ── TABLE ── */
+        /*  TABLE  */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -666,17 +670,17 @@
             text-transform: uppercase;
             letter-spacing: .06em;
             color: var(--text2);
-            background: #faf8f4;
+            background: #fafafa;
             border-bottom: 1px solid var(--border);
         }
 
         tbody tr {
-            border-bottom: 1px solid #f2ede5;
+            border-bottom: 1px solid #F8E1E8;
             transition: .12s;
         }
 
         tbody tr:hover {
-            background: #fdf9f2;
+            background: #FEF0F4;
             cursor: pointer;
         }
 
@@ -689,7 +693,7 @@
             border-bottom: none;
         }
 
-        /* ── BADGES ── */
+        /*  BADGES  */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -785,7 +789,7 @@
             border: 1px solid #bbf7d0;
         }
 
-        /* ── FORMS ── */
+        /*  FORMS  */
         .lbl {
             display: block;
             font-size: 11px;
@@ -802,7 +806,7 @@
             border-radius: 6px;
             border: 1.5px solid var(--border);
             font-size: 13.5px;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             color: var(--text);
             background: var(--white);
             outline: none;
@@ -811,7 +815,7 @@
 
         .inp:focus {
             border-color: var(--navy);
-            box-shadow: 0 0 0 3px rgba(20, 30, 70, .08);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12);
         }
 
         select.inp {
@@ -828,12 +832,12 @@
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            background: linear-gradient(135deg, var(--gold) 0%, #b91c1c 100%);
-            box-shadow: 0 2px 8px rgba(220, 38, 38, .25);
+            background: #E91E63;
+            box-shadow: 0 2px 8px rgba(233, 30, 99, 0.25);
             color: #fff;
             font-size: 13.5px;
             font-weight: 700;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             transition: .2s;
             position: relative;
             overflow: hidden;
@@ -841,7 +845,7 @@
 
         .btn-p:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(220, 38, 38, .35);
+            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35);
             filter: brightness(1.1);
         }
 
@@ -853,18 +857,18 @@
             color: var(--text);
             font-size: 13.5px;
             font-weight: 600;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             cursor: pointer;
             transition: .2s;
         }
 
         .btn-s:hover {
-            background: #faf8f4;
-            border-color: var(--navy);
-            color: var(--navy);
+            background: #FDF5F6;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
-        /* ── FILTER PILLS ── */
+        /*  FILTER PILLS  */
         .fp {
             display: flex;
             gap: 8px;
@@ -893,7 +897,7 @@
             color: var(--text);
         }
 
-        /* ── SEARCH ── */
+        /*  SEARCH  */
         .search-bar {
             display: flex;
             gap: 10px;
@@ -906,7 +910,7 @@
             border-radius: 4px;
             border: 1.5px solid var(--border);
             font-size: 13px;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             background: var(--white);
             color: var(--text);
             outline: none;
@@ -918,7 +922,7 @@
             box-shadow: 0 0 0 3px rgba(0, 0, 0, .05);
         }
 
-        /* ── MODAL ── */
+        /*  MODAL  */
         .modal-ov {
             position: fixed;
             inset: 0;
@@ -958,7 +962,7 @@
         }
 
         .mt2 {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 18px;
             font-weight: 600;
         }
@@ -1042,7 +1046,7 @@
             align-items: center;
         }
 
-        /* ── TIMELINE ── */
+        /*  TIMELINE  */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -1111,7 +1115,7 @@
             }
         }
 
-        /* ── TOAST ── */
+        /*  TOAST  */
         .toast {
             position: fixed;
             bottom: 22px;
@@ -1135,7 +1139,7 @@
             display: flex;
         }
 
-        /* ── EMPTY STATE ── */
+        /*  EMPTY STATE  */
         .es {
             text-align: center;
             padding: 56px 20px;
@@ -1157,7 +1161,7 @@
             color: var(--text2);
         }
 
-        /* ── PRIORITY ROW INDICATOR ── */
+        /*  PRIORITY ROW INDICATOR  */
         .pri-Critical td:first-child {
             border-left: 3px solid var(--red);
         }
@@ -1166,14 +1170,14 @@
             border-left: 3px solid var(--orange);
         }
 
-        /* ── DEPT COLOR STRIP ── */
+        /*  DEPT COLOR STRIP  */
         .dept-strip {
             height: 4px;
             background: var(--gold);
             margin-bottom: 0;
         }
 
-        /* ── MENU BTN (mobile) ── */
+        /*  MENU BTN (mobile)  */
         .menu-btn {
             display: none;
             background: none;
@@ -1183,7 +1187,7 @@
             padding: 4px 8px;
         }
 
-        /* ── CSV BTN ── */
+        /*  CSV BTN  */
         .btn-csv {
             padding: 8px 15px;
             border-radius: 4px;
@@ -1192,7 +1196,7 @@
             color: var(--text);
             font-size: 12px;
             font-weight: 600;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -1205,9 +1209,9 @@
             color: var(--green);
         }
 
-        /* ── SECTION TITLE ── */
+        /*  SECTION TITLE  */
         .sec-t {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 22px;
             font-weight: 600;
             margin-bottom: 3px;
@@ -1219,7 +1223,7 @@
             margin-bottom: 20px;
         }
 
-        /* ── CHART ── */
+        /*  CHART  */
         .chart-wrap {
             position: relative;
             height: 200px;
@@ -1238,7 +1242,7 @@
             .anl-grid { grid-template-columns: 1fr !important; }
         }
 
-        /* ── Mobile overlay ── */
+        /*  Mobile overlay  */
         .sb-overlay {
             display: none;
             position: fixed;
@@ -1249,7 +1253,7 @@
         }
         .sb-overlay.show { display: block; }
 
-        /* ── Mobile: tables → card stacks ── */
+        /*  Mobile: tables  card stacks  */
         @media(max-width: 640px) {
             table thead { display: none; }
             table tbody tr {
@@ -1319,8 +1323,8 @@
         }
 
 
-        /* ── DEPT PROFILE ── */
-        /* ── DEPT PROFILE ── */
+        /*  DEPT PROFILE  */
+        /*  DEPT PROFILE  */
         .prof-hero {
             background: var(--navy);
             border-radius: 8px;
@@ -1361,7 +1365,7 @@
         }
 
         .prof-hero-name {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 4px;
@@ -1412,7 +1416,7 @@
         .prof-stat-n {
             font-size: 26px;
             font-weight: 700;
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             line-height: 1;
         }
 
@@ -1463,9 +1467,9 @@
             margin-top: 1px;
         }
 
-        /* ── ANALYTICS ── */
+        /*  ANALYTICS  */
         .anl-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 15px;
             font-weight: 600;
             margin-bottom: 14px;
@@ -1524,7 +1528,7 @@
             text-align: right;
         }
 
-        /* ── ANALYTICS LAYOUT ── */
+        /*  ANALYTICS LAYOUT  */
         .anl-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1547,7 +1551,7 @@
         }
 
         .anl-big {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-weight: 700;
             line-height: 1;
             font-size: 28px;
@@ -1564,17 +1568,71 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ── Override Login Page elements to use Red instead of Pink ── */
+        .login-box .login-univ {
+            color: #DC2626 !important;
+        }
+        .login-box span {
+            color: #DC2626 !important;
+            border-color: #DC2626 !important;
+            background: rgba(220, 38, 38, 0.08) !important;
+            box-shadow: none !important;
+        }
+        .login-box .btn-p {
+            background: #DC2626 !important;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25) !important;
+        }
+        .login-box .btn-p:hover {
+            background: #B91C1C !important;
+        }
+        .login-box .inp:focus {
+            border-color: #DC2626 !important;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+        }
+        .login-logo {
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+        .login-logo img {
+            width: 56px !important;
+            height: 56px !important;
+            mix-blend-mode: multiply;
+        }
+
+        /* ── Mobile responsiveness optimizations ── */
+        @media(max-width: 600px) {
+            .prof-hero {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 20px !important;
+            }
+            .prof-hero-info {
+                align-items: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .login-box {
+                padding: 24px 20px !important;
+                margin: 15px !important;
+                border-radius: 12px !important;
+            }
+            .login-title {
+                font-size: 22px !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ══════════ LOGIN GATE ══════════ -->
+    <!--  LOGIN GATE  -->
     <div id="loginGate" class="login-wrap">
         <div class="login-bg"></div>
         <div class="login-pattern"></div>
         <div class="login-box">
-            <div class="login-logo">🏛️</div>
+            <div class="login-logo"><img src="woxsen_wou_symbol.png" alt="WOU" style="width:56px;height:56px;object-fit:contain;"></div>
             <div class="login-univ">Woxsen University</div>
             <div class="login-title">Staff Authentication</div>
             <div style="text-align:center;margin:-10px 0 18px">
@@ -1589,10 +1647,10 @@
             </div>
             <div style="margin-bottom:22px">
                 <label class="lbl">Password</label>
-                <input class="inp" type="password" id="loginPass" placeholder="••••••••"
+                <input class="inp" type="password" id="loginPass" placeholder=""
                     onkeydown="if(event.key==='Enter')doLogin()">
             </div>
-            <button class="btn-p" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()">🔓 Sign In to
+            <button class="btn-p" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()"> Sign In to
                 Department Portal</button>
 
             <div class="login-note" style="margin-top:14px">
@@ -1602,7 +1660,7 @@
         </div>
     </div>
 
-    <!-- ══════════ DEPARTMENT STAFF APP ══════════ -->
+    <!--  DEPARTMENT STAFF APP  -->
     <div id="deptApp" style="display:none">
 
         <nav class="sidebar" id="sidebar">
@@ -1614,24 +1672,24 @@
                         style="height: 48px; width: auto; flex-shrink: 0; margin-right: 11px;">
                     <div class="sb-name">Woxsen University<small>Department Staff Portal</small></div>
                 </div>
-                <div class="sb-dept-badge" id="sbDeptBadge">—</div>
+                <div class="sb-dept-badge" id="sbDeptBadge"></div>
             </div>
             <div class="sb-nav">
                 <div class="nav-sec">My Department</div>
-                <div class="nav-item active" id="nav-dash" onclick="go('dash',this)"><span class="ni">📊</span>Dashboard
+                <div class="nav-item active" id="nav-dash" onclick="go('dash',this)"><span class="ni"></span>Dashboard
                 </div>
                 <div class="nav-item" id="nav-list" onclick="go('list',this)">
-                    <span class="ni">📋</span>Grievances
+                    <span class="ni"></span>Grievances
                     <span class="nb" id="nb1" style="display:none">0</span>
                 </div>
                 <div class="nav-item" id="nav-analytics" onclick="go('analytics',this)"><span
-                        class="ni">📈</span>Analytics</div>
+                        class="ni"></span>Analytics</div>
                 <div class="nav-item" id="nav-ann" onclick="go('ann',this)">
-                    <span class="ni">📢</span>Announcements
+                    <span class="ni"></span>Announcements
                     <span class="nb" id="nbAnn" style="display:none">0</span>
                 </div>
             </div>
-            <div class="sb-footer" id="sbFooter">Woxsen University<br>Kamkole, Sadasivpet<br>Telangana — 502345</div>
+            <div class="sb-footer" id="sbFooter">Woxsen University<br>Kamkole, Sadasivpet<br>Telangana  502345</div>
         </nav>
 
         <!-- Mobile sidebar overlay -->
@@ -1640,29 +1698,31 @@
         <div class="main">
             <div class="topbar">
                 <button class="menu-btn" style="display: flex !important; margin-right: 15px;"
-                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))">☰</button>
+                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"></button>
                 <div class="tb-title" id="tbTitle">Dashboard<small id="tbSub">Department Staff Portal</small></div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
                     style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
                 <div style="margin-left:auto;display:flex;gap:15px;align-items:center">
                     <div class="tb-profile-info" style="text-align:right;cursor:pointer" onclick="go('profile',null)">
-                        <div style="font-weight:700;color:var(--text);font-size:13px" id="tbStaffName">—</div>
-                        <div style="font-size:10px;color:var(--text2);font-weight:500" id="tbDeptLabel">—</div>
+                        <div style="font-weight:700;color:var(--text);font-size:13px" id="tbStaffName"></div>
+                        <div style="font-size:10px;color:var(--text2);font-weight:500" id="tbDeptLabel"></div>
                     </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s"
+                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s;background-size:cover;background-position:center;"
                         id="tbAvatar" onclick="go('profile',null)"
                         onmouseover="this.style.transform='scale(1.05)';this.style.borderColor='var(--gold)'"
-                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">👤</div>
+                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">
+                        <img src="woxsen_wou_symbol.png" alt="WOU" id="tbAvatarText" style="width:22px;height:22px;object-fit:contain;">
+                    </div>
                     <button onclick="doLogout()"
                         style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
                         onmouseover="this.style.background='rgba(220,38,38,.2)'"
-                        onmouseout="this.style.background='rgba(220,38,38,.1)'">🚪 Logout</button>
+                        onmouseout="this.style.background='rgba(220,38,38,.1)'"> Logout</button>
                 </div>
             </div>
 
             <div class="content">
 
-                <!-- ── DASHBOARD ── -->
+                <!--  DASHBOARD  -->
                 <div class="page active" id="pDash">
                     <div class="dash-hero">
                         <div class="hero-blur-bg"
@@ -1683,27 +1743,27 @@
 
                     <div class="stats">
                         <div class="sc">
-                            <div class="sc-icon">📋</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="s1">0</div>
                             <div class="sc-l">Total Assigned</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🟠</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="s2" style="color:var(--orange)">0</div>
                             <div class="sc-l">Pending Action</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🔵</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="s3" style="color:var(--blue)">0</div>
                             <div class="sc-l">In Progress</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">✅</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="s4" style="color:var(--green)">0</div>
                             <div class="sc-l">Resolved</div>
                         </div>
                         <div class="sc" id="s5w" style="display:none">
-                            <div class="sc-icon">🔺</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="s5" style="color:#dc2626">0</div>
                             <div class="sc-l">Overdue / Escalate Now</div>
                         </div>
@@ -1717,8 +1777,8 @@
                             </div>
                             <div style="padding:0" id="dRecent">
                                 <div class="es" style="padding:30px">
-                                    <div class="ei">📋</div>
-                                    <div class="et">Loading…</div>
+                                    <div class="ei"></div>
+                                    <div class="et">Loading</div>
                                 </div>
                             </div>
                         </div>
@@ -1734,11 +1794,11 @@
                     </div>
                 </div>
 
-                <!-- ── GRIEVANCE LIST ── -->
+                <!--  GRIEVANCE LIST  -->
                 <div class="page" id="pList">
                     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
                         <div class="sec-t">Assigned Grievances</div>
-                        <button class="btn-csv" onclick="exportCSV()">⬇️ Export CSV</button>
+                        <button class="btn-csv" onclick="exportCSV()"> Export CSV</button>
                     </div>
                     <div class="sec-s" id="listSub">All grievances routed to your department</div>
 
@@ -1754,15 +1814,15 @@
                         </div>
                     </div>
                     <div class="search-bar" style="margin-bottom:14px">
-                        <input class="search-inp" id="gSearch" placeholder="🔍  Search by title, ID, student name…"
+                        <input class="search-inp" id="gSearch" placeholder="  Search by title, ID, student name"
                             oninput="renderList()">
                     </div>
 
                     <div class="card">
                         <div style="overflow-x:auto" id="gListWrap">
                             <div class="es">
-                                <div class="ei">📋</div>
-                                <div class="et">Loading…</div>
+                                <div class="ei"></div>
+                                <div class="et">Loading</div>
                             </div>
                         </div>
                     </div>
@@ -1770,7 +1830,7 @@
 
 
 
-                <!-- ── ANNOUNCEMENTS PAGE ── -->
+                <!--  ANNOUNCEMENTS PAGE  -->
                 <div class="page" id="pAnn">
                     <div class="sec-t">Announcements & Updates</div>
                     <div class="sec-s">Important notices from Super Admin and system updates</div>
@@ -1779,14 +1839,14 @@
                     </div>
                 </div>
 
-                <!-- ── SETTINGS PAGE ── -->
+                <!--  SETTINGS PAGE  -->
                 <div class="page" id="pSet">
                     <div class="sec-t">Account Settings</div>
                     <div class="sec-s">Manage your portal preferences and notification settings.</div>
 
                     <div class="card" style="max-width:500px">
                         <div style="padding:18px 22px;border-bottom:1px solid var(--border)">
-                            <div class="ct">⚙️ Preferences</div>
+                            <div class="ct"> Preferences</div>
                         </div>
                         <div style="padding:22px">
                             <div
@@ -1802,17 +1862,30 @@
                     </div>
                 </div>
 
-                <!-- ── PROFILE PAGE ── -->
+                <!--  PROFILE PAGE  -->
                 <div class="page" id="pProfile">
                     <div class="prof-hero">
-                        <div class="prof-avatar-lg" id="dpAvatar">👤</div>
+                        <div style="position:relative; display:inline-block;">
+                            <div class="prof-avatar-lg" id="dpAvatar"
+                                style="overflow:hidden; position:relative; background-size:cover; background-position:center;">
+                                <span id="dpAvatarText"></span>
+                            </div>
+                            <label for="staffPhotoInput"
+                                style="position:absolute; bottom:0; right:0; background:var(--white); border:1px solid var(--border); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.2s; z-index:10;"
+                                onmouseover="this.style.transform='scale(1.1)'"
+                                onmouseout="this.style.transform='scale(1)'" title="Change Profile Photo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--navy);"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            </label>
+                            <input type="file" id="staffPhotoInput" accept="image/*" style="display:none;"
+                                onchange="handleStaffPhotoUpload(this)">
+                        </div>
                         <div class="prof-hero-info">
                             <div class="prof-hero-badge" id="dpBadgeHero">Department Staff</div>
-                            <div class="prof-hero-name" id="dpName">—</div>
-                            <div class="prof-meta-row">🏢 Role: <strong id="dpRole">—</strong></div>
-                            <div class="prof-meta-row">👤 Username: <strong id="dpUser">—</strong></div>
-                            <div class="prof-meta-row">✉️ <strong id="dpEmail">—</strong></div>
-                            <div class="prof-meta-row">📍 Kamkole, Sadasivpet, Sangareddy, Telangana — 502345</div>
+                            <div class="prof-hero-name" id="dpName"></div>
+                            <div class="prof-meta-row"> Role: <strong id="dpRole"></strong></div>
+                            <div class="prof-meta-row"> Username: <strong id="dpUser"></strong></div>
+                            <div class="prof-meta-row"> <strong id="dpEmail"></strong></div>
+                            <div class="prof-meta-row"> Kamkole, Sadasivpet, Sangareddy, Telangana  502345</div>
                         </div>
                     </div>
                     <div class="prof-stats-row">
@@ -1841,10 +1914,10 @@
                         <div class="card" style="padding:20px">
                             <div class="ct" style="margin-bottom:14px">Staff Information</div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">👤</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Full Name</div>
-                                    <div class="prof-info-val" id="dpi1">—</div>
+                                    <div class="prof-info-val" id="dpi1"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
@@ -1855,49 +1928,49 @@
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🏛️</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Role</div>
-                                    <div class="prof-info-val" id="dpi2">—</div>
+                                    <div class="prof-info-val" id="dpi2"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row" id="dpiAssignmentsRow" style="display:none">
-                                <div class="prof-info-icon">🏫</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Active Assignments</div>
-                                    <div class="prof-info-val" id="dpiAssignmentsList" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px">—</div>
+                                    <div class="prof-info-val" id="dpiAssignmentsList" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🔐</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Username</div>
-                                    <div class="prof-info-val" id="dpi3">—</div>
+                                    <div class="prof-info-val" id="dpi3"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">✉️</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Email</div>
-                                    <div class="prof-info-val" id="dpi4">—</div>
+                                    <div class="prof-info-val" id="dpi4"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📞</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Phone</div>
-                                    <div class="prof-info-val" id="dpi5">—</div>
+                                    <div class="prof-info-val" id="dpi5"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📅</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Joined</div>
-                                    <div class="prof-info-val" id="dpi6">—</div>
+                                    <div class="prof-info-val" id="dpi6"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🏫</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Institution</div>
                                     <div class="prof-info-val">Woxsen University</div>
@@ -1907,61 +1980,61 @@
                         <div class="card" style="padding:20px">
                             <div class="ct" style="margin-bottom:14px">Department Performance</div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📋</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Total Assigned</div>
                                     <div class="prof-info-val" id="dpa1">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">✅</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Resolved</div>
                                     <div class="prof-info-val" style="color:var(--green)" id="dpa2">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">⏳</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Open / Pending</div>
                                     <div class="prof-info-val" style="color:var(--orange)" id="dpa3">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🚨</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Escalated</div>
                                     <div class="prof-info-val" style="color:var(--red)" id="dpa4">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📈</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Resolution Rate</div>
-                                    <div class="prof-info-val" id="dpa5">—</div>
+                                    <div class="prof-info-val" id="dpa5"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🕐</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">SLA Policy</div>
                                     <div class="prof-info-val">Critical:2d · High:5d · Medium:7d · Low:14d</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📅</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Academic Year</div>
-                                    <div class="prof-info-val">2024 – 25</div>
+                                    <div class="prof-info-val">2024  25</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 🔐 Change Account Password -->
+                    <!--  Change Account Password -->
                     <div class="card" style="margin-bottom:18px">
                         <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
-                            <div class="ct">🔐 Change Account Password</div>
+                            <div class="ct"> Change Account Password</div>
                         </div>
                         <div style="padding:20px">
                             <div
@@ -1991,24 +2064,24 @@
                         <div
                             style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
                             <div class="ct">Recent Grievances Handled</div>
-                            <span style="font-size:11px;color:var(--text2)" id="dpRecentSub">—</span>
+                            <span style="font-size:11px;color:var(--text2)" id="dpRecentSub"></span>
                         </div>
                         <div style="overflow-x:auto" id="dpRecentTable">
                             <div class="es" style="padding:24px">
-                                <div class="ei">📋</div>
-                                <div class="et">Loading…</div>
+                                <div class="ei"></div>
+                                <div class="et">Loading</div>
                             </div>
                         </div>
                     </div>
                     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-                        <button class="btn-p" onclick="go('list',document.getElementById('nav-list'))">📋 View All Grievances</button>
-                        <button class="btn-s" onclick="go('analytics',document.getElementById('nav-analytics'))">📈 Analytics</button>
-                        <button class="btn-s" onclick="doLogout()">🚪 Logout</button>
+                        <button class="btn-p" onclick="go('list',document.getElementById('nav-list'))"> View All Grievances</button>
+                        <button class="btn-s" onclick="go('analytics',document.getElementById('nav-analytics'))"> Analytics</button>
+                        <button class="btn-s" onclick="doLogout()"> Logout</button>
                     </div>
                 </div>
             
 
-            <!-- ── ANALYTICS PAGE ── -->
+            <!--  ANALYTICS PAGE  -->
             <div class="page" id="pAnalytics">
                 <div class="sec-t">Department Analytics</div>
                 <div class="sec-s" id="anlSubTitle">Insights and performance benchmarks for your department</div>
@@ -2016,22 +2089,22 @@
                 <!-- Top KPI row -->
                 <div class="stats" style="margin-bottom:24px" id="danlStats">
                     <div class="sc">
-                        <div class="sc-icon">📋</div>
+                        <div class="sc-icon"></div>
                         <div class="sc-n" id="da1">0</div>
                         <div class="sc-l">Total Assigned</div>
                     </div>
                     <div class="sc">
-                        <div class="sc-icon">✅</div>
+                        <div class="sc-icon"></div>
                         <div class="sc-n" id="da2" style="color:var(--green)">0</div>
                         <div class="sc-l">Resolved</div>
                     </div>
                     <div class="sc">
-                        <div class="sc-icon">📊</div>
+                        <div class="sc-icon"></div>
                         <div class="sc-n" id="da3" style="color:var(--blue)">0%</div>
                         <div class="sc-l">Resolution Rate</div>
                     </div>
                     <div class="sc">
-                        <div class="sc-icon">🚨</div>
+                        <div class="sc-icon"></div>
                         <div class="sc-n" id="da4" style="color:var(--red)">0</div>
                         <div class="sc-l">Escalated</div>
                     </div>
@@ -2081,49 +2154,49 @@
                 </div>
 
                 <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:24px">
-                    <button class="btn-p" style="padding:12px 35px" onclick="exportCSV()">⬇️ Export Departmental Report</button>
-                    <button class="btn-s" style="padding:12px 35px" onclick="go('list',document.getElementById('nav-list'))">📋 Browse Records</button>
+                    <button class="btn-p" style="padding:12px 35px" onclick="exportCSV()"> Export Departmental Report</button>
+                    <button class="btn-s" style="padding:12px 35px" onclick="go('list',document.getElementById('nav-list'))"> Browse Records</button>
                 </div>
             </div>
 
                 <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:24px">
-                    <button class="btn-p" style="padding:12px 30px" onclick="exportCSV()">⬇️ Export Analytical Report</button>
-                    <button class="btn-s" style="padding:12px 30px" onclick="go('list',document.getElementById('nav-list'))">📋 Browse Records</button>
+                    <button class="btn-p" style="padding:12px 30px" onclick="exportCSV()"> Export Analytical Report</button>
+                    <button class="btn-s" style="padding:12px 30px" onclick="go('list',document.getElementById('nav-list'))"> Browse Records</button>
                 </div>
             </div>
         </div>
     </div>
     </div>
 
-    <!-- ══════════ DETAIL / UPDATE MODAL ══════════ -->
+    <!--  DETAIL / UPDATE MODAL  -->
     <div class="modal-ov" id="mOv">
         <div class="modal">
             <div class="mh">
                 <div class="mt2" id="mTitle">Grievance Details</div>
-                <button class="mc" onclick="closeM()">✕</button>
+                <button class="mc" onclick="closeM()"></button>
             </div>
             <div class="mb" id="mBody"></div>
         </div>
     </div>
 
-    <div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg"></span></div>
+    <div class="toast" id="toast"><span id="tIcon"></span><span id="tMsg"></span></div>
 
     <script>
-        /* ══ CONFIG ══ */
-        // Supabase configuration is now handled server‑side. The front‑end no longer contains keys.
+        /*  CONFIG  */
+        // Supabase configuration is now handled serverside. The frontend no longer contains keys.
 // const SUPABASE_URL = 'https://...';
 // const SUPABASE_ANON_KEY = '...';
 
-        /* ══ DEPARTMENT STAFF ACCOUNTS ══
+        /*  DEPARTMENT STAFF ACCOUNTS 
            Each account can ONLY see grievances where g.assigned === their assignedLabel
            To change passwords, update this object.
-        ══ */
-        // ── ESCALATION CONFIG ──
+         */
+        //  ESCALATION CONFIG 
         const ESC_LEVELS = ['professor', 'pd', 'pm', 'dean', 'admin'];
-        const ESC_LABELS = { professor: '👨‍🏫 Professor', pd: '📋 Programme Director (PD)', pm: '🏛️ Programme Manager (PM)', dean: '🎓 Dean / Director', admin: '⚖️ Admin Committee' };
+        const ESC_LABELS = { professor: ' Professor', pd: ' Programme Director (PD)', pm: ' Programme Manager (PM)', dean: ' Dean / Director', admin: ' Admin Committee' };
         // Anonymous Masking (#6)
-        function dispName(g) { return g.is_anonymous ? 'Anonymous Student' : (g.name || '—'); }
-        function dispSid(g) { return g.is_anonymous ? 'Hidden' : (g.sid || '—'); }
+        function dispName(g) { return g.is_anonymous ? 'Anonymous Student' : (g.name || ''); }
+        function dispSid(g) { return g.is_anonymous ? 'Hidden' : (g.sid || ''); }
         const ESC_NEXT = { professor: 'pd', pd: 'pm', pm: 'dean', dean: 'admin', admin: 'admin' };
         const ESC_HOURS = 24;
         function getEscLevel(g) { return g.escalation_level || (g.cat === 'Academic' ? 'professor' : 'admin'); }
@@ -2132,10 +2205,10 @@
         function timeUntilEsc(g) { if (['Resolved', 'Closed'].includes(g.status) || g.cat !== 'Academic') return null; const lv = getEscLevel(g); if (lv === 'admin') return null; return ESC_HOURS - hoursAtLevel(g); }
         function fmtCountdown(rem) { if (rem <= 0) return '<span style="color:#dc2626;font-weight:700">OVERDUE</span>'; const h = Math.floor(rem); const m = Math.floor((rem % 1) * 60); return `<span style="color:${rem < 4 ? '#dc2626' : rem < 12 ? '#c2540a' : '#16774a'};font-weight:700">${h}h ${m}m left</span>`; }
 
-        /* ══ STATE ══ */
+        /*  STATE  */
         let G = [], gf = 'all', currentStaff = null;
 
-        /* ══ SUPABASE ══ */
+        /*  SUPABASE  */
         const SB_URL = 'https://ohmeixzrfbyccmymzgjp.supabase.co/rest/v1';
         const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9obWVpeHpyZmJ5Y2NteW16Z2pwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NjgwNDYsImV4cCI6MjA4NzM0NDA0Nn0.QZJYRXYoZxeTTvkKFC6JzQ8Jykbf-RYVUdJwfnEaPxc';
         async function sbFetch(p, o = {}) {
@@ -2160,50 +2233,39 @@
                 const r = await sbFetch('grievances?order=created_at.asc&select=*');
                 if (!r.ok) throw new Error(r.status);
                 G = await r.json();
-            } catch (e) { G = []; toast('❌', 'Connection error: ' + e.message, 4000); }
+            } catch (e) { G = []; toast('', 'Connection error: ' + e.message, 4000); }
         }
 
-        /* ══ LOGIN ══ */
+        /*  LOGIN  */
         async function doLogin() {
             const u = document.getElementById('loginUser').value.trim().toLowerCase();
             const p = document.getElementById('loginPass').value;
             const err = document.getElementById('loginErr');
-            if (!u || !p) { err.style.display = 'block'; err.textContent = '⚠️ Please enter username and password.'; return; }
+            if (!u || !p) { err.style.display = 'block'; err.textContent = 'Please enter username and password.'; return; }
 
             err.style.display = 'none';
             const btn = document.querySelector('#loginGate .btn-p');
-            if (btn) { btn.disabled = true; btn.textContent = 'Verifying…'; }
+            if (btn) { btn.disabled = true; btn.textContent = 'Verifying...'; }
 
             try {
-                // Fetch using ilike wildcard to support comma-separated linked IDs
-                const r = await sbFetch(`staff_accounts?username=ilike.*${encodeURIComponent(u)}*&select=*`);
+                const r = await sbFetch(`staff_accounts?username=eq.${encodeURIComponent(u)}&select=*`);
                 if (!r.ok) throw new Error('Network response was not ok');
                 const users = await r.json();
 
-                // Find exact match in comma-separated list
-                const acc = users.find(x => String(x.username || '').split(',').map(s => s.trim().toLowerCase()).includes(u));
-
-                if (!acc) {
+                if (!users.length || users[0].password !== p) {
                     err.style.display = 'block';
-                    err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
-                    return;
-                }
-
-                // Plaintext comparison
-                if (p !== acc.password) {
-                    err.style.display = 'block';
-                    err.textContent = '❌ Invalid credentials. Contact your Super Administrator.';
+                    err.textContent = 'Invalid credentials. Contact your Super Administrator.';
                     return;
                 }
 
                 const acc = users[0];
                 if (acc.status === 'Terminated') {
                     err.style.display = 'block';
-                    err.textContent = '🚫 Account Terminated. Access denied.';
+                    err.textContent = 'Account Terminated. Access denied.';
                     return;
                 }
 
-                const DEPT_THEMES = { 'Academic': { emoji: '📚', color: '#eff6ff', textColor: '#1d4ed8' }, 'Administrative': { emoji: '🏛️', color: '#f0fdf4', textColor: '#16774a' }, 'Infrastructure': { emoji: '🏗️', color: '#fff7ed', textColor: '#c2540a' }, 'Ragging': { emoji: '🚨', color: '#fef2f2', textColor: '#b91c1c' }, 'Others': { emoji: '🤝', color: '#faf5ff', textColor: '#6d28d9' } };
+                const DEPT_THEMES = { 'Academic': { emoji: '', color: '#eff6ff', textColor: '#1d4ed8' }, 'Administrative': { emoji: '', color: '#f0fdf4', textColor: '#16774a' }, 'Infrastructure': { emoji: '', color: '#fff7ed', textColor: '#c2540a' }, 'Ragging': { emoji: '', color: '#fef2f2', textColor: '#b91c1c' }, 'Others': { emoji: '', color: '#faf5ff', textColor: '#6d28d9' } };
                 const DEPT_LABELS = { Academic: 'Exam Cell / HOD', Administrative: 'Admin / Accounts Office', Infrastructure: 'Estate Officer / IT', Ragging: 'Anti-Ragging Committee', Others: 'Student Welfare Office' };
                 const t = DEPT_THEMES[acc.dept] || DEPT_THEMES['Others'];
 
@@ -2229,9 +2291,9 @@
                 initApp();
             } catch (e) {
                 err.style.display = 'block';
-                err.textContent = '❌ Connection Error: ' + e.message;
+                err.textContent = ' Connection Error: ' + e.message;
             } finally {
-                if (btn) { btn.disabled = false; btn.textContent = '🔓 Sign In to Portal'; }
+                if (btn) { btn.disabled = false; btn.textContent = ' Sign In to Portal'; }
             }
         }
 
@@ -2257,11 +2319,11 @@
             const updateText = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
             
             updateText('sbEmoji', currentStaff.emoji);
-            updateText('tbAvatar', currentStaff.emoji);
+            renderStaffAvatar();
             updateText('sbDeptBadge', domain + ' Hub');
             updateText('tbStaffName', currentStaff.name);
             updateText('tbDeptLabel', domain + ' Portal');
-            updateText('dashTitle', currentStaff.name + ' — ' + (sShort || 'University'));
+            updateText('dashTitle', currentStaff.name + '  ' + (sShort || 'University'));
             updateText('dashSub', 'Grievances assigned to: ' + domain);
             updateText('listSub', 'Showing only grievances assigned to: ' + domain);
             
@@ -2269,7 +2331,7 @@
             renderAnnouncements();
         }
 
-        /* ══ ANNOUNCEMENTS ══ */
+        /*  ANNOUNCEMENTS  */
         async function renderAnnouncements() {
             const el = document.getElementById('annList');
             if (!el) return;
@@ -2295,13 +2357,13 @@
 
                 if (!list.length) {
                     el.innerHTML = `<div class="es" style="padding:40px;background:white;border-radius:12px;border:1px dashed var(--border)">
-                        <div class="ei">📢</div>
+                        <div class="ei"></div>
                         <div class="et">No announcements yet.</div>
                     </div>`;
                     return;
                 }
 
-                const icons = { info: 'ℹ️', warning: '⚠️', urgent: '🚨', success: '✅' };
+                const icons = { info: '', warning: '', urgent: '', success: '' };
                 const iconColors = { info: '#1e40af', warning: '#854d0e', urgent: '#b91c1c', success: '#166534' };
                 const iconBgs = { info: '#f0f7ff', warning: '#fef9c3', urgent: '#fee2e2', success: '#dcfce7' };
 
@@ -2309,7 +2371,7 @@
                     const dt = new Date(a.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
                     const bg = iconBgs[a.type] || '#f3f4f6';
                     const color = iconColors[a.type] || '#4b5563';
-                    const icon = icons[a.type] || '📌';
+                    const icon = icons[a.type] || '';
                     return `
                     <div class="card" style="padding:20px;display:flex;gap:15px;align-items:flex-start;margin-bottom:12px">
                         <div style="width:44px;height:44px;border-radius:10px;background:${bg};color:${color};display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">
@@ -2321,8 +2383,8 @@
                                 <span style="font-size:11px;color:var(--text2)">${dt}</span>
                             </div>
                             <div style="font-size:13px;color:var(--text2);margin-bottom:6px;display:flex;gap:10px">
-                                <span>📍 ${a.location || 'Woxsen Campus'}</span>
-                                <span>📂 Tag: <strong>${a.tag || 'General'}</strong></span>
+                                <span> ${a.location || 'Woxsen Campus'}</span>
+                                <span> Tag: <strong>${a.tag || 'General'}</strong></span>
                             </div>
                             <div style="font-size:14px;color:var(--text);line-height:1.6;white-space:pre-line">${a.body}</div>
                         </div>
@@ -2330,13 +2392,13 @@
                 }).join('');
             } catch (e) {
                 el.innerHTML = `<div class="es" style="padding:40px;background:white;border-radius:12px;border:1px dashed var(--border)">
-                    <div class="ei">📢</div>
+                    <div class="ei"></div>
                     <div class="et" style="color:var(--red)">Failed to load announcements from Supabase.</div>
                 </div>`;
             }
         }
 
-        /* ══ FILTER: Only this role/dept's grievances ══ */
+        /*  FILTER: Only this role/dept's grievances  */
         function hasAssignmentFor(g, isAllList = false) {
             // For non-academic staff, use the original assignedLabel mapping
             if (!currentStaff.escalation_level) {
@@ -2416,7 +2478,7 @@
             });
         }
 
-        /* ══ NAVIGATION ══ */
+        /*  NAVIGATION  */
         function toggleSidebar() {
             const sb = document.getElementById('sidebar');
             const main = document.querySelector('.main');
@@ -2450,16 +2512,16 @@
             const confP = document.getElementById('setConfPass').value;
             const user = currentStaff.username;
 
-            if (!oldP || !newP || !confP) { toast('⚠️', 'Fill all password fields.'); return; }
-            if (newP !== confP) { toast('❌', 'New passwords do not match!'); return; }
-            if (newP.length < 8) { toast('❌', 'Password must be at least 8 characters.'); return; }
+            if (!oldP || !newP || !confP) { toast('', 'Fill all password fields.'); return; }
+            if (newP !== confP) { toast('', 'New passwords do not match!'); return; }
+            if (newP.length < 8) { toast('', 'Password must be at least 8 characters.'); return; }
 
             try {
                 // Fetch record, verify old password by hash comparison
                 const r1 = await sbFetch('staff_accounts?username=eq.' + encodeURIComponent(user) + '&select=password');
                 const d1 = await r1.json();
-                if (!d1 || !d1.length) { toast('❌', 'Account not found!'); return; }
-                if (oldP !== d1[0].password) { toast('❌', 'Current password incorrect!'); return; }
+                if (!d1 || !d1.length) { toast('', 'Account not found!'); return; }
+                if (oldP !== d1[0].password) { toast('', 'Current password incorrect!'); return; }
 
                 // Store new plaintext password
                 const r2 = await sbFetch('staff_accounts?username=eq.' + encodeURIComponent(user), {
@@ -2469,7 +2531,7 @@
                 });
 
                 if (r2.ok) {
-                    toast('✅', 'Password updated successfully!');
+                    toast('', 'Password updated successfully!');
                     document.getElementById('setOldPass').value = '';
                     document.getElementById('setNewPass').value = '';
                     document.getElementById('setConfPass').value = '';
@@ -2477,11 +2539,11 @@
                     throw new Error('Update failed');
                 }
             } catch (e) {
-                toast('❌', 'Error updating password: ' + e.message);
+                toast('', 'Error updating password: ' + e.message);
             }
         }
 
-        /* ══ DEPT PROFILE PAGE ══ */
+        /*  DEPT PROFILE PAGE  */
         async function renderDeptProfile() {
             if (!currentStaff) return;
             await loadG();
@@ -2495,7 +2557,7 @@
             const rate = t ? Math.round(res / t * 100) : 0;
             // Hero
             const el = (id, val) => { const e = document.getElementById(id); if (e) e.textContent = val; };
-            el('dpAvatar', currentStaff.emoji);
+            renderStaffAvatar();
             el('dpName', currentStaff.fullname);
             el('dpRole', currentStaff.role);
             const schoolMap = { 'School of Business': 'SOB', 'School of Technology': 'SOT', 'School of Art & Design': 'SOAD', 'School of Law': 'SOL', 'School of Liberal Arts & Humanities': 'SOLA', 'School of Architecture & Planning': 'SOAP' };
@@ -2532,7 +2594,7 @@
                         const sch = schoolCodes[sCode] || 'Unknown';
                         const yr = yearCodes[yCode] || '';
                         const rl = roleCodes[rCode] || '';
-                        return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-block;">🏫 ${sch} · ${yr} · ${rl}</span>`;
+                        return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-block;"> ${sch} · ${yr} · ${rl}</span>`;
                     }).join('') || '<span style="color:var(--text2);font-style:italic;">No active assignments parsed</span>';
                 } else {
                     assRow.style.display = 'none';
@@ -2542,11 +2604,11 @@
             if (subDept) subDept.textContent = currentStaff.sub_dept || 'All Schools';
             // Performance card
             ['dpa1', 'dpa2', 'dpa3', 'dpa4'].forEach((id, i) => el(id, [t, res, open, esc][i]));
-            el('dpa5', t ? rate + '%' : '—');
+            el('dpa5', t ? rate + '%' : '');
             // Recent table
             const sub = document.getElementById('dpRecentSub'); if (sub) sub.textContent = t + ' grievance' + (t !== 1 ? 's' : '') + ' total';
             const tbl = document.getElementById('dpRecentTable');
-            if (!d.length) { tbl.innerHTML = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No grievances yet</div></div>'; return; }
+            if (!d.length) { tbl.innerHTML = '<div class="es" style="padding:24px"><div class="ei"></div><div class="et">No grievances yet</div></div>'; return; }
             tbl.innerHTML = '<table><thead><tr><th>ID</th><th>Student</th><th>Title</th><th>Priority</th><th>Date</th><th>Status</th></tr></thead><tbody>' +
                 d.slice().reverse().slice(0, 8).map(g => `<tr>
                     <td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}${g.reopen_count && g.reopen_count > 0 ? "<span style='font-size:9px;background:#fef9c3;color:#854d0e;border-radius:20px;padding:1px 6px;margin-left:4px;font-weight:700'>&#128260;</span>" : ""}</td>
@@ -2558,7 +2620,7 @@
                 </tr>`).join('') + '</tbody></table>';
         }
 
-        /* ══ DEPT ANALYTICS PAGE ══ */
+        /*  DEPT ANALYTICS PAGE  */
         async function renderDeptAnalytics() {
             if (!currentStaff) return;
             await loadG();
@@ -2621,14 +2683,14 @@
                                 labels: {
                                     padding: 20,
                                     usePointStyle: true,
-                                    font: { size: 12, family: 'DM Sans', weight: '500' }
+                                    font: { size: 12, family: 'Montserrat', weight: '500' }
                                 }
                             },
                             tooltip: {
                                 backgroundColor: '#0a1628',
                                 padding: 12,
-                                titleFont: { size: 14, family: 'DM Sans' },
-                                bodyFont: { size: 13, family: 'DM Sans' },
+                                titleFont: { size: 14, family: 'Montserrat' },
+                                bodyFont: { size: 13, family: 'Montserrat' },
                                 cornerRadius: 10,
                                 displayColors: true
                             }
@@ -2636,7 +2698,7 @@
                     }
                 });
             } else if (ctx) {
-                ctx.parentElement.innerHTML = '<div class="es" style="padding:20px"><div class="ei">📊</div><div class="et">No data to chart yet</div></div>';
+                ctx.parentElement.innerHTML = '<div class="es" style="padding:20px"><div class="ei"></div><div class="et">No data to chart yet</div></div>';
             }
         }
 
@@ -2647,7 +2709,7 @@
             renderList();
         }
 
-        /* ══ DASHBOARD ══ */
+        /*  DASHBOARD  */
         async function renderDash() {
             await loadG();
             const d = myGrievances();
@@ -2667,7 +2729,7 @@
 
             // Recent grievances table
             const rec = document.getElementById('dRecent');
-            if (!t) { rec.innerHTML = '<div class="es" style="padding:28px"><div class="ei">📋</div><div class="et">No grievances assigned yet</div></div>'; }
+            if (!t) { rec.innerHTML = '<div class="es" style="padding:28px"><div class="ei"></div><div class="et">No grievances assigned yet</div></div>'; }
             else {
                 rec.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Student</th><th>Title</th><th>Priority</th><th>Status</th></tr></thead><tbody>' +
                     d.slice().reverse().slice(0, 5).map(g => `<tr onclick="openDetail('${g.id}')" title="Click to view">
@@ -2700,12 +2762,12 @@
                     type: 'doughnut', data: {
                         labels: Object.keys(pris),
                         datasets: [{ data: Object.values(pris), backgroundColor: Object.keys(pris).map(k => pc[k] || '#64748b'), borderWidth: 2, borderColor: '#fff', hoverOffset: 5 }]
-                    }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'DM Sans', size: 11 }, boxWidth: 10, padding: 10 } } }, cutout: '60%' }
+                    }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'Montserrat', size: 11 }, boxWidth: 10, padding: 10 } } }, cutout: '60%' }
                 });
             }
         }
 
-        /* ══ GRIEVANCE LIST ══ */
+        /*  GRIEVANCE LIST  */
         let dPage = 1; const dPerPage = 25;
         async function renderList() {
             await loadG();
@@ -2715,71 +2777,71 @@
             if (q) list = list.filter(x => (x.title || '').toLowerCase().includes(q) || (x.id || '').toLowerCase().includes(q) || (x.name || '').toLowerCase().includes(q) || (x.description || '').toLowerCase().includes(q) || (x.sid || '').toLowerCase().includes(q));
             list = list.slice().reverse();
             const wrap = document.getElementById('gListWrap');
-            if (!list.length) { wrap.innerHTML = `<div class="es"><div class="ei">📂</div><div class="et">${q ? 'No matching grievances' : 'No grievances in this filter'}</div></div>`; return; }
+            if (!list.length) { wrap.innerHTML = `<div class="es"><div class="ei"></div><div class="et">${q ? 'No matching grievances' : 'No grievances in this filter'}</div></div>`; return; }
             const total = list.length;
             const totalPages = Math.ceil(total / dPerPage) || 1;
             if (dPage > totalPages) dPage = Math.max(1, totalPages);
             const pStart = (dPage - 1) * dPerPage;
             const pageList = list.slice(pStart, pStart + dPerPage);
             const isAcadHier = !!currentStaff.escalation_level;
-            wrap.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Student</th><th>School</th><th>Category</th><th>Title / Description</th><th>Priority</th><th>Date</th>' + (isAcadHier ? '<th>⏰ Time Left</th>' : '') + '<th>Status</th><th>Actions</th></tr></thead><tbody>' +
+            wrap.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Student</th><th>School</th><th>Category</th><th>Title / Description</th><th>Priority</th><th>Date</th>' + (isAcadHier ? '<th> Time Left</th>' : '') + '<th>Status</th><th>Actions</th></tr></thead><tbody>' +
                 pageList.map(g => {
                     const rem = timeUntilEsc(g);
-                    const timerCell = isAcadHier ? `<td style="white-space:nowrap">${rem === null ? '—' : fmtCountdown(rem)}</td>` : '';
+                    const timerCell = isAcadHier ? `<td style="white-space:nowrap">${rem === null ? '' : fmtCountdown(rem)}</td>` : '';
                     // Manual escalation buttons removed to enforce de-escalation only
                     return `<tr class="pri-${g.pri}"><td style="font-weight:700;color:var(--gold);font-size:11px;white-space:nowrap">${g.id}</td>
                   <td><div style="font-weight:600;font-size:13px">${dispName(g)}</div><div style="font-size:10px;color:var(--text2)">${dispSid(g)}</div></td>
                   <td style="font-size:11px;color:var(--text2)">${g.dept}</td>
                   <td style="font-size:12px">${g.cat}</td>
-                  <td style="max-width:150px"><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600">${g.title}</div><div style="font-size:10px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${(g.description || '').slice(0, 60)}…</div></td>
+                  <td style="max-width:150px"><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600">${g.title}</div><div style="font-size:10px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${(g.description || '').slice(0, 60)}</div></td>
                   <td>${ptag(g.pri)}</td>
                   <td style="font-size:11px;color:var(--text2);white-space:nowrap">${g.date}</td>
                   ${timerCell}
                   <td>${stag(g.status)}</td>
-                  <td style="white-space:nowrap;display:flex;gap:5px;flex-wrap:wrap;min-width:160px"><button class="btn-p" style="padding:4px 10px;font-size:11px" onclick="openDetail('${g.id}')">✏️ Update</button></td>
+                  <td style="white-space:nowrap;display:flex;gap:5px;flex-wrap:wrap;min-width:160px"><button class="btn-p" style="padding:4px 10px;font-size:11px" onclick="openDetail('${g.id}')"> Update</button></td>
                   </tr>`;
                 }).join('') + '</tbody></table></div>';
             if (totalPages > 1) {
-                wrap.insertAdjacentHTML('beforeend', `<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 0;border-top:1px solid var(--border)"><button onclick="dPage=Math.max(1,dPage-1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === 1 ? 'opacity:.4' : ''}">← Prev</button><span style="font-size:12px;color:var(--text2)">Page ${dPage} / ${totalPages} · ${total} records</span><button onclick="dPage=Math.min(${totalPages},dPage+1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === totalPages ? 'opacity:.4' : ''}">Next →</button></div>`);
+                wrap.insertAdjacentHTML('beforeend', `<div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 0;border-top:1px solid var(--border)"><button onclick="dPage=Math.max(1,dPage-1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === 1 ? 'opacity:.4' : ''}"> Prev</button><span style="font-size:12px;color:var(--text2)">Page ${dPage} / ${totalPages} · ${total} records</span><button onclick="dPage=Math.min(${totalPages},dPage+1);renderList()" style="padding:6px 14px;border:1px solid var(--border);background:var(--white);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;${dPage === totalPages ? 'opacity:.4' : ''}">Next </button></div>`);
             }
         }
 
-        /* ══ OPEN DETAIL + UPDATE MODAL ══ */
+        /*  OPEN DETAIL + UPDATE MODAL  */
         async function openDetail(id) {
             await loadG();
             // SECURITY: only allow viewing grievances from this department
             const g = myGrievancesAll().find(x => x.id === id);
-            if (!g) { toast('❌', 'Grievance not found or not in your department.'); return; }
+            if (!g) { toast('', 'Grievance not found or not in your department.'); return; }
 
-            document.getElementById('mTitle').textContent = g.id + ' — ' + dispName(g);
+            document.getElementById('mTitle').textContent = g.id + '  ' + dispName(g);
             const statusOptions = ['Pending', 'In Progress', 'Under Review', 'Resolved', 'Escalated', 'Closed']
                 .map(s => `<option ${g.status === s ? 'selected' : ''}>${s}</option>`).join('');
 
             const etaMap = { Critical: 2, High: 5, Medium: 7, Low: 14 };
             const days = etaMap[g.pri] || 7;
             const subDate = new Date(g.date); const eta = new Date(subDate); eta.setDate(eta.getDate() + days);
-            const etaStr = ['Resolved', 'Closed'].includes(g.status) ? '✅ Resolved' : ('⏱ ' + eta.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }));
+            const etaStr = ['Resolved', 'Closed'].includes(g.status) ? ' Resolved' : (' ' + eta.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }));
 
             document.getElementById('mBody').innerHTML = `
             <div style="display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap">${stag(g.status)} ${ptag(g.pri)}</div>
-            <div style="font-family:'Cormorant Garamond';font-size:18px;font-weight:600;margin-bottom:3px">${g.title}</div>
+            <div style="font-family:'Montserrat';font-size:18px;font-weight:600;margin-bottom:3px">${g.title}</div>
             <div style="font-size:12px;color:var(--text2);margin-bottom:14px">By <strong>${dispName(g)}</strong> (${dispSid(g)}) · ${g.dept} · ${g.year}</div>
             <div class="dg" style="margin-bottom:14px">
                 <div class="df"><label>Category</label><span>${g.cat}</span></div>
                 <div class="df"><label>Sub-Type</label><span>${g.sub}</span></div>
                 <div class="df"><label>Priority</label><span>${ptag(g.pri)}</span></div>
                 <div class="df"><label>Email</label><span>${g.is_anonymous ? '<em>(Hidden)</em>' : `<a href="mailto:${g.email}" style="color:var(--blue)">${g.email}</a>`}</span></div>
-                <div class="df"><label>Phone</label><span>${g.is_anonymous ? '<em>(Hidden)</em>' : (g.phone || '—')}</span></div>
+                <div class="df"><label>Phone</label><span>${g.is_anonymous ? '<em>(Hidden)</em>' : (g.phone || '')}</span></div>
                 <div class="df"><label>Submitted</label><span>${g.date}</span></div>
                 <div class="df"><label>SLA Deadline</label><span style="color:var(--gold);font-weight:700">${etaStr}</span></div>
                 ${g.cat === 'Academic' ? `<div class="df"><label>Escalation Level</label><span style="font-weight:700;color:var(--blue)">${ESC_LABELS[getEscLevel(g)]}</span></div>` : ''}
                 ${g.assigned_at && g.cat === 'Academic' ? `<div class="df"><label>At Level Since</label><span>${new Date(g.assigned_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}</span></div>` : ''}
             </div>
             <div class="ddesc">${g.description}</div>
-            ${g.docs ? `<div style="font-size:12px;margin-bottom:13px;padding:10px;background:var(--cream);border-radius:8px;display:flex;flex-direction:column;gap:8px"><strong>📎 Evidence / Attachments Submitted:</strong><div style="display:flex;flex-wrap:wrap;gap:8px">` + g.docs.split(',').map(d => `<button onclick="downloadDoc('${g.id}', '${encodeURIComponent(d.trim())}')" class="btn-s" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;cursor:pointer"><span style="font-size:14px">📄</span> View ${d.trim()}</button>`).join('') + `</div></div>` : ''}
-            ${g.remarks ? `<div class="al al-s">✅ <div><strong>Previous Remarks:</strong> ${g.remarks}</div></div>` : ''}
+            ${g.docs ? `<div style="font-size:12px;margin-bottom:13px;padding:10px;background:var(--cream);border-radius:8px;display:flex;flex-direction:column;gap:8px"><strong> Evidence / Attachments Submitted:</strong><div style="display:flex;flex-wrap:wrap;gap:8px">` + g.docs.split(',').map(d => `<button onclick="downloadDoc('${g.id}', '${encodeURIComponent(d.trim())}')" class="btn-s" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;cursor:pointer"><span style="font-size:14px"></span> View ${d.trim()}</button>`).join('') + `</div></div>` : ''}
+            ${g.remarks ? `<div class="al al-s"> <div><strong>Previous Remarks:</strong> ${g.remarks}</div></div>` : ''}
             <div style="height:1px;background:var(--border);margin:14px 0"></div>
-            <div style="font-family:'Cormorant Garamond';font-size:16px;font-weight:600;margin-bottom:12px">Update Grievance</div>
+            <div style="font-family:'Montserrat';font-size:16px;font-weight:600;margin-bottom:12px">Update Grievance</div>
             <div style="margin-bottom:12px;display:flex;gap:15px;flex-wrap:wrap">
                 <div style="flex:1;min-width:200px">
                     <label class="lbl">Update Status</label>
@@ -2806,7 +2868,7 @@
             </div>
             <div style="font-size:11px;color:var(--text2);margin-bottom:14px">Your remarks will be visible to the student in the tracking portal.</div>
             <div class="ma">
-                <button class="btn-p" onclick="saveUpdate('${g.id}')">💾 Save Update</button>
+                <button class="btn-p" onclick="saveUpdate('${g.id}')"> Save Update</button>
                 <button class="btn-s" onclick="closeM()">Cancel</button>
             </div>`;
 
@@ -2815,7 +2877,7 @@
 
         async function downloadDoc(gId, dName) {
             try {
-                toast('⏳', 'Downloading ' + decodeURIComponent(dName) + '...');
+                toast('', 'Downloading ' + decodeURIComponent(dName) + '...');
                 const r = await fetch(BACKEND_URL + '/api/v1/storage/download/' + encodeURIComponent(gId) + '/' + dName);
                 if (!r.ok) throw new Error(r.statusText);
                 const blob = await r.blob();
@@ -2826,20 +2888,20 @@
                 a.click();
                 URL.revokeObjectURL(url);
             } catch (e) {
-                toast('❌', 'Download failed: ' + e.message);
+                toast('', 'Download failed: ' + e.message);
             }
         }
 
         /* Manual escalation functions removed to enforce de-escalation only */
 
-        /* ══ SAVE UPDATE ══ */
+        /*  SAVE UPDATE  */
         async function saveUpdate(id) {
             const status = document.getElementById('mSt').value;
             const remarks = document.getElementById('mRem').value.trim();
             const escToEl = document.getElementById('mEscTo');
             const targetEscLevel = escToEl ? escToEl.value : '';
 
-            if (!remarks) { toast('⚠️', 'Please enter remarks before saving.'); return; }
+            if (!remarks) { toast('', 'Please enter remarks before saving.'); return; }
             const g = G.find(x => x.id === id);
 
             const isTargetEscalation = targetEscLevel && targetEscLevel !== getEscLevel(g);
@@ -2866,7 +2928,7 @@
                     body: JSON.stringify(payload)
                 });
                 if (!r.ok) throw new Error(r.status);
-            } catch (e) { toast('❌', 'Update failed: ' + e.message); return; }
+            } catch (e) { toast('', 'Update failed: ' + e.message); return; }
 
             if (isTargetEscalation) {
                 auditLog(id + ' escalated to ' + ESC_LABELS[targetEscLevel], id, currentStaff.fullname);
@@ -2876,29 +2938,116 @@
 
             await loadG(); renderDash(); renderList();
             closeM();
-            toast('✅', id + ' updated → ' + finalStatus);
+            toast('', id + ' updated  ' + finalStatus);
         }
 
-        /* ══ CSV EXPORT ══ */
+        /*  CSV EXPORT  */
         async function exportCSV() {
             await loadG();
             const list = myGrievances();
-            if (!list.length) { toast('ℹ️', 'No grievances to export.'); return; }
+            if (!list.length) { toast('', 'No grievances to export.'); return; }
             const headers = ['ID', 'Student ID', 'Name', 'Department', 'Year', 'Email', 'Category', 'Sub-Type', 'Priority', 'Title', 'Description', 'Date', 'Status', 'Remarks'];
             const rows = list.map(g => [g.id, g.sid, g.name, g.dept, g.year, g.email, g.cat, g.sub, g.pri, '"' + (g.title || '').replace(/"/g, '""') + '"', '"' + (g.description || '').replace(/"/g, '""') + '"', g.date, g.status, '"' + (g.remarks || '').replace(/"/g, '""') + '"']);
             const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
             const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
             a.download = 'Woxsen_' + (currentStaff ? currentStaff.dept : 'Dept') + '_Grievances_' + new Date().toISOString().slice(0, 10) + '.csv';
-            a.click(); toast('⬇️', 'CSV downloaded!');
+            a.click(); toast('', 'CSV downloaded!');
         }
 
-        /* ══ UTILITIES ══ */
+        /*  UTILITIES  */
         function closeM() { document.getElementById('mOv').classList.remove('open'); }
         function stag(s) { const m = { Pending: 'bp', 'In Progress': 'bi', 'Under Review': 'br2', Resolved: 'brs', Closed: 'bc', Escalated: 'be' }; return `<span class="badge ${m[s] || 'bc'}">${s}</span>`; }
         function ptag(p) { const m = { Critical: 'bcr', High: 'bh', Medium: 'bm', Low: 'bl' }; return `<span class="badge ${m[p] || 'bl'}" style="font-size:10px">${p}</span>`; }
         function toast(icon, msg, dur = 3500) { const t = document.getElementById('toast'); document.getElementById('tIcon').textContent = icon; document.getElementById('tMsg').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), dur); }
 
-        /* ══ INIT ══ */
+        /*  STAFF PHOTO UPLOAD & RENDERING  */
+        function renderStaffAvatar() {
+            if (!currentStaff) return;
+            const av = document.getElementById('tbAvatar');
+            const tbText = document.getElementById('tbAvatarText');
+            const dpAv = document.getElementById('dpAvatar');
+            const dpAvText = document.getElementById('dpAvatarText');
+
+            const photo = localStorage.getItem(`staff_photo_${currentStaff.username}`) || sessionStorage.getItem('staff_photo') || currentStaff.profile_photo;
+
+            if (photo) {
+                if (av) {
+                    if (tbText) tbText.style.display = 'none';
+                    av.style.backgroundImage = `url(${photo})`;
+                }
+                if (dpAv) {
+                    if (dpAvText) dpAvText.style.display = 'none';
+                    dpAv.style.backgroundImage = `url(${photo})`;
+                }
+            } else {
+                if (av) {
+                    if (tbText) tbText.style.display = 'block';
+                    av.style.backgroundImage = 'none';
+                }
+                if (dpAv) {
+                    if (dpAvText) {
+                        dpAvText.style.display = 'block';
+                        dpAvText.innerHTML = '<img src="woxsen_wou_symbol.png" alt="WOU" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply;">';
+                    }
+                    dpAv.style.backgroundImage = 'none';
+                }
+            }
+        }
+
+        function handleStaffPhotoUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    compressStaffImage(img, (base64) => {
+                        saveStaffPhoto(base64);
+                    });
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function compressStaffImage(img, callback) {
+            const canvas = document.createElement('canvas');
+            const MAX_SIZE = 200;
+            let width = img.width;
+            let height = img.height;
+            if (width > height) {
+                if (width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
+            } else {
+                if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
+            }
+            canvas.width = width; canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            callback(canvas.toDataURL('image/jpeg', 0.8));
+        }
+
+        async function saveStaffPhoto(base64) {
+            try {
+                const username = currentStaff.username;
+                localStorage.setItem(`staff_photo_${username}`, base64);
+                sessionStorage.setItem('staff_photo', base64);
+                currentStaff.profile_photo = base64;
+
+                renderStaffAvatar();
+                toast('', 'Profile photo updated!');
+
+                // Silently sync database
+                sbFetch('staff_accounts?username=eq.' + encodeURIComponent(username), {
+                    method: 'PATCH',
+                    prefer: 'return=minimal',
+                    body: JSON.stringify({ profile_photo: base64 })
+                }).catch(err => console.warn('Photo sync warning:', err));
+            } catch (e) {
+                toast('', 'Error saving photo: ' + e.message);
+            }
+        }
+
+        /*  INIT  */
         window.addEventListener('DOMContentLoaded', () => {
             const u = sessionStorage.getItem('dept_user');
             const p = sessionStorage.getItem('dept_pass');

@@ -4,25 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Woxsen University – Admin Panel</title>
+    <title>Woxsen University  Admin Panel</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --navy: #0A1128;
-            --navy2: #0F1D36;
-            --gold: #DC2626;
-            --gold2: #B91C1C;
-            --gold-light: #fef2f2;
-            --cream: #f4f4f5;
-            --text: #000000;
-            --text2: #404040;
-            --border: #e5e5e5;
-            --white: #ffffff;
+            --navy: #1A0A12;
+            --navy2: #2D1520;
+            --primary: #E91E63;
+            --primary-dark: #D81B60;
+            --primary-light: #F06292;
+            --gold: #E91E63;
+            --gold2: #D81B60;
+            --gold-light: #FCE4EC;
+            --cream: #FDF5F6;
+            --text: #2D2D2D;
+            --text2: #666666;
+            --border: #E5E5E5;
+            --white: #FFFFFF;
             --green: #16a34a;
-            --red: #dc2626;
+            --red: #E91E63;
             --orange: #ea580c;
             --blue: #2563eb;
             --purple: #7c3aed;
@@ -36,7 +39,7 @@
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
         }
@@ -80,7 +83,7 @@
         }
 
         .sb-name {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 17px;
             font-weight: 700;
             line-height: 1.2;
@@ -88,7 +91,7 @@
 
         .sb-name small {
             display: block;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-size: 10px;
             color: rgba(255, 255, 255, .3);
             font-weight: 400;
@@ -137,7 +140,7 @@
 
         .nav-item.active {
             color: #fff;
-            background: rgba(220, 38, 38, 0.1);
+            background: rgba(233, 30, 99, 0.15);
         }
 
         .nav-item.active::before {
@@ -194,7 +197,7 @@
         }
 
         .tb-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 20px;
             font-weight: 600;
             color: var(--navy);
@@ -202,7 +205,7 @@
 
         .tb-title small {
             display: block;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-size: 11px;
             font-weight: 400;
             color: var(--text2);
@@ -281,7 +284,7 @@
         }
 
         .dash-hero-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 28px;
             font-weight: 700;
             color: #fff;
@@ -361,7 +364,7 @@
             font-weight: 700;
             line-height: 1;
             margin-bottom: 3px;
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
         }
 
         .sc-l {
@@ -370,7 +373,7 @@
             font-weight: 500;
         }
 
-        /* ── ANALYTICS ── */
+        /*  ANALYTICS  */
         .anl-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -394,7 +397,7 @@
         }
 
         .anl-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 17px;
             font-weight: 700;
             margin-bottom: 20px;
@@ -407,7 +410,7 @@
         }
 
         .anl-big {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 44px;
             font-weight: 700;
             line-height: 1;
@@ -474,7 +477,7 @@
         }
 
         .ct {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 16px;
             font-weight: 600;
         }
@@ -493,17 +496,17 @@
             text-transform: uppercase;
             letter-spacing: .06em;
             color: var(--text2);
-            background: #faf8f4;
+            background: #fafafa;
             border-bottom: 1px solid var(--border);
         }
 
         tbody tr {
-            border-bottom: 1px solid #f2ede5;
+            border-bottom: 1px solid #F8E1E8;
             transition: .12s;
         }
 
         tbody tr:hover {
-            background: #fdf9f2;
+            background: #FEF0F4;
         }
 
         tbody td {
@@ -598,7 +601,7 @@
             border: 1px solid #fed7aa;
         }
 
-        /* ══ ANNOUNCEMENTS PREMIUM ══ */
+        /*  ANNOUNCEMENTS PREMIUM  */
         .ann-card {
             background: var(--white);
             border-radius: 12px;
@@ -633,7 +636,7 @@
         }
 
         .ann-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 19px;
             font-weight: 700;
             color: var(--navy);
@@ -734,7 +737,7 @@
             }
         }
 
-        /* ══ SLA TRACKER PREMIUM ══ */
+        /*  SLA TRACKER PREMIUM  */
         .sla-pill {
             display: inline-flex;
             align-items: center;
@@ -783,7 +786,7 @@
             border-radius: 6px;
             border: 1.5px solid var(--border);
             font-size: 13.5px;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             color: var(--text);
             background: var(--white);
             outline: none;
@@ -792,7 +795,7 @@
 
         .inp:focus {
             border-color: var(--navy);
-            box-shadow: 0 0 0 3px rgba(20, 30, 70, .08);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12);
         }
 
         select.inp {
@@ -809,12 +812,12 @@
             border-radius: 6px;
             border: none;
             cursor: pointer;
-            background: linear-gradient(135deg, var(--gold) 0%, #b91c1c 100%);
-            box-shadow: 0 2px 8px rgba(220, 38, 38, .25);
+            background: #E91E63;
+            box-shadow: 0 2px 8px rgba(233, 30, 99, 0.25);
             color: #fff;
             font-size: 13px;
             font-weight: 700;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             transition: .2s;
             position: relative;
             overflow: hidden;
@@ -822,7 +825,7 @@
 
         .btn-p:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(220, 38, 38, .35);
+            box-shadow: 0 6px 16px rgba(233, 30, 99, 0.35);
             filter: brightness(1.1);
         }
 
@@ -834,15 +837,15 @@
             color: var(--text);
             font-size: 13px;
             font-weight: 600;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             cursor: pointer;
             transition: .2s;
         }
 
         .btn-s:hover {
-            background: #faf8f4;
-            border-color: var(--navy);
-            color: var(--navy);
+            background: #FDF5F6;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .ab {
@@ -856,7 +859,7 @@
             padding: 9px 13px;
             border-radius: 4px;
             border: 1.5px solid var(--border);
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-size: 13px;
             background: var(--white);
             outline: none;
@@ -878,7 +881,7 @@
             border-radius: 4px;
             border: 1.5px solid var(--border);
             font-size: 13px;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             outline: none;
             transition: .2s;
             background: var(--white);
@@ -903,7 +906,7 @@
             border: none;
             cursor: pointer;
             font-size: 11px;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             font-weight: 600;
             transition: .2s;
         }
@@ -986,7 +989,7 @@
         }
 
         .mt2 {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 18px;
             font-weight: 600;
         }
@@ -1104,7 +1107,7 @@
         }
 
         .sec-t {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 22px;
             font-weight: 600;
             margin-bottom: 3px;
@@ -1127,15 +1130,16 @@
 
         .login-bg {
             position: absolute;
-            inset: 0;
+            inset: -10px;
             background-size: cover;
             background-position: center;
+            filter: blur(5px);
         }
 
         .login-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 22, 40, .97), rgba(10, 22, 40, .78));
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.4), rgba(10, 22, 40, 0.65));
         }
 
         .login-box {
@@ -1163,7 +1167,7 @@
         }
 
         .login-univ {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 11px;
             text-align: center;
             color: var(--gold);
@@ -1174,7 +1178,7 @@
         }
 
         .login-title {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 26px;
             font-weight: 700;
             text-align: center;
@@ -1217,7 +1221,7 @@
             background: rgba(255, 255, 255, .08);
         }
 
-        /* ── CHART WRAP ── */
+        /*  CHART WRAP  */
         .chart-wrap {
             position: relative;
             height: 240px;
@@ -1228,7 +1232,7 @@
             height: 180px;
         }
 
-        /* ── ANALYTICS LAYER ── */
+        /*  ANALYTICS LAYER  */
         .anl-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1257,7 +1261,7 @@
         }
 
         .anl-big {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 32px;
             font-weight: 700;
             line-height: 1;
@@ -1272,7 +1276,7 @@
             color: var(--text2);
         }
 
-        /* ── SLA TABLE ── */
+        /*  SLA TABLE  */
         .sla-ok td {
             background: #f0fdf4;
         }
@@ -1310,7 +1314,7 @@
             color: #b91c1c;
         }
 
-        /* ── ANNOUNCEMENT CARD ── */
+        /*  ANNOUNCEMENT CARD  */
         .ann-card {
             background: var(--white);
             border-radius: 4px;
@@ -1363,7 +1367,7 @@
             opacity: 1;
         }
 
-        /* ── STAFF CARD ── */
+        /*  STAFF CARD  */
         .staff-card {
             background: var(--white);
             border-radius: 4px;
@@ -1420,7 +1424,7 @@
             display: block;
             font-size: 20px;
             font-weight: 700;
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             color: var(--text);
         }
 
@@ -1431,7 +1435,7 @@
             margin-bottom: 20px;
         }
 
-        /* ── LOG ENTRY ── */
+        /*  LOG ENTRY  */
         .log-entry {
             display: flex;
             gap: 12px;
@@ -1467,7 +1471,7 @@
             margin-top: 2px;
         }
 
-        /* ── FORM CARD ── */
+        /*  FORM CARD  */
         .form-card {
             background: var(--white);
             border-radius: 4px;
@@ -1485,7 +1489,7 @@
             grid-column: 1/-1;
         }
 
-        /* ── MISC ── */
+        /*  MISC  */
         .metric-row {
             display: flex;
             justify-content: space-between;
@@ -1545,7 +1549,7 @@
             cursor: pointer;
             font-size: 12px;
             font-weight: 600;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             transition: .2s;
             display: inline-flex;
             align-items: center;
@@ -1598,7 +1602,7 @@
             }
         }
 
-        /* ── MOBILE RESPONSIVE ── */
+        /*  MOBILE RESPONSIVE  */
         .menu-btn {
             display: none;
             background: none;
@@ -1652,7 +1656,7 @@
             .anl-grid { grid-template-columns: 1fr; }
             .tb-profile-info { display: none; }
 
-            /* Tables → card stacks on mobile */
+            /* Tables  card stacks on mobile */
             table thead { display: none; }
             table tbody tr {
                 display: block;
@@ -1691,7 +1695,7 @@
             background: var(--white);
             font-size: 13px;
             font-weight: 500;
-            font-family: 'DM Sans';
+            font-family: 'Montserrat';
             cursor: pointer;
             transition: .2s;
             color: var(--text);
@@ -1757,7 +1761,7 @@
         }
 
         .prof-hero-name {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 26px;
             font-weight: 700;
             margin-bottom: 8px;
@@ -1788,7 +1792,7 @@
         }
 
         .prof-stat-n {
-            font-family: 'Cormorant Garamond';
+            font-family: 'Montserrat';
             font-size: 26px;
             font-weight: 700;
             color: var(--navy);
@@ -1854,18 +1858,71 @@
                 flex-direction: column;
             }
         }
+
+        /* ── Override Login Page elements to use Red instead of Pink ── */
+        .login-box .login-univ {
+            color: #DC2626 !important;
+        }
+        .login-box span {
+            color: #DC2626 !important;
+            border-color: #DC2626 !important;
+            background: rgba(220, 38, 38, 0.08) !important;
+            box-shadow: none !important;
+        }
+        .login-box .btn-p {
+            background: #DC2626 !important;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25) !important;
+        }
+        .login-box .btn-p:hover {
+            background: #B91C1C !important;
+        }
+        .login-logo {
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+        .login-logo img {
+            width: 56px !important;
+            height: 56px !important;
+            mix-blend-mode: multiply;
+        }
+        .login-box .inp:focus {
+            border-color: #DC2626 !important;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+        }
+
+        /* ── Mobile responsiveness optimizations ── */
+        @media(max-width: 600px) {
+            .prof-hero {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 20px !important;
+            }
+            .prof-hero-info {
+                align-items: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            .login-box {
+                padding: 24px 20px !important;
+                margin: 15px !important;
+                border-radius: 12px !important;
+            }
+            .login-title {
+                font-size: 22px !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div id="loginGate" class="login-wrap">
-        <div class="login-bg"
-            style="background-image:url('data:image/png;base64,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')">
+        <div class="login-bg" style="background-image:url('woxsen.jpeg');">
         </div>
         <div class="login-overlay"></div>
         <div class="login-box">
-            <div class="login-logo">🛡️</div>
+            <div class="login-logo"><img src="woxsen_wou_symbol.png" alt="WOU" style="width:56px;height:56px;object-fit:contain;"></div>
             <div class="login-univ">Woxsen University</div>
             <div class="login-title">Administrator Login</div>
             <div style="text-align:center;margin:-10px 0 18px">
@@ -1880,10 +1937,10 @@
             </div>
             <div style="margin-bottom:22px">
                 <label class="lbl">Password</label>
-                <input class="inp" type="password" id="loginPass" placeholder="••••••••"
+                <input class="inp" type="password" id="loginPass" placeholder=""
                     onkeydown="if(event.key==='Enter')doLogin()">
             </div>
-            <button class="btn-p" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()">🔓 Sign In</button>
+            <button class="btn-p" style="width:100%;padding:12px;font-size:14px" onclick="doLogin()"> Sign In</button>
             <div style="font-size:11px;color:var(--text2);text-align:center;margin-top:16px;line-height:1.8">Super
                 Administrator Access Only
             </div>
@@ -1902,20 +1959,20 @@
             </div>
             <div class="sb-nav">
                 <div class="nav-sec">Administration</div>
-                <div class="nav-item active" onclick="goA('dashboard',this)"><span class="ni">📊</span>Dashboard</div>
+                <div class="nav-item active" onclick="goA('dashboard',this)"><span class="ni"></span>Dashboard</div>
                 <div class="nav-item" id="nav-panel" onclick="goA('panel',this)">
-                    <span class="ni">🛡️</span>All Grievances
+                    <span class="ni"></span>All Grievances
                     <span class="nb" id="nb1" style="display:none">0</span>
                 </div>
                 <div class="nav-item" id="nav-analytics" onclick="goA('analytics',this)"><span
-                        class="ni">📈</span>Analytics & Reports</div>
-                <div class="nav-item" id="nav-sla" onclick="goA('sla',this)"><span class="ni">⏱️</span>SLA Tracker</div>
+                        class="ni"></span>Analytics & Reports</div>
+                <div class="nav-item" id="nav-sla" onclick="goA('sla',this)"><span class="ni"></span>SLA Tracker</div>
                 <div class="nav-item" id="nav-announce" onclick="goA('announce',this)"><span
-                        class="ni">📢</span>Announcements</div>
+                        class="ni"></span>Announcements</div>
                 <div class="nav-sec">System</div>
-                <div class="nav-item" id="nav-staff" onclick="goA('staff',this)"><span class="ni">👥</span>Staff
+                <div class="nav-item" id="nav-staff" onclick="goA('staff',this)"><span class="ni"></span>Staff
                     Accounts</div>
-                <div class="nav-item" id="nav-perf" onclick="goA('perf',this)"><span class="ni">📊</span>Staff
+                <div class="nav-item" id="nav-perf" onclick="goA('perf',this)"><span class="ni"></span>Staff
                     Performance</div>
             </div>
             <div class="sb-foot">Woxsen University<br>Admin Grievance Panel<br>Restricted Access Only</div>
@@ -1926,25 +1983,27 @@
 
         <div class="main">
             <div class="topbar">
-                <button class="menu-btn" onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))">☰</button>
+                <button class="menu-btn" onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"></button>
                 <div class="tb-title" id="tbTitle">Admin Dashboard<small>Woxsen University Grievance Management
                         System</small></div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
                     style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
-                <span class="admin-badge">🛡️ ADMIN</span>
+                <span class="admin-badge"> ADMIN</span>
                 <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
                     <div class="tb-profile-info" style="text-align:right;cursor:pointer" onclick="goA('profile',null)">
-                        <div style="font-weight:700;color:var(--navy);font-size:13px" id="apNameDisplay">—</div>
+                        <div style="font-weight:700;color:var(--navy);font-size:13px" id="apNameDisplay"></div>
                         <div style="font-size:10px;color:var(--text2);font-weight:500">Super Admin Panel</div>
                     </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s"
+                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s;background-size:cover;background-position:center;"
                         id="tbAvatar" onclick="goA('profile',null)"
                         onmouseover="this.style.transform='scale(1.05)';this.style.borderColor='var(--gold)'"
-                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">🛡️</div>
+                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">
+                        <img src="woxsen_wou_symbol.png" alt="WOU" id="tbAvatarText" style="width:22px;height:22px;object-fit:contain;">
+                    </div>
                     <button onclick="doLogout()"
                         style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
                         onmouseover="this.style.background='rgba(220,38,38,.2)'"
-                        onmouseout="this.style.background='rgba(220,38,38,.1)'">🚪 Logout</button>
+                        onmouseout="this.style.background='rgba(220,38,38,.1)'"> Logout</button>
                 </div>
             </div>
             <div class="content">
@@ -1968,35 +2027,35 @@
                     <!-- KPI Row 0: Registry Overview -->
                     <div class="stats" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px">
                         <div class="sc">
-                            <div class="sc-icon">👨‍🎓</div>
-                            <div class="sc-n" id="totalStudentsCount" style="color:var(--navy)">—</div>
+                            <div class="sc-icon"></div>
+                            <div class="sc-n" id="totalStudentsCount" style="color:var(--navy)"></div>
                             <div class="sc-l">Total Registered Students</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">💼</div>
-                            <div class="sc-n" id="totalStaffCount" style="color:var(--navy)">—</div>
+                            <div class="sc-icon"></div>
+                            <div class="sc-n" id="totalStaffCount" style="color:var(--navy)"></div>
                             <div class="sc-l">Total Department Staff</div>
                         </div>
                     </div>
                     <!-- KPI Row 1 -->
                     <div class="stats" style="grid-template-columns:repeat(4,1fr)">
                         <div class="sc">
-                            <div class="sc-icon">📝</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a1" style="color:var(--navy)">0</div>
                             <div class="sc-l">Total Grievances</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">⏳</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a2" style="color:var(--orange)">0</div>
                             <div class="sc-l">Pending</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">✅</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a3" style="color:var(--green)">0</div>
                             <div class="sc-l">Resolved</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🔺</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a4" style="color:var(--red)">0</div>
                             <div class="sc-l">Escalated</div>
                         </div>
@@ -2004,23 +2063,23 @@
                     <!-- KPI Row 2 -->
                     <div class="stats" style="grid-template-columns:repeat(4,1fr);margin-top:-8px">
                         <div class="sc">
-                            <div class="sc-icon">🔵</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a5" style="color:var(--blue)">0</div>
                             <div class="sc-l">In Progress</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">⚡</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a6" style="color:#b91c1c">0</div>
                             <div class="sc-l">Critical Priority</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🚨</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="a7" style="color:#7c3aed">0</div>
                             <div class="sc-l">SLA Overdue</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">📈</div>
-                            <div class="sc-n" id="a8" style="color:var(--green)">—</div>
+                            <div class="sc-icon"></div>
+                            <div class="sc-n" id="a8" style="color:var(--green)"></div>
                             <div class="sc-l">Resolution Rate</div>
                         </div>
                     </div>
@@ -2039,12 +2098,12 @@
                                 style="padding:16px 22px 0;display:flex;justify-content:space-between;align-items:center">
                                 <div class="ct">Recent Grievances</div>
                                 <button class="btn-icon"
-                                    onclick="goA('panel',document.getElementById('nav-panel'))">View All →</button>
+                                    onclick="goA('panel',document.getElementById('nav-panel'))">View All </button>
                             </div>
                             <div id="dRecentAdmin">
                                 <div class="es" style="padding:24px">
-                                    <div class="ei">📋</div>
-                                    <div class="et">Loading…</div>
+                                    <div class="ei"></div>
+                                    <div class="et">Loading</div>
                                 </div>
                             </div>
                         </div>
@@ -2067,7 +2126,7 @@
                                 <div class="ct">Department Workload</div>
                                 <button class="btn-icon"
                                     onclick="goA('analytics',document.getElementById('nav-analytics'))">Details
-                                    →</button>
+                                    </button>
                             </div>
                             <div style="padding:14px 22px 18px" id="dDeptLoad"></div>
                         </div>
@@ -2079,17 +2138,17 @@
                             </div>
                             <div style="padding:14px 22px 18px;display:flex;flex-direction:column;gap:9px">
                                 <button class="quick-action"
-                                    onclick="goA('panel',document.getElementById('nav-panel'))">📋 View All
+                                    onclick="goA('panel',document.getElementById('nav-panel'))"> View All
                                     Grievances</button>
-                                <button class="quick-action" onclick="goA('sla',document.getElementById('nav-sla'))">⏱️
+                                <button class="quick-action" onclick="goA('sla',document.getElementById('nav-sla'))">
                                     Check SLA Overdue</button>
                                 <button class="quick-action"
-                                    onclick="goA('analytics',document.getElementById('nav-analytics'))">📊 View
+                                    onclick="goA('analytics',document.getElementById('nav-analytics'))"> View
                                     Analytics</button>
                                 <button class="quick-action"
-                                    onclick="goA('announce',document.getElementById('nav-announce'))">📢 Post
+                                    onclick="goA('announce',document.getElementById('nav-announce'))"> Post
                                     Announcement</button>
-                                <button class="quick-action" onclick="exportCSVAdmin()">⬇️ Export All Data to
+                                <button class="quick-action" onclick="exportCSVAdmin()"> Export All Data to
                                     CSV</button>
                             </div>
                         </div>
@@ -2100,7 +2159,7 @@
                     <div class="sec-t">All Grievances</div>
                     <div class="sec-s">Review, update, resolve or escalate all submitted grievances.</div>
                     <div class="ab">
-                        <div class="sw2"><span class="sig">🔍</span><input class="si2"
+                        <div class="sw2"><span class="sig"></span><input class="si2"
                                 placeholder="Search by ID, name, school, category, title..."
                                 oninput="aSearch(this.value)"></div>
                         <select class="sf" onchange="aSt(this.value)">
@@ -2137,7 +2196,7 @@
                         </div>
                         <div id="aTable">
                             <div class="es" style="padding:40px 20px">
-                                <div class="ei">📋</div>
+                                <div class="ei"></div>
                                 <div class="et">No grievances yet</div>
                                 <div class="esb">Submitted grievances will appear here.</div>
                             </div>
@@ -2149,24 +2208,24 @@
                     <div class="sec-t">Institutional Analytics</div>
                     <div class="sec-s">Comprehensive performance metrics and university-wide grievance trends.</div>
 
-                    <!-- ── ESCALATION FUNNEL ── -->
+                    <!--  ESCALATION FUNNEL  -->
                     <div id="escFunnel" style="margin-bottom:24px"></div>
 
                     <!-- Top KPI row -->
                     <div class="stats" style="margin-bottom:24px" id="anaStats">
                         <div class="sc">
-                            <div class="sc-icon">📊</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="anaRate">0%</div>
                             <div class="sc-l">Resolution Rate</div>
                             <div class="prog-bar" style="height:4px;margin-top:8px"><div id="anaRateFill" class="prog-fill" style="width:0%"></div></div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🕒</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="anaAvgDays">0</div>
                             <div class="sc-l">Avg. Days to Resolve</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon">🚨</div>
+                            <div class="sc-icon"></div>
                             <div class="sc-n" id="anaEscRate" style="color:var(--red)">0%</div>
                             <div class="sc-l">Escalation Rate</div>
                         </div>
@@ -2208,11 +2267,11 @@
                     </div>
 
                     <div style="display:flex;gap:1.5rem;justify-content:center;margin-top:24px;border-top:1px solid var(--border);padding-top:24px">
-                        <button class="btn-p" style="padding:12px 35px" onclick="exportAdminAnalytics()">⬇️ Download Institutional Report</button>
+                        <button class="btn-p" style="padding:12px 35px" onclick="exportAdminAnalytics()"> Download Institutional Report</button>
                     </div>
                 </div>
 
-                <!-- ══ SLA TRACKER PAGE ══ -->
+                <!--  SLA TRACKER PAGE  -->
                 <div class="page" id="paSla">
                     <div class="sec-t">SLA Tracker</div>
                     <div class="sec-s">Monitor grievances against their Service Level Agreement deadlines. Red =
@@ -2220,55 +2279,55 @@
                     <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
                         <span class="pill active" onclick="slaFilt('all',this)">All</span>
                         <span class="pill" onclick="slaFilt('over',this)"
-                            style="border-color:#fecaca;color:var(--red)">🔴
+                            style="border-color:#fecaca;color:var(--red)">
                             Overdue</span>
-                        <span class="pill" onclick="slaFilt('warn',this)" style="border-color:#fde68a;color:#92400e">🟡
+                        <span class="pill" onclick="slaFilt('warn',this)" style="border-color:#fde68a;color:#92400e">
                             Due Soon
                             (&lt;2 days)</span>
                         <span class="pill" onclick="slaFilt('ok',this)"
-                            style="border-color:#bbf7d0;color:var(--green)">🟢 On
+                            style="border-color:#bbf7d0;color:var(--green)"> On
                             Track</span>
                     </div>
                     <div class="card">
                         <div style="overflow-x:auto" id="slaTable">
                             <div class="es" style="padding:40px">
-                                <div class="ei">⏱️</div>
-                                <div class="et">Loading SLA data…</div>
+                                <div class="ei"></div>
+                                <div class="et">Loading SLA data</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ══ ANNOUNCEMENTS PAGE ══ -->
+                <!--  ANNOUNCEMENTS PAGE  -->
                 <div class="page" id="paAnnounce">
                     <div class="sec-t">Announcements</div>
                     <div class="sec-s">Post notices visible to all students on the Student Portal dashboard.</div>
                     <div class="ann-grid-wrap" style="display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start">
                         <div>
                             <div
-                                style="font-family:'Cormorant Garamond';font-size:17px;font-weight:600;margin-bottom:14px">
+                                style="font-family:'Montserrat';font-size:17px;font-weight:600;margin-bottom:14px">
                                 Active
                                 Announcements</div>
                             <div id="annList">
                                 <div class="es" style="padding:36px">
-                                    <div class="ei">📢</div>
+                                    <div class="ei"></div>
                                     <div class="et">No announcements yet</div>
-                                    <div class="esb">Create one using the form →</div>
+                                    <div class="esb">Create one using the form </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-card" style="position:sticky;top:80px">
                             <div
-                                style="font-family:'Cormorant Garamond';font-size:17px;font-weight:600;margin-bottom:16px">
+                                style="font-family:'Montserrat';font-size:17px;font-weight:600;margin-bottom:16px">
                                 Post New
                                 Announcement</div>
                             <div style="margin-bottom:12px">
                                 <label class="lbl">Type</label>
                                 <div class="ann-type-bar" id="annTypeBar">
-                                    <span class="ann-type-pill sel" onclick="selAnnType('info',this)">ℹ️ Info</span>
-                                    <span class="ann-type-pill" onclick="selAnnType('warning',this)">⚠️ Warning</span>
-                                    <span class="ann-type-pill" onclick="selAnnType('urgent',this)">🚨 Urgent</span>
-                                    <span class="ann-type-pill" onclick="selAnnType('success',this)">✅ Update</span>
+                                    <span class="ann-type-pill sel" onclick="selAnnType('info',this)"> Info</span>
+                                    <span class="ann-type-pill" onclick="selAnnType('warning',this)"> Warning</span>
+                                    <span class="ann-type-pill" onclick="selAnnType('urgent',this)"> Urgent</span>
+                                    <span class="ann-type-pill" onclick="selAnnType('success',this)"> Update</span>
                                 </div>
                             </div>
                             <div style="margin-bottom:12px">
@@ -2278,7 +2337,7 @@
                             <div style="margin-bottom:12px">
                                 <label class="lbl">Message <span style="color:var(--red)">*</span></label>
                                 <textarea class="inp" id="annBody" style="min-height:90px"
-                                    placeholder="Write announcement details here…"></textarea>
+                                    placeholder="Write announcement details here"></textarea>
                             </div>
                             <div style="margin-bottom:12px">
                                 <label class="lbl">Category (for Landing Page)</label>
@@ -2307,39 +2366,39 @@
                                 </select>
                             </div>
                             <button class="ab2"
-                                style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;width:100%;font-family:'DM Sans';font-size:13px"
-                                onclick="postAnnouncement()">📢 Post Announcement</button>
+                                style="background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;width:100%;font-family:'Montserrat';font-size:13px"
+                                onclick="postAnnouncement()"> Post Announcement</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- ══ STAFF ACCOUNTS PAGE ══ -->
+                <!--  STAFF ACCOUNTS PAGE  -->
                 <div class="page" id="paStaff">
                     <div class="sec-t">Department Staff Accounts</div>
                     <div class="sec-s">Manage department logins, roles, and grievance workload.</div>
                     <div style="margin-bottom:18px">
                         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
-                            <input class="inp" style="max-width:280px;margin:0" placeholder="🔍  Name, username, email…"
+                            <input class="inp" style="max-width:280px;margin:0" placeholder="  Name, username, email"
                                 oninput="staffSearch(this.value)">
                             <select class="inp" style="max-width:180px;margin:0" id="sfDeptFilter"
                                 onchange="staffDeptFilter(this.value)">
                                 <option value="">All Departments</option>
-                                <option value="Academic">📚 Academic</option>
-                                <option value="Administrative">🏛️ Administrative</option>
-                                <option value="Infrastructure">🏗️ Infrastructure</option>
-                                <option value="Ragging">🚨 Ragging</option>
-                                <option value="Others">🤝 Others</option>
+                                <option value="Academic"> Academic</option>
+                                <option value="Administrative"> Administrative</option>
+                                <option value="Infrastructure"> Infrastructure</option>
+                                <option value="Ragging"> Ragging</option>
+                                <option value="Others"> Others</option>
                             </select>
                             <select class="inp" style="max-width:220px;margin:0;display:none" id="sfSchoolFilter"
                                 onchange="staffSchoolFilter(this.value)">
                                 <option value="">All Schools</option>
-                                <option value="School of Business">SOB – School of Business</option>
-                                <option value="School of Technology">SOT – School of Technology</option>
-                                <option value="School of Art &amp; Design">SOAD – School of Art &amp; Design</option>
-                                <option value="School of Law">SOL – School of Law</option>
-                                <option value="School of Liberal Arts &amp; Humanities">SOLA – School of Liberal Arts
+                                <option value="School of Business">SOB  School of Business</option>
+                                <option value="School of Technology">SOT  School of Technology</option>
+                                <option value="School of Art &amp; Design">SOAD  School of Art &amp; Design</option>
+                                <option value="School of Law">SOL  School of Law</option>
+                                <option value="School of Liberal Arts &amp; Humanities">SOLA  School of Liberal Arts
                                 </option>
-                                <option value="School of Architecture &amp; Planning">SOAP – School of Architecture
+                                <option value="School of Architecture &amp; Planning">SOAP  School of Architecture
                                 </option>
                             </select>
                             <select class="inp" style="max-width:180px;margin:0;display:none" id="sfYearFilter"
@@ -2354,8 +2413,8 @@
                             <select class="inp" style="max-width:150px;margin:0" id="sfStatusFilter"
                                 onchange="staffStatusFilter(this.value)">
                                 <option value="">All Status</option>
-                                <option value="Active">✅ Active</option>
-                                <option value="Terminated">🚫 Terminated</option>
+                                <option value="Active"> Active</option>
+                                <option value="Terminated"> Terminated</option>
                             </select>
                             <span style="font-size:12px;color:var(--text2);margin-left:4px"><span
                                     id="staffCount">0</span> accounts</span>
@@ -2386,17 +2445,30 @@
                     </div>
                 </div>
 
-                <!-- ══ MY PROFILE PAGE ══ -->
+                <!--  MY PROFILE PAGE  -->
                 <div class="page" id="paProfile">
                     <div class="prof-hero">
-                        <div class="prof-avatar-lg">🛡️</div>
+                        <div style="position:relative; display:inline-block;">
+                            <div class="prof-avatar-lg" id="dpAvatar"
+                                style="overflow:hidden; position:relative; background-size:cover; background-position:center;">
+                                <span id="dpAvatarText"></span>
+                            </div>
+                            <label for="adminPhotoInput"
+                                style="position:absolute; bottom:0; right:0; background:var(--white); border:1px solid var(--border); border-radius:50%; width:28px; height:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition:0.2s; z-index:10;"
+                                onmouseover="this.style.transform='scale(1.1)'"
+                                onmouseout="this.style.transform='scale(1)'" title="Change Profile Photo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--navy);"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            </label>
+                            <input type="file" id="adminPhotoInput" accept="image/*" style="display:none;"
+                                onchange="handleAdminPhotoUpload(this)">
+                        </div>
                         <div class="prof-hero-info">
                             <div class="prof-hero-badge">Super Administrator</div>
                             <div class="prof-hero-name" id="apName">Super Admin</div>
-                            <div class="prof-meta-row">🏛️ Role: <strong>Super Administrator</strong></div>
-                            <div class="prof-meta-row">👤 Username: <strong id="apUser">woxsenadmin</strong></div>
-                            <div class="prof-meta-row">✉️ <strong>admin@woxsen.edu.in</strong></div>
-                            <div class="prof-meta-row">📍 Kamkole, Sadasivpet, Sangareddy, Telangana — 502345</div>
+                            <div class="prof-meta-row"> Role: <strong>Super Administrator</strong></div>
+                            <div class="prof-meta-row"> Username: <strong id="apUser">woxsenadmin</strong></div>
+                            <div class="prof-meta-row"> <strong>admin@woxsen.edu.in</strong></div>
+                            <div class="prof-meta-row"> Kamkole, Sadasivpet, Sangareddy, Telangana  502345</div>
                         </div>
                     </div>
                     <div class="prof-stats-row" id="apStats">
@@ -2424,38 +2496,38 @@
                     <div class="prof-section-grid">
                         <div class="card" style="padding:24px">
                             <div class="ct" style="margin-bottom:20px;display:flex;align-items:center;gap:10px">
-                                <span>👤 Admin Information</span>
+                                <span> Admin Information</span>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">👤</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Full Name</div>
                                     <div class="prof-info-val" id="api1">Super Administrator</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🛡️</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Role</div>
                                     <div class="prof-info-val">Institutional Admin</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🔐</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Username</div>
                                     <div class="prof-info-val" id="api3">woxsenadmin</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">✉️</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Email</div>
                                     <div class="prof-info-val">it-support@woxsen.edu.in</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📞</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Emergency Contact</div>
                                     <div class="prof-info-val">+91-8400-00WOU</div>
@@ -2464,45 +2536,45 @@
                         </div>
                         <div class="card" style="padding:24px">
                             <div class="ct" style="margin-bottom:20px;display:flex;align-items:center;gap:10px">
-                                <span>📈 Institutional Health</span>
+                                <span> Institutional Health</span>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📋</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Total Grievances</div>
                                     <div class="prof-info-val" id="apa1">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">✅</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Resolved (Success)</div>
                                     <div class="prof-info-val" style="color:var(--green)" id="apa2">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">⏳</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Open / In Progress</div>
                                     <div class="prof-info-val" style="color:var(--orange)" id="apa3">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🚨</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Escalated (Risk)</div>
                                     <div class="prof-info-val" style="color:var(--red)" id="apa4">0</div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">📊</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Resolution Rate</div>
-                                    <div class="prof-info-val" id="apa5">—</div>
+                                    <div class="prof-info-val" id="apa5"></div>
                                 </div>
                             </div>
                             <div class="prof-info-row">
-                                <div class="prof-info-icon">🕒</div>
+                                <div class="prof-info-icon"></div>
                                 <div>
                                     <div class="prof-info-label">Policy Status</div>
                                     <div class="prof-info-val" style="font-size:12px">Compliance Matched</div>
@@ -2511,10 +2583,10 @@
                         </div>
                     </div>
 
-                    <!-- 🔐 Change Account Password -->
+                    <!--  Change Account Password -->
                     <div class="card" style="margin-bottom:18px">
                         <div style="padding:16px 20px;border-bottom:1px solid var(--border)">
-                            <div class="ct">🔐 Change Administrator Password</div>
+                            <div class="ct"> Change Administrator Password</div>
                         </div>
                         <div style="padding:20px">
                             <div
@@ -2544,31 +2616,31 @@
                         <div
                             style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
                             <div class="ct">Recent Grievances</div>
-                            <span style="font-size:11px;color:var(--text2)" id="apRecentSub">—</span>
+                            <span style="font-size:11px;color:var(--text2)" id="apRecentSub"></span>
                         </div>
                         <div style="overflow-x:auto" id="apRecentTable">
                             <div class="es" style="padding:24px">
-                                <div class="ei">📋</div>
-                                <div class="et">Loading…</div>
+                                <div class="ei"></div>
+                                <div class="et">Loading</div>
                             </div>
                         </div>
                     </div>
                     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-                        <button class="btn-p" onclick="goA('panel',document.getElementById('nav-panel'))">📋 All
+                        <button class="btn-p" onclick="goA('panel',document.getElementById('nav-panel'))"> All
                             Grievances</button>
-                        <button class="btn-s" onclick="goA('analytics',document.getElementById('nav-analytics'))">📈
+                        <button class="btn-s" onclick="goA('analytics',document.getElementById('nav-analytics'))">
                             Analytics</button>
-                        <button class="btn-s" onclick="adminLogout()">🚪 Logout</button>
+                        <button class="btn-s" onclick="adminLogout()"> Logout</button>
                     </div>
                 </div>
 
-                <!-- ── SETTINGS PAGE ── -->
+                <!--  SETTINGS PAGE  -->
                 <div class="page" id="paSettings">
                     <div class="sec-t">System Settings</div>
                     <div class="sec-s">Manage global portal configuration and administrative preferences.</div>
                     <div class="card" style="max-width:600px">
                         <div style="padding:18px 22px;border-bottom:1px solid var(--border)">
-                            <div class="ct">⚙️ Administration Preferences</div>
+                            <div class="ct"> Administration Preferences</div>
                         </div>
                         <div style="padding:22px">
                             <div
@@ -2591,34 +2663,34 @@
 
 
 
-                <!-- ══ STAFF PERFORMANCE PAGE ══ -->
+                <!--  STAFF PERFORMANCE PAGE  -->
                 <div class="page" id="paPerf">
                     <div class="sec-t">Staff Performance Dashboard</div>
                     <div class="sec-s">Resolution rates, response times, and escalation accountability for all staff
                         members.</div>
                     <div id="perfContent">
                         <div class="es" style="padding:40px">
-                            <div class="ei">📊</div>
-                            <div class="et">Loading performance data…</div>
+                            <div class="ei"></div>
+                            <div class="et">Loading performance data</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ══ ACTIVITY LOG PAGE ══ -->
+                <!--  ACTIVITY LOG PAGE  -->
                 <div class="page" id="paLog">
                     <div class="sec-t">Activity Log</div>
                     <div class="sec-s">Recent status changes and administrative actions across all grievances.</div>
                     <div style="display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap">
                         <span class="pill active" onclick="logFilt('all',this)">All Activity</span>
-                        <span class="pill" onclick="logFilt('Resolved',this)">✅ Resolved</span>
-                        <span class="pill" onclick="logFilt('Escalated',this)">🔺 Escalated</span>
-                        <span class="pill" onclick="logFilt('Pending',this)">⏳ Pending</span>
-                        <button class="btn-icon" style="margin-left:auto" onclick="clearLog()">🗑 Clear Log</button>
+                        <span class="pill" onclick="logFilt('Resolved',this)"> Resolved</span>
+                        <span class="pill" onclick="logFilt('Escalated',this)"> Escalated</span>
+                        <span class="pill" onclick="logFilt('Pending',this)"> Pending</span>
+                        <button class="btn-icon" style="margin-left:auto" onclick="clearLog()"> Clear Log</button>
                     </div>
                     <div class="card" style="padding:0 22px">
                         <div id="logList">
                             <div class="es" style="padding:40px">
-                                <div class="ei">📋</div>
+                                <div class="ei"></div>
                                 <div class="et">No activity logged yet</div>
                                 <div class="esb">Actions taken on grievances will appear here.</div>
                             </div>
@@ -2632,7 +2704,7 @@
     <div class="modal-ov" id="mOv">
         <div class="modal">
             <div class="mh">
-                <div class="mt2" id="mTitle">Grievance Details</div><button class="mc" onclick="closeM()">✕</button>
+                <div class="mt2" id="mTitle">Grievance Details</div><button class="mc" onclick="closeM()"></button>
             </div>
             <div class="mb" id="mBody"></div>
         </div>
@@ -2642,7 +2714,7 @@
         <div class="modal" style="max-width:500px">
             <div class="mh">
                 <div class="mt2" id="mStaffTitle">Add New Staff</div><button class="mc"
-                    onclick="document.getElementById('mStaff').classList.remove('open')">✕</button>
+                    onclick="document.getElementById('mStaff').classList.remove('open')"></button>
             </div>
             <div class="mb">
                 <input type="hidden" id="sfId">
@@ -2727,7 +2799,7 @@
                             </select>
                         </div>
                     </div>
-                    <button class="btn-s" type="button" onclick="addModalAssignment()" style="width:100%; padding:8px; font-size:11px; background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8; font-weight:700; cursor:pointer;">➕ Add Assignment</button>
+                    <button class="btn-s" type="button" onclick="addModalAssignment()" style="width:100%; padding:8px; font-size:11px; background:#eff6ff; border:1px solid #bfdbfe; color:#1d4ed8; font-weight:700; cursor:pointer;"> Add Assignment</button>
                     
                     <div style="margin-top:12px;">
                         <label class="lbl" style="font-size:10px">Active Assignments list:</label>
@@ -2750,17 +2822,17 @@
                         <div id="sfPassWrapper">
                             <label class="lbl">Password <span style="font-weight:400;color:var(--text2)">(Set
                                     once)</span></label>
-                            <input class="inp" type="password" id="sfPass" placeholder="••••••••"
+                            <input class="inp" type="password" id="sfPass" placeholder=""
                                 style="background:#fff">
                         </div>
                     </div>
                     <div id="sfPassWarning" style="font-size:11px;color:var(--text2);margin-top:5px;display:none">
-                        ⚠️ Passwords cannot be viewed or changed after creation. If they forgot their password, you must
+                         Passwords cannot be viewed or changed after creation. If they forgot their password, you must
                         terminate this account and create a new one.
                     </div>
                 </div>
 
-                <!-- Reason for Change — full width, above buttons -->
+                <!-- Reason for Change  full width, above buttons -->
                 <div id="sfReasonWrap" style="display:none;margin-bottom:14px">
                     <label class="lbl">Reason for Change (Optional)</label>
                     <textarea class="inp" id="sfReason"
@@ -2772,7 +2844,7 @@
                 <div id="sfActions" style="display:flex;gap:10px;justify-content:flex-end">
                     <button class="btn-s"
                         onclick="document.getElementById('mStaff').classList.remove('open')">Cancel</button>
-                    <button class="btn-p" id="sfSaveBtn" onclick="saveStaff()">💾 Save Account</button>
+                    <button class="btn-p" id="sfSaveBtn" onclick="saveStaff()"> Save Account</button>
                 </div>
             </div>
         </div>
@@ -2781,8 +2853,8 @@
         <!-- Credential Copier Modal -->
         <div class="modal-ov" id="mStaffCreds" style="z-index:9999">
             <div class="modal" style="max-width:400px;text-align:center">
-                <div style="font-size:40px;margin-bottom:10px">✅</div>
-                <div style="font-family:'Cormorant Garamond';font-size:22px;font-weight:700;margin-bottom:10px">Account
+                <div style="font-size:40px;margin-bottom:10px"></div>
+                <div style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:10px">Account
                     Created Successfully</div>
                 <div style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.5">
                     Please copy these credentials immediately and share them securely with the new staff member. <strong
@@ -2804,23 +2876,23 @@
             </div>
         </div>
 
-        <!-- ══ TERMINATE STAFF CONFIRMATION MODAL ══ -->
+        <!--  TERMINATE STAFF CONFIRMATION MODAL  -->
         <div class="modal-ov" id="mTerminate" style="z-index:9998">
             <div class="modal" style="max-width:460px">
                 <div class="mh"
                     style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border-bottom:2px solid #fecaca">
-                    <div class="mt2" style="color:#991b1b">🚫 Terminate Staff Account</div>
-                    <button class="mc" onclick="closeTermModal()">✕</button>
+                    <div class="mt2" style="color:#991b1b"> Terminate Staff Account</div>
+                    <button class="mc" onclick="closeTermModal()"></button>
                 </div>
                 <div class="mb" style="padding:24px">
                     <div
                         style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
-                        <span style="font-size:22px;flex-shrink:0">⚠️</span>
+                        <span style="font-size:22px;flex-shrink:0"></span>
                         <div>
                             <div style="font-weight:700;color:#991b1b;font-size:13px;margin-bottom:4px">This action will
                                 deactivate the account</div>
                             <div style="font-size:12px;color:#7f1d1d;line-height:1.6">The staff member <strong
-                                    id="termStaffName">—</strong> will no longer be able to log in to the department
+                                    id="termStaffName"></strong> will no longer be able to log in to the department
                                 portal. All their data will be retained. You can reactivate the account at any time.
                             </div>
                         </div>
@@ -2831,53 +2903,53 @@
                         <textarea class="inp" id="termReason"
                             placeholder="e.g. Contract ended, Staff resigned, Policy violation..."
                             style="min-height:80px"></textarea>
-                        <div id="termReasonErr" style="display:none;color:var(--red);font-size:11px;margin-top:4px">⚠️
+                        <div id="termReasonErr" style="display:none;color:var(--red);font-size:11px;margin-top:4px">
                             Please provide a reason before terminating.</div>
                     </div>
                     <div style="display:flex;gap:10px;justify-content:flex-end">
                         <button class="btn-s" onclick="closeTermModal()">Cancel</button>
                         <button id="termConfirmBtn"
-                            style="padding:10px 20px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;font-weight:700;font-size:13px;font-family:'DM Sans';display:flex;align-items:center;gap:6px"
-                            onclick="confirmTerminate()">🚫 Confirm Terminate</button>
+                            style="padding:10px 20px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;font-weight:700;font-size:13px;font-family:'Montserrat';display:flex;align-items:center;gap:6px"
+                            onclick="confirmTerminate()"> Confirm Terminate</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ══ REACTIVATE STAFF CONFIRMATION MODAL ══ -->
+        <!--  REACTIVATE STAFF CONFIRMATION MODAL  -->
         <div class="modal-ov" id="mReactivate" style="z-index:9998">
             <div class="modal" style="max-width:420px">
                 <div class="mh"
                     style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-bottom:2px solid #bbf7d0">
-                    <div class="mt2" style="color:#166534">✅ Reactivate Staff Account</div>
-                    <button class="mc" onclick="closeReactModal()">✕</button>
+                    <div class="mt2" style="color:#166534"> Reactivate Staff Account</div>
+                    <button class="mc" onclick="closeReactModal()"></button>
                 </div>
                 <div class="mb" style="padding:24px">
                     <div
                         style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
-                        <span style="font-size:22px;flex-shrink:0">✅</span>
+                        <span style="font-size:22px;flex-shrink:0"></span>
                         <div>
                             <div style="font-weight:700;color:#166534;font-size:13px;margin-bottom:4px">Restore portal
                                 access for this staff member</div>
                             <div style="font-size:12px;color:#14532d;line-height:1.6"><strong
-                                    id="reactStaffName">—</strong> will be able to log in again with their existing
+                                    id="reactStaffName"></strong> will be able to log in again with their existing
                                 credentials.</div>
                         </div>
                     </div>
                     <div style="display:flex;gap:10px;justify-content:flex-end">
                         <button class="btn-s" onclick="closeReactModal()">Cancel</button>
                         <button id="reactConfirmBtn"
-                            style="padding:10px 20px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;font-weight:700;font-size:13px;font-family:'DM Sans';display:flex;align-items:center;gap:6px"
-                            onclick="confirmReactivate()">✅ Confirm Reactivate</button>
+                            style="padding:10px 20px;border-radius:8px;border:none;cursor:pointer;background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;font-weight:700;font-size:13px;font-family:'Montserrat';display:flex;align-items:center;gap:6px"
+                            onclick="confirmReactivate()"> Confirm Reactivate</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg"></span></div>
+        <div class="toast" id="toast"><span id="tIcon"></span><span id="tMsg"></span></div>
 
         <script>
-            /* ══════════════════════════════════════════
+            /* 
                SUPABASE SQL MIGRATION REQUIRED
                Run this in Supabase SQL Editor to enable escalation:
                
@@ -2888,10 +2960,10 @@
                
                UPDATE grievances SET escalation_level = 'professor', assigned_at = created_at 
                WHERE cat = 'Academic' AND escalation_level IS NULL;
-            ══════════════════════════════════════════ */
+             */
             let G = [], asf = 'all', acf = 'all', aq = '', adf = 'all', aesc = 'all', aPage = 1, aPerPage = 50, sortCol = 'date', sortDir = -1;
 
-            // ── ESCALATION SYSTEM ──
+            //  ESCALATION SYSTEM 
             const ESC_LEVELS = ['professor', 'pd', 'pm', 'dean', 'admin'];
             const ESC_LABELS = { professor: 'Professor', pd: 'Programme Director (PD)', pm: 'Programme Manager (PM)', dean: 'Dean / Director', admin: 'Admin Committee' };
             const ESC_NEXT = { professor: 'pd', pd: 'pm', pm: 'dean', dean: 'admin', admin: 'admin' };
@@ -2918,7 +2990,7 @@
                 return fetch(SB_URL + '/' + path, fetchOpts);
             }
 
-            // ── HARDCODED SAMPLE DATA ─────────────────────────────
+            //  HARDCODED SAMPLE DATA 
             var SAMPLE = [
                 { id: 'GRV-2025-00101', sid: 'WU2022001', name: 'Arjun Mehta', dept: 'School of Business', year: '3rd Year', email: 'arjun.mehta@woxsen.edu.in', phone: '9876543210', cat: 'Academic', sub: 'Examination / Results Issue', pri: 'High', title: 'Grade not updated after revaluation', description: 'My mid-semester revaluation result has not been updated in the portal despite submitting the form 3 weeks ago.', docs: '', date: '12 Jan 2025', status: 'Resolved', assigned: 'Exam Cell / HOD', remarks: 'Grade updated after verification. Revaluation result reflected in portal.' },
                 { id: 'GRV-2025-00102', sid: 'WU2022045', name: 'Priya Sharma', dept: 'School of Technology', year: '2nd Year', email: 'priya.sharma@woxsen.edu.in', phone: '9876500001', cat: 'Administrative', sub: 'Fee / Payment Issue', pri: 'High', title: 'Fee status not updated after online payment', description: 'I paid the semester fee via net banking on 10 Jan but the portal still shows fee as pending.', docs: '', date: '14 Jan 2025', status: 'In Progress', assigned: 'Admin / Accounts Office', remarks: '' },
@@ -2943,7 +3015,7 @@
             ];
 
             function loadG() {
-                // Set G from hardcoded sample data immediately — no network wait
+                // Set G from hardcoded sample data immediately  no network wait
                 if (G.length === 0) G = SAMPLE.slice();
                 // Try to merge real DB rows silently in the background
                 var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
@@ -2975,22 +3047,22 @@
 
 
 
-            var ADMIN_USER = 'woxsenadmin'; // Username only — no plaintext password stored in code
+            var ADMIN_USER = 'woxsenadmin'; // Username only  no plaintext password stored in code
 
             async function doLogin() {
                 var u = document.getElementById('loginUser').value.trim();
                 var p = document.getElementById('loginPass').value;
 
                 if (!u || !p) {
-                    toast('⚠️', 'Enter both username and password.');
+                    toast('', 'Enter both username and password.');
                     return;
                 }
 
                 const btn = document.querySelector('#loginGate .btn-p');
-                if (btn) { btn.disabled = true; btn.textContent = 'Verifying…'; }
+                if (btn) { btn.disabled = true; btn.textContent = 'Verifying'; }
 
                 try {
-                    // Fetch by username only — password NEVER sent in URL
+                    // Fetch by username only  password NEVER sent in URL
                     const r = await sbFetch('system_admins?username=eq.' + encodeURIComponent(u) + '&select=*');
                     const data = await r.json();
 
@@ -3011,7 +3083,7 @@
                     sessionStorage.setItem('wox_admin', '1');
                     sessionStorage.setItem('wox_admin_user', admin.username);
                     sessionStorage.setItem('wox_admin_name', admin.fullname || admin.name || 'Super Admin');
-                    seedStorage(); loadG(); loadStaff(); renderAnnouncements(); renderAdminDash(); renderAdmin(); badges();
+                    seedStorage(); loadG(); loadStaff(); renderAnnouncements(); renderAdminDash(); renderAdmin(); badges(); renderAdminAvatar();
                     const aname = sessionStorage.getItem('wox_admin_name');
                     if(document.getElementById('apNameDisplay')) document.getElementById('apNameDisplay').textContent = aname;
                     if(document.getElementById('apName')) document.getElementById('apName').textContent = aname;
@@ -3020,7 +3092,7 @@
                     document.getElementById('loginErr').style.display = 'block';
                     console.error('Login error:', e);
                 } finally {
-                    if (btn) { btn.disabled = false; btn.textContent = '🔓 Sign In'; }
+                    if (btn) { btn.disabled = false; btn.textContent = ' Sign In'; }
                 }
             }
 
@@ -3031,15 +3103,15 @@
                 const user = sessionStorage.getItem('wox_admin_user');
 
                 if (!oldP || !newP || !confP) {
-                    toast('⚠️', 'Fill all password fields.');
+                    toast('', 'Fill all password fields.');
                     return;
                 }
                 if (newP !== confP) {
-                    toast('❌', 'New passwords do not match!');
+                    toast('', 'New passwords do not match!');
                     return;
                 }
                 if (newP.length < 8) {
-                    toast('❌', 'Password must be at least 8 characters.');
+                    toast('', 'Password must be at least 8 characters.');
                     return;
                 }
 
@@ -3047,9 +3119,9 @@
                     // Fetch record, verify old password by hash comparison
                     const r1 = await sbFetch('system_admins?username=eq.' + encodeURIComponent(user) + '&select=password');
                     const d1 = await r1.json();
-                    if (!d1 || !d1.length) { toast('❌', 'Account not found!'); return; }
+                    if (!d1 || !d1.length) { toast('', 'Account not found!'); return; }
                     if (oldP !== d1[0].password) {
-                        toast('❌', 'Current password incorrect!');
+                        toast('', 'Current password incorrect!');
                         return;
                     }
 
@@ -3061,7 +3133,7 @@
                     });
 
                     if (r2.ok) {
-                        toast('✅', 'Password updated successfully!');
+                        toast('', 'Password updated successfully!');
                         document.getElementById('setOldPass').value = '';
                         document.getElementById('setNewPass').value = '';
                         document.getElementById('setConfPass').value = '';
@@ -3069,7 +3141,7 @@
                         throw new Error('Update failed');
                     }
                 } catch (e) {
-                    toast('❌', 'Error updating password: ' + e.message);
+                    toast('', 'Error updating password: ' + e.message);
                 }
             }
 
@@ -3081,11 +3153,97 @@
                 document.getElementById('loginPass').value = '';
             }
 
+            /*  ADMIN PHOTO UPLOAD & RENDERING  */
+            function renderAdminAvatar() {
+                const user = sessionStorage.getItem('wox_admin_user') || 'woxsenadmin';
+                const av = document.getElementById('tbAvatar');
+                const tbText = document.getElementById('tbAvatarText');
+                const dpAv = document.getElementById('dpAvatar');
+                const dpAvText = document.getElementById('dpAvatarText');
+
+                const photo = localStorage.getItem(`admin_photo_${user}`) || sessionStorage.getItem('admin_photo');
+
+                if (photo) {
+                    if (av) {
+                        if (tbText) tbText.style.display = 'none';
+                        av.style.backgroundImage = `url(${photo})`;
+                    }
+                    if (dpAv) {
+                        if (dpAvText) dpAvText.style.display = 'none';
+                        dpAv.style.backgroundImage = `url(${photo})`;
+                    }
+                } else {
+                    if (av) {
+                        if (tbText) tbText.style.display = 'block';
+                        av.style.backgroundImage = 'none';
+                    }
+                    if (dpAv) {
+                        if (dpAvText) {
+                            dpAvText.style.display = 'block';
+                            dpAvText.innerHTML = '<img src="woxsen_wou_symbol.png" alt="WOU" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply;">';
+                        }
+                        dpAv.style.backgroundImage = 'none';
+                    }
+                }
+            }
+
+            function handleAdminPhotoUpload(input) {
+                const file = input.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        compressAdminImage(img, function (base64) {
+                            saveAdminPhoto(base64);
+                        });
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function compressAdminImage(img, callback) {
+                const canvas = document.createElement('canvas');
+                const MAX_SIZE = 200;
+                let width = img.width;
+                let height = img.height;
+                if (width > height) {
+                    if (width > MAX_SIZE) { height *= MAX_SIZE / width; width = MAX_SIZE; }
+                } else {
+                    if (height > MAX_SIZE) { width *= MAX_SIZE / height; height = MAX_SIZE; }
+                }
+                canvas.width = width; canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                callback(canvas.toDataURL('image/jpeg', 0.8));
+            }
+
+            async function saveAdminPhoto(base64) {
+                try {
+                    const user = sessionStorage.getItem('wox_admin_user') || 'woxsenadmin';
+                    localStorage.setItem(`admin_photo_${user}`, base64);
+                    sessionStorage.setItem('admin_photo', base64);
+
+                    renderAdminAvatar();
+                    toast('', 'Profile photo updated!');
+
+                    // Silently sync database
+                    sbFetch('system_admins?username=eq.' + encodeURIComponent(user), {
+                        method: 'PATCH',
+                        prefer: 'return=minimal',
+                        body: JSON.stringify({ profile_photo: base64 })
+                    }).catch(err => console.warn('Photo sync warning:', err));
+                } catch (e) {
+                    toast('', 'Error saving photo: ' + e.message);
+                }
+            }
+
             window.addEventListener('DOMContentLoaded', function () {
                 if (sessionStorage.getItem('wox_admin') === '1') {
                     document.getElementById('loginGate').style.display = 'none';
                     document.getElementById('adminApp').style.display = 'block';
-                    seedStorage(); loadG(); loadStaff(); renderAdminDash(); renderAdmin(); badges();
+                    seedStorage(); loadG(); loadStaff(); renderAdminDash(); renderAdmin(); badges(); renderAdminAvatar();
                     const pud = document.getElementById('profUserDisplay');
                     if (pud) pud.textContent = sessionStorage.getItem('wox_admin_user') || 'admin';
                     const aname = sessionStorage.getItem('wox_admin_name') || 'Super Admin';
@@ -3150,9 +3308,9 @@
                 const sEl = document.getElementById('totalStaffCount'); 
                 if(sEl) sEl.textContent = STAFF_LIST.length;
                 const stEl = document.getElementById('totalStudentsCount');
-                if(stEl) stEl.textContent = sessionStorage.getItem('total_students') || '—';
+                if(stEl) stEl.textContent = sessionStorage.getItem('total_students') || '';
 
-                // ── SYSTEMIC ISSUE DETECTION ──
+                //  SYSTEMIC ISSUE DETECTION 
                 var now2 = new Date();
                 var curMonth = now2.getMonth(), curYear = now2.getFullYear();
                 var subCounts = {};
@@ -3170,14 +3328,14 @@
                 if (sysEl) {
                     if (systemic.length) {
                         sysEl.style.display = 'block';
-                        sysEl.innerHTML = '<div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:28px">🚨</span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:#7c0000;margin-bottom:6px">Systemic Issue Detected — Requires Structural Action</div>' +
-                            systemic.map(function (x) { return '<div style="margin-bottom:5px;padding:8px 12px;background:rgba(255,255,255,.6);border-radius:8px;font-size:13px"><strong>' + x.count + ' students</strong> raised grievances about <strong>' + x.sub + '</strong> <span style="color:#92400e">(' + x.cat + ')</span> this month — likely a systemic problem.</div>'; }).join('') +
+                        sysEl.innerHTML = '<div style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:28px"></span><div style="flex:1"><div style="font-size:14px;font-weight:700;color:#7c0000;margin-bottom:6px">Systemic Issue Detected  Requires Structural Action</div>' +
+                            systemic.map(function (x) { return '<div style="margin-bottom:5px;padding:8px 12px;background:rgba(255,255,255,.6);border-radius:8px;font-size:13px"><strong>' + x.count + ' students</strong> raised grievances about <strong>' + x.sub + '</strong> <span style="color:#92400e">(' + x.cat + ')</span> this month  likely a systemic problem.</div>'; }).join('') +
                             '<div style="font-size:11px;color:#92400e;margin-top:6px">&#9888; Treat as root-cause issue. Escalate to Dean / Admin Committee.</div></div></div>';
                     } else { sysEl.style.display = 'none'; }
                 }
 
                 var rec = document.getElementById('dRecentAdmin');
-                if (!t) { rec.innerHTML = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No grievances yet</div></div>'; return; }
+                if (!t) { rec.innerHTML = '<div class="es" style="padding:24px"><div class="ei"></div><div class="et">No grievances yet</div></div>'; return; }
                 var rows = G.slice(-6).reverse().map(function (g) {
                     return '<tr><td style="font-weight:700;color:var(--gold);font-size:11px">' + g.id + '</td>' +
                         '<td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">' + g.title + '</td>' +
@@ -3244,16 +3402,16 @@
                 });
 
                 var deptDetails = {
-                    'School of Business': { name: 'SOB (Business)', emoji: '💼', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'School of Technology': { name: 'SOT (Technology)', emoji: '💻', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'School of Art & Design': { name: 'SOAD (Arts)', emoji: '🎨', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'School of Law': { name: 'SOL (Law)', emoji: '⚖️', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'School of Liberal Arts & Humanities': { name: 'SOLA (Liberal)', emoji: '🎭', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'School of Architecture & Planning': { name: 'SOAP (Arch)', emoji: '📐', color: '#eff6ff', textColor: '#1d4ed8' },
-                    'Administrative': { name: 'Administrative', emoji: '🏛️', color: '#f0fdf4', textColor: '#16774a' },
-                    'Infrastructure': { name: 'Infrastructure', emoji: '🏗️', color: '#fff7ed', textColor: '#c2540a' },
-                    'Ragging': { name: 'Anti-Ragging', emoji: '🚨', color: '#fef2f2', textColor: '#b91c1c' },
-                    'Others': { name: 'Student Welfare', emoji: '🤝', color: '#faf5ff', textColor: '#6d28d9' }
+                    'School of Business': { name: 'SOB (Business)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Technology': { name: 'SOT (Technology)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Art & Design': { name: 'SOAD (Arts)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Law': { name: 'SOL (Law)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Liberal Arts & Humanities': { name: 'SOLA (Liberal)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'School of Architecture & Planning': { name: 'SOAP (Arch)', emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                    'Administrative': { name: 'Administrative', emoji: '', color: '#f0fdf4', textColor: '#16774a' },
+                    'Infrastructure': { name: 'Infrastructure', emoji: '', color: '#fff7ed', textColor: '#c2540a' },
+                    'Ragging': { name: 'Anti-Ragging', emoji: '', color: '#fef2f2', textColor: '#b91c1c' },
+                    'Others': { name: 'Student Welfare', emoji: '', color: '#faf5ff', textColor: '#6d28d9' }
                 };
 
                 var activeLoads = Object.entries(workloads).map(function (entry) {
@@ -3268,7 +3426,7 @@
                 var loadEl = document.getElementById('dDeptLoad');
                 if (loadEl) {
                     if (totalActive === 0) {
-                        loadEl.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2);font-size:13px">🎉 All departments are clear! No active grievances.</div>';
+                        loadEl.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text2);font-size:13px"> All departments are clear! No active grievances.</div>';
                     } else {
                         loadEl.innerHTML = activeLoads.map(function (d) {
                             var pct = totalActive ? Math.round(d.count / totalActive * 100) : 0;
@@ -3286,6 +3444,7 @@
             }
 
             function renderAdminProfile() {
+                renderAdminAvatar();
                 var t = G.length;
                 var r = G.filter(function (x) { return x.status === 'Resolved' || x.status === 'Closed'; }).length;
                 var p = G.filter(function (x) { return x.status === 'Pending'; }).length;
@@ -3313,7 +3472,7 @@
 
                 var rec = G.slice().sort(function (a, b) { return new Date(b.date) - new Date(a.date); }).slice(0, 5);
                 var h = '';
-                if (rec.length === 0) h = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No recent grievances</div></div>';
+                if (rec.length === 0) h = '<div class="es" style="padding:24px"><div class="ei"></div><div class="et">No recent grievances</div></div>';
                 else {
                     h = '<table class="tb"><tr><th>ID</th><th>Date</th><th>Category</th><th>Status</th></tr>';
                     rec.forEach(function (x) {
@@ -3363,17 +3522,18 @@
                 badges();
                 var wrap = document.getElementById('aTable');
                 if (!d.length) {
-                    wrap.innerHTML = '<div class="es" style="padding:36px"><div class="ei">🛡️</div><div class="et">' + (G.length ? 'No matching records' : 'No grievances yet') + '</div></div>';
+                    wrap.innerHTML = '<div class="es" style="padding:36px"><div class="ei"></div><div class="et">' + (G.length ? 'No matching records' : 'No grievances yet') + '</div></div>';
                     return;
                 }
-                function th(col, label) { var arrow = sortCol === col ? (sortDir > 0 ? '↑' : '↓') : ''; return '<th style="cursor:pointer;user-select:none" onclick="sortBy(\'' + col + '\')">' + label + ' ' + arrow + '</th>'; }
+                function th(col, label) { var arrow = sortCol === col ? (sortDir > 0 ? '' : '') : ''; return '<th style="cursor:pointer;user-select:none" onclick="sortBy(\'' + col + '\')">' + label + ' ' + arrow + '</th>'; }
                 var rows = pageD.map(function (g) {
-                    var resolveBtn = (!['Resolved', 'Closed'].includes(g.status)) ? '<button class="ab2 abr" onclick="qU(\'' + g.id + '\',\'Resolved\')">✓ Resolve</button>' : '';
+                    var resolveBtn = (!['Resolved', 'Closed'].includes(g.status)) ? '<button class="ab2 abr" onclick="qU(\'' + g.id + '\',\'Resolved\')"> Resolve</button>' : '';
                     // Manual escalation buttons removed to enforce de-escalation only
                     var rem = timeUntilEsc(g);
-                    var timerCell = g.cat === 'Academic' ? ('<td style="font-size:11px;white-space:nowrap">' + (rem === null ? '—' : rem <= 0 ? '<span style="color:#dc2626;font-weight:700">OVERDUE</span>' : rem < 6 ? '<span style="color:#c2540a;font-weight:700">' + Math.floor(rem) + 'h ' + Math.floor((rem % 1) * 60) + 'm</span>' : '<span style="color:#16774a">' + Math.floor(rem) + 'h left</span>') + '</td>') : '<td style="color:var(--text2);font-size:11px">—</td>';
+                    var timerCell = g.cat === 'Academic' ? ('<td style="font-size:11px;white-space:nowrap">' + (rem === null ? '' : rem <= 0 ? '<span style="color:#dc2626;font-weight:700">OVERDUE</span>' : rem < 6 ? '<span style="color:#c2540a;font-weight:700">' + Math.floor(rem) + 'h ' + Math.floor((rem % 1) * 60) + 'm</span>' : '<span style="color:#16774a">' + Math.floor(rem) + 'h left</span>') + '</td>') : '<td style="color:var(--text2);font-size:11px"></td>';
                     var nameCell = g.is_anonymous ? 'Anonymous Student' : g.name;
                     var sidCell = g.is_anonymous ? 'Hidden' : g.sid;
+                    var escLvCell = '<td style="font-size:11px">' + ((g.cat === 'Academic') ? '<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:100px;padding:2px 8px;font-size:10px;font-weight:600">' + ESC_LABELS[getEscLevel(g)] + '</span>' : '-') + '</td>';
                     return '<tr>' +
                         '<td><input type="checkbox" class="gchk" value="' + g.id + '" style="width:14px;height:14px"></td>' +
                         '<td style="font-weight:700;color:var(--gold);font-size:11px;white-space:nowrap">' + g.id + '</td>' +
@@ -3385,32 +3545,32 @@
                         '<td style="font-size:11px;color:var(--text2);white-space:nowrap">' + g.date + '</td>' +
                         timerCell + escLvCell +
                         '<td>' + stag(g.status) + '</td>' +
-                        '<td style="font-size:11px">' + (g.resolved_by ? '<div style="font-weight:700;color:#16774a">' + g.resolved_by + '</div><div style="color:var(--text2);font-size:10px">' + g.resolved_at_level + '</div>' : '<span style="color:var(--text2)">—</span>') + '</td>' +
+                        '<td style="font-size:11px">' + (g.resolved_by ? '<div style="font-weight:700;color:#16774a">' + g.resolved_by + '</div><div style="color:var(--text2);font-size:10px">' + g.resolved_at_level + '</div>' : '<span style="color:var(--text2)"></span>') + '</td>' +
                         '<td><div style="display:flex;gap:4px;flex-wrap:wrap;min-width:160px">' +
-                        '<button class="ab2 abv" onclick="openDetail(\'' + g.id + '\')">👁 View</button>' +
+                        '<button class="ab2 abv" onclick="openDetail(\'' + g.id + '\')"> View</button>' +
                         resolveBtn + '</div></td></tr>';
                 }).join('');
                 var perPageSel = '<select onchange="aPerPage=+this.value;aPage=1;renderAdmin()" style="padding:4px 8px;border:1px solid var(--border);border-radius:7px;font-size:12px"><option value="25" ' + (aPerPage === 25 ? 'selected' : '') + '>25/page</option><option value="50" ' + (aPerPage === 50 ? 'selected' : '') + '>50/page</option><option value="100" ' + (aPerPage === 100 ? 'selected' : '') + '>100/page</option></select>';
-                var pagerHtml = totalPages > 1 ? '<div style="display:flex;align-items:center;justify-content:between;gap:8px;margin-top:12px;padding:10px 0;border-top:1px solid var(--border);flex-wrap:wrap"><div style="display:flex;gap:6px;align-items:center">' + perPageSel + '<span style="font-size:12px;color:var(--text2)">' + total + ' records</span></div><div style="display:flex;gap:5px;align-items:center;margin-left:auto"><button onclick="aPage=1;renderAdmin()" style="padding:5px 10px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === 1 ? 'opacity:.4' : '') + '">⟪</button><button onclick="aPage=Math.max(1,aPage-1);renderAdmin()" style="padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === 1 ? 'opacity:.4' : '') + '">← Prev</button><span style="font-size:12px;color:var(--text2);min-width:90px;text-align:center">Page ' + aPage + ' / ' + totalPages + '</span><button onclick="aPage=Math.min(' + totalPages + ',aPage+1);renderAdmin()" style="padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === totalPages ? 'opacity:.4' : '') + '">Next →</button><button onclick="aPage=' + totalPages + ';renderAdmin()" style="padding:5px 10px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === totalPages ? 'opacity:.4' : '') + '">⟫</button></div></div>' : '';
+                var pagerHtml = totalPages > 1 ? '<div style="display:flex;align-items:center;justify-content:between;gap:8px;margin-top:12px;padding:10px 0;border-top:1px solid var(--border);flex-wrap:wrap"><div style="display:flex;gap:6px;align-items:center">' + perPageSel + '<span style="font-size:12px;color:var(--text2)">' + total + ' records</span></div><div style="display:flex;gap:5px;align-items:center;margin-left:auto"><button onclick="aPage=1;renderAdmin()" style="padding:5px 10px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === 1 ? 'opacity:.4' : '') + '"></button><button onclick="aPage=Math.max(1,aPage-1);renderAdmin()" style="padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === 1 ? 'opacity:.4' : '') + '"> Prev</button><span style="font-size:12px;color:var(--text2);min-width:90px;text-align:center">Page ' + aPage + ' / ' + totalPages + '</span><button onclick="aPage=Math.min(' + totalPages + ',aPage+1);renderAdmin()" style="padding:5px 12px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === totalPages ? 'opacity:.4' : '') + '">Next </button><button onclick="aPage=' + totalPages + ';renderAdmin()" style="padding:5px 10px;border:1px solid var(--border);background:var(--white);border-radius:7px;cursor:pointer;font-size:12px;' + (aPage === totalPages ? 'opacity:.4' : '') + '"></button></div></div>' : '';
                 wrap.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px"><div style="display:flex;gap:6px"><button onclick="bulkResolve()" style="padding:5px 12px;background:#f0fdf4;color:#16774a;border:1px solid #bbf7d0;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600">&#10003; Bulk Resolve</button><button onclick="document.querySelectorAll(&quot;.gchk&quot;).forEach(function(c){c.checked=true})" style="padding:5px 12px;background:#f8fafc;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:12px">&#9745; Select All</button></div>' + perPageSel + '</div><div style="overflow-x:auto"><table><thead><tr><th style="width:30px"><input type="checkbox" onchange="document.querySelectorAll(&quot;.gchk&quot;).forEach(function(c){c.checked=this.checked})" style="width:14px;height:14px"></th>' + th('id', 'ID') + th('name', 'Student') + '<th>School</th>' + th('cat', 'Category') + th('title', 'Title') + th('priority', 'Priority') + th('date', 'Date') + '<th>ESC Timer</th><th>Level</th>' + th('status', 'Status') + '<th>Resolved By</th><th>Actions</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + pagerHtml;
             }
 
 
             async function bulkResolve() {
                 var checked = Array.from(document.querySelectorAll('.gchk:checked')).map(c => c.value);
-                if (!checked.length) { toast('ℹ️', 'Select at least one grievance.'); return; }
+                if (!checked.length) { toast('', 'Select at least one grievance.'); return; }
                 if (!confirm('Resolve ' + checked.length + ' selected grievances?')) return;
                 for (var id of checked) {
                     try { await sbFetch('grievances?id=eq.' + encodeURIComponent(id), { method: 'PATCH', prefer: 'return=minimal', body: JSON.stringify({ status: 'Resolved', remarks: 'Bulk resolved by admin.' }) }); } catch (e) { }
                 }
                 await loadG(); renderAdmin(); renderAdminDash();
-                addLog('✅', 'Bulk resolved ' + checked.length + ' grievances');
-                toast('✅', checked.length + ' grievances resolved.');
+                addLog('', 'Bulk resolved ' + checked.length + ' grievances');
+                toast('', checked.length + ' grievances resolved.');
             }
 
             async function downloadDoc(gId, dName) {
                 try {
-                    toast('⏳', 'Downloading ' + decodeURIComponent(dName) + '...');
+                    toast('', 'Downloading ' + decodeURIComponent(dName) + '...');
                     const r = await fetch(BACKEND_URL + '/api/v1/storage/download/' + encodeURIComponent(gId) + '/' + dName);
                     if (!r.ok) throw new Error(r.statusText);
                     const blob = await r.blob();
@@ -3421,7 +3581,7 @@
                     a.click();
                     URL.revokeObjectURL(url);
                 } catch (e) {
-                    toast('❌', 'Download failed: ' + e.message);
+                    toast('', 'Download failed: ' + e.message);
                 }
             }
 
@@ -3442,19 +3602,19 @@
                 try {
                     var r = await sbFetch('grievances?id=eq.' + encodeURIComponent(id), { method: 'PATCH', prefer: 'return=minimal', body: JSON.stringify(payload) });
                     if (!r.ok) throw new Error(r.status);
-                } catch (e) { toast('❌', 'Update failed: ' + e.message); return; }
+                } catch (e) { toast('', 'Update failed: ' + e.message); return; }
                 await loadG(); renderAdmin(); renderAdminDash();
-                var icon = st === 'Resolved' ? '✅' : st === 'Escalated' ? '🔺' : '🔵';
+                var icon = st === 'Resolved' ? '' : st === 'Escalated' ? '' : '';
                 addLog(icon, id + ' marked as ' + st + (st === 'Resolved' ? ' by Super Admin' : ''), 'Super Admin');
-                toast(icon, id + ' → ' + st);
+                toast(icon, id + '  ' + st);
             }
 
             function openDetail(id) {
                 var g = G.find(function (x) { return x.id === id; });
                 if (!g) return;
                 document.getElementById('mTitle').textContent = g.id;
-                var docsHtml = g.docs ? '<div style="font-size:12px;margin-bottom:13px;padding:10px;background:var(--cream);border-radius:8px;display:flex;flex-direction:column;gap:8px"><strong>📎 Evidence / Attachments Submitted:</strong><div style="display:flex;flex-wrap:wrap;gap:8px">' + g.docs.split(',').map(function (d) {
-                    return '<button onclick="downloadDoc(\'' + g.id + '\', \'' + encodeURIComponent(d.trim()) + '\')" class="btn-s" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;cursor:pointer"><span style="font-size:14px">📄</span> View ' + d.trim() + '</button>';
+                var docsHtml = g.docs ? '<div style="font-size:12px;margin-bottom:13px;padding:10px;background:var(--cream);border-radius:8px;display:flex;flex-direction:column;gap:8px"><strong> Evidence / Attachments Submitted:</strong><div style="display:flex;flex-wrap:wrap;gap:8px">' + g.docs.split(',').map(function (d) {
+                    return '<button onclick="downloadDoc(\'' + g.id + '\', \'' + encodeURIComponent(d.trim()) + '\')" class="btn-s" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;cursor:pointer"><span style="font-size:14px"></span> View ' + d.trim() + '</button>';
                 }).join('') + '</div></div>' : '';
                 var remarksHtml = g.remarks ? '<div class="al al-s" style="margin-bottom:13px">&#9989; <div><strong>Remarks:</strong> ' + g.remarks + (g.reopen_count && g.reopen_count > 0 ? ' <span style="margin-left:8px;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:20px;padding:1px 8px;font-size:10px;font-weight:700">&#128260; Reopened ' + g.reopen_count + ' time(s)</span>' : '') + '</div></div>' : (g.reopen_count && g.reopen_count > 0 ? '<div class="al" style="background:#fff3cd;border:1px solid #ffc107;margin-bottom:13px">&#128260; <div>This grievance was <strong>reopened ' + g.reopen_count + ' time(s)</strong> by the student after resolution. Latest reason: <em>' + (g.reopen_reason || 'No reason given') + '</em></div></div>' : '');
                 var statusOptions = ['Pending', 'In Progress', 'Under Review', 'Resolved', 'Escalated', 'Closed'].map(function (s) {
@@ -3464,17 +3624,17 @@
                 if (g.is_anonymous) {
                     dName = 'Anonymous Student';
                     dSid = 'Hidden';
-                    anonBanner = '<div style="background:#fef9c3;border:1.5px solid #fde047;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#854d0e;display:flex;gap:10px;align-items:center">&#128373; <div><strong>Anonymous Submission — Super Admin View</strong><br>Real Name: <strong>' + (g.name || '—') + '</strong> &nbsp;|&nbsp; Student ID: <strong>' + (g.sid || '—') + '</strong></div></div>';
+                    anonBanner = '<div style="background:#fef9c3;border:1.5px solid #fde047;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#854d0e;display:flex;gap:10px;align-items:center">&#128373; <div><strong>Anonymous Submission  Super Admin View</strong><br>Real Name: <strong>' + (g.name || '') + '</strong> &nbsp;|&nbsp; Student ID: <strong>' + (g.sid || '') + '</strong></div></div>';
                 }
                 document.getElementById('mBody').innerHTML = anonBanner + '<div style="display:flex;gap:7px;margin-bottom:13px;flex-wrap:wrap">' + stag(g.status) + ' ' + ptag(g.pri) + '</div>' +
-                    '<div style="font-family:\'Cormorant Garamond\';font-size:17px;font-weight:600;margin-bottom:3px">' + g.title + '</div>' +
+                    '<div style="font-family:\'Montserrat\';font-size:17px;font-weight:600;margin-bottom:3px">' + g.title + '</div>' +
                     '<div style="font-size:12px;color:var(--text2);margin-bottom:13px">By <strong>' + dName + '</strong> (' + dSid + ') · ' + g.dept + ' · ' + g.year + '</div>' +
                     '<div class="dg" style="margin-bottom:13px">' +
                     '<div class="df"><label>Category</label><span>' + g.cat + '</span></div>' +
                     '<div class="df"><label>Sub-Type</label><span>' + g.sub + '</span></div>' +
                     '<div class="df"><label>Priority</label><span>' + ptag(g.pri) + '</span></div>' +
                     '<div class="df"><label>Email</label><span>' + g.email + '</span></div>' +
-                    '<div class="df"><label>Phone</label><span>' + (g.phone || '—') + '</span></div>' +
+                    '<div class="df"><label>Phone</label><span>' + (g.phone || '') + '</span></div>' +
                     '<div class="df"><label>Date</label><span>' + g.date + '</span></div></div>' +
                     '<div class="ddesc" style="margin-bottom:13px">' + g.description + '</div>' +
                     docsHtml + remarksHtml +
@@ -3499,15 +3659,15 @@
                     '<label class="lbl" style="margin-bottom:6px">Remarks / Action Taken</label>' +
                     '<textarea class="inp" id="mRem" style="min-height:75px" placeholder="Enter action taken or resolution details...">' + (g.remarks || '') + '</textarea>' +
                     '<div class="ma">' +
-                    '<button class="btn-p" onclick="saveU(\'' + g.id + '\')">💾 Save Update</button>' +
+                    '<button class="btn-p" onclick="saveU(\'' + g.id + '\')"> Save Update</button>' +
                     '<button class="btn-s" onclick="closeM()">Cancel</button>' +
-                    '<button style="margin-left:auto;padding:9px 14px;border-radius:8px;border:none;cursor:pointer;background:#fef2f2;color:var(--red);font-size:12px;font-weight:600;font-family:\'DM Sans\'" onclick="delG(\'' + g.id + '\')">🗑 Delete</button>' +
+                    '<button style="margin-left:auto;padding:9px 14px;border-radius:8px;border:none;cursor:pointer;background:#fef2f2;color:var(--red);font-size:12px;font-weight:600;font-family:\'Montserrat\'" onclick="delG(\'' + g.id + '\')"> Delete</button>' +
                     '</div>';
-                // ── RESOLUTION AUDIT ──
+                //  RESOLUTION AUDIT 
                 if (g.status === 'Resolved' || g.status === 'Closed') {
                     var resHtml = '';
                     if (g.resolved_by) {
-                        var resAt = g.resolved_at ? new Date(g.resolved_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
+                        var resAt = g.resolved_at ? new Date(g.resolved_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
                         resHtml = '<div style="margin-top:14px;padding:14px;background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px">' +
                             '<div style="font-size:11px;font-weight:700;color:#16774a;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em">&#9989; Resolution Record</div>' +
                             '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">' +
@@ -3516,16 +3676,16 @@
                             '<div><div style="font-size:10px;color:#16774a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Resolved On</div><div style="font-size:13px;font-weight:700;color:#0a1628">' + resAt + '</div></div>' +
                             '</div></div>';
                     } else {
-                        resHtml = '<div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:12px;color:#16774a">&#9989; Resolved — resolution audit not available (pre-dates this feature)</div>';
+                        resHtml = '<div style="margin-top:12px;padding:10px 14px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;font-size:12px;color:#16774a">&#9989; Resolved  resolution audit not available (pre-dates this feature)</div>';
                     }
                     document.getElementById('mBody').insertAdjacentHTML('beforeend', resHtml);
                 }
-                // ── ESCALATION AUDIT TRAIL ──
+                //  ESCALATION AUDIT TRAIL 
                 var escHist = [];
                 try { escHist = JSON.parse(g.escalation_history || '[]'); } catch (e2) { }
                 var trailRows = escHist.filter(function (h) { return h.reason && h.reason !== 'initial'; }).map(function (h) {
-                    var dt = h.at ? new Date(h.at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—';
-                    var rl = (h.reason === 'auto_24hr' || h.reason === 'auto_24hr_server') ? '<span style="color:#c2540a">&#9200; Auto — 24h no action</span>' : (h.reason === 'manual' || h.reason === 'admin_manual') ? '<span style="color:#7e22ce">&#9995; Manual by ' + (h.by || 'staff') + '</span>' : h.reason === 'bulk_admin' ? '<span style="color:#64748b">&#128230; Bulk action</span>' : '<span>' + h.reason + '</span>';
+                    var dt = h.at ? new Date(h.at).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+                    var rl = (h.reason === 'auto_24hr' || h.reason === 'auto_24hr_server') ? '<span style="color:#c2540a">&#9200; Auto  24h no action</span>' : (h.reason === 'manual' || h.reason === 'admin_manual') ? '<span style="color:#7e22ce">&#9995; Manual by ' + (h.by || 'staff') + '</span>' : h.reason === 'bulk_admin' ? '<span style="color:#64748b">&#128230; Bulk action</span>' : '<span>' + h.reason + '</span>';
                     var fromLbl = (typeof ESC_LABELS !== 'undefined' && ESC_LABELS[h.from]) ? ESC_LABELS[h.from] : h.from;
                     var toLbl = (typeof ESC_LABELS !== 'undefined' && ESC_LABELS[h.to]) ? ESC_LABELS[h.to] : h.to;
                     return '<div style="display:grid;grid-template-columns:120px 1fr auto;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center"><div style="color:var(--text2)">' + dt + '</div><div><strong style="color:#c2540a">' + fromLbl + '</strong><span style="color:var(--text2);margin:0 6px">&#8594;</span><strong style="color:#1d4ed8">' + toLbl + '</strong></div><div>' + rl + '</div></div>';
@@ -3568,15 +3728,15 @@
                 try {
                     var r = await sbFetch('grievances?id=eq.' + encodeURIComponent(id), { method: 'PATCH', prefer: 'return=minimal', body: JSON.stringify(updatePayload) });
                     if (!r.ok) throw new Error(r.status);
-                } catch (e) { toast('❌', 'Save failed: ' + e.message); return; }
+                } catch (e) { toast('', 'Save failed: ' + e.message); return; }
 
                 if (isTargetEscalation) {
-                    addLog('🔺', 'Admin escalated ' + id + ' to ' + ESC_LABELS[targetEscLevel], 'Super Admin', id);
+                    addLog('', 'Admin escalated ' + id + ' to ' + ESC_LABELS[targetEscLevel], 'Super Admin', id);
                 } else {
-                    addLog('✅', id + ' updated to ' + finalStatus + (remarks ? ' | ' + remarks.slice(0, 60) : ''), 'Super Admin', id);
+                    addLog('', id + ' updated to ' + finalStatus + (remarks ? ' | ' + remarks.slice(0, 60) : ''), 'Super Admin', id);
                 }
                 closeM(); await loadG(); renderAdmin(); renderAdminDash();
-                toast('✅', 'Grievance updated!');
+                toast('', 'Grievance updated!');
             }
 
             async function delG(id) {
@@ -3584,9 +3744,9 @@
                 try {
                     var r = await sbFetch('grievances?id=eq.' + encodeURIComponent(id), { method: 'DELETE', prefer: 'return=minimal' });
                     if (!r.ok) throw new Error(r.status);
-                } catch (e) { toast('❌', 'Delete failed: ' + e.message); return; }
-                addLog('🗑', 'Deleted grievance ' + id, 'Super Admin', id); closeM(); await loadG(); renderAdmin(); renderAdminDash(); badges();
-                toast('🗑', 'Grievance deleted.');
+                } catch (e) { toast('', 'Delete failed: ' + e.message); return; }
+                addLog('', 'Deleted grievance ' + id, 'Super Admin', id); closeM(); await loadG(); renderAdmin(); renderAdminDash(); badges();
+                toast('', 'Grievance deleted.');
             }
 
             function closeM() { document.getElementById('mOv').classList.remove('open'); }
@@ -3616,9 +3776,9 @@
                 setTimeout(function () { t.classList.remove('show'); }, dur);
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                ACTIVITY LOG  (localStorage)
-            ══════════════════════════════════════════ */
+             */
             function addLog(icon, msg, actor, grievanceId) {
                 // Local log (fast UI)
                 var logs = JSON.parse(localStorage.getItem('wox_log') || '[]');
@@ -3626,7 +3786,7 @@
                 logs.unshift(entry);
                 if (logs.length > 200) logs = logs.slice(0, 200);
                 localStorage.setItem('wox_log', JSON.stringify(logs));
-                // ── SUPABASE AUDIT LOG (#18) ──
+                //  SUPABASE AUDIT LOG (#18) 
                 var auditEntry = {
                     action: msg,
                     actor: actor || 'Super Admin',
@@ -3649,14 +3809,14 @@
                 if (!confirm('Clear the entire activity log?')) return;
                 localStorage.removeItem('wox_log');
                 renderLog('all');
-                toast('🗑', 'Activity log cleared.');
+                toast('', 'Activity log cleared.');
             }
             function renderLog(f) {
                 var logs = JSON.parse(localStorage.getItem('wox_log') || '[]');
                 if (f !== 'all') logs = logs.filter(l => l.msg && l.msg.includes(f));
                 var el = document.getElementById('logList');
-                if (!logs.length) { el.innerHTML = '<div class="es" style="padding:40px"><div class="ei">📋</div><div class="et">No activity yet</div><div class="esb">Status updates and actions will appear here.</div></div>'; return; }
-                var dotColors = { '✅': '#16774a', '🔺': '#b91c1c', '🗑': '#6d28d9', '⏳': '#c2540a', '🔵': '#1d4ed8', '📢': '#c9972b' };
+                if (!logs.length) { el.innerHTML = '<div class="es" style="padding:40px"><div class="ei"></div><div class="et">No activity yet</div><div class="esb">Status updates and actions will appear here.</div></div>'; return; }
+                var dotColors = { '': '#16774a', '': '#b91c1c', '': '#6d28d9', '': '#c2540a', '': '#1d4ed8', '': '#c9972b' };
                 el.innerHTML = logs.map(function (l) {
                     var dt = new Date(l.time);
                     var dc = dotColors[l.icon] || '#94a3b8';
@@ -3664,9 +3824,9 @@
                 }).join('');
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                ANNOUNCEMENTS  (localStorage)
-            ══════════════════════════════════════════ */
+             */
             var annType = 'info';
             function selAnnType(t, el) {
                 annType = t;
@@ -3680,7 +3840,7 @@
                 var loc = document.getElementById('annLoc').value.trim();
                 var expiry = parseInt(document.getElementById('annExpiry').value);
 
-                if (!title || !body) { toast('⚠️', 'Please fill in title and message.'); return; }
+                if (!title || !body) { toast('', 'Please fill in title and message.'); return; }
 
                 var expDate = expiry > 0 ? new Date(Date.now() + expiry * 86400000).toISOString() : null;
                 var payload = {
@@ -3702,10 +3862,10 @@
                     document.getElementById('annLoc').value = '';
 
                     renderAnnouncements();
-                    addLog('📢', 'Announcement posted: "' + title + '"');
-                    toast('📢', 'Announcement posted to Supabase!');
+                    addLog('', 'Announcement posted: "' + title + '"');
+                    toast('', 'Announcement posted to Supabase!');
                 } catch (e) {
-                    toast('❌', 'Post failed: ' + e.message);
+                    toast('', 'Post failed: ' + e.message);
                 }
             }
             async function deleteAnn(id) {
@@ -3714,9 +3874,9 @@
                     var r = await sbFetch('announcements?id=eq.' + id, { method: 'DELETE' });
                     if (!r.ok) throw new Error(r.status);
                     renderAnnouncements();
-                    toast('🗑', 'Announcement removed.');
+                    toast('', 'Announcement removed.');
                 } catch (e) {
-                    toast('❌', 'Delete failed: ' + e.message);
+                    toast('', 'Delete failed: ' + e.message);
                 }
             }
             async function renderAnnouncements() {
@@ -3732,31 +3892,31 @@
 
                     if (!anns.length) {
                         el.innerHTML = `<div class="es" style="padding:48px;background:var(--white);border-radius:16px;border:1px dashed var(--border)">
-                            <div class="ei">📢</div>
-                            <div class="et" style="font-family:'Cormorant Garamond';font-size:20px;font-weight:700">No active announcements</div>
+                            <div class="ei"></div>
+                            <div class="et" style="font-family:'Montserrat';font-size:20px;font-weight:700">No active announcements</div>
                             <div class="esb">Your official updates will appear here.</div>
                         </div>`;
                         return;
                     }
 
-                    var icons = { info: 'ℹ️', warning: '⚠️', urgent: '🚨', success: '✅' };
+                    var icons = { info: '', warning: '', urgent: '', success: '' };
                     
                     el.innerHTML = anns.map(function (a) {
                         var dt = new Date(a.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
                         var exp = a.expires_at ? 'until ' + new Date(a.expires_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) : 'No expiry';
                         return `
                             <div class="ann-card">
-                                <div class="ann-icon">${icons[a.type] || '📌'}</div>
+                                <div class="ann-icon">${icons[a.type] || ''}</div>
                                 <div style="flex:1">
                                     <div class="ann-title">${a.title}</div>
                                     <div class="ann-body">${a.body}</div>
                                     <div class="ann-meta">
-                                        <span>📂 ${a.tag || 'General'}</span>
-                                        <span>📍 ${a.location || 'Woxsen Campus'}</span>
-                                        <span style="margin-left:auto">📅 ${dt} · ${exp}</span>
+                                        <span> ${a.tag || 'General'}</span>
+                                        <span> ${a.location || 'Woxsen Campus'}</span>
+                                        <span style="margin-left:auto"> ${dt} · ${exp}</span>
                                     </div>
                                 </div>
-                                <button class="ann-del" onclick="deleteAnn(${a.id})" title="Remove">✕</button>
+                                <button class="ann-del" onclick="deleteAnn(${a.id})" title="Remove"></button>
                             </div>`;
                     }).join('');
                 } catch (e) {
@@ -3764,15 +3924,15 @@
                 }
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                ANALYTICS
-            ══════════════════════════════════════════ */
+             */
             var _charts = {};
             function mkChart(id, type, labels, data, colors, opts) {
                 if (_charts[id]) _charts[id].destroy();
                 var ctx = document.getElementById(id);
                 if (!ctx) return;
-                _charts[id] = new Chart(ctx, { type: type, data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 2, borderColor: '#fff', hoverOffset: 5 }] }, options: Object.assign({ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'DM Sans', size: 10 }, boxWidth: 10, padding: 9 } } }, cutout: type === 'doughnut' ? '58%' : undefined }, opts || {}) });
+                _charts[id] = new Chart(ctx, { type: type, data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 2, borderColor: '#fff', hoverOffset: 5 }] }, options: Object.assign({ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right', labels: { font: { family: 'Montserrat', size: 10 }, boxWidth: 10, padding: 9 } } }, cutout: type === 'doughnut' ? '58%' : undefined }, opts || {}) });
             }
 
             function makeBar(containerId, counts, colorMap) {
@@ -3792,23 +3952,23 @@
                 }).join('');
             }
             function renderAnalytics() {
-                // ── ESCALATION FUNNEL ──
+                //  ESCALATION FUNNEL 
                 var escalationFunnel = {};
                 ESC_LEVELS.forEach(function (lv) { escalationFunnel[lv] = 0; });
                 G.forEach(function (g) { if (g.cat === 'Academic') escalationFunnel[getEscLevel(g)] = (escalationFunnel[getEscLevel(g)] || 0) + 1; });
-                var funnelHtml = '<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--navy)">📊 Escalation Level Distribution (Academic Grievances)</div><div style="display:flex;gap:10px;flex-wrap:wrap">' +
+                var funnelHtml = '<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--navy)"> Escalation Level Distribution (Academic Grievances)</div><div style="display:flex;gap:10px;flex-wrap:wrap">' +
                     ESC_LEVELS.map(function (lv) {
                         var n = escalationFunnel[lv] || 0;
                         var colors = { professor: '#eff6ff|#1d4ed8', pd: '#f0fdf4|#16774a', pm: '#fdf4ff|#7e22ce', dean: '#fff7ed|#c2540a', admin: '#fef2f2|#b91c1c' };
                         var cs = colors[lv].split('|');
                         return '<div style="flex:1;min-width:100px;background:' + cs[0] + ';border:2px solid ' + cs[1] + '22;border-radius:12px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:' + cs[1] + '">' + n + '</div><div style="font-size:11px;font-weight:600;color:' + cs[1] + ';margin-top:4px">' + ESC_LABELS[lv] + '</div><div style="font-size:10px;color:var(--text2);margin-top:2px">' + (n && G.length ? Math.round(n / G.filter(function (g) { return g.cat === 'Academic'; }).length * 100) : '0') + '%</div></div>';
-                    }).join('<div style="display:flex;align-items:center;color:#cbd5e1;font-size:22px">›</div>') +
+                    }).join('<div style="display:flex;align-items:center;color:#cbd5e1;font-size:22px"></div>') +
                     '</div></div>';
                 var funnelEl = document.getElementById('escFunnel');
                 if (funnelEl) funnelEl.innerHTML = funnelHtml;
 
                 var t = G.length;
-                if (!t) { document.getElementById('anaRate').textContent = '0%'; document.getElementById('anaAvgDays').textContent = '—'; document.getElementById('anaEscRate').textContent = '0%'; return; }
+                if (!t) { document.getElementById('anaRate').textContent = '0%'; document.getElementById('anaAvgDays').textContent = ''; document.getElementById('anaEscRate').textContent = '0%'; return; }
                 var resolved = G.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
                 var esc = G.filter(x => x.status === 'Escalated').length;
                 var rate = Math.round(resolved / t * 100);
@@ -3835,14 +3995,14 @@
 
                 // Dept chart
                 var depts = {}; G.forEach(x => depts[x.assigned] = (depts[x.assigned] || 0) + 1);
-                mkChart('chartByDept', 'bar', Object.keys(depts), Object.values(depts), ['#c9972b', '#e8b84b', '#a16207', '#92400e', '#78350f'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'DM Sans', size: 10 } } }, x: { ticks: { font: { family: 'DM Sans', size: 9 } } } } });
+                mkChart('chartByDept', 'bar', Object.keys(depts), Object.values(depts), ['#c9972b', '#e8b84b', '#a16207', '#92400e', '#78350f'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }, x: { ticks: { font: { family: 'Montserrat', size: 9 } } } } });
 
                 // Monthly trend chart
                 var mOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 var mc = {};
                 G.forEach(function (g) { var p = g.date.split(' '); if (p[1]) mc[p[1]] = (mc[p[1]] || 0) + 1; });
                 var mKeys = Object.keys(mc).sort(function (a, b) { return mOrder.indexOf(a) - mOrder.indexOf(b); });
-                mkChart('chartByMonth', 'bar', mKeys, mKeys.map(function (k) { return mc[k]; }), ['#c9972b', '#e8b84b', '#a16207', '#c9972b', '#e8b84b', '#a16207'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'DM Sans', size: 10 } } }, x: { ticks: { font: { family: 'DM Sans', size: 10 } } } } });
+                mkChart('chartByMonth', 'bar', mKeys, mKeys.map(function (k) { return mc[k]; }), ['#c9972b', '#e8b84b', '#a16207', '#c9972b', '#e8b84b', '#a16207'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }, x: { ticks: { font: { family: 'Montserrat', size: 10 } } } } });
 
                 // Department performance table
                 var deptData = {};
@@ -3860,21 +4020,21 @@
                 document.getElementById('anaDepTable').innerHTML = '<table><thead><tr><th>Department</th><th style="text-align:center">Total</th><th style="text-align:center">Pending</th><th style="text-align:center">Escalated</th><th style="text-align:center">Resolved</th><th>Resolution Rate</th></tr></thead><tbody>' + depRows + '</tbody></table>';
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                STAFF PERFORMANCE (#7)
-            ══════════════════════════════════════════ */
+             */
             var ACAD_STAFF = [
-                { username: 'professor', fullname: 'Faculty / Professor', role: 'First-level Academic Handler', emoji: '👨‍🏫', level: 'professor', color: '#eff6ff', textColor: '#1d4ed8' },
-                { username: 'pd', fullname: 'Programme Director', role: 'Programme Director', emoji: '📋', level: 'pd', color: '#f0fdf4', textColor: '#16774a' },
-                { username: 'pm', fullname: 'Programme Manager', role: 'Programme Manager', emoji: '🏛️', level: 'pm', color: '#fdf4ff', textColor: '#7e22ce' },
-                { username: 'dean', fullname: 'Dean', role: 'School Dean', emoji: '🎓', level: 'dean', color: '#fff7ed', textColor: '#c2540a' },
+                { username: 'professor', fullname: 'Faculty / Professor', role: 'First-level Academic Handler', emoji: '', level: 'professor', color: '#eff6ff', textColor: '#1d4ed8' },
+                { username: 'pd', fullname: 'Programme Director', role: 'Programme Director', emoji: '', level: 'pd', color: '#f0fdf4', textColor: '#16774a' },
+                { username: 'pm', fullname: 'Programme Manager', role: 'Programme Manager', emoji: '', level: 'pm', color: '#fdf4ff', textColor: '#7e22ce' },
+                { username: 'dean', fullname: 'Dean', role: 'School Dean', emoji: '', level: 'dean', color: '#fff7ed', textColor: '#c2540a' },
             ];
 
             function renderStaffPerf() {
                 var el = document.getElementById('perfContent');
-                if (!G.length) { el.innerHTML = '<div class="es" style="padding:40px"><div class="ei">📊</div><div class="et">No grievance data yet</div></div>'; return; }
+                if (!G.length) { el.innerHTML = '<div class="es" style="padding:40px"><div class="ei"></div><div class="et">No grievance data yet</div></div>'; return; }
 
-                // ── Academic hierarchy performance ──
+                //  Academic hierarchy performance 
                 var acadRows = ACAD_STAFF.map(function (s) {
                     // Grievances that passed through this level
                     var handled = G.filter(function (g) {
@@ -3908,9 +4068,9 @@
                         '</tr>';
                 }).join('');
 
-                // ── All staff performance (Academic + Non-Academic) ──
+                //  All staff performance (Academic + Non-Academic) 
                 var allStaffRows = STAFF_LIST.map(function (s) {
-                    var theme = DEPT_THEMES[s.dept] || { emoji: '👤', color: '#f1f5f9' };
+                    var theme = DEPT_THEMES[s.dept] || { emoji: '', color: '#f1f5f9' };
                     var myG;
                     if (s.dept === 'Academic') {
                         // Academic staff matched by their escalation_level
@@ -3928,16 +4088,16 @@
                         var sub = new Date(g.date); var resD = new Date(g.resolved_at);
                         return isNaN(sub) || isNaN(resD) ? null : Math.max(0, (resD - sub) / 86400000);
                     }).filter(function (x) { return x !== null; });
-                    var avgDays = times.length ? (times.reduce(function (a, b) { return a + b; }, 0) / times.length).toFixed(1) : '—';
+                    var avgDays = times.length ? (times.reduce(function (a, b) { return a + b; }, 0) / times.length).toFixed(1) : '';
                     var rate = total ? Math.round(resCount / total * 100) : 0;
                     var perfColor = rate >= 70 ? '#16774a' : rate >= 40 ? '#c2540a' : '#b91c1c';
-                    var deptRowTag = s.dept === 'Academic' ? (s.escalation_level || 'professor') + ' · Academic' : (s.role || s.dept || '—');
+                    var deptRowTag = s.dept === 'Academic' ? (s.escalation_level || 'professor') + ' · Academic' : (s.role || s.dept || '');
                     return '<tr>' +
                         '<td><div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;border-radius:11px;background:' + theme.color + ';display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">' + theme.emoji + '</div><div><div style="font-weight:700;font-size:13px">' + (s.fullname || s.username) + '</div><div style="font-size:11px;color:var(--text2)">' + deptRowTag + '</div></div></div></td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700">' + total + '</td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700;color:var(--green)">' + resCount + '</td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700;color:var(--red)">' + esc + '</td>' +
-                        '<td style="text-align:center;font-size:13px;font-weight:600">' + (avgDays === '—' ? '—' : avgDays + 'd') + '</td>' +
+                        '<td style="text-align:center;font-size:13px;font-weight:600">' + (avgDays === '' ? '' : avgDays + 'd') + '</td>' +
                         '<td><div style="display:flex;align-items:center;gap:8px"><div class="prog-bar" style="flex:1"><div class="prog-fill" style="background:' + perfColor + ';width:' + rate + '%"></div></div><span style="font-size:12px;font-weight:700;min-width:36px;color:' + perfColor + '">' + rate + '%</span></div></td>' +
                         '</tr>';
                 }).join('');
@@ -3955,12 +4115,12 @@
                     '</div>';
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                SLA TRACKER
-            ══════════════════════════════════════════ */
-            /* ══════════════════════════════════════════
+             */
+            /* 
                SLA TRACKER
-            ══════════════════════════════════════════ */
+             */
             var slaFilter = 'all';
             const etaMap = { 
                 Urgent: 2, 
@@ -3988,7 +4148,7 @@
                     const msLeft = deadline.getTime() - now;
                     const daysLeft = Math.ceil(msLeft / 86400000);
                     const slaClass = daysLeft < 0 ? 'over' : daysLeft <= 2 ? 'warn' : 'ok';
-                    const pillLabel = daysLeft < 0 ? '🔴 ' + Math.abs(daysLeft) + 'd overdue' : daysLeft === 0 ? '🟡 Due today' : '🟢 ' + daysLeft + 'd left';
+                    const pillLabel = daysLeft < 0 ? ' ' + Math.abs(daysLeft) + 'd overdue' : daysLeft === 0 ? ' Due today' : ' ' + daysLeft + 'd left';
                     return { g, deadline, daysLeft, slaClass, pillLabel };
                 }).filter(x => x !== null);
 
@@ -4000,7 +4160,7 @@
                 
                 const el = document.getElementById('slaTable');
                 if (!rows.length) { 
-                    el.innerHTML = '<div class="es" style="padding:60px;background:var(--white);border-radius:16px"><div class="ei">⏱️</div><div class="et" style="font-family:\'Cormorant Garamond\';font-size:20px;font-weight:700">No matching grievances</div><div class="esb">All clear on the SLA front.</div></div>'; 
+                    el.innerHTML = '<div class="es" style="padding:60px;background:var(--white);border-radius:16px"><div class="ei"></div><div class="et" style="font-family:\'Montserrat\';font-size:20px;font-weight:700">No matching grievances</div><div class="esb">All clear on the SLA front.</div></div>'; 
                     return; 
                 }
 
@@ -4035,16 +4195,16 @@
                 </table>`;
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                STAFF ACCOUNTS
-            ══════════════════════════════════════════ */
+             */
             var STAFF_LIST = [];
             var DEPT_THEMES = {
-                'Academic': { emoji: '📚', color: '#eff6ff', textColor: '#1d4ed8' },
-                'Administrative': { emoji: '🏛️', color: '#f0fdf4', textColor: '#16774a' },
-                'Infrastructure': { emoji: '🏗️', color: '#fff7ed', textColor: '#c2540a' },
-                'Ragging': { emoji: '🚨', color: '#fef2f2', textColor: '#b91c1c' },
-                'Others': { emoji: '🤝', color: '#faf5ff', textColor: '#6d28d9' }
+                'Academic': { emoji: '', color: '#eff6ff', textColor: '#1d4ed8' },
+                'Administrative': { emoji: '', color: '#f0fdf4', textColor: '#16774a' },
+                'Infrastructure': { emoji: '', color: '#fff7ed', textColor: '#c2540a' },
+                'Ragging': { emoji: '', color: '#fef2f2', textColor: '#b91c1c' },
+                'Others': { emoji: '', color: '#faf5ff', textColor: '#6d28d9' }
             };
 
             async function loadStaff() {
@@ -4119,7 +4279,7 @@
                     var yr = yearCodes[yCode] || '';
                     var role = roleCodes[rCode] || '';
 
-                    return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:1px 6px;font-size:10px;font-weight:700;margin-right:4px;display:inline-block;margin-top:2px;">🏫 ${sch} · ${yr} · ${role}</span>`;
+                    return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:8px;padding:1px 6px;font-size:10px;font-weight:700;margin-right:4px;display:inline-block;margin-top:2px;"> ${sch} · ${yr} · ${role}</span>`;
                 }).join('');
             }
 
@@ -4190,7 +4350,7 @@
                 if (document.getElementById('staffCount')) {
                     document.getElementById('staffCount').textContent = list.length;
                 }
-                if (!list.length) { el.innerHTML = '<div class="es" style="padding:40px;grid-column:1/-1"><div class="ei">👥</div><div class="et">No staff found</div></div>'; return; }
+                if (!list.length) { el.innerHTML = '<div class="es" style="padding:40px;grid-column:1/-1"><div class="ei"></div><div class="et">No staff found</div></div>'; return; }
                 el.innerHTML = list.map(function (s) {
                     var t = DEPT_THEMES[s.dept] || DEPT_THEMES['Others'];
                     var dLabel = DEPT_LABELS[s.dept] || 'Unknown';
@@ -4218,7 +4378,7 @@
                         '<div style="width:52px;height:52px;border-radius:14px;background:' + t.textColor + '22;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">' + t.emoji + '</div>' +
                         '<div style="flex:1"><div class="staff-name">' + s.fullname + ' ' + statBadge + '</div>' +
                         roleRow +
-                        (s.sub_dept && s.dept !== 'Academic' ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px">🏫 ' + s.sub_dept + '</div>' : '') +
+                        (s.sub_dept && s.dept !== 'Academic' ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px"> ' + s.sub_dept + '</div>' : '') +
                         '<div style="margin-top:7px;display:inline-block;padding:3px 12px;border-radius:100px;background:' + t.color + ';color:' + t.textColor + ';border:1px solid ' + t.textColor + '44;font-size:11px;font-weight:700">ID: ' + s.username + '</div></div>' +
                         '</div>' +
                         '<div style="padding:18px 22px">' +
@@ -4229,12 +4389,12 @@
                         '<div style="background:#fef2f2;border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--red)">' + pEsc + '</div><div style="font-size:11px;color:var(--text2)">Escalated</div></div></div>' +
                         '<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span>Resolution Rate</span><strong>' + rate + '%</strong></div><div class="prog-bar"><div class="prog-fill" style="background:' + t.textColor + ';width:' + rate + '%"></div></div></div>' +
                         '<div style="border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:7px">' +
-                        '<div style="font-size:12px;display:flex;gap:8px"><span>📧</span><a href="mailto:' + s.email + '" style="color:var(--blue);text-decoration:none">' + s.email + '</a></div>' +
-                        '<div style="font-size:12px;display:flex;gap:8px"><span>📞</span><span>' + s.phone + '</span></div>' +
-                        '<div style="font-size:12px;display:flex;gap:8px"><span>🗓</span><span>Joined ' + s.joined + '</span></div>' +
+                        '<div style="font-size:12px;display:flex;gap:8px"><span></span><a href="mailto:' + s.email + '" style="color:var(--blue);text-decoration:none">' + s.email + '</a></div>' +
+                        '<div style="font-size:12px;display:flex;gap:8px"><span></span><span>' + s.phone + '</span></div>' +
+                        '<div style="font-size:12px;display:flex;gap:8px"><span></span><span>Joined ' + s.joined + '</span></div>' +
                         '</div>' +
                         '<div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end">' +
-                        '<button class="btn-icon" onclick="openStaffModal(\'' + s.id + '\')" style="gap:5px;cursor:pointer">✏️ Edit</button>' +
+                        '<button class="btn-icon" onclick="openStaffModal(\'' + s.id + '\')" style="gap:5px;cursor:pointer"> Edit</button>' +
                         '</div>' +
                         '</div></div>';
                 }).join('');
@@ -4260,8 +4420,8 @@
                     var schShort = schoolCodes[a.school] || a.school;
                     var rShort = a.role === 'Programme Director' ? 'PD' : a.role === 'Programme Manager' ? 'PM' : 'Prof';
                     return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
-                        🏫 ${schShort} · ${a.year.replace(' Year','')} · ${rShort}
-                        <span onclick="removeModalAssignment(${idx})" style="color:var(--red);cursor:pointer;font-weight:900;margin-left:2px">✕</span>
+                         ${schShort} · ${a.year.replace(' Year','')} · ${rShort}
+                        <span onclick="removeModalAssignment(${idx})" style="color:var(--red);cursor:pointer;font-weight:900;margin-left:2px"></span>
                     </span>`;
                 }).join('');
 
@@ -4295,7 +4455,7 @@
                 var generatedId = sCode + yCode + rCode;
 
                 if (_modalAssignments.some(a => a.id === generatedId)) {
-                    toast('⚠️', 'This assignment has already been added.');
+                    toast('', 'This assignment has already been added.');
                     return;
                 }
 
@@ -4361,9 +4521,9 @@
                     }
 
                     var isActive = (s.status !== 'Terminated');
-                    var tb = isActive ? '<button class="btn-s" style="color:#b91c1c;border-color:#fecaca" onclick="termStaff(\'' + s.id + '\')">🚫 Terminate</button>' : '<button class="btn-s" style="color:var(--green);border-color:#bbf7d0" onclick="reactivateStaff(\'' + s.id + '\')">✅ Reactivate</button>';
+                    var tb = isActive ? '<button class="btn-s" style="color:#b91c1c;border-color:#fecaca" onclick="termStaff(\'' + s.id + '\')"> Terminate</button>' : '<button class="btn-s" style="color:var(--green);border-color:#bbf7d0" onclick="reactivateStaff(\'' + s.id + '\')"> Reactivate</button>';
 
-                    acts.innerHTML = '<button class="btn-s" onclick="document.getElementById(\'mStaff\').classList.remove(\'open\')">Cancel</button>' + tb + '<button class="btn-p" id="sfSaveBtn" onclick="saveStaff()">💾 Update Account</button>';
+                    acts.innerHTML = '<button class="btn-s" onclick="document.getElementById(\'mStaff\').classList.remove(\'open\')">Cancel</button>' + tb + '<button class="btn-p" id="sfSaveBtn" onclick="saveStaff()"> Update Account</button>';
                 } else {
                     document.getElementById('sfName').value = '';
                     document.getElementById('sfRole').value = '';
@@ -4379,7 +4539,7 @@
                     document.getElementById('sfAuthSection').style.display = 'block';
                     passWrap.style.display = 'block';
                     passWarning.style.display = 'none';
-                    acts.innerHTML = '<button class="btn-s" onclick="document.getElementById(\'mStaff\').classList.remove(\'open\')">Cancel</button><button class="btn-p" id="sfSaveBtn" onclick="saveStaff()">💾 Save Account</button>';
+                    acts.innerHTML = '<button class="btn-s" onclick="document.getElementById(\'mStaff\').classList.remove(\'open\')">Cancel</button><button class="btn-p" id="sfSaveBtn" onclick="saveStaff()"> Save Account</button>';
                 }
 
                 toggleSubDept();
@@ -4414,7 +4574,7 @@
 
                 var deptVal = document.getElementById('sfDept').value;
                 if (deptVal === 'Academic' && _modalAssignments.length === 0) {
-                    toast('⚠️', 'Please add at least one role/year assignment for academic staff.');
+                    toast('', 'Please add at least one role/year assignment for academic staff.');
                     return;
                 }
 
@@ -4428,7 +4588,7 @@
                     sub_dept: document.getElementById('sfSubDept').value
                 };
 
-                if (!obj.fullname || !obj.role) { toast('⚠️', 'Name and Role are required'); return; }
+                if (!obj.fullname || !obj.role) { toast('', 'Name and Role are required'); return; }
 
                 var user = document.getElementById('sfUser').value.trim();
                 var pass = document.getElementById('sfPass').value.trim();
@@ -4436,7 +4596,7 @@
                 obj.username = user;
 
                 if (!isEdit) {
-                    if (!user || !pass) { toast('⚠️', 'Username and Password required.'); return; }
+                    if (!user || !pass) { toast('', 'Username and Password required.'); return; }
                     obj.password = pass;
                     obj.status = 'Active';
                 }
@@ -4457,7 +4617,7 @@
                         body: JSON.stringify(obj)
                     });
 
-                    if (!r.ok) { var err = await r.json(); toast('❌', 'Error saving staff: ' + (err.message || '')); }
+                    if (!r.ok) { var err = await r.json(); toast('', 'Error saving staff: ' + (err.message || '')); }
                     else {
                         document.getElementById('mStaff').classList.remove('open');
                         await loadStaff(); // Refresh
@@ -4466,18 +4626,18 @@
                             document.getElementById('scUser').textContent = user;
                             document.getElementById('scPass').textContent = pass;
                             document.getElementById('mStaffCreds').classList.add('open');
-                            toast('✅', 'Staff created successfully!');
+                            toast('', 'Staff created successfully!');
                         } else {
                             if (reason) {
-                                addLog('📝', 'Role updated: ' + obj.fullname + ' | Reason: ' + reason, 'Super Admin');
+                                addLog('', 'Role updated: ' + obj.fullname + ' | Reason: ' + reason, 'Super Admin');
                             }
-                            toast('✅', 'Staff updated successfully!');
+                            toast('', 'Staff updated successfully!');
                         }
                     }
-                } catch (e) { toast('❌', 'Error: ' + e.message); }
+                } catch (e) { toast('', 'Error: ' + e.message); }
                 finally {
                     var b = document.getElementById('sfSaveBtn');
-                    if (b) b.textContent = isEdit ? '💾 Update Account' : '💾 Save Account';
+                    if (b) b.textContent = isEdit ? ' Update Account' : ' Save Account';
                 }
             }
 
@@ -4507,7 +4667,7 @@
                 }
                 document.getElementById('termReasonErr').style.display = 'none';
                 var btn = document.getElementById('termConfirmBtn');
-                btn.textContent = 'Terminating…';
+                btn.textContent = 'Terminating';
                 btn.disabled = true;
 
                 var id = _pendingTermId;
@@ -4519,17 +4679,17 @@
                     });
                     if (!r.ok) { var e = await r.json(); throw new Error(e.message || r.status); }
 
-                    // ── Audit log only ──
-                    addLog('🚫', 'Terminated staff: ' + (s ? s.fullname : id) + ' | Reason: ' + reason, 'Super Admin');
+                    //  Audit log only 
+                    addLog('', 'Terminated staff: ' + (s ? s.fullname : id) + ' | Reason: ' + reason, 'Super Admin');
 
                     closeTermModal();
                     document.getElementById('mStaff').classList.remove('open');
                     await loadStaff();
-                    toast('🚫', (s ? s.fullname : 'Staff') + ' terminated successfully.');
+                    toast('', (s ? s.fullname : 'Staff') + ' terminated successfully.');
                 } catch (e) {
-                    toast('❌', 'Error: ' + e.message);
+                    toast('', 'Error: ' + e.message);
                 } finally {
-                    btn.textContent = '🚫 Confirm Terminate';
+                    btn.textContent = ' Confirm Terminate';
                     btn.disabled = false;
                 }
             }
@@ -4549,7 +4709,7 @@
 
             async function confirmReactivate() {
                 var btn = document.getElementById('reactConfirmBtn');
-                btn.textContent = 'Reactivating…';
+                btn.textContent = 'Reactivating';
                 btn.disabled = true;
                 var id = _pendingReactId;
                 var s = STAFF_LIST.find(function (x) { return String(x.id) === String(id); });
@@ -4560,68 +4720,68 @@
                     });
                     if (!r.ok) { var e = await r.json(); throw new Error(e.message || r.status); }
 
-                    // ── Audit log ──
-                    addLog('✅', 'Reactivated staff account: ' + (s ? s.fullname : id), 'Super Admin');
+                    //  Audit log 
+                    addLog('', 'Reactivated staff account: ' + (s ? s.fullname : id), 'Super Admin');
 
                     closeReactModal();
                     document.getElementById('mStaff').classList.remove('open');
                     await loadStaff();
-                    toast('✅', (s ? s.fullname : 'Staff') + ' account reactivated.');
+                    toast('', (s ? s.fullname : 'Staff') + ' account reactivated.');
                 } catch (e) {
-                    toast('❌', 'Error: ' + e.message);
+                    toast('', 'Error: ' + e.message);
                 } finally {
-                    btn.textContent = '✅ Confirm Reactivate';
+                    btn.textContent = ' Confirm Reactivate';
                     btn.disabled = false;
                 }
             }
 
 
-            /* ══════════════════════════════════════════
-               SEED STORAGE — pre-fill log + announcements
-            ══════════════════════════════════════════ */
+            /* 
+               SEED STORAGE  pre-fill log + announcements
+             */
             function seedStorage() {
                 var log = JSON.parse(localStorage.getItem('wox_log') || '[]');
                 if (!log.length) {
                     localStorage.setItem('wox_log', JSON.stringify([
-                        { icon: '✅', msg: 'GRV-2025-00117 marked as Resolved | RO purifier repaired and sanitized.', actor: 'Super Admin', time: '2025-02-02T14:32:00' },
-                        { icon: '✅', msg: 'GRV-2025-00116 marked as Resolved | Refund of Rs.500 processed to student.', actor: 'Super Admin', time: '2025-02-01T11:20:00' },
-                        { icon: '🔺', msg: 'GRV-2025-00115 marked as Escalated — Ragging in Hostel flagged urgently.', actor: 'Super Admin', time: '2025-01-31T09:10:00' },
-                        { icon: '✅', msg: 'GRV-2025-00113 marked as Resolved | Merit scholarship of Rs.25000 credited.', actor: 'examcell', time: '2025-01-30T16:45:00' },
-                        { icon: '📢', msg: 'Announcement posted: Portal Maintenance on 5 Feb 2am-4am', actor: 'Super Admin', time: '2025-01-30T10:00:00' },
-                        { icon: '✅', msg: 'GRV-2025-00110 marked as Resolved | Room reallotment done, key issued.', actor: 'adminoffice', time: '2025-01-29T13:55:00' },
-                        { icon: '✅', msg: 'GRV-2025-00109 marked as Resolved | Counseling resumes Tue & Thu.', actor: 'studentwelfare', time: '2025-01-28T15:20:00' },
-                        { icon: '🔺', msg: 'GRV-2025-00108 marked as Escalated — Faculty absence escalated to Dean.', actor: 'Super Admin', time: '2025-01-27T10:30:00' },
-                        { icon: '🔺', msg: 'GRV-2025-00105 marked as Escalated — Ragging complaint forwarded to committee.', actor: 'Super Admin', time: '2025-01-26T09:00:00' },
-                        { icon: '✅', msg: 'GRV-2025-00106 marked as Resolved | Certificate issued at Admin Block A.', actor: 'adminoffice', time: '2025-01-25T14:10:00' },
-                        { icon: '✅', msg: 'GRV-2025-00104 marked as Resolved | Marks updated after faculty verification.', actor: 'examcell', time: '2025-01-24T11:00:00' },
-                        { icon: '✅', msg: 'GRV-2025-00103 marked as Resolved | Router replaced in Block C hostel.', actor: 'estateoffice', time: '2025-01-23T16:30:00' },
-                        { icon: '⬇️', msg: 'Exported all grievances to CSV (18 records)', actor: 'Super Admin', time: '2025-01-18T10:00:00' }
+                        { icon: '', msg: 'GRV-2025-00117 marked as Resolved | RO purifier repaired and sanitized.', actor: 'Super Admin', time: '2025-02-02T14:32:00' },
+                        { icon: '', msg: 'GRV-2025-00116 marked as Resolved | Refund of Rs.500 processed to student.', actor: 'Super Admin', time: '2025-02-01T11:20:00' },
+                        { icon: '', msg: 'GRV-2025-00115 marked as Escalated  Ragging in Hostel flagged urgently.', actor: 'Super Admin', time: '2025-01-31T09:10:00' },
+                        { icon: '', msg: 'GRV-2025-00113 marked as Resolved | Merit scholarship of Rs.25000 credited.', actor: 'examcell', time: '2025-01-30T16:45:00' },
+                        { icon: '', msg: 'Announcement posted: Portal Maintenance on 5 Feb 2am-4am', actor: 'Super Admin', time: '2025-01-30T10:00:00' },
+                        { icon: '', msg: 'GRV-2025-00110 marked as Resolved | Room reallotment done, key issued.', actor: 'adminoffice', time: '2025-01-29T13:55:00' },
+                        { icon: '', msg: 'GRV-2025-00109 marked as Resolved | Counseling resumes Tue & Thu.', actor: 'studentwelfare', time: '2025-01-28T15:20:00' },
+                        { icon: '', msg: 'GRV-2025-00108 marked as Escalated  Faculty absence escalated to Dean.', actor: 'Super Admin', time: '2025-01-27T10:30:00' },
+                        { icon: '', msg: 'GRV-2025-00105 marked as Escalated  Ragging complaint forwarded to committee.', actor: 'Super Admin', time: '2025-01-26T09:00:00' },
+                        { icon: '', msg: 'GRV-2025-00106 marked as Resolved | Certificate issued at Admin Block A.', actor: 'adminoffice', time: '2025-01-25T14:10:00' },
+                        { icon: '', msg: 'GRV-2025-00104 marked as Resolved | Marks updated after faculty verification.', actor: 'examcell', time: '2025-01-24T11:00:00' },
+                        { icon: '', msg: 'GRV-2025-00103 marked as Resolved | Router replaced in Block C hostel.', actor: 'estateoffice', time: '2025-01-23T16:30:00' },
+                        { icon: '', msg: 'Exported all grievances to CSV (18 records)', actor: 'Super Admin', time: '2025-01-18T10:00:00' }
                     ]));
                 }
                 var ann = JSON.parse(localStorage.getItem('wox_announcements') || '[]');
                 // (Removed default auto-generated announcements)
             }
 
-            /* ══════════════════════════════════════════
+            /* 
                CSV EXPORT (admin = all data)
-            ══════════════════════════════════════════ */
+             */
             function exportCSVAdmin() {
-                if (!G.length) { toast('ℹ️', 'No data to export.'); return; }
+                if (!G.length) { toast('', 'No data to export.'); return; }
                 var headers = ['ID', 'Student ID', 'Name', 'Department', 'Year', 'Email', 'Category', 'Sub-Type', 'Priority', 'Title', 'Description', 'Date', 'Status', 'Assigned To', 'Remarks'];
                 var rows = G.map(function (g) { return [g.id, g.sid, g.name, g.dept, g.year, g.email, g.cat, g.sub, g.pri, '"' + (g.title || '').replace(/"/g, '""') + '"', '"' + (g.description || '').replace(/"/g, '""') + '"', g.date, g.status, g.assigned, '"' + (g.remarks || '').replace(/"/g, '""') + '"'].join(','); });
                 var csv = [headers.join(',')].concat(rows).join('\n');
                 var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
                 a.download = 'Woxsen_AllGrievances_' + new Date().toISOString().slice(0, 10) + '.csv';
-                a.click(); toast('⬇️', 'Full dataset exported!');
-                addLog('⬇️', 'Exported all grievances to CSV (' + G.length + ' records)');
+                a.click(); toast('', 'Full dataset exported!');
+                addLog('', 'Exported all grievances to CSV (' + G.length + ' records)');
             }
 
 
-        /* ══════════════════════════════════════════
+        /* 
            ADMIN WEBSOCKET CLIENT
            Connects on page load, shows live alerts
            for new grievances and status changes.
-        ══════════════════════════════════════════ */
+         */
         (function initAdminWS() {
             let _aws = null, _awsTimer = null;
 
@@ -4647,14 +4807,14 @@
                                     nb1.textContent = n;
                                     nb1.style.display = 'inline';
                                 }
-                                toast('🔔', `New grievance from <strong>${msg.student_name || 'a student'}</strong> — ${msg.category || ''}`, 6000);
+                                toast('', `New grievance from <strong>${msg.student_name || 'a student'}</strong>  ${msg.category || ''}`, 6000);
                                 // Reload grievances so it appears live
                                 if (typeof loadG === 'function') loadG().then(() => {
                                     if (typeof renderPanel === 'function') renderPanel();
                                     if (typeof renderDash === 'function') renderDash();
                                 });
                             } else if (msg.event === 'status_change') {
-                                toast('📋', `Grievance ${msg.grievance_id} → <strong>${msg.status}</strong>`, 4000);
+                                toast('', `Grievance ${msg.grievance_id}  <strong>${msg.status}</strong>`, 4000);
                             }
                         } catch(_) {}
                     };
