@@ -36,162 +36,197 @@ KNOWLEDGE_BASE: list[DirectAnswer] = [
     DirectAnswer(
         id="id_lost",
         title="Lost / Missing ID Card",
-        keywords=[
-            "id card missing", "lost id card", "id missing", "lost my id",
-            "id card lost", "misplaced id", "id card chori", "id card kho gaya",
-            "id card nahi mila", "missing identity card"
-        ],
+        keywords=["lost id", "missing id", "id card lost", "id lost", "misplaced id"],
         steps=[
-            Step("Security Office – Block A, Ground Floor",
-                 "Report the loss and collect a Loss Complaint Slip",
-                 "Mon–Sat, 8AM–8PM"),
-            Step("Fee Counter – Accounts Dept, Admin Block Room 201",
-                 "Pay ₹200 re-issue fee. Keep the payment receipt.",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Admin Office – Room 102",
-                 "Collect the ID re-issue form. Attach: complaint slip + fee receipt.",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Submit & Collect",
-                 "Submit the filled form at Admin Room 102. New ID card ready in 2 working days.",
-                 None),
+            Step("Bridge Helpdesk", "Submit your request for a replacement ID card", "Office Hours"),
+            Step("Required Documents", "Provide your Student ID Number, Identity Proof, and a Passport Photo (if requested)", None),
+            Step("Processing Time", "Approximately 2–7 working days", None)
         ],
-        contact="📧 admin@woxsen.edu.in | ☎ 040-6810-0100 ext 102",
-        fee="₹200",
-        note="Bring any other photo ID (Aadhaar/Passport) when visiting the Security Office."
-    ),
-
-    DirectAnswer(
-        id="id_new",
-        title="Apply for a New ID Card (Fresh Student)",
-        keywords=[
-            "new id card", "get id card", "apply id card", "id card kaise milega",
-            "how to get id card", "fresh id", "id card banwana", "id card apply"
-        ],
-        steps=[
-            Step("Admin Office – Room 102",
-                 "Collect the ID card application form",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Fee Counter – Accounts Dept, Room 201",
-                 "Pay ₹150 (first-time) at the fee counter. Keep receipt.",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Photo & Documents",
-                 "Submit: 2 passport-size photos + fee receipt + admission letter at Admin Room 102",
-                 None),
-            Step("Collection",
-                 "Collect your ID card after 2–3 working days from Admin Room 102",
-                 None),
-        ],
-        contact="📧 admin@woxsen.edu.in | ☎ 040-6810-0100 ext 102",
-        fee="₹150 (first-time)"
-    ),
-
-    DirectAnswer(
-        id="id_damaged",
-        title="Damaged / Expired ID Card Replacement",
-        keywords=[
-            "id card damaged", "broken id card", "id card expired", "id card not working",
-            "id card replacement", "id card faded", "replace id card"
-        ],
-        steps=[
-            Step("Admin Office – Room 102",
-                 "Bring the damaged/expired card. Collect replacement form.",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Fee Counter – Room 201",
-                 "Pay ₹100 replacement fee. Keep receipt.",
-                 None),
-            Step("Submit",
-                 "Submit: old card + fee receipt + 1 passport-size photo at Admin Room 102",
-                 None),
-            Step("Collection",
-                 "New card ready in 1–2 working days",
-                 None),
-        ],
-        contact="📧 admin@woxsen.edu.in | ☎ 040-6810-0100 ext 102",
-        fee="₹100"
+        contact="📧 bridge@woxsen.edu.in"
     ),
 
     DirectAnswer(
         id="fee_issue",
-        title="Fee Payment Not Reflecting in Portal",
-        keywords=[
-            "fee not showing", "payment not reflected", "fee issue", "paid fees not updated",
-            "fee payment problem", "portal not showing payment", "challan not updated"
-        ],
+        title="Fee Payment Not Updated / Reflecting",
+        keywords=["fee payment", "fee not updated", "payment screenshot", "transaction id", "fee status", "fee problem"],
         steps=[
-            Step("Accounts Department – Admin Block Room 201",
-                 "Visit with your payment receipt / bank screenshot / UTR number",
-                 "Mon–Sat, 9AM–5PM"),
-            Step("Bank Verification",
-                 "Accounts team verifies the transaction with the bank",
-                 None),
-            Step("Portal Update",
-                 "Fee status updated in the portal within 24–48 hours",
-                 None),
+            Step("Accounts Office", "Provide details of your payment for verification", "Office Hours"),
+            Step("Required Information", "Submit your Transaction ID, Payment Screenshot, Date of Payment, and Amount Paid", None),
+            Step("Resolution Timeline", "Typical resolution takes 1–3 working days", None)
         ],
-        contact="📧 accounts@woxsen.edu.in | ☎ 040-6810-0100 ext 201"
+        contact="📧 accounts@woxsen.edu.in"
     ),
 
     DirectAnswer(
-        id="hostel",
-        title="Hostel Complaint / Issue",
-        keywords=[
-            "hostel complaint", "hostel issue", "hostel room problem", "hostel maintenance",
-            "dorm issue", "hostel wifi", "hostel water", "hostel food complaint"
-        ],
+        id="attendance_shortage",
+        title="Attendance Shortage Policy",
+        keywords=["attendance shortage", "attendance low", "shortage of attendance", "attendance issue", "below 75"],
         steps=[
-            Step("Hostel Warden Office – Block H",
-                 "Visit and submit a written complaint with your room number & issue",
-                 "Mon–Sat, 8AM–8PM"),
-            Step("Resolution Timeline",
-                 "Maintenance issues: 24–48 hrs. Other issues: 3–5 working days.",
-                 None),
-            Step("Escalation",
-                 "If unresolved, escalate to Dean of Student Affairs – Admin Block Room 301",
-                 None),
+            Step("Course Faculty", "Contact your course faculty to discuss your attendance status", None),
+            Step("Program Manager", "If unresolved, escalate the concern to your Program Manager", None),
+            Step("Supporting Documents", "Submit medical certificates or relevant approval letters if applicable", None)
         ],
-        contact="📧 hostel@woxsen.edu.in | ☎ 040-6810-0100 ext 305"
+        contact="📧 bridge@woxsen.edu.in"
     ),
 
     DirectAnswer(
-        id="library",
-        title="Library Book / Fine Issue",
-        keywords=[
-            "library fine", "library book", "overdue book", "library card", "book not available",
-            "library issue", "library complaint", "return book", "library membership"
-        ],
+        id="exam_revaluation",
+        title="Exam Revaluation Process",
+        keywords=["revaluation", "exam reval", "re-evaluation", "marks reval", "revalue"],
         steps=[
-            Step("Library – Counter 3 (Ground Floor)",
-                 "Visit with your ID card and student enrollment number",
-                 "Mon–Sat, 8AM–9PM | Sun, 10AM–5PM"),
-            Step("Fine Payment",
-                 "Fines: ₹2/day per book. Pay at Library Counter 1.",
-                 None),
-            Step("Book Request",
-                 "For books not in stock, submit a request form at Counter 3. Available in 7–10 days.",
-                 None),
+            Step("Controller of Examinations", "Apply for paper revaluation", "Office Hours"),
+            Step("Required Documents", "Submit your Revaluation Application and Payment Receipt", None),
+            Step("Processing Time", "Typical processing takes 2–4 weeks", None)
         ],
-        contact="📧 library@woxsen.edu.in | ☎ 040-6810-0100 ext 400"
+        contact="📧 coe@woxsen.edu.in"
     ),
 
     DirectAnswer(
-        id="exam",
-        title="Exam Hall Ticket / Results Issue",
-        keywords=[
-            "hall ticket", "admit card", "exam schedule", "exam results", "result not showing",
-            "grade issue", "marks problem", "exam issue", "revaluation", "supplementary exam"
-        ],
+        id="bonafide_cert",
+        title="Apply for Bonafide Certificate",
+        keywords=["bonafide", "bonafide certificate", "get bonafide"],
         steps=[
-            Step("Student Portal – portal.woxsen.edu.in",
-                 "Login → Examinations → Download Hall Ticket / View Results",
-                 None),
-            Step("Exam Cell – Admin Block Room 105",
-                 "For portal issues or discrepancies, visit with your enrollment number",
-                 "Mon–Fri, 9AM–5PM"),
-            Step("Revaluation Request",
-                 "Submit revaluation form within 7 days of result declaration. Fee: ₹500/subject.",
-                 None),
+            Step("Bridge Support Desk", "Request a Bonafide Certificate", "Office Hours"),
+            Step("Required Details", "Provide your Student ID", None),
+            Step("Processing Time", "Ready within 1–3 working days", None)
         ],
-        contact="📧 examcell@woxsen.edu.in | ☎ 040-6810-0100 ext 105"
+        contact="📧 bridge@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="transcript",
+        title="Apply for Transcripts",
+        keywords=["transcript", "transcripts", "official transcript"],
+        steps=[
+            Step("Bridge Support Desk", "Submit a request for your transcripts", "Office Hours"),
+            Step("Required Items", "Submit Application and complete any fee payment (if applicable)", None),
+            Step("Processing Time", "Typically ready in 5–10 working days", None)
+        ],
+        contact="📧 bridge@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="transfer_cert",
+        title="Apply for Transfer Certificate",
+        keywords=["transfer certificate", "migration certificate", "tc and migration", "transfer cert"],
+        steps=[
+            Step("Registrar Office", "Request a Transfer or Migration Certificate", "Office Hours"),
+            Step("Required Documents", "Submit Department Clearance and a No Due Certificate", None),
+            Step("Processing Time", "Issued in 5–10 working days", None)
+        ],
+        contact="📧 registrar@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="hostel_room_change",
+        title="Hostel Room Change Request",
+        keywords=["room change", "change hostel room", "room transfer", "hostel change"],
+        steps=[
+            Step("Gateway (Hostel Support)", "Submit a room change request", "Office Hours"),
+            Step("Requirements", "Submit a Written Request explaining your reason", None),
+            Step("Approval", "Approvals depend strictly on room availability", None)
+        ],
+        contact="📧 thegateway@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="wifi_problem",
+        title="Hostel Wi-Fi Issues",
+        keywords=["hostel wifi", "wi-fi", "wifi issue", "internet not working", "no wifi"],
+        steps=[
+            Step("IT Help Desk", "Report the Wi-Fi connectivity issue", "Office Hours"),
+            Step("Required Information", "Provide your Hostel Room, Student ID, and Device Information", None)
+        ],
+        contact="📧 techsupport@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="erp_login_issue",
+        title="ERP Login / Password Reset",
+        keywords=["erp login", "erp issue", "erp password", "reset erp"],
+        steps=[
+            Step("IT Help Desk", "Report access or login issues", "Office Hours"),
+            Step("Required Information", "Provide your Roll Number, Registered Email, and a Screenshot of the Error", None)
+        ],
+        contact="📧 techsupport@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="library_book_missing",
+        title="Library Book Missing / Unavailable",
+        keywords=["book missing", "book not found", "library book missing", "missing book"],
+        steps=[
+            Step("Library Staff", "Report the missing book at the counter", "Library Hours"),
+            Step("Possible Solutions", "Library staff will assist with reservations, alternative copies, or digital access", None)
+        ],
+        contact="📧 library@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="library_book_damaged",
+        title="Damaged Library Book Policy",
+        keywords=["damaged book", "damaged library book", "book damaged", "ruined book"],
+        steps=[
+            Step("Library Staff", "Report any damage to the book immediately", "Library Hours"),
+            Step("Fine Policy", "Fines or replacement charges will depend on library policy", None)
+        ],
+        contact="📧 library@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="transport_issue",
+        title="Bus Route or Transport Issue",
+        keywords=["bus route", "transport issue", "bus timing", "university bus", "bus pass"],
+        steps=[
+            Step("Transport Office", "Submit transportation inquiries or complaints", "Office Hours"),
+            Step("Required Information", "Provide your Bus Route and Student ID", None)
+        ],
+        contact="📧 transport@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="medical_leave",
+        title="Medical Leave Application",
+        keywords=["medical leave", "sick leave", "apply for medical leave", "medical certificate"],
+        steps=[
+            Step("Course Faculty", "Inform your course faculty about your illness", None),
+            Step("Program Manager", "Submit leave request to your Program Manager", None),
+            Step("Supporting Documents", "Submit a valid Medical Certificate", None)
+        ],
+        contact="📧 bridge@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="ragging_complaint",
+        title="Anti-Ragging Complaint (High Priority)",
+        keywords=["ragging", "bully", "harassment", "anti ragging", "anti-ragging"],
+        steps=[
+            Step("Anti-Ragging Cell", "Contact immediately to report any ragging or harassment", "24/7 Support"),
+            Step("Emergency Hotline", "Call the 24/7 emergency numbers: 7416664429 or 9709704747", None)
+        ],
+        contact="📧 antiragging.cell@woxsen.edu.in",
+        note="All ragging complaints are treated with the highest urgency and confidentiality."
+    ),
+
+    DirectAnswer(
+        id="scholarship_query",
+        title="Scholarship Inquiry",
+        keywords=["scholarship", "scholarships", "fee deduction"],
+        steps=[
+            Step("Accounts Office", "Submit scholarship inquiries", "Office Hours"),
+            Step("Required Documents", "Bring Scholarship Documents and Income Certificate (if required)", None)
+        ],
+        contact="📧 accounts@woxsen.edu.in"
+    ),
+
+    DirectAnswer(
+        id="placement_internship",
+        title="Career Placements & Internships",
+        keywords=["placement", "internship", "placements", "jobs", "career connect"],
+        steps=[
+            Step("Career Connect Office", "Inquire about placement drives, resumes, and internship registrations", "Office Hours")
+        ],
+        contact="📧 careerconnect@woxsen.edu.in"
     ),
 
 ]

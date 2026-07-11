@@ -3161,18 +3161,18 @@
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
                     style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
                 <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
-                    <button class="dm-btn" id="dmBtn" onclick="toggleDark()" title="Toggle Dark Mode"></button>
+                    <button class="dm-btn" id="dmBtn" onclick="toggleDark()" title="Toggle Dark Mode">🌙</button>
                     <div class="tb-profile-info" style="text-align:right">
                         <div style="font-weight:700;color:var(--navy);font-size:13px" id="stuNameDisplayMobile">Student
                         </div>
                         <div style="font-size:10px;color:var(--text2)">Student Portal</div>
                     </div>
                     <div class="prof-avatar-sm" id="tbAvatar" onclick="go('profile',null)"
-                        style="cursor:pointer; width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, var(--gold), var(--gold2)); 
-                        display:flex; align-items:center; justify-content:center; font-size:18px; border:2px solid var(--border); transition:0.2s; background-size:cover; background-position:center;"
-                        onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='var(--gold)'"
-                        onmouseout="this.style.transform='scale(1)'; this.style.borderColor='var(--border)'">
-                        <img src="woxsen_wou_symbol.png" alt="WOU" id="dpAvatarText" style="width:22px;height:22px;object-fit:contain;">
+                        style="cursor:pointer; width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, #E91E63, #9c27b0); 
+                        display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; border:2px solid rgba(233,30,99,0.4); transition:0.2s; background-size:cover; background-position:center; font-family:'Montserrat',sans-serif; flex-shrink:0;"
+                        onmouseover="this.style.transform='scale(1.08)'; this.style.borderColor='var(--gold)'"
+                        onmouseout="this.style.transform='scale(1)'; this.style.borderColor='rgba(233,30,99,0.4)'">
+                        <span id="tbAvatarText" style="line-height:1;">S</span>
                     </div>
                     <button onclick="stuLogout()"
                         style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
@@ -3223,27 +3223,119 @@
                             <div class="sc-l">Resolved</div>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px">
+                    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px">
                         <div class="card">
                             <div style="padding:18px 22px 0">
                                 <div class="ct">Recent Submissions</div>
                             </div>
                             <div style="padding:14px 22px 20px" id="dRecent">
                                 <div class="es" style="padding:24px">
-                                    <div class="ei"></div>
+                                    <div class="ei">📋</div>
                                     <div class="et">No grievances yet</div>
                                 </div>
                             </div>
                         </div>
                         <div class="card">
-                            <div style="padding:18px 22px 0">
+                            <div style="padding:18px 22px 0;display:flex;justify-content:space-between;align-items:center">
                                 <div class="ct">Overview</div>
+                                <span style="font-size:10px;color:var(--text2);font-weight:600">By Category</span>
                             </div>
                             <div style="padding:14px 22px 20px" id="dOverview">
                                 <div class="es" style="padding:24px">
-                                    <div class="ei"></div>
+                                    <div class="ei">📊</div>
                                     <div class="et">No data yet</div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Redressal Guidelines Card Section -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px" id="appliedLearningSection">
+                        <!-- Redressal Guidelines Card -->
+                        <div style="background:linear-gradient(135deg, #1e1b4b 0%, #311042 100%);border-radius:12px;padding:22px;color:#fff;position:relative;overflow:hidden;">
+                            <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(233,30,99,0.12);border-radius:50%;"></div>
+                            <div style="position:absolute;bottom:-15px;left:-15px;width:70px;height:70px;background:rgba(233,30,99,0.08);border-radius:50%;"></div>
+                            <div style="font-size:28px;margin-bottom:10px;position:relative">🛡️</div>
+                            <div style="font-family:'Montserrat';font-size:15px;font-weight:700;margin-bottom:5px;position:relative">SLA &amp; Support Policy</div>
+                            <div style="font-size:11px;color:rgba(255,255,255,0.75);line-height:1.6;position:relative">
+                                Official grievance redressal commitments:
+                                <ul style="margin-left:16px; margin-top:4px; list-style-type:disc;">
+                                    <li>Critical / Ragging: 24-48 Hours</li>
+                                    <li>Administrative Issues: 5 Days</li>
+                                    <li>Academic &amp; Other Issues: 7 Days</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;position:relative">
+                                <span style="background:rgba(233,30,99,0.2);border:1px solid rgba(233,30,99,0.3);color:#F06292;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:20px;">Official Timelines</span>
+                                <span style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:20px;">24/7 Helpline</span>
+                            </div>
+                        </div>
+
+                        <!-- Grievance Health Card -->
+                        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px;">
+                            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                                <div style="width:38px;height:38px;background:rgba(22,163,74,0.12);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;">✅</div>
+                                <div>
+                                    <div style="font-weight:700;font-size:13px;color:var(--navy)">Resolution Health</div>
+                                    <div style="font-size:10.5px;color:var(--text2)">Your grievance outcomes</div>
+                                </div>
+                            </div>
+                            <div id="dashHealthBar" style="display:flex;flex-direction:column;gap:8px">
+                                <div style="display:flex;justify-content:space-between;align-items:center">
+                                    <span style="font-size:11px;color:var(--text2)">Resolved</span>
+                                    <span style="font-size:11px;font-weight:700;color:var(--green)" id="dh1">0</span>
+                                </div>
+                                <div style="width:100%;height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden">
+                                    <div id="dh1bar" style="height:100%;background:var(--green);border-radius:3px;width:0%;transition:width 0.8s ease"></div>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;align-items:center">
+                                    <span style="font-size:11px;color:var(--text2)">In Progress</span>
+                                    <span style="font-size:11px;font-weight:700;color:var(--blue)" id="dh2">0</span>
+                                </div>
+                                <div style="width:100%;height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden">
+                                    <div id="dh2bar" style="height:100%;background:var(--blue);border-radius:3px;width:0%;transition:width 0.8s ease"></div>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;align-items:center">
+                                    <span style="font-size:11px;color:var(--text2)">Pending</span>
+                                    <span style="font-size:11px;font-weight:700;color:var(--orange)" id="dh3">0</span>
+                                </div>
+                                <div style="width:100%;height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden">
+                                    <div id="dh3bar" style="height:100%;background:var(--orange);border-radius:3px;width:0%;transition:width 0.8s ease"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border);text-align:center">
+                                <span style="font-size:22px;font-weight:700;font-family:'Montserrat';color:var(--navy)" id="dhRate">—</span>
+                                <div style="font-size:10px;color:var(--text2);margin-top:2px">Resolution Rate</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions Card -->
+                        <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px;">
+                            <div style="font-weight:700;font-size:13px;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:7px">
+                                <span style="font-size:16px">⚡</span> Quick Actions
+                            </div>
+                            <div style="display:flex;flex-direction:column;gap:8px">
+                                <button onclick="go('submit',document.getElementById('nav-submit'))" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(135deg,rgba(233,30,99,0.08),rgba(233,30,99,0.04));border:1px solid rgba(233,30,99,0.2);border-radius:8px;cursor:pointer;text-align:left;transition:0.2s;" onmouseover="this.style.background='rgba(233,30,99,0.12)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(233,30,99,0.08),rgba(233,30,99,0.04))'">
+                                    <span style="font-size:18px">📝</span>
+                                    <div>
+                                        <div style="font-size:12px;font-weight:700;color:var(--primary)">Submit Grievance</div>
+                                        <div style="font-size:10px;color:var(--text2)">File a new complaint</div>
+                                    </div>
+                                </button>
+                                <button onclick="go('track',document.getElementById('nav-track'))" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(37,99,235,0.06);border:1px solid rgba(37,99,235,0.15);border-radius:8px;cursor:pointer;text-align:left;transition:0.2s;" onmouseover="this.style.background='rgba(37,99,235,0.12)'" onmouseout="this.style.background='rgba(37,99,235,0.06)'">
+                                    <span style="font-size:18px">🔍</span>
+                                    <div>
+                                        <div style="font-size:12px;font-weight:700;color:var(--blue)">Track Status</div>
+                                        <div style="font-size:10px;color:var(--text2)">Check grievance status</div>
+                                    </div>
+                                </button>
+                                <button onclick="go('analytics',document.getElementById('nav-analytics'))" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);border-radius:8px;cursor:pointer;text-align:left;transition:0.2s;" onmouseover="this.style.background='rgba(124,58,237,0.12)'" onmouseout="this.style.background='rgba(124,58,237,0.06)'">
+                                    <span style="font-size:18px">📈</span>
+                                    <div>
+                                        <div style="font-size:12px;font-weight:700;color:var(--purple)">View Analytics</div>
+                                        <div style="font-size:10px;color:var(--text2)">Insights &amp; patterns</div>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -3907,89 +3999,130 @@
 
                 <!--  ANALYTICS PAGE  -->
                 <div class="page" id="pAnalytics">
-                    <div class="sec-t">My Analytics</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                        <div class="sec-t">My Analytics</div>
+                        <button class="btn-csv" onclick="exportCSV()">📤 Export CSV</button>
+                    </div>
                     <div class="sec-s">Insights into your grievance history and resolution patterns</div>
 
                     <!-- Top KPI row -->
                     <div class="stats" style="margin-bottom:20px" id="anlStats">
                         <div class="sc">
-                            <div class="sc-icon"></div>
-                            <div class="sc-n" id="an1">0</div>
+                            <div class="sc-icon">📋</div>
+                            <div class="sc-n" id="an1" style="color:var(--navy)">0</div>
                             <div class="sc-l">Total Submitted</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon"></div>
+                            <div class="sc-icon">✅</div>
                             <div class="sc-n" id="an2" style="color:var(--green)">0</div>
                             <div class="sc-l">Resolved</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon"></div>
-                            <div class="sc-n" id="an3" style="color:var(--blue)"></div>
+                            <div class="sc-icon">📊</div>
+                            <div class="sc-n" id="an3" style="color:var(--blue)">—</div>
                             <div class="sc-l">Resolution Rate</div>
                         </div>
                         <div class="sc">
-                            <div class="sc-icon"></div>
-                            <div class="sc-n" id="an4" style="color:var(--gold)"></div>
+                            <div class="sc-icon">🏆</div>
+                            <div class="sc-n" id="an4" style="color:var(--gold);font-size:18px">—</div>
                             <div class="sc-l">Most Active Category</div>
                         </div>
                     </div>
 
-                    <div class="anl-grid">
+                    <!-- Main analytics grid -->
+                    <div class="anl-grid" style="margin-bottom:16px">
                         <!-- By Category -->
                         <div class="anl-card">
-                            <div class="anl-title">Grievances by Category</div>
+                            <div class="anl-title">📁 Grievances by Category</div>
                             <div id="anlCat">
                                 <div class="es" style="padding:10px">
-                                    <div class="ei" style="font-size:28px"></div>
+                                    <div class="ei" style="font-size:28px">📂</div>
                                     <div class="et" style="font-size:13px">No data yet</div>
+                                    <div style="font-size:11px;color:var(--text2);margin-top:6px">Submit grievances to see category breakdown</div>
                                 </div>
                             </div>
                         </div>
                         <!-- By Status -->
                         <div class="anl-card">
-                            <div class="anl-title">Grievances by Status</div>
+                            <div class="anl-title">🔄 Grievances by Status</div>
                             <div id="anlStat">
                                 <div class="es" style="padding:10px">
-                                    <div class="ei" style="font-size:28px"></div>
+                                    <div class="ei" style="font-size:28px">🔄</div>
                                     <div class="et" style="font-size:13px">No data yet</div>
+                                    <div style="font-size:11px;color:var(--text2);margin-top:6px">Status distribution will appear here</div>
                                 </div>
                             </div>
                         </div>
                         <!-- By Priority -->
                         <div class="anl-card">
-                            <div class="anl-title">Grievances by Priority</div>
+                            <div class="anl-title">🚨 Grievances by Priority</div>
                             <div id="anlPri">
                                 <div class="es" style="padding:10px">
-                                    <div class="ei" style="font-size:28px"></div>
+                                    <div class="ei" style="font-size:28px">⚡</div>
                                     <div class="et" style="font-size:13px">No data yet</div>
+                                    <div style="font-size:11px;color:var(--text2);margin-top:6px">Priority levels will appear here</div>
                                 </div>
                             </div>
                         </div>
                         <!-- SLA / Resolution summary -->
                         <div class="anl-card">
-                            <div class="anl-title">Resolution Summary</div>
+                            <div class="anl-title">📈 Resolution Summary</div>
                             <div id="anlResSummary">
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-                                    <div
-                                        style="text-align:center;padding:12px;background:var(--cream);border-radius:9px">
+                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                                    <div style="text-align:center;padding:12px;background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04));border:1px solid rgba(22,163,74,0.15);border-radius:10px">
                                         <div class="anl-big" style="color:var(--green)" id="aResolved">0</div>
-                                        <div class="anl-sub">Resolved</div>
+                                        <div class="anl-sub">✅ Resolved</div>
                                     </div>
-                                    <div
-                                        style="text-align:center;padding:12px;background:var(--cream);border-radius:9px">
+                                    <div style="text-align:center;padding:12px;background:linear-gradient(135deg,rgba(234,88,12,0.08),rgba(234,88,12,0.04));border:1px solid rgba(234,88,12,0.15);border-radius:10px">
                                         <div class="anl-big" style="color:var(--orange)" id="aOpen">0</div>
-                                        <div class="anl-sub">Still Open</div>
+                                        <div class="anl-sub">⏳ Still Open</div>
                                     </div>
-                                    <div
-                                        style="text-align:center;padding:12px;background:var(--cream);border-radius:9px">
+                                    <div style="text-align:center;padding:12px;background:linear-gradient(135deg,rgba(233,30,99,0.08),rgba(233,30,99,0.04));border:1px solid rgba(233,30,99,0.15);border-radius:10px">
                                         <div class="anl-big" style="color:var(--red)" id="aEsc">0</div>
-                                        <div class="anl-sub">Escalated</div>
+                                        <div class="anl-sub">🚨 Escalated</div>
                                     </div>
-                                    <div
-                                        style="text-align:center;padding:12px;background:var(--cream);border-radius:9px">
+                                    <div style="text-align:center;padding:12px;background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(37,99,235,0.04));border:1px solid rgba(37,99,235,0.15);border-radius:10px">
                                         <div class="anl-big" style="color:var(--blue)" id="aRate">0%</div>
-                                        <div class="anl-sub">Success Rate</div>
+                                        <div class="anl-sub">🎯 Success Rate</div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department Breakdown + Chart row -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                        <!-- Department Breakdown -->
+                        <div class="anl-card">
+                            <div class="anl-title">🏫 Department / School Breakdown</div>
+                            <div id="anlDept">
+                                <div class="es" style="padding:10px">
+                                    <div class="ei" style="font-size:28px">🏛️</div>
+                                    <div class="et" style="font-size:13px">No department data</div>
+                                    <div style="font-size:11px;color:var(--text2);margin-top:6px">Select a school when submitting to see breakdown</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Escalation Intelligence -->
+                        <div class="anl-card">
+                            <div class="anl-title">⚠️ Escalation Intelligence</div>
+                            <div id="anlEscInfo">
+                                <div style="display:flex;flex-direction:column;gap:10px">
+                                    <div style="display:flex;align-items:center;gap:10px;padding:10px;background:rgba(22,163,74,0.07);border:1px solid rgba(22,163,74,0.15);border-radius:9px">
+                                        <span style="font-size:20px">✅</span>
+                                        <div>
+                                            <div style="font-size:12px;font-weight:700;color:var(--green)">No Active Escalations</div>
+                                            <div style="font-size:10.5px;color:var(--text2)">All grievances within SLA</div>
+                                        </div>
+                                        <span id="anlEscCount" style="margin-left:auto;font-size:22px;font-weight:700;color:var(--green)">0</span>
+                                    </div>
+                                    <div style="font-size:11px;color:var(--text2);line-height:1.6;background:var(--cream);padding:10px;border-radius:8px">
+                                        <strong>SLA Reference:</strong><br>
+                                        🔴 Critical → 2 days &nbsp;|&nbsp; 🟠 High → 5 days<br>
+                                        🟡 Medium → 7 days &nbsp;|&nbsp; 🟢 Low → 14 days
+                                    </div>
+                                    <div id="anlEscList" style="display:flex;flex-direction:column;gap:6px"></div>
                                 </div>
                             </div>
                         </div>
@@ -3997,15 +4130,32 @@
 
                     <!-- Chart -->
                     <div class="card" style="padding:20px;margin-bottom:18px">
-                        <div class="ct" style="margin-bottom:14px">Category Distribution Chart</div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                            <div class="ct">📊 Category Distribution Chart</div>
+                            <span style="font-size:10.5px;color:var(--text2)">Doughnut view</span>
+                        </div>
                         <div class="chart-wrap"><canvas id="anlChart"></canvas></div>
                     </div>
 
-                    <div style="display:flex;gap:10px;justify-content:center">
-                        <button class="btn-p" onclick="go('submit',document.getElementById('nav-submit'))"> Submit New
-                            Grievance</button>
-                        <button class="btn-s" onclick="go('list',document.getElementById('nav-list'))"> View All
-                            Grievances</button>
+                    <!-- Grievance Submissions List -->
+                    <div class="card" style="margin-bottom:18px">
+                        <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+                            <div class="ct">📝 All My Submissions</div>
+                            <span id="anlTotalLabel" style="font-size:11px;color:var(--text2)">0 grievances</span>
+                        </div>
+                        <div style="padding:16px 20px" id="anlSubmissionList">
+                            <div class="es" style="padding:20px">
+                                <div class="ei">📋</div>
+                                <div class="et">No submissions yet</div>
+                                <div class="esb">Your grievance history will appear here</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                        <button class="btn-p" onclick="go('submit',document.getElementById('nav-submit'))">📝 Submit New Grievance</button>
+                        <button class="btn-s" onclick="go('list',document.getElementById('nav-list'))">📋 View All Grievances</button>
+                        <button class="btn-s" onclick="go('profile',document.getElementById('nav-profile'))">👤 My Profile</button>
                     </div>
                 </div>
 
@@ -5150,7 +5300,38 @@
         function v(id) { return document.getElementById(id).value.trim(); }
         async function renderDash() {
             await loadStudentAnnouncements();
-            await loadG(); const t = G.length, p = G.filter(x => x.status === 'Pending').length, ip = G.filter(x => x.status === 'In Progress').length, r = G.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;['s1', 's2', 's3', 's4'].forEach((id, i) => document.getElementById(id).textContent = [t, p, ip, r][i]); const rec = document.getElementById('dRecent'); if (!t) { rec.innerHTML = '<div class="es" style="padding:24px"><div class="ei"></div><div class="et">No grievances yet</div></div>'; return; } rec.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead><tbody>' + G.slice(-5).reverse().map(g => `<tr><td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}</td><td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.title}</td><td>${g.cat}</td><td>${ptag(g.pri)}</td><td>${stag(g.status)}</td></tr>`).join('') + '</tbody></table></div>'; const cats = {}; G.forEach(x => { cats[x.cat] = (cats[x.cat] || 0) + 1; }); const cc = { Academic: '#1a56db', Administrative: '#059669', Infrastructure: '#ea580c', Ragging: '#dc2626', Others: '#7c3aed' }; document.getElementById('dOverview').innerHTML = Object.entries(cats).map(([c, n]) => `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="width:8px;height:8px;border-radius:50%;background:${cc[c] || '#64748b'};flex-shrink:0"></div><span style="flex:1;font-size:12px">${c}</span><div style="width:60px;height:4px;background:#f1f5f9;border-radius:4px;overflow:hidden"><div style="width:${Math.round(n / t * 100)}%;height:100%;background:${cc[c] || '#64748b'};border-radius:4px"></div></div><span style="font-size:12px;font-weight:700">${n}</span></div>`).join('');
+            await loadG();
+            const sid = sessionStorage.getItem('stu_id');
+            const myG = sid ? G.filter(x => (x.sid || '').trim().toLowerCase() === sid.trim().toLowerCase()) : G;
+            const t = myG.length, p = myG.filter(x => x.status === 'Pending').length,
+                ip = myG.filter(x => ['In Progress','Under Review'].includes(x.status)).length,
+                r = myG.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
+            ['s1', 's2', 's3', 's4'].forEach((id, i) => document.getElementById(id).textContent = [t, p, ip, r][i]);
+
+            // Resolution Health Bar
+            const dh1 = document.getElementById('dh1'), dh2 = document.getElementById('dh2'), dh3 = document.getElementById('dh3');
+            const dh1b = document.getElementById('dh1bar'), dh2b = document.getElementById('dh2bar'), dh3b = document.getElementById('dh3bar');
+            const dhRate = document.getElementById('dhRate');
+            if (dh1) dh1.textContent = r;
+            if (dh2) dh2.textContent = ip;
+            if (dh3) dh3.textContent = p;
+            if (t > 0) {
+                setTimeout(() => {
+                    if (dh1b) dh1b.style.width = Math.round(r/t*100) + '%';
+                    if (dh2b) dh2b.style.width = Math.round(ip/t*100) + '%';
+                    if (dh3b) dh3b.style.width = Math.round(p/t*100) + '%';
+                }, 200);
+                if (dhRate) dhRate.textContent = Math.round(r/t*100) + '%';
+            } else {
+                if (dhRate) dhRate.textContent = '—';
+            }
+
+            const rec = document.getElementById('dRecent');
+            if (!t) { rec.innerHTML = '<div class="es" style="padding:24px"><div class="ei">📋</div><div class="et">No grievances yet</div></div>'; return; }
+            rec.innerHTML = '<div style="overflow-x:auto"><table><thead><tr><th>ID</th><th>Title</th><th>Category</th><th>Priority</th><th>Status</th></tr></thead><tbody>' + myG.slice(-5).reverse().map(g => `<tr><td style="font-weight:700;color:var(--gold);font-size:11px">${g.id}</td><td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.title}</td><td>${g.cat}</td><td>${ptag(g.pri)}</td><td>${stag(g.status)}</td></tr>`).join('') + '</tbody></table></div>';
+            const cats = {}; myG.forEach(x => { cats[x.cat] = (cats[x.cat] || 0) + 1; });
+            const cc = { Academic: '#1a56db', Administrative: '#059669', Infrastructure: '#ea580c', Ragging: '#dc2626', Others: '#7c3aed' };
+            document.getElementById('dOverview').innerHTML = Object.entries(cats).map(([c, n]) => `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="width:8px;height:8px;border-radius:50%;background:${cc[c] || '#64748b'};flex-shrink:0"></div><span style="flex:1;font-size:12px">${c}</span><div style="width:60px;height:4px;background:#f1f5f9;border-radius:4px;overflow:hidden"><div style="width:${Math.round(n / t * 100)}%;height:100%;background:${cc[c] || '#64748b'};border-radius:4px"></div></div><span style="font-size:12px;font-weight:700">${n}</span></div>`).join('');
             // Chart.js Pie
             const ctx = document.getElementById('dChart');
             if (ctx && Object.keys(cats).length) {
@@ -5509,7 +5690,7 @@
             document.body.classList.toggle('dark');
             const btn = document.getElementById('dmBtn');
             const dark = document.body.classList.contains('dark');
-            btn.textContent = dark ? '' : '';
+            btn.textContent = dark ? '☀️' : '🌙';
             localStorage.setItem('wox_dark', dark ? '1' : '');
         }
 
@@ -5714,7 +5895,7 @@
         }
 
         window.addEventListener('DOMContentLoaded', async () => {
-            if (localStorage.getItem('wox_dark')) { document.body.classList.add('dark'); const db = document.getElementById('dmBtn'); if (db) db.textContent = ''; }
+            if (localStorage.getItem('wox_dark')) { document.body.classList.add('dark'); const db = document.getElementById('dmBtn'); if (db) db.textContent = '☀️'; }
             if (sessionStorage.getItem('stu_id')) {
                 const sid = sessionStorage.getItem('stu_id');
                 document.getElementById('studentLogin').style.display = 'none';

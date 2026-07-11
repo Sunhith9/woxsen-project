@@ -1,319 +1,890 @@
 [
   {
     "id": "TC001",
-    "title": "Register a grievance with required details and see confirmation",
-    "description": "This verifies that a student can open the grievance form, provide category, description, and urgency, submit it, and see a registration confirmation.",
-    "category": "Grievance Registration",
+    "title": "Resolve a grievance from the admin dashboard",
+    "description": "This verifies that an admin can open a grievance, update its status to resolved, and see the list refresh to reflect the change.",
+    "category": "Admin Grievance List",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
+        "description": "Navigate to /admin"
       },
       {
         "type": "action",
-        "description": "Open the grievance registration form"
+        "description": "Open a grievance from the table"
       },
       {
         "type": "action",
-        "description": "Fill in the grievance category"
-      },
-      {
-        "type": "action",
-        "description": "Fill in the grievance description"
-      },
-      {
-        "type": "action",
-        "description": "Select a grievance urgency level"
-      },
-      {
-        "type": "action",
-        "description": "Submit the grievance form"
+        "description": "Update the grievance status to resolved"
       },
       {
         "type": "assertion",
-        "description": "Verify a grievance confirmation is visible"
+        "description": "Verify a resolved confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list reflects the updated status"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC002",
-    "title": "Ask a question in student chat and receive an answer",
-    "description": "This verifies that a student can open chat on the student portal, send a question, and receive an assistant response.",
-    "category": "Student RAG Chat",
+    "title": "View admin grievance workload summary",
+    "description": "This verifies that an admin can open the dashboard and see the overall grievance workload summary displayed correctly.",
+    "category": "Admin Dashboard Metrics",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
-      },
-      {
-        "type": "action",
-        "description": "Open the chat widget"
-      },
-      {
-        "type": "action",
-        "description": "Type a question into the chat input"
-      },
-      {
-        "type": "action",
-        "description": "Send the message"
+        "description": "Navigate to /admin"
       },
       {
         "type": "assertion",
-        "description": "Verify an assistant answer is displayed"
+        "description": "Verify the dashboard summary metrics are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify total, pending, and resolved grievance counts are displayed"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC003",
-    "title": "Send a chat question by pressing Enter",
-    "description": "This verifies that a student can submit a chat message with the keyboard and receive an assistant response.",
-    "category": "Student RAG Chat",
+    "title": "Load the admin grievance dashboard",
+    "description": "This verifies that an admin can open the dashboard and see the summary metrics and grievance list needed to manage cases.",
+    "category": "Admin Update Grievance Status",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
-      },
-      {
-        "type": "action",
-        "description": "Open the chat widget"
-      },
-      {
-        "type": "action",
-        "description": "Type a question into the chat input"
-      },
-      {
-        "type": "action",
-        "description": "Press Enter"
+        "description": "Navigate to /admin"
       },
       {
         "type": "assertion",
-        "description": "Verify an assistant answer is displayed"
+        "description": "Verify summary metrics are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance table is displayed"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC004",
-    "title": "Open the landing page and navigate to the student portal",
-    "description": "This verifies that a user can start on the landing page and reach the student portal without being blocked.",
-    "category": "Grievance Registration",
+    "title": "Review all grievances in the admin queue",
+    "description": "An admin can open the dashboard and see the summary metrics and full grievance table needed to review the queue.",
+    "category": "Admin Filter by Category",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Click the link to the student portal"
+        "description": "Navigate to /admin"
       },
       {
         "type": "assertion",
-        "description": "Verify the student portal is displayed"
+        "description": "Verify summary metrics are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance table is displayed"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC005",
-    "title": "Submit a grievance with a different urgency level",
-    "description": "This verifies that a student can register a grievance using another valid urgency selection and still complete submission successfully.",
-    "category": "Grievance Registration",
+    "title": "View assigned grievances in the department portal",
+    "description": "This verifies that department staff can open the department portal and see assigned grievances ready for review.",
+    "category": "Department Grievance Update",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
-      },
-      {
-        "type": "action",
-        "description": "Open the grievance registration form"
-      },
-      {
-        "type": "action",
-        "description": "Fill in the grievance category"
-      },
-      {
-        "type": "action",
-        "description": "Fill in the grievance description"
-      },
-      {
-        "type": "action",
-        "description": "Select a different grievance urgency level"
-      },
-      {
-        "type": "action",
-        "description": "Submit the grievance form"
+        "description": "Navigate to /department"
       },
       {
         "type": "assertion",
-        "description": "Verify a grievance confirmation is visible"
+        "description": "Verify assigned grievances are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the queue shows at least one grievance item or an empty state message"
       }
     ],
     "priority": "High"
   },
   {
     "id": "TC006",
-    "title": "Open the landing page and navigate to the admin panel",
-    "description": "This verifies that a user can start on the landing page and reach the admin panel without being blocked.",
-    "category": "Grievance Registration",
+    "title": "Review the full admin grievance table",
+    "description": "This verifies that an admin can open the dashboard and see the full grievance list for review.",
+    "category": "Admin Grievance List",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /"
-      },
-      {
-        "type": "action",
-        "description": "Click the link to the admin panel"
+        "description": "Navigate to /admin"
       },
       {
         "type": "assertion",
-        "description": "Verify the admin panel is displayed"
+        "description": "Verify the grievance table is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify grievance records are listed"
       }
     ],
-    "priority": "Medium"
+    "priority": "High"
   },
   {
     "id": "TC007",
-    "title": "Ask a follow-up question in the same chat session",
-    "description": "This verifies that a student can continue the conversation with a follow-up question and receive another assistant response.",
-    "category": "Student RAG Chat",
+    "title": "Resolve an assigned grievance from the admin list",
+    "description": "This verifies that an admin can change a grievance status to resolved and see the updated result reflected in the list.",
+    "category": "Admin Update Grievance Status",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
+        "description": "Navigate to /admin"
       },
       {
         "type": "action",
-        "description": "Open the chat widget"
+        "description": "Open a grievance's status controls"
       },
       {
         "type": "action",
-        "description": "Type a question into the chat input"
-      },
-      {
-        "type": "action",
-        "description": "Send the message"
-      },
-      {
-        "type": "action",
-        "description": "Type a follow-up question into the chat input"
-      },
-      {
-        "type": "action",
-        "description": "Send the message"
+        "description": "Select resolved status"
       },
       {
         "type": "assertion",
-        "description": "Verify a follow-up assistant answer is displayed"
+        "description": "Verify the grievance status is shown as resolved in the list"
       }
     ],
-    "priority": "Medium"
+    "priority": "High"
   },
   {
     "id": "TC008",
-    "title": "Open the landing page and navigate to the department portal",
-    "description": "This verifies that a user can start on the landing page and reach the department portal without being blocked.",
-    "category": "Grievance Registration",
+    "title": "Refresh the admin queue after resolving a grievance",
+    "description": "An admin can update a grievance to resolved and see the queue refresh with the updated status reflected in the list.",
+    "category": "Admin View Grievance Details",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /"
+        "description": "Navigate to /admin"
       },
       {
         "type": "action",
-        "description": "Click the link to the department portal"
+        "description": "Open the details for a grievance row"
+      },
+      {
+        "type": "action",
+        "description": "Update the grievance status to resolved"
       },
       {
         "type": "assertion",
-        "description": "Verify the department portal is displayed"
+        "description": "Verify the grievance list reflects the updated resolved status"
       }
     ],
-    "priority": "Medium"
+    "priority": "High"
   },
   {
     "id": "TC009",
-    "title": "Submit a long chat question and receive a response",
-    "description": "This verifies that a student can send a longer natural-language question in chat and still receive an assistant response.",
-    "category": "Student RAG Chat",
+    "title": "Submit a remark on a grievance",
+    "description": "This verifies that department staff can enter a remark on an open grievance and successfully submit the update.",
+    "category": "Department Grievance Update",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
+        "description": "Navigate to /department"
       },
       {
         "type": "action",
-        "description": "Open the chat widget"
+        "description": "Open a grievance from the assigned queue"
       },
       {
         "type": "action",
-        "description": "Type a long question into the chat input"
+        "description": "Enter a valid remark into the remark field"
       },
       {
         "type": "action",
-        "description": "Send the message"
+        "description": "Submit the remark"
       },
       {
         "type": "assertion",
-        "description": "Verify an assistant answer is displayed"
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance update is reflected in the portal"
       }
     ],
-    "priority": "Medium"
+    "priority": "High"
   },
   {
     "id": "TC010",
-    "title": "Block grievance submission when required details are missing",
-    "description": "This verifies that the grievance form shows validation feedback and does not submit when required details are incomplete.",
-    "category": "Grievance Registration",
+    "title": "Load the department grievance queue",
+    "description": "This verifies that department staff can open their portal and see the grievances assigned to their department.",
+    "category": "Department Portal View",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
-      },
-      {
-        "type": "action",
-        "description": "Open the grievance registration form"
-      },
-      {
-        "type": "action",
-        "description": "Submit the grievance form without completing the required fields"
+        "description": "Navigate to /department"
       },
       {
         "type": "assertion",
-        "description": "Verify a grievance validation error is visible"
+        "description": "Verify the department grievance queue is displayed"
       },
       {
         "type": "assertion",
-        "description": "Verify the grievance is not registered"
+        "description": "Verify assigned grievances are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Open a grievance for review",
+    "description": "This verifies that department staff can open a grievance from the queue and view its details for follow-up.",
+    "category": "Department Grievance Update",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance from the assigned queue"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify grievance details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected grievance remains in a reviewable state"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Review assigned grievances in the department portal",
+    "description": "Department staff can open the department portal and see the grievances assigned to their department.",
+    "category": "Admin View Grievance Details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify assigned grievances are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the department queue is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Add a remark to a department grievance",
+    "description": "Department staff can open an assigned grievance, submit a remark, and see the updated item remain in the queue.",
+    "category": "Admin View Grievance Details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open an assigned grievance"
+      },
+      {
+        "type": "action",
+        "description": "Add a remark to the grievance"
+      },
+      {
+        "type": "action",
+        "description": "Submit the update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated grievance remains visible in the department queue"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Filter grievances by status",
+    "description": "An admin can narrow the grievance list by status and see only grievances in that status.",
+    "category": "Admin Filter by Status",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Select a status filter value"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list updates to matching records"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Search for a grievance from the admin dashboard",
+    "description": "This verifies that an admin can enter a keyword and see the grievance list narrow to matching results.",
+    "category": "Admin Search Grievances",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance search field with a keyword"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list updates to matching results"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Filter grievances by category",
+    "description": "An admin can narrow the grievance list to a selected category and see only matching records.",
+    "category": "Admin Filter by Category",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Select a category filter value"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list updates to matching records"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Review and add a remark to an assigned grievance",
+    "description": "This verifies that department staff can open an assigned grievance, add a remark, and submit the update successfully.",
+    "category": "Department Portal View",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open an assigned grievance"
+      },
+      {
+        "type": "action",
+        "description": "Open the remark input area"
+      },
+      {
+        "type": "action",
+        "description": "Enter a remark"
+      },
+      {
+        "type": "action",
+        "description": "Submit the remark update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated grievance remains visible in the queue"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Open a grievance detail from the admin list",
+    "description": "This verifies that an admin can open a grievance from the table and view its full details.",
+    "category": "Admin Grievance List",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance from the table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected grievance details are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Find a grievance using search and filters",
+    "description": "This verifies that an admin can narrow the grievance table with search and filters and inspect the matching result set.",
+    "category": "Admin Update Grievance Status",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Enter a grievance keyword into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Apply a category filter"
+      },
+      {
+        "type": "action",
+        "description": "Apply a status filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance table shows the filtered matching results"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Open grievance details from the admin table",
+    "description": "An admin can open a grievance detail view and inspect the full record for a selected grievance.",
+    "category": "Admin View Grievance Details",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open the details for a grievance row"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a grievance detail view is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Send a broadcast notification from the admin dashboard",
+    "description": "This verifies that an admin can compose a broadcast message and send it successfully from the dashboard.",
+    "category": "Admin Broadcast Notification",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open the broadcast message area"
+      },
+      {
+        "type": "action",
+        "description": "Enter a broadcast message"
+      },
+      {
+        "type": "action",
+        "description": "Send the broadcast"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the broadcast message area is available for another message"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC022",
+    "title": "Find a grievance after combining search and filters",
+    "description": "This verifies that an admin can combine search and filters to isolate a specific grievance record in the list.",
+    "category": "Admin Search Grievances",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the grievance search field with a keyword"
+      },
+      {
+        "type": "action",
+        "description": "Select a grievance category filter"
+      },
+      {
+        "type": "action",
+        "description": "Select a grievance status filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list is narrowed to matching records"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the filtered grievance results are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC023",
+    "title": "Combine search and filters to isolate a grievance",
+    "description": "An admin can use search, category, and status together to isolate a specific grievance before reviewing it.",
+    "category": "Admin Filter by Status",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Enter a grievance search term"
+      },
+      {
+        "type": "action",
+        "description": "Select a category filter value"
+      },
+      {
+        "type": "action",
+        "description": "Select a status filter value"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance list is narrowed to the matching record"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC024",
+    "title": "Open a grievance detail from the admin table",
+    "description": "This verifies that an admin can open a grievance from the table and view its detailed information before taking action.",
+    "category": "Admin Update Grievance Status",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance from the table"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify grievance details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected grievance remains identifiable in the detail view"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC025",
+    "title": "Send a broadcast notification to students",
+    "description": "This verifies that an admin can compose and send a broadcast message and receive confirmation that it was submitted.",
+    "category": "Admin Dashboard Metrics",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the broadcast message field with a message for students"
+      },
+      {
+        "type": "action",
+        "description": "Submit the broadcast notification"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the broadcast notification is recorded in the admin view"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC026",
+    "title": "Keep a followed-up grievance visible after remark submission",
+    "description": "This verifies that after department staff add a remark, the grievance still appears in the queue with the update reflected.",
+    "category": "Department Portal View",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open an assigned grievance"
+      },
+      {
+        "type": "action",
+        "description": "Enter a remark"
+      },
+      {
+        "type": "action",
+        "description": "Submit the remark update"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance remains visible in the department queue"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the remark update is reflected on the grievance"
       }
     ],
     "priority": "Medium"
   },
   {
-    "id": "TC011",
-    "title": "Submit an empty chat message and stay in the conversation",
-    "description": "This verifies that an empty chat input is not accepted as a valid user message and the chat remains available for correction.",
-    "category": "Student RAG Chat",
+    "id": "TC027",
+    "title": "Keep a remarked grievance visible in the queue",
+    "description": "This verifies that after submitting a remark, the updated grievance remains visible in the department queue for follow-up.",
+    "category": "Department Grievance Update",
     "steps": [
       {
         "type": "action",
-        "description": "Navigate to /student"
+        "description": "Navigate to /department"
       },
       {
         "type": "action",
-        "description": "Open the chat widget"
+        "description": "Open a grievance from the assigned queue"
       },
       {
         "type": "action",
-        "description": "Submit an empty message from the chat input"
+        "description": "Enter a valid remark into the remark field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the remark"
       },
       {
         "type": "assertion",
-        "description": "Verify the chat input remains available"
+        "description": "Verify the updated grievance is still visible in the queue"
       },
       {
         "type": "assertion",
-        "description": "Verify no assistant answer is displayed for the empty submission"
+        "description": "Verify the remark update is reflected for the grievance"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC028",
+    "title": "Keep a resolved grievance visible after updating it",
+    "description": "This verifies that after an admin resolves a grievance, the updated record remains available in the refreshed list view.",
+    "category": "Admin Update Grievance Status",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance's status controls"
+      },
+      {
+        "type": "action",
+        "description": "Select resolved status"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated grievance remains visible in the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the status is shown as resolved"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC029",
+    "title": "Handle a long remark before submission",
+    "description": "This verifies that department staff can enter a long remark and still submit the update successfully.",
+    "category": "Department Grievance Update",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance from the assigned queue"
+      },
+      {
+        "type": "action",
+        "description": "Enter a long valid remark into the remark field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the remark"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the grievance update is reflected in the portal"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "Handle an empty admin search result",
+    "description": "An admin can search for a non-matching grievance and see an empty result state instead of stale rows.",
+    "category": "Admin Filter by Category",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Enter a search term that does not match any grievance"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no grievance rows are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC031",
+    "title": "Prevent submitting an empty remark",
+    "description": "This verifies that department staff cannot submit a grievance update without entering remark text and that validation is shown.",
+    "category": "Department Grievance Update",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "action",
+        "description": "Open a grievance from the assigned queue"
+      },
+      {
+        "type": "action",
+        "description": "Submit the remark without entering text"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a remark validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the remark is not submitted"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC032",
+    "title": "Reject an empty broadcast submission",
+    "description": "This verifies that an admin cannot send a broadcast without entering a message and sees validation feedback.",
+    "category": "Admin Broadcast Notification",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "action",
+        "description": "Open the broadcast message area"
+      },
+      {
+        "type": "action",
+        "description": "Send the broadcast without entering a message"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a broadcast validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the message is not sent"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC033",
+    "title": "Review a grievance when the department queue is empty",
+    "description": "This verifies that department staff see an empty state when there are no assigned grievances to review.",
+    "category": "Department Grievance Update",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no grievance items are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC034",
+    "title": "View an empty department queue state",
+    "description": "This verifies that the department portal shows an empty state when there are no assigned grievances to review.",
+    "category": "Department Portal View",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /department"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no assigned grievances are displayed"
       }
     ],
     "priority": "Low"

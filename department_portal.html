@@ -9,6 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             box-sizing: border-box;
@@ -974,7 +975,16 @@
             border: none;
             background: var(--cream);
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text2);
+            transition: 0.2s;
+        }
+        .mc:hover {
+            background: rgba(0,0,0,0.06);
+            color: var(--text);
         }
 
         .mb {
@@ -1707,11 +1717,11 @@
                         <div style="font-weight:700;color:var(--text);font-size:13px" id="tbStaffName"></div>
                         <div style="font-size:10px;color:var(--text2);font-weight:500" id="tbDeptLabel"></div>
                     </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s;background-size:cover;background-position:center;"
+                    <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#E91E63,#9c27b0);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;border:2px solid rgba(233,30,99,0.4);transition:.2s;background-size:cover;background-position:center;"
                         id="tbAvatar" onclick="go('profile',null)"
-                        onmouseover="this.style.transform='scale(1.05)';this.style.borderColor='var(--gold)'"
-                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">
-                        <img src="woxsen_wou_symbol.png" alt="WOU" id="tbAvatarText" style="width:22px;height:22px;object-fit:contain;">
+                        onmouseover="this.style.transform='scale(1.08)';this.style.borderColor='var(--gold)'"
+                        onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(233,30,99,0.4)'">
+                        <span id="tbAvatarText" style="line-height:1; font-family:'Montserrat',sans-serif; font-weight:700; color:#fff;">S</span>
                     </div>
                     <button onclick="doLogout()"
                         style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
@@ -2173,7 +2183,7 @@
         <div class="modal">
             <div class="mh">
                 <div class="mt2" id="mTitle">Grievance Details</div>
-                <button class="mc" onclick="closeM()"></button>
+                <button class="mc" onclick="closeM()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="mb" id="mBody"></div>
         </div>
@@ -2969,10 +2979,11 @@
             const dpAvText = document.getElementById('dpAvatarText');
 
             const photo = localStorage.getItem(`staff_photo_${currentStaff.username}`) || sessionStorage.getItem('staff_photo') || currentStaff.profile_photo;
+            const initials = ((currentStaff.fullname || currentStaff.name || 'S').split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2));
 
             if (photo) {
                 if (av) {
-                    if (tbText) tbText.style.display = 'none';
+                    av.innerHTML = '';
                     av.style.backgroundImage = `url(${photo})`;
                 }
                 if (dpAv) {
@@ -2981,13 +2992,16 @@
                 }
             } else {
                 if (av) {
-                    if (tbText) tbText.style.display = 'block';
+                    av.innerHTML = `<span id="tbAvatarText" style="line-height:1; font-family:'Montserrat',sans-serif; font-weight:700; color:#fff;">${initials}</span>`;
                     av.style.backgroundImage = 'none';
                 }
                 if (dpAv) {
                     if (dpAvText) {
                         dpAvText.style.display = 'block';
-                        dpAvText.innerHTML = '<img src="woxsen_wou_symbol.png" alt="WOU" style="width:32px;height:32px;object-fit:contain;mix-blend-mode:multiply;">';
+                        dpAvText.textContent = initials;
+                        dpAvText.style.color = '#fff';
+                        dpAvText.style.fontWeight = '700';
+                        dpAvText.style.fontFamily = "'Montserrat', sans-serif";
                     }
                     dpAv.style.backgroundImage = 'none';
                 }

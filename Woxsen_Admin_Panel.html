@@ -9,6 +9,56 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .icon-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+        .icon-badge.portal {
+            background: rgba(212,83,126,0.15);
+            color: #d4537e;
+        }
+        .icon-badge.feature {
+            color: #fff;
+        }
+        .icon-badge.notif-resolved { background: rgba(22, 163, 74, 0.15); color: #16a34a; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        .icon-badge.notif-escalated { background: rgba(233, 30, 99, 0.15); color: #E91E63; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        .icon-badge.notif-system { background: rgba(234, 88, 12, 0.15); color: #ea580c; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        
+        .initials-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 500;
+            font-size: 14px;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            color: var(--navy);
+        }
+    </style>
+    <script>
+        function getInitialsAvatar(name, size = 48) {
+            if (!name) name = 'User';
+            var parts = name.trim().split(' ');
+            var initials = (parts[0][0] || '') + (parts.length > 1 ? parts[parts.length - 1][0] : '');
+            initials = initials.toUpperCase();
+            var colors = ['#f87171', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa', '#f472b6', '#38bdf8', '#4ade80'];
+            var hash = 0;
+            for (var i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            var color = colors[Math.abs(hash) % colors.length];
+            return '<div class="initials-avatar" style="width:' + size + 'px; height:' + size + 'px; background-color:' + color + '33; color:' + color + ';">' + initials + '</div>';
+        }
+    </script>
     <style>
         :root {
             --navy: #1A0A12;
@@ -1001,7 +1051,16 @@
             border: none;
             background: var(--cream);
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text2);
+            transition: 0.2s;
+        }
+        .mc:hover {
+            background: rgba(0,0,0,0.06);
+            color: var(--text);
         }
 
         .mb {
@@ -1994,11 +2053,11 @@
                         <div style="font-weight:700;color:var(--navy);font-size:13px" id="apNameDisplay"></div>
                         <div style="font-size:10px;color:var(--text2);font-weight:500">Super Admin Panel</div>
                     </div>
-                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;border:2px solid var(--border);transition:.2s;background-size:cover;background-position:center;"
+                    <div style="cursor:pointer;border:2px solid var(--border);transition:.2s;border-radius:50%;"
                         id="tbAvatar" onclick="goA('profile',null)"
                         onmouseover="this.style.transform='scale(1.05)';this.style.borderColor='var(--gold)'"
                         onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--border)'">
-                        <img src="woxsen_wou_symbol.png" alt="WOU" id="tbAvatarText" style="width:22px;height:22px;object-fit:contain;">
+                        <script>document.write(getInitialsAvatar("Super Admin", 36));</script>
                     </div>
                     <button onclick="doLogout()"
                         style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
@@ -2208,23 +2267,62 @@
                     <div class="sec-t">Institutional Analytics</div>
                     <div class="sec-s">Comprehensive performance metrics and university-wide grievance trends.</div>
 
+                    <!--  ANALYTICS FILTERS  -->
+                    <div class="card" style="padding:15px; margin-bottom:20px; background:var(--cream); display:flex; gap:15px; align-items:center; flex-wrap:wrap; border:1px solid var(--border)">
+                        <span style="font-weight:700; font-size:13px; color:var(--navy);"><i class="fa-solid fa-filter" style="margin-right:5px"></i> Interactive Filters:</span>
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; flex:1;">
+                            <select id="anlPeriod" class="inp" style="max-width:160px; margin:0;" onchange="renderAnalytics()">
+                                <option value="all">All Time</option>
+                                <option value="7">Last 7 Days</option>
+                                <option value="30">Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                            </select>
+                            <select id="anlCat" class="inp" style="max-width:180px; margin:0;" onchange="renderAnalytics()">
+                                <option value="all">All Categories</option>
+                                <option value="Academic">Academic</option>
+                                <option value="Administrative">Administrative</option>
+                                <option value="Infrastructure">Infrastructure</option>
+                                <option value="Ragging">Ragging</option>
+                                <option value="Others">Others</option>
+                            </select>
+                            <select id="anlPri" class="inp" style="max-width:160px; margin:0;" onchange="renderAnalytics()">
+                                <option value="all">All Priorities</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <button class="btn-s" style="padding:8px 15px; font-size:12px;" onclick="resetAnalyticsFilters()">Reset Filters</button>
+                    </div>
+
                     <!--  ESCALATION FUNNEL  -->
                     <div id="escFunnel" style="margin-bottom:24px"></div>
 
                     <!-- Top KPI row -->
-                    <div class="stats" style="margin-bottom:24px" id="anaStats">
-                        <div class="sc">
+                    <div class="stats" style="margin-bottom:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:15px;" id="anaStats">
+                        <div class="sc" style="margin:0;">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="anaRate">0%</div>
                             <div class="sc-l">Resolution Rate</div>
                             <div class="prog-bar" style="height:4px;margin-top:8px"><div id="anaRateFill" class="prog-fill" style="width:0%"></div></div>
                         </div>
-                        <div class="sc">
+                        <div class="sc" style="margin:0;">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="anaAvgDays">0</div>
                             <div class="sc-l">Avg. Days to Resolve</div>
                         </div>
-                        <div class="sc">
+                        <div class="sc" style="margin:0;">
+                            <div class="sc-icon"></div>
+                            <div class="sc-n" id="anaSlaCompliance" style="color:var(--green)">0%</div>
+                            <div class="sc-l">SLA Compliance</div>
+                        </div>
+                        <div class="sc" style="margin:0;">
+                            <div class="sc-icon"></div>
+                            <div class="sc-n" id="anaReopenRate" style="color:var(--orange)">0%</div>
+                            <div class="sc-l">Reopen Rate</div>
+                        </div>
+                        <div class="sc" style="margin:0;">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="anaEscRate" style="color:var(--red)">0%</div>
                             <div class="sc-l">Escalation Rate</div>
@@ -2248,6 +2346,31 @@
                         <div class="anl-card">
                             <div class="anl-title">Volume by Month</div>
                             <div class="chart-wrap" style="height:260px"><canvas id="chartByMonth"></canvas></div>
+                        </div>
+
+                        <div class="anl-card">
+                            <div class="anl-title">Avg Resolution Speed (Days)</div>
+                            <div class="chart-wrap" style="height:260px"><canvas id="chartByPrioritySpeed"></canvas></div>
+                        </div>
+                        <div class="anl-card">
+                            <div class="anl-title">Grievances by Student Year</div>
+                            <div class="chart-wrap" style="height:260px"><canvas id="chartByStudentYear"></canvas></div>
+                        </div>
+
+                        <div class="anl-card anl-row-full">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+                                <div class="anl-title" style="margin:0;"><i class="fa-solid fa-graduation-cap" style="margin-right:5px"></i> Academic Grievance Deep-Dive</div>
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <span style="font-size:11px; font-weight:600; color:var(--text2)">Group By:</span>
+                                    <select id="anlAcadDimension" class="inp" style="max-width:250px; margin:0; padding:6px 12px; font-size:12px;" onchange="renderAcadDetailedChart()">
+                                        <option value="school">By School (SOT, SOB, etc.)</option>
+                                        <option value="sub">By Sub-Category (Marks, Attendance, etc.)</option>
+                                        <option value="level">By Current Handling Level</option>
+                                        <option value="staff">By Resolving Staff Member</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chart-wrap" style="height:300px"><canvas id="chartAcademicDetailed"></canvas></div>
                         </div>
 
                         <div class="anl-card anl-row-full">
@@ -2704,7 +2827,7 @@
     <div class="modal-ov" id="mOv">
         <div class="modal">
             <div class="mh">
-                <div class="mt2" id="mTitle">Grievance Details</div><button class="mc" onclick="closeM()"></button>
+                <div class="mt2" id="mTitle">Grievance Details</div><button class="mc" onclick="closeM()"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="mb" id="mBody"></div>
         </div>
@@ -2714,7 +2837,7 @@
         <div class="modal" style="max-width:500px">
             <div class="mh">
                 <div class="mt2" id="mStaffTitle">Add New Staff</div><button class="mc"
-                    onclick="document.getElementById('mStaff').classList.remove('open')"></button>
+                    onclick="document.getElementById('mStaff').classList.remove('open')"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="mb">
                 <input type="hidden" id="sfId">
@@ -2882,7 +3005,7 @@
                 <div class="mh"
                     style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border-bottom:2px solid #fecaca">
                     <div class="mt2" style="color:#991b1b"> Terminate Staff Account</div>
-                    <button class="mc" onclick="closeTermModal()"></button>
+                    <button class="mc" onclick="closeTermModal()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="mb" style="padding:24px">
                     <div
@@ -2922,7 +3045,7 @@
                 <div class="mh"
                     style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-bottom:2px solid #bbf7d0">
                     <div class="mt2" style="color:#166534"> Reactivate Staff Account</div>
-                    <button class="mc" onclick="closeReactModal()"></button>
+                    <button class="mc" onclick="closeReactModal()"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="mb" style="padding:24px">
                     <div
@@ -3620,7 +3743,7 @@
                 var statusOptions = ['Pending', 'In Progress', 'Under Review', 'Resolved', 'Escalated', 'Closed'].map(function (s) {
                     return '<option ' + (g.status === s ? 'selected' : '') + '>' + s + '</option>';
                 }).join('');
-                var dName = g.name, dSid = g.sid;
+                var dName = g.name, dSid = g.sid, anonBanner = '';
                 if (g.is_anonymous) {
                     dName = 'Anonymous Student';
                     dSid = 'Hidden';
@@ -3951,62 +4074,165 @@
                 </div>`;
                 }).join('');
             }
+            function resetAnalyticsFilters() {
+                if (document.getElementById('anlPeriod')) document.getElementById('anlPeriod').value = 'all';
+                if (document.getElementById('anlCat')) document.getElementById('anlCat').value = 'all';
+                if (document.getElementById('anlPri')) document.getElementById('anlPri').value = 'all';
+                renderAnalytics();
+            }
+
             function renderAnalytics() {
+                // Get filter values
+                var period = document.getElementById('anlPeriod') ? document.getElementById('anlPeriod').value : 'all';
+                var selCat = document.getElementById('anlCat') ? document.getElementById('anlCat').value : 'all';
+                var selPri = document.getElementById('anlPri') ? document.getElementById('anlPri').value : 'all';
+
+                // Filter the grievances array G
+                var dataList = G.filter(function (g) {
+                    // 1. Period filter
+                    if (period !== 'all') {
+                        var days = parseInt(period);
+                        var gDate = new Date(g.date);
+                        if (isNaN(gDate)) return true; // keep it if date is malformed
+                        var cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
+                        if (gDate.getTime() < cutoff) return false;
+                    }
+                    // 2. Category filter
+                    if (selCat !== 'all' && g.cat !== selCat) return false;
+                    // 3. Priority filter
+                    if (selPri !== 'all' && g.pri !== selPri) return false;
+                    return true;
+                });
+
                 //  ESCALATION FUNNEL 
                 var escalationFunnel = {};
                 ESC_LEVELS.forEach(function (lv) { escalationFunnel[lv] = 0; });
-                G.forEach(function (g) { if (g.cat === 'Academic') escalationFunnel[getEscLevel(g)] = (escalationFunnel[getEscLevel(g)] || 0) + 1; });
-                var funnelHtml = '<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--navy)"> Escalation Level Distribution (Academic Grievances)</div><div style="display:flex;gap:10px;flex-wrap:wrap">' +
+                dataList.forEach(function (g) { if (g.cat === 'Academic') escalationFunnel[getEscLevel(g)] = (escalationFunnel[getEscLevel(g)] || 0) + 1; });
+                var totalAcad = dataList.filter(function (g) { return g.cat === 'Academic'; }).length;
+                var funnelHtml = '<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--navy)"> Escalation Level Distribution (Academic grievances matching filters)</div><div style="display:flex;gap:10px;flex-wrap:wrap">' +
                     ESC_LEVELS.map(function (lv) {
                         var n = escalationFunnel[lv] || 0;
                         var colors = { professor: '#eff6ff|#1d4ed8', pd: '#f0fdf4|#16774a', pm: '#fdf4ff|#7e22ce', dean: '#fff7ed|#c2540a', admin: '#fef2f2|#b91c1c' };
                         var cs = colors[lv].split('|');
-                        return '<div style="flex:1;min-width:100px;background:' + cs[0] + ';border:2px solid ' + cs[1] + '22;border-radius:12px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:' + cs[1] + '">' + n + '</div><div style="font-size:11px;font-weight:600;color:' + cs[1] + ';margin-top:4px">' + ESC_LABELS[lv] + '</div><div style="font-size:10px;color:var(--text2);margin-top:2px">' + (n && G.length ? Math.round(n / G.filter(function (g) { return g.cat === 'Academic'; }).length * 100) : '0') + '%</div></div>';
+                        return '<div style="flex:1;min-width:100px;background:' + cs[0] + ';border:2px solid ' + cs[1] + '22;border-radius:12px;padding:16px;text-align:center"><div style="font-size:26px;font-weight:700;color:' + cs[1] + '">' + n + '</div><div style="font-size:11px;font-weight:600;color:' + cs[1] + ';margin-top:4px">' + ESC_LABELS[lv] + '</div><div style="font-size:10px;color:var(--text2);margin-top:2px">' + (n && totalAcad ? Math.round(n / totalAcad * 100) : '0') + '%</div></div>';
                     }).join('<div style="display:flex;align-items:center;color:#cbd5e1;font-size:22px"></div>') +
                     '</div></div>';
                 var funnelEl = document.getElementById('escFunnel');
                 if (funnelEl) funnelEl.innerHTML = funnelHtml;
 
-                var t = G.length;
-                if (!t) { document.getElementById('anaRate').textContent = '0%'; document.getElementById('anaAvgDays').textContent = ''; document.getElementById('anaEscRate').textContent = '0%'; return; }
-                var resolved = G.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
-                var esc = G.filter(x => x.status === 'Escalated').length;
+                var t = dataList.length;
+                if (!t) { 
+                    document.getElementById('anaRate').textContent = '0%'; 
+                    if (document.getElementById('anaRateFill')) document.getElementById('anaRateFill').style.width = '0%';
+                    document.getElementById('anaAvgDays').textContent = '0d'; 
+                    document.getElementById('anaSlaCompliance').textContent = '0%'; 
+                    document.getElementById('anaReopenRate').textContent = '0%'; 
+                    document.getElementById('anaEscRate').textContent = '0%'; 
+                    return; 
+                }
+
+                // 1. Resolution Rate
+                var resolved = dataList.filter(x => ['Resolved', 'Closed'].includes(x.status)).length;
                 var rate = Math.round(resolved / t * 100);
                 document.getElementById('anaRate').textContent = rate + '%';
-                document.getElementById('anaRateFill').style.width = rate + '%';
-                document.getElementById('anaAvgDays').textContent = '~' + ({ Critical: 2, High: 4, Medium: 6, Low: 10 }['Medium']) + 'd';
+                if (document.getElementById('anaRateFill')) document.getElementById('anaRateFill').style.width = rate + '%';
+
+                // 2. Average Resolution Speed (Days)
+                var resolvedItems = dataList.filter(x => ['Resolved', 'Closed'].includes(x.status) && x.resolved_at && x.date);
+                var totalDiffDays = 0;
+                var countResolvedWithDates = 0;
+                resolvedItems.forEach(function (g) {
+                    var start = new Date(g.date);
+                    var end = new Date(g.resolved_at);
+                    if (!isNaN(start) && !isNaN(end)) {
+                        var diff = Math.max(0, (end - start) / (1000 * 60 * 60 * 24));
+                        totalDiffDays += diff;
+                        countResolvedWithDates++;
+                    }
+                });
+                var avgDays = countResolvedWithDates > 0 ? (totalDiffDays / countResolvedWithDates).toFixed(1) : null;
+                document.getElementById('anaAvgDays').textContent = avgDays !== null ? '~' + avgDays + 'd' : 'N/A';
+
+                // 3. SLA Compliance Rate
+                var slaTimes = { Critical: 2, High: 5, Medium: 7, Low: 14 };
+                var compliantCount = 0;
+                var totalSlaChecked = 0;
+                resolvedItems.forEach(function (g) {
+                    var start = new Date(g.date);
+                    var end = new Date(g.resolved_at);
+                    if (!isNaN(start) && !isNaN(end)) {
+                        var diff = Math.max(0, (end - start) / (1000 * 60 * 60 * 24));
+                        var limit = slaTimes[g.pri] || 7;
+                        if (diff <= limit) {
+                            compliantCount++;
+                        }
+                        totalSlaChecked++;
+                    }
+                });
+                var slaRate = totalSlaChecked > 0 ? Math.round(compliantCount / totalSlaChecked * 100) : 0;
+                document.getElementById('anaSlaCompliance').textContent = totalSlaChecked > 0 ? slaRate + '%' : 'N/A';
+
+                // 4. Reopen Rate
+                var reopenedCount = dataList.filter(x => x.reopen_count && x.reopen_count > 0).length;
+                var reopenRate = Math.round(reopenedCount / t * 100);
+                document.getElementById('anaReopenRate').textContent = reopenRate + '%';
+
+                // 5. Escalation Rate
+                var esc = dataList.filter(x => x.status === 'Escalated').length;
                 document.getElementById('anaEscRate').textContent = Math.round(esc / t * 100) + '%';
 
                 // Category chart
-                var cats = {}; G.forEach(x => cats[x.cat] = (cats[x.cat] || 0) + 1);
+                var cats = {}; dataList.forEach(x => cats[x.cat] = (cats[x.cat] || 0) + 1);
                 mkChart('chartByCat', 'doughnut', Object.keys(cats), Object.values(cats), ['#1a56db', '#059669', '#ea580c', '#dc2626', '#7c3aed']);
 
                 // Status chart
-                var sts = {}; G.forEach(x => sts[x.status] = (sts[x.status] || 0) + 1);
+                var sts = {}; dataList.forEach(x => sts[x.status] = (sts[x.status] || 0) + 1);
                 mkChart('chartByStatus', 'doughnut', Object.keys(sts), Object.values(sts), ['#ea580c', '#1d4ed8', '#6d28d9', '#16774a', '#94a3b8', '#b91c1c']);
 
                 // Priority chart
-                var pris = {}; G.forEach(x => pris[x.pri] = (pris[x.pri] || 0) + 1);
-                mkChart('chartByPri', 'doughnut', Object.keys(pris), Object.values(pris), ['#b91c1c', '#c2540a', '#a16207', '#16774a']);
+                var pris = {}; dataList.forEach(x => pris[x.pri] = (pris[x.pri] || 0) + 1);
+                mkChart('chartByPri', 'doughnut', Object.keys(pris), Object.values(pris), ['#dc2626', '#ea580c', '#eab308', '#16a34a']);
+
+                // Volume by month
+                var mOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                var mc = {};
+                dataList.forEach(function (g) { var p = g.date.split(' '); if (p[1]) mc[p[1]] = (mc[p[1]] || 0) + 1; });
+                var mKeys = Object.keys(mc).sort(function (a, b) { return mOrder.indexOf(a) - mOrder.indexOf(b); });
+                mkChart('chartByMonth', 'bar', mKeys, mKeys.map(function (k) { return mc[k]; }), ['#1a56db', '#1d4ed8', '#1e40af', '#1e3a8a', '#1d4ed8', '#1e40af'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }, x: { ticks: { font: { family: 'Montserrat', size: 10 } } } } });
+
+                // Avg Resolution Speed by Priority Chart (new!)
+                var priSpeedData = { Critical: [], High: [], Medium: [], Low: [] };
+                resolvedItems.forEach(function (g) {
+                    var start = new Date(g.date);
+                    var end = new Date(g.resolved_at);
+                    if (!isNaN(start) && !isNaN(end) && priSpeedData[g.pri] !== undefined) {
+                        var diff = Math.max(0, (end - start) / (1000 * 60 * 60 * 24));
+                        priSpeedData[g.pri].push(diff);
+                    }
+                });
+                var priLabels = ['Critical', 'High', 'Medium', 'Low'];
+                var priAverages = priLabels.map(function (pri) {
+                    var arr = priSpeedData[pri];
+                    if (!arr || !arr.length) return 0;
+                    return parseFloat((arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1));
+                });
+                mkChart('chartByPrioritySpeed', 'bar', priLabels, priAverages, ['#dc2626', '#ea580c', '#eab308', '#16a34a'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Days', font: { family: 'Montserrat', size: 10 } } } } });
+
+                // Grievances by Student Year Chart (new!)
+                var years = {}; dataList.forEach(x => { if (x.year) years[x.year] = (years[x.year] || 0) + 1; });
+                mkChart('chartByStudentYear', 'doughnut', Object.keys(years), Object.values(years), ['#0d9488', '#2563eb', '#7c3aed', '#db2777']);
 
                 // Sub-Category bars
-                var subC = {}; G.forEach(x => { if (x.sub) subC[x.sub] = (subC[x.sub] || 0) + 1; });
+                var subC = {}; dataList.forEach(x => { if (x.sub) subC[x.sub] = (subC[x.sub] || 0) + 1; });
                 makeBar('danlSub', subC, { 'default': 'linear-gradient(90deg, var(--gold), var(--gold2))' });
 
                 // Dept chart
-                var depts = {}; G.forEach(x => depts[x.assigned] = (depts[x.assigned] || 0) + 1);
+                var depts = {}; dataList.forEach(x => depts[x.assigned] = (depts[x.assigned] || 0) + 1);
                 mkChart('chartByDept', 'bar', Object.keys(depts), Object.values(depts), ['#c9972b', '#e8b84b', '#a16207', '#92400e', '#78350f'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }, x: { ticks: { font: { family: 'Montserrat', size: 9 } } } } });
-
-                // Monthly trend chart
-                var mOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                var mc = {};
-                G.forEach(function (g) { var p = g.date.split(' '); if (p[1]) mc[p[1]] = (mc[p[1]] || 0) + 1; });
-                var mKeys = Object.keys(mc).sort(function (a, b) { return mOrder.indexOf(a) - mOrder.indexOf(b); });
-                mkChart('chartByMonth', 'bar', mKeys, mKeys.map(function (k) { return mc[k]; }), ['#c9972b', '#e8b84b', '#a16207', '#c9972b', '#e8b84b', '#a16207'], { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { font: { family: 'Montserrat', size: 10 } } }, x: { ticks: { font: { family: 'Montserrat', size: 10 } } } } });
 
                 // Department performance table
                 var deptData = {};
-                G.forEach(function (x) {
+                dataList.forEach(function (x) {
                     if (!deptData[x.assigned]) deptData[x.assigned] = { total: 0, resolved: 0, pending: 0, escalated: 0 };
                     deptData[x.assigned].total++;
                     if (['Resolved', 'Closed'].includes(x.status)) deptData[x.assigned].resolved++;
@@ -4018,6 +4244,90 @@
                     return '<tr><td style="font-weight:600;font-size:13px">' + dept + '</td><td style="text-align:center">' + d.total + '</td><td style="text-align:center;color:var(--orange)">' + d.pending + '</td><td style="text-align:center;color:var(--red)">' + d.escalated + '</td><td style="text-align:center;color:var(--green)">' + d.resolved + '</td><td><div style="display:flex;align-items:center;gap:8px"><div class="prog-bar" style="flex:1"><div class="prog-fill" style="background:var(--green);width:' + r + '%"></div></div><span style="font-size:12px;font-weight:700;min-width:32px">' + r + '%</span></div></td></tr>';
                 }).join('');
                 document.getElementById('anaDepTable').innerHTML = '<table><thead><tr><th>Department</th><th style="text-align:center">Total</th><th style="text-align:center">Pending</th><th style="text-align:center">Escalated</th><th style="text-align:center">Resolved</th><th>Resolution Rate</th></tr></thead><tbody>' + depRows + '</tbody></table>';
+
+                // Call the new detailed academic chart
+                renderAcadDetailedChart();
+            }
+
+            function renderAcadDetailedChart() {
+                var dimension = document.getElementById('anlAcadDimension') ? document.getElementById('anlAcadDimension').value : 'school';
+                // Filter grievances to only Academic
+                var acadGrievances = G.filter(function (g) { return g.cat === 'Academic'; });
+
+                // Also apply the period filter from the general filters
+                var period = document.getElementById('anlPeriod') ? document.getElementById('anlPeriod').value : 'all';
+                if (period !== 'all') {
+                    var days = parseInt(period);
+                    var cutoff = Date.now() - (days * 24 * 60 * 60 * 1000);
+                    acadGrievances = acadGrievances.filter(function (g) {
+                        var gDate = new Date(g.date);
+                        return isNaN(gDate) || gDate.getTime() >= cutoff;
+                    });
+                }
+
+                var counts = {};
+                var labelMap = {
+                    'School of Business': 'SOB',
+                    'School of Technology': 'SOT',
+                    'School of Art & Design': 'SOAD',
+                    'School of Law': 'SOL',
+                    'School of Liberal Arts & Humanities': 'SOLA',
+                    'School of Architecture & Planning': 'SOAP'
+                };
+
+                if (dimension === 'school') {
+                    acadGrievances.forEach(function (g) {
+                        var sName = g.dept || 'Others';
+                        var label = labelMap[sName] || sName;
+                        counts[label] = (counts[label] || 0) + 1;
+                    });
+                } else if (dimension === 'sub') {
+                    acadGrievances.forEach(function (g) {
+                        var sub = g.sub || 'General';
+                        counts[sub] = (counts[sub] || 0) + 1;
+                    });
+                } else if (dimension === 'level') {
+                    acadGrievances.forEach(function (g) {
+                        var lv = getEscLevel(g);
+                        var label = ESC_LABELS[lv] || lv;
+                        counts[label] = (counts[label] || 0) + 1;
+                    });
+                } else if (dimension === 'staff') {
+                    // Include both current handler and resolving staff
+                    acadGrievances.forEach(function (g) {
+                        var handler = 'Unassigned';
+                        if (g.status === 'Resolved' || g.status === 'Closed') {
+                            handler = g.resolved_by ? g.resolved_by.split('(')[0].trim() : 'Staff';
+                        } else {
+                            // Map escalation level to active handler name
+                            var lv = getEscLevel(g);
+                            var staff = ACAD_STAFF.find(function(s) { return s.level === lv; });
+                            handler = staff ? staff.fullname : 'Staff';
+                        }
+                        counts[handler] = (counts[handler] || 0) + 1;
+                    });
+                }
+
+                var labels = Object.keys(counts);
+                var data = Object.values(counts);
+
+                // Sort by count descending
+                var combined = labels.map((l, i) => ({ label: l, val: data[i] }));
+                combined.sort((a, b) => b.val - a.val);
+
+                var sortedLabels = combined.map(x => x.label);
+                var sortedData = combined.map(x => x.val);
+
+                var colors = ['#1d4ed8', '#1e40af', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'];
+                mkChart('chartAcademicDetailed', 'bar', sortedLabels, sortedData, colors, {
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { stepSize: 1, font: { family: 'Montserrat', size: 10 } } },
+                        x: { ticks: { font: { family: 'Montserrat', size: 10 } } }
+                    }
+                });
             }
 
             /* 
@@ -4059,7 +4369,7 @@
                     var perfColor = rate >= 70 ? '#16774a' : rate >= 40 ? '#c2540a' : '#b91c1c';
                     var perfLabel = rate >= 70 ? 'Good' : 'Poor';
                     return '<tr>' +
-                        '<td><div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;border-radius:11px;background:' + s.color + ';display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">' + s.emoji + '</div><div><div style="font-weight:700;font-size:13px">' + s.fullname + '</div><div style="font-size:11px;color:var(--text2)">' + s.role + '</div></div></div></td>' +
+                        '<td><div style="display:flex;align-items:center;gap:10px">' + getInitialsAvatar(s.fullname, 40) + '<div><div style="font-weight:700;font-size:13px">' + s.fullname + '</div><div style="font-size:11px;color:var(--text2)">' + s.role + '</div></div></div></td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700">' + total + '</td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700;color:var(--green)">' + resCount + '</td>' +
                         '<td style="text-align:center"><span style="background:#fef2f2;color:#b91c1c;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700">' + autoEscCount + '</span></td>' +
@@ -4093,7 +4403,7 @@
                     var perfColor = rate >= 70 ? '#16774a' : rate >= 40 ? '#c2540a' : '#b91c1c';
                     var deptRowTag = s.dept === 'Academic' ? (s.escalation_level || 'professor') + ' · Academic' : (s.role || s.dept || '');
                     return '<tr>' +
-                        '<td><div style="display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;border-radius:11px;background:' + theme.color + ';display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">' + theme.emoji + '</div><div><div style="font-weight:700;font-size:13px">' + (s.fullname || s.username) + '</div><div style="font-size:11px;color:var(--text2)">' + deptRowTag + '</div></div></div></td>' +
+                        '<td><div style="display:flex;align-items:center;gap:10px">' + getInitialsAvatar(s.fullname || s.username, 40) + '<div><div style="font-weight:700;font-size:13px">' + (s.fullname || s.username) + '</div><div style="font-size:11px;color:var(--text2)">' + deptRowTag + '</div></div></div></td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700">' + total + '</td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700;color:var(--green)">' + resCount + '</td>' +
                         '<td style="text-align:center;font-size:16px;font-weight:700;color:var(--red)">' + esc + '</td>' +
@@ -4374,8 +4684,8 @@
                         '<div style="font-size:12px;color:var(--text2);margin-top:2px">' + s.role + ' &middot; ' + s.dept + '</div>';
 
                     return '<div class="staff-card" style="display:block;padding:0;overflow:hidden;opacity:' + (isActive ? 1 : 0.6) + '">' +
-                        '<div style="background:' + t.color + ';padding:20px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)">' +
-                        '<div style="width:52px;height:52px;border-radius:14px;background:' + t.textColor + '22;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0">' + t.emoji + '</div>' +
+                        '<div style="padding:20px 22px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)">' +
+                        getInitialsAvatar(s.fullname || s.username, 52) +
                         '<div style="flex:1"><div class="staff-name">' + s.fullname + ' ' + statBadge + '</div>' +
                         roleRow +
                         (s.sub_dept && s.dept !== 'Academic' ? '<div style="font-size:11px;color:var(--blue);font-weight:700;margin-top:2px"> ' + s.sub_dept + '</div>' : '') +

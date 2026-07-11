@@ -1,131 +1,426 @@
-# Woxsen University – Student Handbook (Excerpt)
-## Academic Policies
+WOXSEN UNIVERSITY STUDENT KNOWLEDGE BASE
 
-### Attendance Policy
-Students must maintain a minimum of 75% attendance in all courses. Students falling below 75% attendance will be debarred from appearing in the end-semester examinations. Attendance is recorded electronically via the student portal at portal.woxsen.edu.in. Any medical or emergency leave must be communicated to the Academic Office within 3 days with supporting documents.
+Version: 1.0
 
-### Grade System
-Woxsen University follows a 10-point GPA grading system:
-- O (Outstanding): 90–100 marks → 10 grade points
-- A+ (Excellent): 80–89 marks → 9 grade points
-- A (Very Good): 70–79 marks → 8 grade points
-- B+ (Good): 60–69 marks → 7 grade points
-- B (Average): 50–59 marks → 6 grade points
-- P (Pass): 40–49 marks → 5 grade points
-- F (Fail): Below 40 marks → 0 grade points
+Purpose:
+This knowledge base is designed for an AI student assistant. The chatbot should answer student questions accurately, ask follow-up questions when necessary, and direct students to the correct office if it cannot complete a request.
 
-### Examination Rules
-- Hall tickets must be downloaded from the student portal 3 days before exams begin.
-- Students must carry their hall ticket AND ID card to every examination.
-- Mobile phones and electronic devices are strictly prohibited in examination halls.
-- Late entry beyond 15 minutes from start time is not permitted.
-- Malpractice results in immediate disqualification and disciplinary action.
+SECTION 1: OFFICE DIRECTORY
+Administration Office
 
-### Revaluation Process
-Students can apply for revaluation within 7 days of result publication. The process:
-1. Download revaluation form from portal.woxsen.edu.in → Examinations
-2. Pay ₹500 per subject at the Accounts Department (Room 201, Admin Block)
-3. Submit form + receipt at the Exam Cell, Room 105, Admin Block
-4. Results communicated within 21 working days
+Purpose:
+General university administration and official approvals.
 
----
+Handles:
+- General student enquiries
+- Administrative approvals
+- Official documentation
+- Student requests
 
-## Library Rules and Services
+Location:
+Admin Block
 
-### Library Timings
-- Monday to Saturday: 8:00 AM – 9:00 PM
-- Sunday: 10:00 AM – 5:00 PM
-- Closed on national holidays and university-declared holidays
+Room:
+Unknown (Needs University Data)
 
-### Borrowing Policy
-- UG Students: 3 books for 14 days
-- PG Students: 5 books for 21 days
-- PhD Scholars: 7 books for 30 days
-- Faculty: 10 books for 60 days
+Working Hours:
+Office Hours (Needs confirmation)
 
-### Late Return Fines
-- ₹2 per book per day for overdue books
-- A fine exceeding ₹200 will result in temporary suspension of library privileges
-- Fines can be paid at Library Counter 1
+Contact:
+Campus Reception: 08455-255555
 
-### Digital Resources
-Students can access JSTOR, Scopus, IEEE Xplore, and Springer through the campus network or via VPN using university credentials. Contact library@woxsen.edu.in for VPN access.
+Registrar Office
 
-### Lost Library Book
-If a borrowed book is lost, the student must replace it with a new copy or pay the current market price of the book + 25% damage charges. Report to Library Counter 3.
+Purpose:
+Maintains official student records.
 
----
+Handles:
+- Transfer Certificate
+- Migration Certificate
+- Official records
+- Degree documentation
+- Student status verification
 
-## Hostel Regulations
+Email:
+registrar@woxsen.edu.in
 
-### Hostel Timings (In-time)
-- Weekdays (Mon–Thu): 10:00 PM
-- Friday: 11:00 PM
-- Saturday: 11:00 PM
-- Sunday: 9:00 PM
+Controller of Examinations (Exam Cell)
 
-Late entry requires prior written permission from the Chief Warden.
+Purpose:
+Handles all examination-related activities.
 
-### Hostel Mess
-- Breakfast: 7:00 AM – 9:00 AM
-- Lunch: 12:00 PM – 2:00 PM
-- Snacks: 4:30 PM – 5:30 PM
-- Dinner: 7:30 PM – 9:30 PM
+Handles:
+- Hall tickets
+- Exam schedules
+- Results
+- Revaluation
+- Backlog exams
+- Marksheets
 
-Special dietary requirements must be communicated to the Mess Supervisor at hostel@woxsen.edu.in.
+Email:
+coe@woxsen.edu.in
 
-### Hostel Complaints
-Students can submit complaints to:
-1. Block Warden (first level)
-2. Chief Warden, Block H (second level)
-3. Dean of Student Affairs, Admin Block Room 301 (escalation)
+Accounts Office
 
-All complaints must be submitted in writing with date and room number.
+Purpose:
+Financial matters.
 
----
+Handles:
+- Fee payment
+- Refunds
+- Scholarships
+- Financial clearance
+- Payment verification
 
-## Fee Structure & Payment
+Email:
+accounts@woxsen.edu.in
 
-### Payment Methods
-Fees can be paid via:
-1. Online: Student portal → Fee Payment (Net banking, UPI, Credit/Debit card)
-2. Demand Draft: In favour of "Woxsen University" payable at Hyderabad
-3. In-person: Accounts Department, Room 201, Admin Block
+Library
 
-### Fee Deadlines
-- Semester 1: Within 30 days of joining
-- Subsequent semesters: Before the 10th of the month the semester begins
-- Late fee: ₹100 per week after deadline
+Purpose:
+Learning resources.
 
-### Scholarship Disbursement
-Scholarships are credited directly to the student's bank account registered on the portal. For discrepancies, contact the Scholarship Cell at scholarships@woxsen.edu.in or Admin Room 203.
+Handles:
+- Book issue
+- Book return
+- Digital resources
+- Library cards
+- Lost books
 
----
+IT Help Desk
 
-## Transportation & Parking
+Purpose:
+Technical support.
 
-### University Bus Service
-Woxsen University operates bus services from Hyderabad city on designated routes. Bus passes can be obtained from the Transport Office (Admin Block, Ground Floor, near Security Gate).
-- Cost: ₹8,000 per semester (non-AC) | ₹12,000 per semester (AC)
-- Application: First 2 weeks of each semester at the Transport Office
+Handles:
+- ERP login
+- Wi-Fi
+- Email
+- Password reset
+- Software access
 
-### Parking Policy
-- Students with valid parking stickers may park in Zone B and Zone C.
-- Parking stickers are issued by the Security Office (Block A, Ground Floor). Cost: ₹500 per year.
-- Unauthorized parking will result in vehicle being towed at owner's expense.
+Email:
+techsupport@woxsen.edu.in
 
----
+Student Support (Bridge)
 
-## Health & Wellness
+Purpose:
+Primary student support center.
 
-### University Health Center
-Location: Block G, Ground Floor
-Timings: Monday–Saturday, 8:00 AM – 8:00 PM
-Emergency: 24/7 (on-call doctor)
-Contact: health@woxsen.edu.in | 040-6810-0100 ext 500
+Handles:
+- Bonafide certificate
+- Student letters
+- General student assistance
+- Academic guidance
 
-### Counseling Services
-Woxsen University offers free, confidential counseling services for students.
-Counselor: Dr. Priya Sharma
-Appointment: Book via portal.woxsen.edu.in → Student Services → Counseling
-Walk-ins: Tuesday and Thursday, 3:00 PM – 5:00 PM, Block G Room 102
+Email:
+bridge@woxsen.edu.in
+
+Hostel Support (Gateway)
+
+Purpose:
+Hostel administration.
+
+Handles:
+- Room allocation
+- Hostel complaints
+- Maintenance
+- Room changes
+
+Email:
+thegateway@woxsen.edu.in
+
+Career Connect
+
+Purpose:
+Placement and internship support.
+
+Handles:
+- Placements
+- Internships
+- Resume support
+- Company registration
+- Placement drives
+
+Email:
+careerconnect@woxsen.edu.in
+
+Student Wellness
+
+Purpose:
+Student health and counseling.
+
+Handles:
+- Mental health
+- Counseling
+- Medical assistance
+- Wellness support
+
+Email:
+student.wellness@woxsen.edu.in
+
+Anti-Ragging Cell
+
+Purpose:
+Handle ragging complaints.
+
+Email:
+antiragging.cell@woxsen.edu.in
+
+Emergency Numbers:
+7416664429
+9709704747
+
+SECTION 2: COMMON STUDENT ISSUES
+Lost ID Card
+
+First Contact:
+Bridge Helpdesk
+
+Required Documents:
+- Student ID Number
+- Identity Proof
+- Passport Photo (if requested)
+
+Processing Time:
+Approximately 2–7 working days
+
+Fee Payment Not Updated
+
+First Contact:
+Accounts Office
+
+Required Information:
+- Transaction ID
+- Payment Screenshot
+- Date of Payment
+- Amount Paid
+
+Typical Resolution:
+1–3 working days
+
+Attendance Shortage
+
+First Contact:
+Course Faculty
+
+If unresolved:
+Program Manager
+
+Documents:
+Medical certificate (if applicable)
+
+Exam Revaluation
+
+First Contact:
+Controller of Examinations
+
+Requirements:
+- Revaluation Application
+- Payment Receipt
+
+Typical Processing:
+2–4 weeks
+
+Bonafide Certificate
+
+First Contact:
+Bridge
+
+Requirements:
+Student ID
+
+Processing Time:
+1–3 working days
+
+Transcript
+
+First Contact:
+Bridge
+
+Requirements:
+- Application
+- Payment (if applicable)
+
+Processing Time:
+5–10 working days
+
+Transfer Certificate
+
+First Contact:
+Registrar
+
+Requirements:
+- Department Clearance
+- No Due Certificate
+
+Processing Time:
+5–10 working days
+
+Hostel Complaint
+
+First Contact:
+Gateway
+
+Common Complaints:
+- Water
+- Electricity
+- Cleaning
+- AC
+- Furniture
+
+Hostel Room Change
+
+First Contact:
+Gateway
+
+Requirements:
+- Written Request
+- Reason
+
+Approval depends on room availability.
+
+Wi-Fi Problem
+
+First Contact:
+IT Help Desk
+
+Required Information:
+- Hostel Room
+- Student ID
+- Device Information
+
+ERP Login Issue
+
+First Contact:
+IT Help Desk
+
+Required Information:
+- Roll Number
+- Registered Email
+- Screenshot of Error
+
+Library Book Missing
+
+Contact:
+Library Staff
+
+Possible Solutions:
+- Reservation
+- Alternative copy
+- Digital copy
+
+Damaged Library Book
+
+Report immediately to Library Staff.
+Fine depends on library policy.
+
+Transport Issue
+
+First Contact:
+Transport Office
+
+Information Required:
+- Bus Route
+- Student ID
+
+Medical Leave
+
+First Contact:
+Faculty
+
+Then:
+Program Manager
+
+Documents:
+Medical Certificate
+
+Ragging Complaint
+
+Immediately contact:
+Anti-Ragging Cell
+The chatbot should always treat ragging complaints as high priority.
+
+Scholarship Query
+
+First Contact:
+Accounts Office
+
+Documents:
+- Scholarship Documents
+- Income Certificate (if required)
+
+Internship Query
+
+First Contact:
+Career Connect
+
+Placement Query
+
+First Contact:
+Career Connect
+
+SECTION 3: ACADEMIC STRUCTURE
+School Abbreviations
+
+SOB: School of Business
+SOT: School of Technology
+SOD: School of Design
+SOL: School of Law
+SAS: School of Arts & Sciences
+
+Roles
+
+Faculty:
+Responsible for Assignments, Attendance, Marks, Course-related doubts.
+
+Program Manager (PM):
+Responsible for Attendance issues, Semester planning, Academic coordination, Student academic support.
+
+Program Director (PD):
+Responsible for Academic approvals, Curriculum, Escalated academic concerns.
+
+Dean:
+Responsible for School-level academic administration, Policy implementation, Major student concerns.
+
+Registrar:
+Responsible for Official records, Certificates, Academic documentation.
+
+Controller of Examinations:
+Responsible for Examinations, Results, Hall Tickets, Revaluation.
+
+Academic Escalation Order:
+Faculty -> Program Manager -> Program Director -> Dean -> Registrar or Controller of Examinations
+
+SECTION 4: IMPORTANT CONTACTS
+
+Campus Reception: 08455-255555
+Emergency: 9709704747
+Anti-Ragging: 7416664429, 9709704747 (Email: antiragging.cell@woxsen.edu.in)
+Bridge: bridge@woxsen.edu.in
+Gateway: thegateway@woxsen.edu.in
+IT: techsupport@woxsen.edu.in
+Career Connect: careerconnect@woxsen.edu.in
+Student Wellness: student.wellness@woxsen.edu.in
+Accounts: accounts@woxsen.edu.in
+Registrar: registrar@woxsen.edu.in
+Exam Cell: coe@woxsen.edu.in
+
+SECTION 5: ONLINE PORTALS
+
+Official Website: https://woxsen.edu.in
+Student Portal: Needs University Data
+ERP: Needs University Data
+Fee Portal: Needs University Data
+Learning Management System: Needs University Data
+
+CHATBOT BEHAVIOR RULES
+
+When answering student questions:
+- Identify the category: Academic, Hostel, Finance, IT, Library, Examination, Placement, Transport, Student Welfare.
+- Always tell students the correct office to contact.
+- Ask for only the required information.
+- Never guess Fees, Deadlines, Exam dates, Office timings.
+- If information is unavailable, reply: "I don't have verified information for this. Please contact the relevant university office."
+- Ragging, harassment, medical emergencies, and safety concerns must always be treated as urgent.
+- Never fabricate university policies.

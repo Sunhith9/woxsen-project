@@ -39,26 +39,42 @@ class RAGEngine:
             ("What are the library timings?", "Our library has great hours! It's open from 9:00 AM to 2:00 AM daily. On weekends, you can visit from 10:00 AM to 5:00 PM."),
             ("What are the cafeteria timings?", "We have several options for you! The main mess timings are: Breakfast (7–10 AM), Lunch (12–3 PM), and Dinner (7–10 PM). Also, there are 4 cafés on campus that stay open until 1 AM for late-night snacks!"),
             
-            # Academic Policies
+            # Academic Policies & Escalations
             ("Minimum attendance for exams?", "Woxsen maintains a high standard for academic participation, so the minimum required attendance is 75%. If you fall below this, you might be barred from writing your end-semester exams."),
-            ("Makeup exam if sick?", "I'm sorry to hear you're unwell! If you miss an exam due to illness, you should submit a written application to your HOD within 3 days. Make sure to include a medical certificate. Once the HOD approves it, they'll forward it to the Exam Cell in Room 105."),
+            ("What to do for attendance shortage?", "If you have an attendance shortage, contact your course faculty first. If unresolved, contact your Program Manager. Be prepared to provide a medical certificate if applicable."),
+            ("How to apply for medical leave?", "To apply for medical leave, contact your Course Faculty first, and then your Program Manager. You must submit a valid medical certificate."),
             ("Academic calendar release?", "The academic calendar is your roadmap for the semester! It's usually published 4–6 weeks before the semester starts on the student portal at portal.woxsen.edu.in."),
-            ("Marks are wrong or affected?", "I understand how frustrating that is! You can apply for revaluation within 7 days of your result declaration. Head over to the Exam Cell in Room 105. There's a fee of ₹500 per subject, and you'll typically get the results in about 21 working days."),
+            ("How to apply for exam revaluation?", "To apply for revaluation, contact the Controller of Examinations. You must submit a revaluation application and payment receipt. Typical processing time is 2–4 weeks."),
+            ("Who to contact for Transfer Certificate?", "To apply for a Transfer Certificate, contact the Registrar Office. You must submit department clearance and a No Due Certificate. The processing time is 5–10 working days."),
             
-            # Grievances & Support
-            ("Hostel wifi is not working?", "I know how important Wi-Fi is! Start by reporting it to the Hostel Warden in Block H. If it's an urgent technical issue, you can visit the IT Help Desk at the Library Ground Floor or send an email to it@woxsen.edu.in."),
-            ("No electricity in hostel room?", "That's an inconvenience, I'm sorry! Please raise a Maintenance Request under 'Hostel → Electrical Issue' in the portal. If it's an emergency, select 'Urgent'. A technician should be there within 24 hours. If they don't show up, please inform your warden."),
-            ("Can I withdraw a grievance?", "Yes, you can! Just send an email to grievance@woxsen.edu.in or visit Room 301. Just keep in mind that you can only withdraw it as long as a final decision hasn't been issued yet."),
-            ("Someone is misbehaving or harassment?", "I am very sorry you're dealing with this. Woxsen takes these matters very seriously and you can report it confidentially under 'Harassment / Misconduct' in the portal. A committee will contact you privately within 3 days. For urgent help, please visit the Support Desk at the Gateway immediately."),
-            ("Complaint against faculty?", "If you have a concern or complaint regarding a faculty member, please visit the Admin Office at the Gateway or email grievance@woxsen.edu.in. Your feedback is important and will be handled professionally."),
-            ("Grievance not resolved in 24 hours?", "For critical cases like ragging, we escalate immediately to the Dean of Student Affairs (Room 301). For other issues, our standard response times are: Critical (2 days), High (5 days), and Medium (7 days)."),
+            # Student Support / Certificates
+            ("How to get a bonafide certificate?", "To get a bonafide certificate, contact the Bridge Helpdesk. You only need to provide your Student ID. The processing time is 1–3 working days."),
+            ("How to apply for a transcript?", "To get your transcript, contact the Bridge Helpdesk. You must submit an application and complete the payment if applicable. The processing time is 5–10 working days."),
             
-            # Fees
-            ("Paid fees but status not updated?", "Don't worry, these things take a little time to process. Please upload your receipt in the support form under 'Fees Payment Not Updated'. The Finance team will verify it within 24-48 hours. If it's been longer than that, visit the Gachibowli Office with your proof of payment."),
+            # Hostel & Wi-Fi
+            ("Who to contact for hostel room change?", "To request a room change, contact Hostel Support (Gateway) with a written request stating your reason. Room change approvals are subject to room availability."),
+            ("Hostel wifi is not working?", "For hostel Wi-Fi issues, contact the IT Help Desk. You will need to provide your hostel room, Student ID, and device information."),
+            ("ERP login issue or password reset?", "For ERP login issues or password resets, contact the IT Help Desk with your Roll Number, registered email, and a screenshot of the error."),
             
-            # General Help
+            # Library
+            ("What if library book is missing or damaged?", "If a library book is missing, contact the library staff. They can help with reservation, alternative copy, or a digital copy. If a book is damaged, report it immediately to the library staff; fines depend on the library policy."),
+            
+            # Transport
+            ("Who to contact for transport issues?", "For transport or bus route issues, contact the Transport Office. You will need to provide your bus route and Student ID."),
+            
+            # Ragging (High Priority)
+            ("How to file a ragging complaint?", "If you have a ragging complaint, contact the Anti-Ragging Cell immediately. Ragging complaints are treated as high priority. You can email antiragging.cell@woxsen.edu.in or call emergency numbers 7416664429 or 9709704747."),
+            
+            # Placements & Internships
+            ("Who to contact for internships and placements?", "For internship and placement queries, contact Career Connect at careerconnect@woxsen.edu.in."),
+            
+            # Scholarships & Fees
+            ("Who handles scholarship queries?", "For scholarship queries, contact the Accounts Office. You will need to provide your scholarship documents and income certificate (if required)."),
+            ("Paid fees but status not updated?", "If your fee payment is not updated, contact the Accounts Office with your Transaction ID, payment screenshot, date of payment, and amount paid. The typical resolution time is 1–3 working days."),
+            
+            # General Support
             ("How to apply for student exchange?", "That's exciting! To apply, you'll need at least a 60% average and have completed 1 year (for UG) or 2 trimesters (for PG). Applications open in March and August. You can reach out to international@woxsen.edu.in for more details."),
-            ("Lost my ID card?", "Oh no! First, double-check your room and the places you've visited. If you still can't find it, raise a 'Lost ID Request' via Gateway → Student Support → Bridge. There's a ₹200 replacement fee, and your new card will be ready in 3-5 days.")
+            ("Lost my ID card?", "If you lost your ID card, contact the Bridge Helpdesk first. You will need to provide your Student ID Number, identity proof, and a passport-size photo (if requested). Processing time is approximately 2–7 working days.")
         ]
 
         # Try to load semantic search model (optional — falls back to keyword matching)

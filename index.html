@@ -6,8 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Woxsen University  Official Portal</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+    <style>
+        .icon-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+        .icon-badge.portal {
+            background: rgba(212,83,126,0.25);
+            color: #f472b6;
+            border: 1px solid rgba(212,83,126,0.35);
+        }
+        .icon-badge.feature {
+            color: #fff;
+        }
+        .icon-badge.notif-resolved { background: rgba(22, 163, 74, 0.15); color: #16a34a; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        .icon-badge.notif-escalated { background: rgba(233, 30, 99, 0.15); color: #E91E63; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        .icon-badge.notif-system { background: rgba(234, 88, 12, 0.15); color: #ea580c; width: 36px; height: 36px; font-size: 18px; margin: 0; }
+        
+        .initials-avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: 500;
+            font-size: 14px;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            color: var(--navy);
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -1262,9 +1300,9 @@
             font-size: 28px;
             flex-shrink: 0;
         }
-        .pi-blue { background: rgba(37,99,235,.2); border: 1px solid rgba(37,99,235,.3); }
-        .pi-green { background: rgba(22,163,74,.2); border: 1px solid rgba(22,163,74,.3); }
-        .pi-red { background: rgba(220,38,38,.2); border: 1px solid rgba(220,38,38,.3); }
+        .pi-blue { background: rgba(37,99,235,.2); border: 1px solid rgba(37,99,235,.3); color: #60a5fa; }
+        .pi-green { background: rgba(22,163,74,.2); border: 1px solid rgba(22,163,74,.3); color: #4ade80; }
+        .pi-red { background: rgba(220,38,38,.2); border: 1px solid rgba(220,38,38,.3); color: #f87171; }
         .portal-name {
             font-family: 'Montserrat';
             font-size: 22px;
@@ -1435,18 +1473,12 @@
                         <div style="background:var(--navy);border:1px solid #1a1a1a;border-radius:8px;padding:32px 28px;color:#fff;transition:.3s;position:relative;overflow:hidden;"
                             onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 18px 40px rgba(0,0,0,.35)'"
                             onmouseout="this.style.transform='';this.style.boxShadow=''">
-                            <div style="position:absolute;top:-20px;right:-20px;opacity:.1;"><img src="woxsen_wou_symbol.png" alt="" style="width:90px;height:90px;object-fit:contain;"></div>
-                            <div
-                                style="width:48px;height:48px;background:rgba(220,38,38,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;">
-                                <img src="woxsen_wou_symbol.png" alt="WOU" style="width:22px;height:22px;object-fit:contain;"></div>
-                            <div
-                                style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">
-                                Student &amp; Faculty</div>
-                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">
-                                Submit grievances, manage evaluations, and access all student &amp; faculty services.
+                            <div style="width:52px;height:52px;border-radius:12px;background:rgba(43,108,201,.25);display:flex;align-items:center;justify-content:center;font-size:22px;color:#60a5fa;margin-bottom:16px;">
+                                <i class="fa-solid fa-user-graduate"></i>
                             </div>
-                            <div
-                                style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.2);color:var(--gold);padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
+                            <div style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">Student Portal</div>
+                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">Submit grievances, manage evaluations, and access all student &amp; faculty services.</div>
+                            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.2);color:var(--gold);padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
                                 <i class="fa-solid fa-arrow-right"></i> Login Now
                             </div>
                         </div>
@@ -1455,18 +1487,12 @@
                         <div style="background:var(--navy);border:1px solid #1a1a1a;border-radius:8px;padding:32px 28px;color:#fff;transition:.3s;position:relative;overflow:hidden;"
                             onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 18px 40px rgba(0,0,0,.35)'"
                             onmouseout="this.style.transform='';this.style.boxShadow=''">
-                            <div style="position:absolute;top:-20px;right:-20px;font-size:90px;opacity:.07;"></div>
-                            <div
-                                style="width:48px;height:48px;background:rgba(220,38,38,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;">
-                                </div>
-                            <div
-                                style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">
-                                Department Portal</div>
-                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">
-                                Manage department staff, evaluations, performance metrics, and departmental operations.
+                            <div style="width:52px;height:52px;border-radius:12px;background:rgba(22,119,74,.25);display:flex;align-items:center;justify-content:center;font-size:22px;color:#4ade80;margin-bottom:16px;">
+                                <i class="fa-solid fa-building-columns"></i>
                             </div>
-                            <div
-                                style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.2);color:var(--gold);padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
+                            <div style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">Department Portal</div>
+                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">Manage department staff, evaluations, performance metrics, and departmental operations.</div>
+                            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.2);color:var(--gold);padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
                                 <i class="fa-solid fa-arrow-right"></i> Login Now
                             </div>
                         </div>
@@ -1475,18 +1501,12 @@
                         <div style="background:var(--navy);border:1px solid #1a1a1a;border-radius:8px;padding:32px 28px;color:#fff;transition:.3s;position:relative;overflow:hidden;"
                             onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 18px 40px rgba(0,0,0,.35)'"
                             onmouseout="this.style.transform='';this.style.boxShadow=''">
-                            <div style="position:absolute;top:-20px;right:-20px;font-size:90px;opacity:.07;"></div>
-                            <div
-                                style="width:48px;height:48px;background:rgba(255,255,255,.15);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;">
-                                </div>
-                            <div
-                                style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">
-                                Super Admin Panel</div>
-                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">
-                                System-level configuration, staff management, analytics and full administrative control.
+                            <div style="width:52px;height:52px;border-radius:12px;background:rgba(216,27,96,.25);display:flex;align-items:center;justify-content:center;font-size:22px;color:#f9a8d4;margin-bottom:16px;">
+                                <i class="fa-solid fa-shield-halved"></i>
                             </div>
-                            <div
-                                style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);color:#fff;padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
+                            <div style="font-family:'Montserrat';font-size:22px;font-weight:700;margin-bottom:8px;">Super Admin Panel</div>
+                            <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px;">System-level configuration, staff management, analytics and full administrative control.</div>
+                            <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);color:#fff;padding:7px 14px;border-radius:4px;font-size:12px;font-weight:700;">
                                 <i class="fa-solid fa-arrow-right"></i> Login Now
                             </div>
                         </div>
@@ -1564,8 +1584,8 @@
                     <div style="background:#fff;border-radius:18px;padding:28px;border:1px solid var(--border);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 12px 32px rgba(0,0,0,.07)';this.style.transform='translateY(-4px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
-                        <div
-                            style="width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                            <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                             </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
@@ -1577,8 +1597,8 @@
                     <div style="background:#fff;border-radius:18px;padding:28px;border:1px solid var(--border);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 12px 32px rgba(0,0,0,.07)';this.style.transform='translateY(-4px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
-                        <div
-                            style="width:44px;height:44px;background:linear-gradient(135deg,#2b6cc9,#60a5fa);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                            <div style="width:44px;height:44px;background:linear-gradient(135deg,#2b6cc9,#60a5fa);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0H5a2 2 0 0 1-2-2V9m6 5h10a2 2 0 0 0 2-2V9m0 0H3"/><path d="m9 20 3 3 3-3"/><path d="M12 14v9"/></svg>
                             </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
@@ -1590,8 +1610,8 @@
                     <div style="background:#fff;border-radius:18px;padding:28px;border:1px solid var(--border);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 12px 32px rgba(0,0,0,.07)';this.style.transform='translateY(-4px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
-                        <div
-                            style="width:44px;height:44px;background:linear-gradient(135deg,#16774a,#34d399);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                            <div style="width:44px;height:44px;background:linear-gradient(135deg,#16774a,#34d399);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="17"/><line x1="9" y1="14.5" x2="15" y2="14.5"/></svg>
                             </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
@@ -1603,8 +1623,8 @@
                     <div style="background:#fff;border-radius:18px;padding:28px;border:1px solid var(--border);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 12px 32px rgba(0,0,0,.07)';this.style.transform='translateY(-4px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
-                        <div
-                            style="width:44px;height:44px;background:linear-gradient(135deg,#6d28d9,#a78bfa);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                            <div style="width:44px;height:44px;background:linear-gradient(135deg,#6d28d9,#a78bfa);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
                             </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
@@ -1618,7 +1638,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:44px;height:44px;background:linear-gradient(135deg,#0891b2,#67e8f9);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
-                            </div>
+                            <i class="ti ti-tools" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
                             Applied Learning</div>
@@ -1631,7 +1652,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:44px;height:44px;background:linear-gradient(135deg,#b91c1c,#f87171);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;">
-                            </div>
+                            <i class="ti ti-trophy" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:8px;">
                             Award-Winning Campus</div>
@@ -1801,7 +1823,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-building" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             World-Class Infrastructure</div>
@@ -1814,7 +1837,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,#2b6cc9,#60a5fa);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-book-open" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             Unique Curriculum Design</div>
@@ -1827,7 +1851,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,#16774a,#34d399);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-flask" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             Applied &amp; Differentiated Learning</div>
@@ -1840,7 +1865,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,#6d28d9,#a78bfa);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-globe" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             International Student Exchange</div>
@@ -1853,7 +1879,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,#0891b2,#67e8f9);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-handshake" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             Strong Industry Connect</div>
@@ -1866,7 +1893,8 @@
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
                         <div
                             style="width:46px;height:46px;background:linear-gradient(135deg,#8b0000,#c0392b);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">
-                            </div>
+                            <i class="fa-solid fa-chart-line" style="color: #fff;" aria-hidden="true"></i>
+                        </div>
                         <div
                             style="font-family:'Montserrat';font-size:20px;font-weight:700;color:var(--navy);margin-bottom:10px;">
                             Maximum Career Impact</div>
@@ -2799,19 +2827,19 @@
             </div>
             <div class="portals-grid">
                 <a href="student_portal.html" class="portal-card">
-                    <div class="portal-icon pi-blue"></div>
+                    <div class="portal-icon pi-blue"><i class="fa-solid fa-user-graduate"></i></div>
                     <div class="portal-name">Student Portal</div>
                     <div class="portal-desc">Submit grievances, track resolutions, view analytics, and communicate with faculty.</div>
                     <div class="portal-btn">Open Student Portal </div>
                 </a>
                 <a href="department_portal.html" class="portal-card">
-                    <div class="portal-icon pi-green"></div>
+                    <div class="portal-icon pi-green"><i class="fa-solid fa-building-columns"></i></div>
                     <div class="portal-name">Department Portal</div>
                     <div class="portal-desc">HODs and department staff can manage, escalate, and resolve student grievances.</div>
                     <div class="portal-btn">Open Department Portal </div>
                 </a>
                 <a href="Woxsen_Admin_Panel.html" class="portal-card">
-                    <div class="portal-icon pi-red"></div>
+                    <div class="portal-icon pi-red"><i class="fa-solid fa-shield-halved"></i></div>
                     <div class="portal-name">Admin Panel</div>
                     <div class="portal-desc">Super admin dashboard for university-wide oversight, SLA tracking, and reporting.</div>
                     <div class="portal-btn">Open Admin Panel </div>

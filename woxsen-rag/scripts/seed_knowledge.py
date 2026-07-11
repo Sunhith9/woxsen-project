@@ -50,7 +50,8 @@ def main():
     stats = engine.get_stats()
     logger.info(f"\n✅ Seeding Complete!")
     logger.info(f"   Total chunks in ChromaDB: {stats['total_chunks']}")
-    logger.info(f"   Sources: {', '.join(stats['sources']) or 'none'}")
+    sources = [s.get("source", s.get("id", str(s))) if isinstance(s, dict) else str(s) for s in stats.get("sources", [])]
+    logger.info(f"   Sources: {', '.join(sources) or 'none'}")
     logger.info(f"\n▶ Now start the server: uvicorn backend.main:app --reload --port 8000")
 
 if __name__ == "__main__":
