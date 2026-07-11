@@ -2514,6 +2514,8 @@
             if (n === 'ann') renderAnnouncements();
 
             document.getElementById('sidebar').classList.remove('open');
+            const overlay = document.getElementById('sbOverlay');
+            if (overlay) overlay.classList.remove('show');
         }
 
         async function changeStaffPassword() {

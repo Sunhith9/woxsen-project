@@ -2007,7 +2007,7 @@
     </div>
 
     <div id="adminApp" style="display:none">
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="sb-brand">
                 <div class="sb-row" style="display: flex; align-items: center; margin-bottom: 24px; margin-left: -8px;">
                     <img src="woxsen_wou_symbol.png" alt="WOU Logo"
@@ -3393,6 +3393,8 @@
                 if (n === 'perf') renderStaffPerf();
                 if (n === 'profile') renderAdminProfile();
                 document.getElementById('sidebar').classList.remove('open');
+                const overlay = document.getElementById('sbOverlay');
+                if (overlay) overlay.classList.remove('show');
             }
 
             function renderAdminDash() {

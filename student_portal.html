@@ -4247,6 +4247,8 @@
             if (n === 'analytics') renderAnalytics();
             if (n === 'submit') { const curCat = document.getElementById('fCat').value; showWeekendBanner(curCat); }
             document.getElementById('sidebar').classList.remove('open');
+            const overlay = document.getElementById('sbOverlay');
+            if (overlay) overlay.classList.remove('show');
         }
         //  WEEKEND RESTRICTION 
         function isWeekend() { const d = new Date().getDay(); return d === 0 || d === 6; }
