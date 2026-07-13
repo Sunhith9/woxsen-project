@@ -1185,7 +1185,15 @@
             .navbar.scrolled { padding: 12px 20px; }
             .nav-links { display: none; }
             .ham-btn { display: flex; }
-            .login-wrapper .btn-login { display: none !important; }
+            .login-wrapper .btn-login {
+                padding: 7px 12px;
+                font-size: 12px;
+                gap: 5px;
+            }
+            .login-wrapper .dropdown {
+                width: 260px;
+                top: calc(100% + 8px);
+            }
             .hero h1 { font-size: 44px; }
             .about-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; }
             .ranks-grid, .schools-grid, .campus-grid { grid-template-columns: 1fr 1fr; }
@@ -1445,6 +1453,16 @@
             .rankings-grid {
                 grid-template-columns: 1fr;
             }
+            .login-wrapper .btn-login span {
+                display: none;
+            }
+            .login-wrapper .btn-login {
+                padding: 8px 10px;
+                border-radius: 50%;
+            }
+            .login-wrapper .btn-login .chev {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -1470,7 +1488,7 @@
                 <span></span><span></span><span></span>
             </button>
             <button class="btn-login" id="loginBtn">
-                <i class="fa-regular fa-user"></i> Portals <i class="fa-solid fa-chevron-down chev"></i>
+                <i class="fa-regular fa-user"></i> <span>Portals</span> <i class="fa-solid fa-chevron-down chev"></i>
             </button>
             <div class="dropdown">
                 <a href="student_portal.html" class="ditem di-blue">

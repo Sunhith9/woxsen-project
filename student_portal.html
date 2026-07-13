@@ -39,11 +39,15 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
-            overflow-x: hidden;
         }
 
         .sidebar {
@@ -5864,15 +5868,15 @@
             // Build notifications from grievance states
             const notifs = [];
             myG.forEach(g => {
-                if (['Resolved', 'Closed'].includes(g.status)) notifs.push({ icon: '', bg: '#f0fdf4', title: 'Grievance Resolved', body: `Your grievance <strong>${g.id}</strong>  "${g.title}" has been resolved.${g.remarks ? ' Remark: ' + g.remarks : ''}`, time: g.date, unread: false });
-                else if (g.status === 'Escalated') notifs.push({ icon: '', bg: '#fef2f2', title: 'Grievance Escalated', body: `<strong>${g.id}</strong>  "${g.title}" has been escalated to higher authority.`, time: g.date, unread: true });
-                else if (g.status === 'In Progress') notifs.push({ icon: '', bg: '#eff6ff', title: 'Grievance In Progress', body: `<strong>${g.id}</strong>  "${g.title}" is being actively worked on by ${g.assigned}.`, time: g.date, unread: true });
-                else if (g.status === 'Under Review') notifs.push({ icon: '', bg: '#faf5ff', title: 'Under Review', body: `<strong>${g.id}</strong>  "${g.title}" is currently under review.`, time: g.date, unread: false });
-                else notifs.push({ icon: '', bg: '#fff7ed', title: 'Grievance Pending', body: `Your grievance <strong>${g.id}</strong>  "${g.title}" is pending action. Assigned to: ${g.assigned}.`, time: g.date, unread: false });
+                if (['Resolved', 'Closed'].includes(g.status)) notifs.push({ icon: '<i class="fa-solid fa-circle-check" style="color:#16a34a"></i>', bg: '#f0fdf4', title: 'Grievance Resolved', body: `Your grievance <strong>${g.id}</strong>  "${g.title}" has been resolved.${g.remarks ? ' Remark: ' + g.remarks : ''}`, time: g.date, unread: false });
+                else if (g.status === 'Escalated') notifs.push({ icon: '<i class="fa-solid fa-circle-exclamation" style="color:#dc2626"></i>', bg: '#fef2f2', title: 'Grievance Escalated', body: `<strong>${g.id}</strong>  "${g.title}" has been escalated to higher authority.`, time: g.date, unread: true });
+                else if (g.status === 'In Progress') notifs.push({ icon: '<i class="fa-solid fa-circle-play" style="color:#2563eb"></i>', bg: '#eff6ff', title: 'Grievance In Progress', body: `<strong>${g.id}</strong>  "${g.title}" is being actively worked on by ${g.assigned}.`, time: g.date, unread: true });
+                else if (g.status === 'Under Review') notifs.push({ icon: '<i class="fa-solid fa-magnifying-glass" style="color:#7c3aed"></i>', bg: '#faf5ff', title: 'Under Review', body: `<strong>${g.id}</strong>  "${g.title}" is currently under review.`, time: g.date, unread: false });
+                else notifs.push({ icon: '<i class="fa-solid fa-clock" style="color:#d97706"></i>', bg: '#fff7ed', title: 'Grievance Pending', body: `Your grievance <strong>${g.id}</strong>  "${g.title}" is pending action. Assigned to: ${g.assigned}.`, time: g.date, unread: false });
             });
             // System notifications
-            notifs.unshift({ icon: '', bg: '#fdf6e3', title: 'SLA Policy Reminder', body: 'All grievances are reviewed within SLA deadlines: Critical (2 days), High (5 days), Medium (7 days), Low (14 days).', time: 'System', unread: false });
-            notifs.unshift({ icon: '', bg: '#fdf6e3', title: 'Welcome to Woxsen Grievance Portal', body: 'You are logged into the official Woxsen University Grievance Management System. Submit, track and monitor all your grievances here.', time: 'System', unread: false });
+            notifs.unshift({ icon: '<i class="fa-solid fa-bullhorn" style="color:#d97706"></i>', bg: '#fdf6e3', title: 'SLA Policy Reminder', body: 'All grievances are reviewed within SLA deadlines: Critical (2 days), High (5 days), Medium (7 days), Low (14 days).', time: 'System', unread: false });
+            notifs.unshift({ icon: '<i class="fa-solid fa-circle-info" style="color:#d97706"></i>', bg: '#fdf6e3', title: 'Welcome to Woxsen Grievance Portal', body: 'You are logged into the official Woxsen University Grievance Management System. Submit, track and monitor all your grievances here.', time: 'System', unread: false });
             const unreadCount = notifs.filter(n => n.unread).length;
             const nb2 = document.getElementById('nb2');
             if (nb2) { if (unreadCount) { nb2.style.display = 'inline-block'; nb2.textContent = unreadCount; } else { nb2.style.display = 'none'; } }
