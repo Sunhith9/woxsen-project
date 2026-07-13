@@ -3024,6 +3024,12 @@
             if (nl) nl.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             document.getElementById('loginWrapper').classList.remove('active');
+            
+            // Close mobile nav drawer safely
+            const hamBtn = document.getElementById('hamBtn');
+            const mobNav = document.getElementById('mobNav');
+            if (hamBtn) hamBtn.classList.remove('open');
+            if (mobNav) mobNav.classList.remove('open');
         }
 
         // Navbar scroll
@@ -3249,8 +3255,8 @@
             btn.classList.toggle('open');
             nav.classList.toggle('open');
         }
-        // Close mobile nav on nav link click
-        document.querySelectorAll('.mob-nav span, .mob-nav a').forEach(el => {
+        // Close mobile nav on portal link click
+        document.querySelectorAll('.mob-nav a').forEach(el => {
             el.addEventListener('click', () => {
                 document.getElementById('hamBtn').classList.remove('open');
                 document.getElementById('mobNav').classList.remove('open');
