@@ -49,6 +49,7 @@
             font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
+            overflow-x: hidden;
         }
 
         /*  LOGIN  */
@@ -1239,7 +1240,19 @@
             height: 200px;
         }
 
-        @media(max-width: 900px) {
+        /* Responsive Grid Helper Classes */
+        .res-grid-1-320 {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 18px;
+        }
+        .res-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 900px) {
             :root { --sw: 0px; }
             .sidebar {
                 position: fixed;
@@ -1250,6 +1263,12 @@
             .sidebar.open { transform: translateX(0); }
             .menu-btn { display: flex !important; }
             .anl-grid { grid-template-columns: 1fr !important; }
+            .res-grid-1-320, .res-grid-2 {
+                grid-template-columns: 1fr !important;
+            }
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         /*  Mobile overlay  */
@@ -1262,37 +1281,6 @@
             backdrop-filter: blur(2px);
         }
         .sb-overlay.show { display: block; }
-
-        /*  Mobile: tables  card stacks  */
-        @media(max-width: 640px) {
-            table thead { display: none; }
-            table tbody tr {
-                display: block;
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                margin-bottom: 10px;
-                padding: 10px 12px;
-                background: #fff;
-            }
-            table tbody td {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px 0;
-                border: none;
-                font-size: 12.5px;
-            }
-            table tbody td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                font-size: 10px;
-                text-transform: uppercase;
-                letter-spacing: .05em;
-                color: #888;
-                flex-shrink: 0;
-                margin-right: 8px;
-            }
-        }
 
         .sidebar.collapsed {
             width: 70px;
@@ -1573,7 +1561,7 @@
             margin-top: 4px;
         }
 
-        @media(max-width: 900px) {
+        @media (max-width: 900px) {
             .anl-grid {
                 grid-template-columns: 1fr;
             }
@@ -1612,7 +1600,20 @@
         }
 
         /* ── Mobile responsiveness optimizations ── */
-        @media(max-width: 600px) {
+        @media (max-width: 600px) {
+            .tb-title {
+                white-space: normal;
+                font-size: 15px;
+            }
+            .tb-title small {
+                display: none;
+            }
+            .dg {
+                grid-template-columns: 1fr !important;
+            }
+            .stats {
+                grid-template-columns: 1fr !important;
+            }
             .prof-hero {
                 flex-direction: column !important;
                 text-align: center !important;
@@ -1708,7 +1709,7 @@
         <div class="main">
             <div class="topbar">
                 <button class="menu-btn" style="display: flex !important; margin-right: 15px;"
-                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"></button>
+                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"><i class="fa-solid fa-bars"></i></button>
                 <div class="tb-title" id="tbTitle">Dashboard<small id="tbSub">Department Staff Portal</small></div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
                     style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
@@ -1779,7 +1780,7 @@
                         </div>
                     </div>
 
-                    <div style="display:grid;grid-template-columns:1fr 320px;gap:18px">
+                    <div class="res-grid-1-320">
                         <div class="card">
                             <div class="card-header">
                                 <div class="ct">Recent Grievances</div>
@@ -2142,7 +2143,7 @@
 
                     <div class="anl-card">
                         <div class="anl-title">Department Performance Metrics</div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;flex:1">
+                        <div class="res-grid-2" style="flex:1">
                             <div style="text-align:center;padding:15px;background:var(--cream);border-radius:12px;border:1px solid var(--border)">
                                 <div class="anl-big" style="color:var(--green)" id="darResolved">0</div>
                                 <div class="anl-sub">Resolved Total</div>

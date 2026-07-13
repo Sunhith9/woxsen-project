@@ -1180,10 +1180,12 @@
             color: var(--gold);
         }
 
-        @media(max-width:900px) {
+        @media (max-width: 900px) {
             .navbar { padding: 14px 20px; }
             .navbar.scrolled { padding: 12px 20px; }
             .nav-links { display: none; }
+            .ham-btn { display: flex; }
+            .login-wrapper .btn-login { display: none !important; }
             .hero h1 { font-size: 44px; }
             .about-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; }
             .ranks-grid, .schools-grid, .campus-grid { grid-template-columns: 1fr 1fr; }
@@ -1324,15 +1326,53 @@
             transition: .2s;
         }
         .portal-card:hover .portal-btn { background: #D81B60; }
-        @media(max-width:768px) {
+
+        /* Responsive Grid Helper Classes */
+        .res-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .res-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .res-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .res-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 900px) {
             .portals-grid { grid-template-columns: 1fr; }
-            .ham-btn { display: flex; }
-            .login-wrapper .btn-login { display: none !important; }
+            .res-grid-3 {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .res-grid-6 {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .res-grid-4 {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
         }
-        @media(max-width:600px) {
+        @media (max-width: 600px) {
             .ranks-grid, .schools-grid, .campus-grid { grid-template-columns: 1fr !important; }
+            .res-grid-3, .res-grid-2, .res-grid-6, .res-grid-4 {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+            }
         }
-        @media(max-width:480px) {
+        @media (max-width: 480px) {
             .hero h1 { font-size: 34px; }
             .sec-title { font-size: 32px; }
         }
@@ -1472,7 +1512,7 @@
                     <h2 class="sec-title" style="font-size:36px;">Your Portals</h2>
                     <p class="sec-sub">Access your dedicated workspace. Select your role below to log in.</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+                <div class="res-grid-3">
                     <a href="student_portal.html" style="text-decoration:none;">
                         <div style="background:var(--navy);border:1px solid #1a1a1a;border-radius:8px;padding:32px 28px;color:#fff;transition:.3s;position:relative;overflow:hidden;"
                             onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 18px 40px rgba(0,0,0,.35)'"
@@ -1584,7 +1624,7 @@
                     <h2 class="sec-title">What Sets Us Apart</h2>
                     <p class="sec-sub">A university purpose-built for the demands of the modern world.</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+                <div class="res-grid-3">
                     <div style="background:#fff;border-radius:18px;padding:28px;border:1px solid var(--border);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 12px 32px rgba(0,0,0,.07)';this.style.transform='translateY(-4px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
@@ -1678,7 +1718,7 @@
                     <p class="sec-sub">Stay updated with the latest events, workshops, and campus news from across the
                         web.</p>
                 </div>
-                <div id="news-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+                <div id="news-grid" class="res-grid-3">
                     <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);font-size:14px;">
                          Loading latest Woxsen news...</div>
                 </div>
@@ -1776,7 +1816,7 @@
         <!-- LOGO SYMBOLISM -->
         <section style="background:#fff;padding:70px 30px;">
             <div class="container">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+                <div class="res-grid-2">
                     <div>
                         <div class="sec-label">Our Identity</div>
                         <h2 class="sec-title">The Foundation of Woxsen's Identity</h2>
@@ -1821,7 +1861,7 @@
                         cutting-edge curriculum, world-class pedagogy, industry connections and international
                         partnerships.</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+                <div class="res-grid-3">
                     <div style="background:#fff;border-radius:18px;padding:30px;border:1px solid var(--border);border-top:4px solid var(--gold);transition:.3s;"
                         onmouseover="this.style.boxShadow='0 16px 40px rgba(0,0,0,.08)';this.style.transform='translateY(-5px)'"
                         onmouseout="this.style.boxShadow='';this.style.transform=''">
@@ -1921,7 +1961,7 @@
                         contribute to the advancement of technology, business, management, and other disciplines through
                         their innovation and path-breaking research work.</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:20px;">
+                <div class="res-grid-6">
                     <div
                         style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 16px;text-align:center;">
                         <div
@@ -1986,7 +2026,7 @@
         <!-- BE GLOBE READY - GLOBAL PARTNERSHIPS -->
         <section style="background:#fff;padding:70px 30px;">
             <div class="container">
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+                <div class="res-grid-2">
                     <div>
                         <div class="sec-label">Global Reach</div>
                         <h2 class="sec-title">Be Globe Ready</h2>
@@ -1996,7 +2036,7 @@
                                 countries</strong>. These collaborations help our students and faculty pursue a wide
                             range of international opportunities including student exchange along with teaching and
                             research opportunities.</p>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+                        <div class="res-grid-2" style="gap:16px;margin-bottom:28px;">
                             <div
                                 style="background:var(--cream);border-radius:14px;padding:20px;border:1px solid var(--border);">
                                 <div
@@ -2091,7 +2131,7 @@
                         <div class="rank-src">Outlook I Care</div>
                     </div>
                 </div>
-                <div style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                <div class="res-grid-3" style="margin-top:20px;gap:16px;">
                     <div
                         style="background:#fff;border-radius:14px;padding:20px;border:1px solid var(--border);display:flex;align-items:center;gap:14px;">
                         <div style="font-size:26px;"></div>
@@ -2136,7 +2176,7 @@
                     <h2 class="sec-title">Latest from Campus</h2>
                     <p class="sec-sub">Real updates from students, faculty, and events at Woxsen University.</p>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+                <div class="res-grid-3" style="gap:20px;">
                     <a href="https://woxsen.edu.in/news/woxsen-debate-club-sparks-lively-discussion-on-romance-novels-books-and-movies-during-kathakrithi-fest/"
                         target="_blank" style="text-decoration:none;">
                         <div style="border-radius:16px;border:1px solid var(--border);padding:24px;transition:.3s;height:100%;"
@@ -2322,7 +2362,7 @@
                         <div class="sec-label">Flagship Programs</div>
                         <h2 class="sec-title" style="font-size:34px;">Explore by Degree</h2>
                     </div>
-                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+                    <div class="res-grid-4">
                         <div
                             style="background:#fff;border-radius:14px;padding:20px;border:1px solid var(--border);border-left:4px solid #2b6cc9;">
                             <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px;">MBA</div>
@@ -2484,7 +2524,7 @@
                             and more.</p>
                     </div>
 
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                    <div class="res-grid-3" style="gap:12px;">
                         <div
                             style="background:var(--cream);border-radius:12px;padding:16px 18px;border:1px solid var(--border);display:flex;align-items:center;gap:12px;">
                             <div style="font-size:22px;"></div>

@@ -92,6 +92,7 @@
             font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
+            overflow-x: hidden;
         }
 
         .sidebar {
@@ -1653,7 +1654,7 @@
             border-color: var(--navy);
         }
 
-        @media(max-width:900px) {
+        @media (max-width: 900px) {
             .analytics-grid,
             .analytics-grid-3,
             .staff-grid {
@@ -1697,7 +1698,30 @@
         }
         .ws-dot.live { background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.25); }
 
-        @media(max-width:900px) {
+        /* Responsive Grid Helper Classes */
+        .res-grid-1-4-1 {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 18px;
+        }
+        .res-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        .res-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+        .res-grid-1-400 {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
             :root { --sw: 0px; }
             .sidebar {
                 position: fixed;
@@ -1715,33 +1739,8 @@
             .anl-grid { grid-template-columns: 1fr; }
             .tb-profile-info { display: none; }
 
-            /* Tables  card stacks on mobile */
-            table thead { display: none; }
-            table tbody tr {
-                display: block;
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                margin-bottom: 10px;
-                padding: 10px 12px;
-                background: var(--white);
-            }
-            table tbody td {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px 0;
-                border: none;
-                font-size: 12.5px;
-            }
-            table tbody td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                font-size: 10px;
-                text-transform: uppercase;
-                letter-spacing: .05em;
-                color: var(--text2);
-                flex-shrink: 0;
-                margin-right: 8px;
+            .res-grid-1-4-1, .res-grid-2, .res-grid-3, .res-grid-1-400 {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -1908,7 +1907,7 @@
             margin-top: 1px;
         }
 
-        @media(max-width: 900px) {
+        @media (max-width: 900px) {
             .prof-section-grid {
                 grid-template-columns: 1fr;
             }
@@ -1951,7 +1950,17 @@
         }
 
         /* ── Mobile responsiveness optimizations ── */
-        @media(max-width: 600px) {
+        @media (max-width: 600px) {
+            .tb-title {
+                white-space: normal;
+                font-size: 15px;
+            }
+            .tb-title small {
+                display: none;
+            }
+            .stats {
+                grid-template-columns: 1fr !important;
+            }
             .prof-hero {
                 flex-direction: column !important;
                 text-align: center !important;
@@ -2042,7 +2051,7 @@
 
         <div class="main">
             <div class="topbar">
-                <button class="menu-btn" onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"></button>
+                <button class="menu-btn" onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"><i class="fa-solid fa-bars"></i></button>
                 <div class="tb-title" id="tbTitle">Admin Dashboard<small>Woxsen University Grievance Management
                         System</small></div>
                 <img src="woxsen_wou_symbol.png" alt="WOU Logo"
@@ -2084,7 +2093,7 @@
                     <div class="sec-s">Overview of all submitted grievances and institutional scale.</div>
 
                     <!-- KPI Row 0: Registry Overview -->
-                    <div class="stats" style="grid-template-columns:repeat(2,1fr);margin-bottom:14px">
+                    <div class="stats" style="margin-bottom:14px">
                         <div class="sc">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="totalStudentsCount" style="color:var(--navy)"></div>
@@ -2097,7 +2106,7 @@
                         </div>
                     </div>
                     <!-- KPI Row 1 -->
-                    <div class="stats" style="grid-template-columns:repeat(4,1fr)">
+                    <div class="stats">
                         <div class="sc">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="a1" style="color:var(--navy)">0</div>
@@ -2120,7 +2129,7 @@
                         </div>
                     </div>
                     <!-- KPI Row 2 -->
-                    <div class="stats" style="grid-template-columns:repeat(4,1fr);margin-top:-8px">
+                    <div class="stats" style="margin-top:-8px">
                         <div class="sc">
                             <div class="sc-icon"></div>
                             <div class="sc-n" id="a5" style="color:var(--blue)">0</div>
@@ -2151,7 +2160,7 @@
                     <div class="card" style="margin-bottom:18px" id="alertBox"></div>
 
                     <!-- Main grid -->
-                    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px">
+                    <div class="res-grid-1-4-1" style="margin-bottom:18px">
                         <div class="card">
                             <div
                                 style="padding:16px 22px 0;display:flex;justify-content:space-between;align-items:center">
@@ -2178,7 +2187,7 @@
                     </div>
 
                     <!-- Dept workload + activity -->
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+                    <div class="res-grid-2">
                         <div class="card">
                             <div
                                 style="padding:16px 22px 0;display:flex;justify-content:space-between;align-items:center">
@@ -2425,7 +2434,7 @@
                 <div class="page" id="paAnnounce">
                     <div class="sec-t">Announcements</div>
                     <div class="sec-s">Post notices visible to all students on the Student Portal dashboard.</div>
-                    <div class="ann-grid-wrap" style="display:grid;grid-template-columns:1fr 400px;gap:32px;align-items:start">
+                    <div class="ann-grid-wrap res-grid-1-400">
                         <div>
                             <div
                                 style="font-family:'Montserrat';font-size:17px;font-weight:600;margin-bottom:14px">
@@ -2891,7 +2900,7 @@
                 <!-- Academic Assignments Builder -->
                 <div id="sfAcademicAssignmentsWrap" style="background:#f8fafc; padding:15px; border-radius:10px; margin-bottom:15px; border:1px solid var(--border); display:none;">
                     <div style="font-size:12px; font-weight:700; margin-bottom:8px; color:var(--navy)">Academic Role & Year Assignments</div>
-                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px;">
+                    <div class="res-grid-3" style="margin-bottom:10px;">
                         <div>
                             <label class="lbl" style="font-size:10px">School</label>
                             <select class="inp" id="sfAssSchool" style="background:#fff; padding:6px; font-size:11px;">
@@ -3795,7 +3804,7 @@
                         var resAt = g.resolved_at ? new Date(g.resolved_at).toLocaleString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
                         resHtml = '<div style="margin-top:14px;padding:14px;background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px">' +
                             '<div style="font-size:11px;font-weight:700;color:#16774a;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em">&#9989; Resolution Record</div>' +
-                            '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">' +
+                            '<div class="res-grid-3" style="gap:12px">' +
                             '<div><div style="font-size:10px;color:#16774a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Resolved By</div><div style="font-size:13px;font-weight:700;color:#0a1628">' + g.resolved_by + '</div></div>' +
                             '<div><div style="font-size:10px;color:#16774a;font-weight:700;text-transform:uppercase;margin-bottom:3px">At Hierarchy Level</div><div style="font-size:13px;font-weight:700;color:#1d4ed8">' + g.resolved_at_level + '</div></div>' +
                             '<div><div style="font-size:10px;color:#16774a;font-weight:700;text-transform:uppercase;margin-bottom:3px">Resolved On</div><div style="font-size:13px;font-weight:700;color:#0a1628">' + resAt + '</div></div>' +
@@ -4694,7 +4703,7 @@
                         '<div style="margin-top:7px;display:inline-block;padding:3px 12px;border-radius:100px;background:' + t.color + ';color:' + t.textColor + ';border:1px solid ' + t.textColor + '44;font-size:11px;font-weight:700">ID: ' + s.username + '</div></div>' +
                         '</div>' +
                         '<div style="padding:18px 22px">' +
-                        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">' +
+                        '<div class="res-grid-2" style="gap:10px;margin-bottom:14px">' +
                         '<div style="background:#f8fafc;border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--text)">' + total + '</div><div style="font-size:11px;color:var(--text2)">Activity</div></div>' +
                         '<div style="background:#f0fdf4;border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--green)">' + pRes + '</div><div style="font-size:11px;color:var(--text2)">Resolved</div></div>' +
                         '<div style="background:#fff7ed;border-radius:10px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:700;color:var(--orange)">' + open + '</div><div style="font-size:11px;color:var(--text2)">Queue</div></div>' +

@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
         :root {
@@ -42,6 +43,7 @@
             font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--text);
+            overflow-x: hidden;
         }
 
         .sidebar {
@@ -1962,44 +1964,36 @@
         }
         .ws-dot.live { background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.25); }
 
-        /*  Mobile: tables become card stacks  */
-        @media(max-width:640px) {
-            table thead { display: none; }
-            table tbody tr {
-                display: block;
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                margin-bottom: 10px;
-                padding: 10px 12px;
-                background: var(--white);
-            }
-            table tbody td {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 5px 0;
-                border: none;
-                font-size: 12.5px;
-            }
-            table tbody td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                font-size: 10px;
-                text-transform: uppercase;
-                letter-spacing: .05em;
-                color: var(--text2);
-                flex-shrink: 0;
-                margin-right: 8px;
-            }
-            .topbar { gap: 8px; }
-            .topbar .tb-profile-info { display: none; }
-            .topbar button[onclick*="stuLogout"] span { display: none; }
-            .topbar button[onclick*="stuLogout"] { padding: 7px 10px; }
-            .ir-box { border-radius: 0; }
-            .ir-chat-messages { height: 180px; }
+        /*  Header classes  */
+        .tb-logo {
+            height: 38px;
+            width: auto;
+            margin-left: 15px;
+            margin-right: auto;
+            object-fit: contain;
         }
 
-        @media(max-width:900px) {
+        .btn-logout {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(220,38,38,.1);
+            border: 1px solid rgba(220,38,38,.25);
+            color: var(--red);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(220,38,38,.2);
+        }
+
+        /*  Mobile topbar and layout tweaks  */
+        @media (max-width: 900px) {
             :root {
                 --sw: 0px;
             }
@@ -2031,6 +2025,10 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .anl-grid {
+                grid-template-columns: 1fr;
+            }
+
             .fg {
                 grid-template-columns: 1fr;
             }
@@ -2058,6 +2056,48 @@
             .menu-btn {
                 display: flex !important;
             }
+
+            .res-grid-2-1, .res-grid-3, .res-grid-2 {
+                grid-template-columns: 1fr !important;
+            }
+
+            .tb-logo {
+                display: none !important;
+            }
+
+            .tb-title small {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .topbar { gap: 8px; }
+            .tb-title {
+                white-space: normal;
+                font-size: 15px;
+            }
+            .topbar .tb-profile-info { display: none; }
+            .btn-logout span { display: none; }
+            .btn-logout { padding: 8px 10px; border-radius: 50%; }
+            .ir-box { border-radius: 0; }
+            .ir-chat-messages { height: 180px; }
+        }
+
+        /* Responsive Grid Helper Classes */
+        .res-grid-2-1 {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 18px;
+        }
+        .res-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+        .res-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
         .menu-btn {
@@ -2675,9 +2715,15 @@
             }
         }
 
-        @media(max-width:600px) {
+        @media (max-width: 600px) {
             .profile-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+            .stats {
+                grid-template-columns: 1fr !important;
+            }
+            .res-grid-3 {
+                grid-template-columns: 1fr !important;
             }
         }
 
@@ -3059,7 +3105,7 @@
         }
 
         /* ── Mobile responsiveness optimizations ── */
-        @media(max-width: 600px) {
+        @media (max-width: 600px) {
             .prof-hero {
                 flex-direction: column !important;
                 text-align: center !important;
@@ -3155,11 +3201,10 @@
         <div class="main">
             <div class="topbar">
                 <button class="menu-btn"
-                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"></button>
+                    onclick="const s=document.getElementById('sidebar');s.classList.toggle('open');document.getElementById('sbOverlay').classList.toggle('show',s.classList.contains('open'))"><i class="fa-solid fa-bars"></i></button>
                 <div class="tb-title" id="tbTitle">Dashboard<small>Woxsen University Grievance Management System</small>
                 </div>
-                <img src="woxsen_wou_symbol.png" alt="WOU Logo"
-                    style="height: 38px; width: auto; margin-left: 15px; margin-right: auto; object-fit: contain;">
+                <img class="tb-logo" src="woxsen_wou_symbol.png" alt="WOU Logo">
                 <div style="margin-left:auto;display:flex;gap:12px;align-items:center">
                     <button class="dm-btn" id="dmBtn" onclick="toggleDark()" title="Toggle Dark Mode">🌙</button>
                     <div class="tb-profile-info" style="text-align:right">
@@ -3174,10 +3219,7 @@
                         onmouseout="this.style.transform='scale(1)'; this.style.borderColor='rgba(233,30,99,0.4)'">
                         <span id="tbAvatarText" style="line-height:1;">S</span>
                     </div>
-                    <button onclick="stuLogout()"
-                        style="display:flex;align-items:center;gap:7px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);color:var(--red);font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;cursor:pointer;transition:.2s;"
-                        onmouseover="this.style.background='rgba(220,38,38,.2)'"
-                        onmouseout="this.style.background='rgba(220,38,38,.1)'"> Logout</button>
+                    <button onclick="stuLogout()" class="btn-logout" title="Logout"><i class="fa-solid fa-right-from-bracket"></i><span> Logout</span></button>
                 </div>
             </div>
             <div class="content">
@@ -3223,7 +3265,7 @@
                             <div class="sc-l">Resolved</div>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-bottom:18px">
+                    <div class="res-grid-2-1" style="margin-bottom:18px">
                         <div class="card">
                             <div style="padding:18px 22px 0">
                                 <div class="ct">Recent Submissions</div>
@@ -3250,7 +3292,7 @@
                     </div>
 
                     <!-- Redressal Guidelines Card Section -->
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px" id="appliedLearningSection">
+                    <div class="res-grid-3" style="margin-bottom:18px" id="appliedLearningSection">
                         <!-- Redressal Guidelines Card -->
                         <div style="background:linear-gradient(135deg, #1e1b4b 0%, #311042 100%);border-radius:12px;padding:22px;color:#fff;position:relative;overflow:hidden;">
                             <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(233,30,99,0.12);border-radius:50%;"></div>
@@ -3616,7 +3658,7 @@
                                 <div id="tBadge"></div>
                             </div>
                             <div
-                                style="padding:16px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:13px;border-bottom:1px solid var(--border)">
+                                class="res-grid-3" style="padding:16px 24px;gap:13px;border-bottom:1px solid var(--border)">
                                 <div>
                                     <div
                                         style="font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);font-weight:700;margin-bottom:3px">
@@ -4068,7 +4110,7 @@
                         <div class="anl-card">
                             <div class="anl-title">📈 Resolution Summary</div>
                             <div id="anlResSummary">
-                                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                                <div class="res-grid-2" style="gap:10px">
                                     <div style="text-align:center;padding:12px;background:linear-gradient(135deg,rgba(22,163,74,0.08),rgba(22,163,74,0.04));border:1px solid rgba(22,163,74,0.15);border-radius:10px">
                                         <div class="anl-big" style="color:var(--green)" id="aResolved">0</div>
                                         <div class="anl-sub">✅ Resolved</div>
@@ -4091,7 +4133,7 @@
                     </div>
 
                     <!-- Department Breakdown + Chart row -->
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                    <div class="res-grid-2" style="gap:16px;margin-bottom:16px">
                         <!-- Department Breakdown -->
                         <div class="anl-card">
                             <div class="anl-title">🏫 Department / School Breakdown</div>
