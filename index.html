@@ -1376,6 +1376,76 @@
             .hero h1 { font-size: 34px; }
             .sec-title { font-size: 32px; }
         }
+
+        /* Rankings Section styling */
+        .rankings-section {
+            background: var(--navy);
+            padding: 44px 30px;
+        }
+        .rankings-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 28px;
+        }
+        .rankings-title {
+            color: rgba(255,255,255,.55);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+        }
+        .rankings-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .rank-item {
+            text-align: center;
+        }
+        .rank-num {
+            font-family: 'Montserrat';
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gold2);
+            line-height: 1;
+        }
+        .rank-label {
+            font-size: 10px;
+            color: rgba(255,255,255,.55);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .rank-sep {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,.1);
+        }
+        @media (max-width: 900px) {
+            .rankings-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .rankings-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+                width: 100%;
+                justify-items: center;
+            }
+            .rank-sep {
+                display: none;
+            }
+        }
+        @media (max-width: 480px) {
+            .rankings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -1560,57 +1630,33 @@
         </section>
 
         <!-- RANKINGS STRIP -->
-        <section style="background:var(--navy);padding:44px 30px;">
-            <div class="container">
-                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:28px;">
-                    <div
-                        style="color:rgba(255,255,255,.55);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;">
-                        Woxsen Rankings &amp; Accreditations</div>
-                    <div style="display:flex;gap:40px;flex-wrap:wrap;">
-                        <div style="text-align:center;">
-                            <div
-                                style="font-family:'Montserrat';font-size:36px;font-weight:700;color:var(--gold2);line-height:1;">
-                                #3</div>
-                            <div
-                                style="font-size:10px;color:rgba(255,255,255,.55);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">
-                                Bloomberg B-School 202526</div>
-                        </div>
-                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
-                        <div style="text-align:center;">
-                            <div
-                                style="font-family:'Montserrat';font-size:36px;font-weight:700;color:var(--gold2);line-height:1;">
-                                #3</div>
-                            <div
-                                style="font-size:10px;color:rgba(255,255,255,.55);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">
-                                B.Des Outlook I Care 2025</div>
-                        </div>
-                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
-                        <div style="text-align:center;">
-                            <div
-                                style="font-family:'Montserrat';font-size:36px;font-weight:700;color:var(--gold2);line-height:1;">
-                                #8</div>
-                            <div
-                                style="font-size:10px;color:rgba(255,255,255,.55);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">
-                                BBA Outlook I Care 2025</div>
-                        </div>
-                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
-                        <div style="text-align:center;">
-                            <div
-                                style="font-family:'Montserrat';font-size:36px;font-weight:700;color:var(--gold2);line-height:1;">
-                                #12</div>
-                            <div
-                                style="font-size:10px;color:rgba(255,255,255,.55);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">
-                                B.Tech Outlook 2025</div>
-                        </div>
-                        <div style="width:1px;background:rgba(255,255,255,.1);"></div>
-                        <div style="text-align:center;">
-                            <div
-                                style="font-family:'Montserrat';font-size:36px;font-weight:700;color:var(--gold2);line-height:1;">
-                                COA</div>
-                            <div
-                                style="font-size:10px;color:rgba(255,255,255,.55);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;">
-                                Architecture Accredited</div>
-                        </div>
+        <section class="rankings-section">
+            <div class="container rankings-container">
+                <div class="rankings-title">Woxsen Rankings &amp; Accreditations</div>
+                <div class="rankings-grid">
+                    <div class="rank-item">
+                        <div class="rank-num">#3</div>
+                        <div class="rank-label">Bloomberg B-School 2025-26</div>
+                    </div>
+                    <div class="rank-sep"></div>
+                    <div class="rank-item">
+                        <div class="rank-num">#3</div>
+                        <div class="rank-label">B.Des Outlook I Care 2025</div>
+                    </div>
+                    <div class="rank-sep"></div>
+                    <div class="rank-item">
+                        <div class="rank-num">#8</div>
+                        <div class="rank-label">BBA Outlook I Care 2025</div>
+                    </div>
+                    <div class="rank-sep"></div>
+                    <div class="rank-item">
+                        <div class="rank-num">#12</div>
+                        <div class="rank-label">B.Tech Outlook 2025</div>
+                    </div>
+                    <div class="rank-sep"></div>
+                    <div class="rank-item">
+                        <div class="rank-num">COA</div>
+                        <div class="rank-label">Architecture Accredited</div>
                     </div>
                 </div>
             </div>
