@@ -4570,7 +4570,7 @@
                 var el = document.getElementById('staffGrid');
                 if (el) el.innerHTML = '<div style="padding:40px;grid-column:1/-1;text-align:center;color:var(--text2);font-size:13px"> Loading staff...</div>';
                 try {
-                    var r = await sbFetch('staff_accounts?select=*&order=fullname.asc');
+                    var r = await sbFetch('staff_accounts?select=*');
                     if (r.ok) {
                         STAFF_LIST = await r.json();
                         var countEl = document.getElementById('staffCount');
