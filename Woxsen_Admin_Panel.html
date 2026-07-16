@@ -4778,17 +4778,24 @@
                 el.innerHTML = _modalAssignments.map((a, idx) => {
                     var schShort = schoolCodes[a.school] || a.school;
                     var rShort = a.role === 'Programme Director' ? 'PD' : a.role === 'Programme Manager' ? 'PM' : 'Prof';
-                    return `<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">
-                         ${schShort} · ${a.year.replace(' Year','')} · ${rShort}
-                        <span onclick="removeModalAssignment(${idx})" style="color:var(--red);cursor:pointer;font-weight:900;margin-left:2px"></span>
-                    </span>`;
+                    return '<span style="background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:6px;">'
+                         + schShort + ' &middot; ' + a.year.replace(' Year','') + ' &middot; ' + rShort
+                         + '<button type="button" onclick="removeModalAssignment(' + idx + ')" title="Remove" style="background:none;border:none;color:#dc2626;cursor:pointer;font-size:13px;font-weight:900;padding:0 2px;line-height:1;">&#10005;</button>'
+                         + '</span>';
                 }).join('');
 
                 var generatedUsernames = _modalAssignments.map(a => a.id).join(', ');
-                document.getElementById('sfUser').value = generatedUsernames;
+                var userEl2 = document.getElementById('sfUser');
+                userEl2.removeAttribute('disabled');
+                userEl2.value = generatedUsernames;
+                userEl2.setAttribute('disabled','');
 
                 var generatedRoles = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
-                document.getElementById('sfRole').value = generatedRoles;
+                var roleEl2 = document.getElementById('sfRole');
+                roleEl2.removeAttribute('disabled');
+                roleEl2.value = generatedRoles;
+                roleEl2.setAttribute('data-saved', generatedRoles);
+                roleEl2.setAttribute('disabled','');
 
                 var uniqueSchools = _modalAssignments.map(a => a.school).filter((v, i, self) => self.indexOf(v) === i);
                 document.getElementById('sfSubDept').value = uniqueSchools.join(', ');
@@ -4854,8 +4861,8 @@
                     
                     // Show Username but hide Password wrapper during edit
                     document.getElementById('sfAuthSection').style.display = 'block';
+                    uInp.removeAttribute('disabled');
                     uInp.value = s.username || '';
-                    uInp.disabled = (s.dept === 'Academic');
                     passWrap.style.display = 'none';
                     passWarning.style.display = 'block';
 
@@ -4865,8 +4872,10 @@
                         var yearCodes = { '00': 'Dean', '01': '1st Year', '02': '2nd Year', '03': '3rd Year', '04': '4th Year' };
                         var roleCodes = { '00': 'Dean', '01': 'Programme Director', '02': 'Programme Manager', '03': 'Professor' };
                         ids.forEach(idVal => {
-                            if (/^\d{6}$/.test(idVal)) {
-                                var sCode = idVal.substring(0, 2);
+                            // Only parse coded 6-digit IDs (school+year+role format)
+                            // Employee IDs like 170362 won't match school codes 10-60
+                            var sCode = idVal.length === 6 ? idVal.substring(0, 2) : '';
+                            if (/^\d{6}$/.test(idVal) && schoolCodes[sCode]) {
                                 var yCode = idVal.substring(2, 4);
                                 var rCode = idVal.substring(4, 6);
                                 var sch = schoolCodes[sCode];
@@ -4877,6 +4886,12 @@
                                 }
                             }
                         });
+                        // Keep username field editable for plain employee-ID staff
+                        if (_modalAssignments.length === 0) {
+                            uInp.removeAttribute('disabled'); // allow editing plain username
+                        } else {
+                            uInp.setAttribute('disabled', '');
+                        }
                     }
 
                     var isActive = (s.status !== 'Terminated');
@@ -4932,14 +4947,29 @@
                 var isEdit = !!id;
 
                 var deptVal = document.getElementById('sfDept').value;
-                if (deptVal === 'Academic' && _modalAssignments.length === 0) {
+
+                // For new academic staff, require at least one assignment
+                // For edits, allow saving without assignments (staff with plain employee-ID username)
+                if (!isEdit && deptVal === 'Academic' && _modalAssignments.length === 0) {
                     toast('', 'Please add at least one role/year assignment for academic staff.');
                     return;
                 }
 
+                // Read role/user even if disabled (disabled inputs lose .value on some browsers)
+                var roleEl = document.getElementById('sfRole');
+                var userEl = document.getElementById('sfUser');
+                var roleVal = roleEl.value.trim();
+                var userVal = userEl.value.trim();
+
+                // If academic with assignments, regenerate from assignments to be safe
+                if (deptVal === 'Academic' && _modalAssignments.length > 0) {
+                    userVal = _modalAssignments.map(a => a.id).join(', ');
+                    roleVal = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
+                }
+
                 var obj = {
                     fullname: document.getElementById('sfName').value.trim(),
-                    role: document.getElementById('sfRole').value.trim(),
+                    role: roleVal || document.getElementById('sfRole').getAttribute('data-saved') || '',
                     dept: deptVal,
                     email: document.getElementById('sfEmail').value.trim(),
                     phone: document.getElementById('sfPhone').value.trim(),
@@ -4947,15 +4977,15 @@
                     sub_dept: document.getElementById('sfSubDept').value
                 };
 
-                if (!obj.fullname || !obj.role) { toast('', 'Name and Role are required'); return; }
+                if (!obj.fullname) { toast('', 'Name is required'); return; }
+                if (!obj.role) { obj.role = 'Academic Staff'; } // fallback
 
-                var user = document.getElementById('sfUser').value.trim();
+                obj.username = userVal;
+
                 var pass = document.getElementById('sfPass').value.trim();
 
-                obj.username = user;
-
                 if (!isEdit) {
-                    if (!user || !pass) { toast('', 'Username and Password required.'); return; }
+                    if (!userVal || !pass) { toast('', 'Username and Password required.'); return; }
                     obj.password = pass;
                     obj.status = 'Active';
                 }
@@ -4976,17 +5006,22 @@
                         body: JSON.stringify(obj)
                     });
 
-                    if (!r.ok) { var err = await r.json(); toast('', 'Error saving staff: ' + (err.message || '')); }
-                    else {
+                    if (!r.ok) {
+                        var errText = await r.text();
+                        var errMsg = '';
+                        try { errMsg = JSON.parse(errText).message || errText; } catch(e) { errMsg = errText; }
+                        toast('', 'Error saving staff: ' + errMsg);
+                    } else {
                         document.getElementById('mStaff').classList.remove('open');
-                        await loadStaff(); // Refresh
+                        await loadStaff();
 
                         if (!isEdit) {
-                            document.getElementById('scUser').textContent = user;
+                            document.getElementById('scUser').textContent = userVal;
                             document.getElementById('scPass').textContent = pass;
                             document.getElementById('mStaffCreds').classList.add('open');
                             toast('', 'Staff created successfully!');
                         } else {
+                            var reason = (document.getElementById('sfReason').value || '').trim();
                             if (reason) {
                                 addLog('', 'Role updated: ' + obj.fullname + ' | Reason: ' + reason, 'Super Admin');
                             }
