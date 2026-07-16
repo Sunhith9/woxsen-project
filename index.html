@@ -1230,27 +1230,33 @@
         .mob-nav {
             display: none;
             position: fixed;
-            top: 64px;
+            top: 0;
             left: 0;
             right: 0;
+            bottom: 0;
             background: rgba(10,22,40,.98);
             backdrop-filter: blur(14px);
-            padding: 16px 0 24px;
-            z-index: 1999;
+            padding: 80px 0 24px;
+            z-index: 3000;
             border-bottom: 1px solid rgba(255,255,255,.08);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .mob-nav.open { display: block; }
         .mob-nav a, .mob-nav span {
             display: block;
-            padding: 13px 28px;
+            padding: 16px 28px;
             color: rgba(255,255,255,.85);
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 500;
             text-decoration: none;
             transition: .15s;
             cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
         }
-        .mob-nav a:hover, .mob-nav span:hover { background: rgba(255,255,255,.06); color: #fff; }
+        .mob-nav a:active, .mob-nav span:active { background: rgba(255,255,255,.1); color: #fff; }
         .mob-nav .mob-divider { height: 1px; background: rgba(255,255,255,.07); margin: 8px 0; }
         .mob-nav .mob-portal {
             margin: 8px 20px 0;
@@ -1509,6 +1515,7 @@
                             configuration</span></div>
                     <i class="fa-solid fa-arrow-right d-arrow"></i>
                 </a>
+            </div>
         </div>
     </nav>
 
@@ -3025,11 +3032,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             document.getElementById('loginWrapper').classList.remove('active');
             
-            // Close mobile nav drawer safely
-            const hamBtn = document.getElementById('hamBtn');
-            const mobNav = document.getElementById('mobNav');
-            if (hamBtn) hamBtn.classList.remove('open');
-            if (mobNav) mobNav.classList.remove('open');
+            // Close mobile nav drawer
+            closeMobNav();
         }
 
         // Navbar scroll
@@ -3254,13 +3258,16 @@
             if (!btn || !nav) return;
             btn.classList.toggle('open');
             nav.classList.toggle('open');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
         }
-        // Close mobile nav on portal link click
-        document.querySelectorAll('.mob-nav a').forEach(el => {
-            el.addEventListener('click', () => {
-                document.getElementById('hamBtn').classList.remove('open');
-                document.getElementById('mobNav').classList.remove('open');
-            });
+        function closeMobNav() {
+            document.getElementById('hamBtn').classList.remove('open');
+            document.getElementById('mobNav').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        // Close mobile nav on any link/span click inside drawer
+        document.querySelectorAll('.mob-nav a, .mob-nav span').forEach(el => {
+            el.addEventListener('click', closeMobNav);
         });
     </script>
 </body>
