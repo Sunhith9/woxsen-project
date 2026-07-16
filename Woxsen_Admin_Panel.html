@@ -4567,15 +4567,24 @@
             };
 
             async function loadStaff() {
+                var el = document.getElementById('staffGrid');
+                if (el) el.innerHTML = '<div style="padding:40px;grid-column:1/-1;text-align:center;color:var(--text2);font-size:13px"> Loading staff...</div>';
                 try {
-                    var r = await sbFetch('staff_accounts?select=*');
+                    var r = await sbFetch('staff_accounts?select=*&order=fullname.asc');
                     if (r.ok) {
                         STAFF_LIST = await r.json();
-                        var el = document.getElementById('staffCount');
-                        if (el) el.textContent = STAFF_LIST.length;
+                        var countEl = document.getElementById('staffCount');
+                        if (countEl) countEl.textContent = STAFF_LIST.length;
                         renderStaff();
+                    } else {
+                        var errTxt = await r.text();
+                        if (el) el.innerHTML = '<div style="padding:40px;grid-column:1/-1;text-align:center;color:#b91c1c;font-size:13px"> Failed to load staff (' + r.status + '). <button class="btn-s" style="margin-left:10px" onclick="loadStaff()">Retry</button></div>';
+                        console.error('loadStaff error:', errTxt);
                     }
-                } catch (e) { console.error('Error loading staff', e); }
+                } catch (e) {
+                    if (el) el.innerHTML = '<div style="padding:40px;grid-column:1/-1;text-align:center;color:#b91c1c;font-size:13px"> Network error loading staff. <button class="btn-s" style="margin-left:10px" onclick="loadStaff()">Retry</button></div>';
+                    console.error('Error loading staff', e);
+                }
             }
 
             var staffQ = '';
@@ -4706,10 +4715,11 @@
                 });
 
                 var el = document.getElementById('staffGrid');
+                if (!el) return; // staffGrid not in DOM yet
                 if (document.getElementById('staffCount')) {
                     document.getElementById('staffCount').textContent = list.length;
                 }
-                if (!list.length) { el.innerHTML = '<div class="es" style="padding:40px;grid-column:1/-1"><div class="ei"></div><div class="et">No staff found</div></div>'; return; }
+                if (!list.length) { el.innerHTML = '<div class="es" style="padding:40px;grid-column:1/-1"><div class="ei"></div><div class="et">No staff found. Check filters or <button class="btn-s" onclick="loadStaff()">Reload</button></div></div>'; return; }
                 el.innerHTML = list.map(function (s) {
                     var t = DEPT_THEMES[s.dept] || DEPT_THEMES['Others'];
                     var dLabel = DEPT_LABELS[s.dept] || 'Unknown';
