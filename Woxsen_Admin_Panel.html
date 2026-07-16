@@ -4575,6 +4575,7 @@
                         STAFF_LIST = await r.json();
                         var countEl = document.getElementById('staffCount');
                         if (countEl) countEl.textContent = STAFF_LIST.length;
+                        console.log('Staff loaded:', STAFF_LIST.length, 'records');
                         renderStaff();
                     } else {
                         var errTxt = await r.text();
@@ -4654,6 +4655,7 @@
             var DEPT_LABELS = { Academic: 'Exam Cell / HOD', Administrative: 'Admin / Accounts Office', Infrastructure: 'Estate Officer / IT', Ragging: 'Anti-Ragging Committee', Others: 'Student Welfare Office' };
 
             function renderStaff() {
+                try {
                 var list = STAFF_LIST.filter(function (s) {
                     // 1. Text Search
                     if (staffQ) {
@@ -4767,6 +4769,11 @@
                         '</div>' +
                         '</div></div>';
                 }).join('');
+                } catch(err) {
+                    console.error('renderStaff error:', err);
+                    var gel = document.getElementById('staffGrid');
+                    if (gel) gel.innerHTML = '<div style="padding:40px;grid-column:1/-1;text-align:center;color:#b91c1c;font-size:13px">Render error: ' + err.message + '<br><button class="btn-s" onclick="loadStaff()">Reload</button></div>';
+                }
             }
 
             var _modalAssignments = [];
