@@ -5016,6 +5016,11 @@
                     return;
                 }
 
+                var roleEl = document.getElementById('sfRole');
+                var userEl = document.getElementById('sfUser');
+                var roleVal = roleEl.value.trim();
+                var userVal = userEl.value.trim();
+
                 // Generate assignments array
                 var assignmentsList = [];
                 if (deptVal === 'Academic') {
@@ -5033,7 +5038,7 @@
 
                 var obj = {
                     fullname: document.getElementById('sfName').value.trim(),
-                    role: roleVal || document.getElementById('sfRole').getAttribute('data-saved') || '',
+                    role: roleVal || roleEl.getAttribute('data-saved') || '',
                     dept: deptVal,
                     email: document.getElementById('sfEmail').value.trim(),
                     phone: document.getElementById('sfPhone').value.trim(),
