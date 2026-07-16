@@ -2301,8 +2301,8 @@
             err.style.display = 'none';
             const btn = document.querySelector('#loginGate .btn-p');
             if (btn) { btn.disabled = true; btn.textContent = 'Verifying...'; }
-
             try {
+                // Exact matching username query since username is back to clean Employee ID
                 const r = await sbFetch(`staff_accounts?username=eq.${encodeURIComponent(u)}&select=*`);
                 if (!r.ok) throw new Error('Network response was not ok');
                 const users = await r.json();
@@ -2338,7 +2338,8 @@
                     email: acc.email,
                     joined: acc.joined,
                     fullname: acc.fullname,
-                    sub_dept: acc.sub_dept
+                    sub_dept: acc.sub_dept,
+                    handled_years: acc.handled_years || []
                 };
 
                 sessionStorage.setItem('dept_user', u);
@@ -2466,7 +2467,7 @@
             }
 
             // Academic staff assignments parsing
-            const ids = String(currentStaff.username || '').split(',').map(s => s.trim());
+            const ids = Array.isArray(currentStaff.handled_years) ? currentStaff.handled_years : [];
             
             // Check if explicitly selected professor for professor_only routing
             const isSelectedProf = g.route_choice === 'professor_only' && 

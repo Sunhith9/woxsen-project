@@ -3124,7 +3124,7 @@
         <script>
             /* 
                SUPABASE SQL MIGRATION REQUIRED
-               Run this in Supabase SQL Editor to enable escalation:
+               Run this in Supabase SQL Editor to enable escalation and staff account edits:
                
                ALTER TABLE grievances 
                  ADD COLUMN IF NOT EXISTS escalation_level TEXT DEFAULT 'professor',
@@ -3133,6 +3133,14 @@
                
                UPDATE grievances SET escalation_level = 'professor', assigned_at = created_at 
                WHERE cat = 'Academic' AND escalation_level IS NULL;
+
+               -- Enable UPDATE and DELETE on staff_accounts for anon role
+               DROP POLICY IF EXISTS "Allow all operations for anon" ON public.staff_accounts;
+               CREATE POLICY "Allow all operations for anon" ON public.staff_accounts
+                 FOR ALL
+                 TO anon
+                 USING (true)
+                 WITH CHECK (true);
              */
             let G = [], asf = 'all', acf = 'all', aq = '', adf = 'all', aesc = 'all', aPage = 1, aPerPage = 50, sortCol = 'date', sortDir = -1;
 
@@ -4626,7 +4634,7 @@
 
             function getStaffYear(s) {
                 if (s.dept !== 'Academic') return '';
-                var ids = String(s.username || '').split(',').map(x => x.trim());
+                var ids = Array.isArray(s.handled_years) ? s.handled_years : [];
                 var years = [];
                 ids.forEach(id => {
                     if (id.length === 6) {
@@ -4643,7 +4651,7 @@
 
             function getStaffAssignmentsHtml(s) {
                 if (s.dept !== 'Academic') return '';
-                var ids = String(s.username || '').split(',').map(x => x.trim());
+                var ids = Array.isArray(s.handled_years) ? s.handled_years : [];
                 var schoolCodes = { '10': 'SOB', '20': 'SOT', '30': 'SOAD', '40': 'SOL', '50': 'SOLA', '60': 'SOAP' };
                 const yearCodes = { '00': 'Dean', '01': '1st Yr', '02': '2nd Yr', '03': '3rd Yr', '04': '4th Yr' };
                 const roleCodes = { '00': 'Dean', '01': 'PD', '02': 'PM', '03': 'Prof' };
@@ -4712,15 +4720,16 @@
                         if (sA !== sB) return sA.localeCompare(sB);
 
                         // Year comparison (Dean/00 first, then 01, 02, 03, 04)
-                        var uA = String(a.username || '').split(',')[0].trim();
-                        var uB = String(b.username || '').split(',')[0].trim();
-                        var yA = uA.length === 6 ? uA.substring(2, 4) : '99';
-                        var yB = uB.length === 6 ? uB.substring(2, 4) : '99';
+                        var uA = Array.isArray(a.handled_years) && a.handled_years[0] ? a.handled_years[0] : '';
+                        var uB = Array.isArray(b.handled_years) && b.handled_years[0] ? b.handled_years[0] : '';
+
+                        var yA = uA ? uA.substring(2, 4) : '99';
+                        var yB = uB ? uB.substring(2, 4) : '99';
                         if (yA !== yB) return yA.localeCompare(yB);
 
                         // Role comparison (PD/01 first, then PM/02, then Professor/03)
-                        var rA = uA.length === 6 ? uA.substring(4, 6) : '99';
-                        var rB = uB.length === 6 ? uB.substring(4, 6) : '99';
+                        var rA = uA ? uA.substring(4, 6) : '99';
+                        var rB = uB ? uB.substring(4, 6) : '99';
                         return rA.localeCompare(rB);
                     }
                     return 0;
@@ -4792,11 +4801,33 @@
                 var el = document.getElementById('sfAssList');
                 if (!el) return;
 
+                var staffId = document.getElementById('sfId').value;
+                var isEdit = !!staffId;
+
+                var userInp = document.getElementById('sfUser');
+                var roleInp = document.getElementById('sfRole');
+                var subDeptInp = document.getElementById('sfSubDept');
+
                 if (_modalAssignments.length === 0) {
                     el.innerHTML = '<span style="font-size:11px; color:var(--text2); font-style:italic;">No assignments added yet. Add one above.</span>';
-                    document.getElementById('sfUser').value = '';
-                    document.getElementById('sfRole').value = '';
-                    document.getElementById('sfSubDept').value = '';
+                    
+                    if (isEdit) {
+                        var s = STAFF_LIST.find(function (x) { return String(x.id) === String(staffId); });
+                        if (s) {
+                            userInp.value = s.username || '';
+                            roleInp.value = s.role || '';
+                            subDeptInp.value = s.sub_dept || '';
+                        }
+                    } else {
+                        userInp.value = '';
+                        roleInp.value = '';
+                        subDeptInp.value = '';
+                    }
+
+                    if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; }
+                    if (roleInp) { roleInp.disabled = false; roleInp.placeholder = 'e.g. Professor'; }
+                    if (subDeptInp) { subDeptInp.disabled = false; }
+                    toggleSubDept();
                     return;
                 }
 
@@ -4811,21 +4842,25 @@
                          + '</span>';
                 }).join('');
 
-                var generatedUsernames = _modalAssignments.map(a => a.id).join(', ');
-                var userEl2 = document.getElementById('sfUser');
-                userEl2.removeAttribute('disabled');
-                userEl2.value = generatedUsernames;
-                userEl2.setAttribute('disabled','');
+                if (userInp) {
+                    userInp.disabled = false;
+                }
 
                 var generatedRoles = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
-                var roleEl2 = document.getElementById('sfRole');
-                roleEl2.removeAttribute('disabled');
-                roleEl2.value = generatedRoles;
-                roleEl2.setAttribute('data-saved', generatedRoles);
-                roleEl2.setAttribute('disabled','');
+                if (roleInp) {
+                    roleInp.removeAttribute('disabled');
+                    roleInp.value = generatedRoles;
+                    roleInp.setAttribute('data-saved', generatedRoles);
+                    roleInp.setAttribute('disabled', '');
+                }
 
                 var uniqueSchools = _modalAssignments.map(a => a.school).filter((v, i, self) => self.indexOf(v) === i);
-                document.getElementById('sfSubDept').value = uniqueSchools.join(', ');
+                if (subDeptInp) {
+                    subDeptInp.removeAttribute('disabled');
+                    subDeptInp.value = uniqueSchools.join(', ');
+                    subDeptInp.setAttribute('disabled', '');
+                }
+                toggleSubDept();
             }
 
             function addModalAssignment() {
@@ -4890,17 +4925,16 @@
                     document.getElementById('sfAuthSection').style.display = 'block';
                     uInp.removeAttribute('disabled');
                     uInp.value = s.username || '';
+                    uInp.disabled = false;
                     passWrap.style.display = 'none';
                     passWarning.style.display = 'block';
 
-                    if (s.dept === 'Academic' && s.username) {
-                        var ids = String(s.username).split(',').map(x => x.trim());
+                    if (s.dept === 'Academic' && Array.isArray(s.handled_years)) {
+                        var ids = s.handled_years;
                         var schoolCodes = { '10': 'School of Business', '20': 'School of Technology', '30': 'School of Art & Design', '40': 'School of Law', '50': 'School of Liberal Arts & Humanities', '60': 'School of Architecture & Planning' };
                         var yearCodes = { '00': 'Dean', '01': '1st Year', '02': '2nd Year', '03': '3rd Year', '04': '4th Year' };
                         var roleCodes = { '00': 'Dean', '01': 'Programme Director', '02': 'Programme Manager', '03': 'Professor' };
                         ids.forEach(idVal => {
-                            // Only parse coded 6-digit IDs (school+year+role format)
-                            // Employee IDs like 170362 won't match school codes 10-60
                             var sCode = idVal.length === 6 ? idVal.substring(0, 2) : '';
                             if (/^\d{6}$/.test(idVal) && schoolCodes[sCode]) {
                                 var yCode = idVal.substring(2, 4);
@@ -4913,12 +4947,6 @@
                                 }
                             }
                         });
-                        // Keep username field editable for plain employee-ID staff
-                        if (_modalAssignments.length === 0) {
-                            uInp.removeAttribute('disabled'); // allow editing plain username
-                        } else {
-                            uInp.setAttribute('disabled', '');
-                        }
                     }
 
                     var isActive = (s.status !== 'Terminated');
@@ -4957,10 +4985,16 @@
                 var userInp = document.getElementById('sfUser');
 
                 if (d === 'Academic') {
-                    if (w) w.style.display = 'none';
                     if (aWrap) aWrap.style.display = 'block';
-                    if (roleInp) { roleInp.disabled = true; roleInp.placeholder = 'Auto-generated from assignments...'; }
-                    if (userInp) { userInp.disabled = true; userInp.placeholder = 'Auto-generated from assignments...'; }
+                    if (_modalAssignments.length > 0) {
+                        if (w) w.style.display = 'none';
+                        if (roleInp) { roleInp.disabled = true; roleInp.placeholder = 'Auto-generated from assignments...'; }
+                        if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; }
+                    } else {
+                        if (w) w.style.display = 'block';
+                        if (roleInp) { roleInp.disabled = false; roleInp.placeholder = 'e.g. Professor'; }
+                        if (userInp) { userInp.disabled = false; userInp.placeholder = 'e.g. 171635'; }
+                    }
                 } else {
                     if (w) w.style.display = 'block';
                     if (aWrap) aWrap.style.display = 'none';
@@ -4982,16 +5016,19 @@
                     return;
                 }
 
-                // Read role/user even if disabled (disabled inputs lose .value on some browsers)
-                var roleEl = document.getElementById('sfRole');
-                var userEl = document.getElementById('sfUser');
-                var roleVal = roleEl.value.trim();
-                var userVal = userEl.value.trim();
+                // Generate assignments array
+                var assignmentsList = [];
+                if (deptVal === 'Academic') {
+                    assignmentsList = _modalAssignments.map(a => a.id);
+                    if (_modalAssignments.length > 0) {
+                        roleVal = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
+                    }
+                }
 
-                // If academic with assignments, regenerate from assignments to be safe
+                var subDeptVal = document.getElementById('sfSubDept').value;
                 if (deptVal === 'Academic' && _modalAssignments.length > 0) {
-                    userVal = _modalAssignments.map(a => a.id).join(', ');
-                    roleVal = _modalAssignments.map(a => a.role + ' (' + a.year.replace(' Year', '') + ')').join(' / ');
+                    var uniqueSchools = _modalAssignments.map(a => a.school).filter((v, i, self) => self.indexOf(v) === i);
+                    subDeptVal = uniqueSchools.join(', ');
                 }
 
                 var obj = {
@@ -5001,11 +5038,13 @@
                     email: document.getElementById('sfEmail').value.trim(),
                     phone: document.getElementById('sfPhone').value.trim(),
                     joined: document.getElementById('sfJoined').value.trim(),
-                    sub_dept: document.getElementById('sfSubDept').value
+                    sub_dept: subDeptVal,
+                    handled_years: assignmentsList
                 };
 
                 if (!obj.fullname) { toast('', 'Name is required'); return; }
                 if (!obj.role) { obj.role = 'Academic Staff'; } // fallback
+                if (!userVal) { toast('', 'System ID / Username is required.'); return; }
 
                 obj.username = userVal;
 
@@ -5039,6 +5078,13 @@
                         try { errMsg = JSON.parse(errText).message || errText; } catch(e) { errMsg = errText; }
                         toast('', 'Error saving staff: ' + errMsg);
                     } else {
+                        var resData = [];
+                        try { resData = await r.json(); } catch(e) {}
+                        if (isEdit && (!resData || resData.length === 0)) {
+                            toast('', 'Database error: Update rejected. Please check Supabase RLS policies.');
+                            return;
+                        }
+
                         document.getElementById('mStaff').classList.remove('open');
                         await loadStaff();
 
@@ -5096,9 +5142,16 @@
                 try {
                     var r = await sbFetch('staff_accounts?id=eq.' + id, {
                         method: 'PATCH',
+                        prefer: 'return=representation',
                         body: JSON.stringify({ status: 'Terminated' })
                     });
                     if (!r.ok) { var e = await r.json(); throw new Error(e.message || r.status); }
+
+                    var resData = [];
+                    try { resData = await r.json(); } catch(e) {}
+                    if (!resData || resData.length === 0) {
+                        throw new Error('Database rejected termination. Please check Supabase RLS policies.');
+                    }
 
                     //  Audit log only 
                     addLog('', 'Terminated staff: ' + (s ? s.fullname : id) + ' | Reason: ' + reason, 'Super Admin');
@@ -5137,9 +5190,16 @@
                 try {
                     var r = await sbFetch('staff_accounts?id=eq.' + id, {
                         method: 'PATCH',
+                        prefer: 'return=representation',
                         body: JSON.stringify({ status: 'Active' })
                     });
                     if (!r.ok) { var e = await r.json(); throw new Error(e.message || r.status); }
+
+                    var resData = [];
+                    try { resData = await r.json(); } catch(e) {}
+                    if (!resData || resData.length === 0) {
+                        throw new Error('Database rejected reactivation. Please check Supabase RLS policies.');
+                    }
 
                     //  Audit log 
                     addLog('', 'Reactivated staff account: ' + (s ? s.fullname : id), 'Super Admin');
