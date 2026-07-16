@@ -4910,7 +4910,7 @@
             }
         }
 
-        const PROF_DATA = {
+        let PROF_DATA = {
             'School of Technology': {
                 '1st Year': ['Dr. Sneha Menon (Professor)', 'Prof. Ananya Singh (Professor)'],
                 '2nd Year': ['Dr. Rohit Verma (Professor)', 'Prof. Siddharth Joshi (Professor)'],
@@ -4954,6 +4954,77 @@
                 'PhD':       ['Dr. Sunil Narayanan (Professor)']
             }
         };
+
+        async function fetchAndBuildProfData() {
+            try {
+                const r = await sbFetch('staff_accounts?dept=eq.Academic&status=neq.Terminated&select=fullname,role,sub_dept,handled_years');
+                if (!r.ok) throw new Error('Failed to fetch staff');
+                const staff = await r.json();
+
+                const schoolCodes = { '10': 'School of Business', '20': 'School of Technology', '30': 'School of Art & Design', '40': 'School of Law', '50': 'School of Liberal Arts & Humanities', '60': 'School of Architecture & Planning' };
+                const yearCodes = { '00': 'Dean', '01': '1st Year', '02': '2nd Year', '03': '3rd Year', '04': '4th Year' };
+                const yearsList = ['1st Year', '2nd Year', '3rd Year', '4th Year', 'PhD'];
+
+                const dynamicData = {};
+                Object.values(schoolCodes).forEach(sch => {
+                    dynamicData[sch] = {
+                        '1st Year': [],
+                        '2nd Year': [],
+                        '3rd Year': [],
+                        '4th Year': [],
+                        'PhD': []
+                    };
+                });
+
+                staff.forEach(s => {
+                    const nameWithRole = `${s.fullname} (${s.role || 'Professor'})`;
+                    const assignments = Array.isArray(s.handled_years) ? s.handled_years : [];
+
+                    if (assignments.length > 0) {
+                        assignments.forEach(code => {
+                            if (code.length === 6) {
+                                const sCode = code.substring(0, 2);
+                                const yCode = code.substring(2, 4);
+                                const schName = schoolCodes[sCode];
+                                const yrName = yearCodes[yCode];
+
+                                if (schName) {
+                                    if (yrName === 'Dean') {
+                                        yearsList.forEach(yr => {
+                                            if (!dynamicData[schName][yr].includes(nameWithRole)) {
+                                                dynamicData[schName][yr].push(nameWithRole);
+                                            }
+                                        });
+                                    } else if (yrName && dynamicData[schName][yrName]) {
+                                        if (!dynamicData[schName][yrName].includes(nameWithRole)) {
+                                            dynamicData[schName][yrName].push(nameWithRole);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } else if (s.sub_dept && dynamicData[s.sub_dept]) {
+                        yearsList.forEach(yr => {
+                            if (!dynamicData[s.sub_dept][yr].includes(nameWithRole)) {
+                                dynamicData[s.sub_dept][yr].push(nameWithRole);
+                            }
+                        });
+                    }
+                });
+
+                for (const sch in dynamicData) {
+                    for (const yr in dynamicData[sch]) {
+                        if (dynamicData[sch][yr].length > 0) {
+                            PROF_DATA[sch] = PROF_DATA[sch] || {};
+                            PROF_DATA[sch][yr] = dynamicData[sch][yr];
+                        }
+                    }
+                }
+                console.log('Successfully built dynamic PROF_DATA:', PROF_DATA);
+            } catch (e) {
+                console.error('Failed to load dynamic PROF_DATA, using fallback static data:', e);
+            }
+        }
 
         let _selectedRoute = ''; // 'professor_only' or 'all_staff'
         let _selectedProfs = []; // multi-professor array
@@ -5591,6 +5662,9 @@
                 // Connect WebSocket for real-time updates
                 wsConnect(currentStudent.student_id);
 
+                // Fetch dynamic faculty list
+                await fetchAndBuildProfData();
+
                 renderDash();
                 badges();
                 renderProfile();
@@ -5969,6 +6043,9 @@
 
                 const ndMobile = document.getElementById('stuNameDisplayMobile');
                 if (ndMobile) ndMobile.textContent = sessionStorage.getItem('stu_name') || 'Student';
+
+                // Fetch dynamic faculty list
+                await fetchAndBuildProfData();
 
                 renderDash(); badges(); renderProfile();
             }
