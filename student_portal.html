@@ -3550,6 +3550,7 @@
                                     <div class="file-list" id="fileList"></div>
                                 </div>
                             </div>
+                            <div id="modErr" class="dup-warn" style="background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;margin-bottom:14px;display:none;align-items:flex-start;gap:8px;"></div>
                             <div class="fa"><button type="button" class="btn-p" onclick="submitG()"> Submit
                                     Grievance</button><button type="button" class="btn-s" onclick="clearF()">Clear
                                     Form</button></div>
@@ -5178,6 +5179,113 @@
             _cdInterval = setInterval(tick, 1000);
         }
 
+        
+                async function moderateTextAsync(text) {
+            if (!text || typeof text !== 'string') {
+                return { allowed: true, message: "" };
+            }
+            const BLOCK_MSG = "Your grievance could not be submitted because it contains language that is not appropriate for this platform. Please remove any offensive, abusive, or unprofessional words and resubmit your complaint using respectful language.";
+            const clean = text.toLowerCase();
+
+            // 1. Local Multi-Language Pattern Dictionary (English, Hindi, Telugu, Tamil, Kannada, Marathi, Bengali, Leetspeak, etc.)
+                        const patterns = [
+                // English Swear Words & Leetspeak
+                /\b(f[u*a@]c?k|f[u*a@]ck[i1a]ng?|f[u*a@]ck[e3]r|f[u*a@]cked|fck|f\*ck|f\*\*k)\b/i,
+                /\b(sh[i1!*]t|sh[i1!*]tt[i1y]ng?|sh[i1!*]tty|sh\*t)\b/i,
+                /\b(b[i1!*]tch|b[i1!*]tch[e3]s|b[i1!*]tchy|b\*tch)\b/i,
+                /\b(a[s$][s$]h[o0]l[e3]|a[s$][s$]|a\*\*hole|arsehole)\b/i,
+                /\b(b[a*]st[a*]rd|b[a*]st[a*]rds|b\*stard)\b/i,
+                /\b(d[i1!*]ck|d[i1!*]ckhead|d\*\*k)\b/i,
+                /\b(p[u*]ssy|c[u*]nt|c[u*]nts|c\*nt)\b/i,
+                /\b(m[o0]th[e3]rf[u*]ck[e3]r|m[o0]th[e3]rf[u*]ck[i1]ng|mfkr)\b/i,
+                /\b(c[o0]ck|c[o0]cksuck[e3]r)\b/i,
+                /\b(d[o0]uch[e3]|d[o0]uch[e3]b[a*]g)\b/i,
+                /\b(bullsh[i1!*]t)\b/i,
+                /\b(pr[i1]ck|tw[a*]t|w[a*]nk[e3]r|sl[u*]t|wh[o0]r[e3])\b/i,
+
+                // Transliterated Indian Profanities & Slurs (Romanized)
+                /\b(chut[i1y]a|chut[i1y]e|chut|ch\*\*iya)\b/i,
+                /\b(bh[e3]nch[o0]d|b[e3]nch[o0]d|bc|b\*nchod)\b/i,
+                /\b(m[a*]d[a*]rch[o0]d|mc|m\*darchod)\b/i,
+                /\b(g[a*]and|gand|gandu)\b/i,
+                /\b(h[a*]r[a*]m[i1]|h[a*]r[a*]mz[a*]d[a*e3])\b/i,
+                /\b(k[a*]m[i1]n[a*e3])\b/i,
+                /\b(bh[o0]sd[i1]k[e3]|bh[o0]sd[i1]|bh[o0]sd[a*])\b/i,
+                /\b(s[a*]al[a*e3]|s[a*]le)\b/i,
+                /\b(kutt[a*e3]|kutt[i1])\b/i,
+                /\b(r[a*]nd[i1])\b/i,
+                /\b(d[e3]ng[u0]|d[e3]ng[a*]|d[e3]ng[e3])\b/i,
+                /\b(m[o0]dd[a*]|m[o0]dda)\b/i,
+                /\b(l[a*]nj[a*]|l[a*]nj[o0]dk[a*])\b/i,
+                /\b(p[u0]k[u0]|p[o00]k[u0])\b/i,
+                /\b(g[u0]dh[a*]|g[u0]da)\b/i,
+                /\b(p[u0]nd[a*i1]|pundai|othaa|koothi|thevidya)\b/i,
+
+                // Native Indic Scripts (Hindi, Telugu, Tamil, Kannada, Malayalam, Bengali)
+                /(चूतिया|चूत|भैनचोद|बहनचोद|मादरचोद|गांड|गांडू|हरामी|हरामजादा|कमीना|भोसडीके|साला|साले|कुत्ता|कुत्ते|रंडी)/i,
+                /(డెంగు|దెంగు|మొడ్డ|లంజ|లంజకొడుకా|పూకు|పుకు|గుద్ద)/i,
+                /(புண்டை|ஒத்தா|கூதி|தேவடியா)/i,
+                /(ഹുച്ചാ|സുളെ|മയിര്|പൂറി)/i,
+
+                // Insults directed at people or departments
+                /\b(idiot|idiots|idiotic|moron|morons|moronic)\b/i,
+                /\b(stupid|dumbass|dumb|retard|retarded)\b/i,
+                /\b(loser|scammer|fool|fools|foolish|jackass)\b/i,
+                /\b(corrupt bastard|useless fools|bloody|scum)\b/i,
+
+                // Threats and violent language
+                /\b(kill|beat up|break your face|stab|shoot|punch|destroy you|harm you|physically attack)\b/i,
+                /\b(die motherfucker|gonna get you|threaten)\b/i,
+
+                // Sexual profanity & harassment terms
+                /\b(suck my|blowjob|handjob|nudes|naked photos|pornography)\b/i
+            ];
+
+            for (const p of patterns) {
+                if (p.test(clean)) {
+                    return { allowed: false, message: BLOCK_MSG };
+                }
+            }
+
+            // 2. Try Backend AI Moderation Endpoint for deep multi-lingual LLM context check
+            try {
+                const res = await fetch('http://localhost:8000/api/v1/moderate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: text })
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.allowed === false) {
+                        return { allowed: false, message: BLOCK_MSG };
+                    }
+                }
+            } catch (e) {
+                // Backend endpoint unreachable, fallback to local pattern result
+            }
+
+            return { allowed: true, message: "" };
+        }
+
+        function moderateText(text) {
+            // Synchronous wrapper fallback
+            if (!text || typeof text !== 'string') return { allowed: true, message: "" };
+            const BLOCK_MSG = "Your grievance could not be submitted because it contains language that is not appropriate for this platform. Please remove any offensive, abusive, or unprofessional words and resubmit your complaint using respectful language.";
+            const clean = text.toLowerCase();
+            const patterns = [
+                /\b(f[u*a@]c?k|f[u*a@]ck[i1a]ng?|fck|f\*ck)\b/i,
+                /\b(sh[i1!*]t|b[i1!*]tch|a[s$][s$]h[o0]l[e3]|b[a*]st[a*]rd|d[i1!*]ck|c[u*]nt)\b/i,
+                /\b(chut[i1y]a|bh[e3]nch[o0]d|m[a*]d[a*]rch[o0]d|gand|h[a*]r[a*]m[i1]|bhosdike|kutta|randi)\b/i,
+                /\b(d[e3]ng[u0]|m[o0]dd[a*]|l[a*]nj[a*]|p[u0]k[u0]|g[u0]dh[a*]|p[u0]nd[a*i1]|othaa)\b/i,
+                /\b(idiot|moron|stupid|dumbass|retard|scammer|fool)\b/i,
+                /\b(kill|beat up|break your face|stab|shoot|punch|destroy you)\b/i
+            ];
+            for (const p of patterns) {
+                if (p.test(clean)) return { allowed: false, message: BLOCK_MSG };
+            }
+            return { allowed: true, message: "" };
+        }
+
         async function submitG() {
             if (window._submitGBusy) return;
             window._submitGBusy = true;
@@ -5188,8 +5296,23 @@
                     email = v('fEmail'), cat = v('fCat'), sub = v('fSub'),
                     title = v('fTitle'), description = v('fDesc');
 
+                const modErr = document.getElementById('modErr');
+                if (modErr) { modErr.style.display = 'none'; modErr.textContent = ''; }
+
                 if (!sid || !name || !dept || !year || !email || !cat || !sub || !title || !description) {
                     toast('', 'Please fill all required fields.');
+                    window._submitGBusy = false;
+                    return;
+                }
+
+                // CONTENT MODERATION CHECK
+                const modCheck = await moderateTextAsync(title + ' ' + description);
+                if (!modCheck.allowed) {
+                    toast('⚠️', modCheck.message, 7000);
+                    if (modErr) {
+                        modErr.style.display = 'flex';
+                        modErr.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="font-size:16px;flex-shrink:0;margin-top:2px"></i><div>' + modCheck.message + '</div>';
+                    }
                     window._submitGBusy = false;
                     return;
                 }

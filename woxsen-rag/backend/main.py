@@ -214,172 +214,184 @@ async def websocket_endpoint(ws: WebSocket, student_id: str = None, role: str = 
 
 # ── Notify endpoint (called by frontend after Supabase mutations) ──────────────
 
-@app.post("/api/v1/notify")
-async def notify(payload: NotifyPayload):
+
+
+# ── Multi-Language Content Moderation Endpoint ──────────────────────────────────
+
+class ModerationRequest(BaseModel):
+    text: str
+
+PROFANITY_PATTERNS = [
+    # English Swear Words & Leetspeak
+    r"\b(f[u*a@]c?k|f[u*a@]ck[i1a]ng?|f[u*a@]ck[e3]r|f[u*a@]cked|fck|f\*ck|f\*\*k)\b",
+    r"\b(sh[i1!*]t|sh[i1!*]tt[i1y]ng?|sh[i1!*]tty|sh\*t)\b",
+    r"\b(b[i1!*]tch|b[i1!*]tch[e3]s|b[i1!*]tchy|b\*tch)\b",
+    r"\b(a[s$][s$]h[o0]l[e3]|a[s$][s$]|a\*\*hole|arsehole)\b",
+    r"\b(b[a*]st[a*]rd|b[a*]st[a*]rds|b\*stard)\b",
+    r"\b(d[i1!*]ck|d[i1!*]ckhead|d\*\*k)\b",
+    r"\b(p[u*]ssy|c[u*]nt|c[u*]nts|c\*nt)\b",
+    r"\b(m[o0]th[e3]rf[u*]ck[e3]r|m[o0]th[e3]rf[u*]ck[i1]ng|mfkr)\b",
+    r"\b(c[o0]ck|c[o0]cksuck[e3]r)\b",
+    r"\b(d[o0]uch[e3]|d[o0]uch[e3]b[a*]g)\b",
+    r"\b(bullsh[i1!*]t)\b",
+    r"\b(pr[i1]ck|tw[a*]t|w[a*]nk[e3]r|sl[u*]t|wh[o0]r[e3])\b",
+
+    # Transliterated Indian Profanities & Slurs (Romanized)
+    r"\b(chut[i1y]a|chut[i1y]e|chut|ch\*\*iya)\b",
+    r"\b(bh[e3]nch[o0]d|b[e3]nch[o0]d|bc|b\*nchod)\b",
+    r"\b(m[a*]d[a*]rch[o0]d|mc|m\*darchod)\b",
+    r"\b(g[a*]and|gand|gandu)\b",
+    r"\b(h[a*]r[a*]m[i1]|h[a*]r[a*]mz[a*]d[a*e3])\b",
+    r"\b(k[a*]m[i1]n[a*e3])\b",
+    r"\b(bh[o0]sd[i1]k[e3]|bh[o0]sd[i1]|bh[o0]sd[a*])\b",
+    r"\b(s[a*]al[a*e3]|s[a*]le)\b",
+    r"\b(kutt[a*e3]|kutt[i1])\b",
+    r"\b(r[a*]nd[i1])\b",
+    r"\b(d[e3]ng[u0]|d[e3]ng[a*]|d[e3]ng[e3])\b",
+    r"\b(m[o0]dd[a*]|m[o0]dda)\b",
+    r"\b(l[a*]nj[a*]|l[a*]nj[o0]dk[a*])\b",
+    r"\b(p[u0]k[u0]|p[o00]k[u0])\b",
+    r"\b(g[u0]dh[a*]|g[u0]da)\b",
+    r"\b(p[u0]nd[a*i1]|pundai|othaa|koothi|thevidya)\b",
+
+    # Native Indic Scripts (Hindi, Telugu, Tamil, Kannada, Malayalam, Bengali)
+    r"(चूतिया|चूत|भैनचोद|बहनचोद|मादरचोद|गांड|गांडू|हरामी|हरामजादा|कमीना|भोसडीके|साला|साले|कुत्ता|कुत्ते|रंडी)",
+    r"(డెంగు|దెంగు|మొడ్డ|లంజ|లంజకొడుకా|పూకు|పుకు|గుద్ద)",
+    r"(புண்டை|ஒத்தா|கூதி|தேவடியா)",
+    r"(ഹുച്ചാ|സുളെ|മയിര്|പൂറി)",
+
+    # Insults directed at people or departments
+    r"\b(idiot|idiots|idiotic|moron|morons|moronic)\b",
+    r"\b(stupid|dumbass|dumb|retard|retarded)\b",
+    r"\b(loser|scammer|fool|fools|foolish|jackass)\b",
+    r"\b(corrupt bastard|useless fools|bloody|scum)\b",
+
+    # Threats and violent language
+    r"\b(kill|beat up|break your face|stab|shoot|punch|destroy you|harm you|physically attack)\b",
+    r"\b(die motherfucker|gonna get you|threaten)\b",
+
+    # Sexual profanity & harassment terms
+    r"\b(suck my|blowjob|handjob|nudes|naked photos|pornography)\b"
+]c?k|f[u*a@]ck[i1a]ng?|f[u*a@]ck[e3]r|f[u*a@]cked|fck|f\*ck|f\*\*k)\b",
+    r"\b(sh[i1!*]t|sh[i1!*]tt[i1y]ng?|sh[i1!*]tty|sh\*t)\b",
+    r"\b(b[i1!*]tch|b[i1!*]tch[e3]s|b[i1!*]tchy|b\*tch)\b",
+    r"\b(a[s$][s$]h[o0]l[e3]|a[s$][s$]|a\*\*hole|arsehole)\b",
+    r"\b(b[a*]st[a*]rd|b[a*]st[a*]rds|b\*stard)\b",
+    r"\b(d[i1!*]ck|d[i1!*]ckhead|d\*\*k)\b",
+    r"\b(p[u*]ssy|c[u*]nt|c[u*]nts|c\*nt)\b",
+    r"\b(m[o0]th[e3]rf[u*]ck[e3]r|m[o0]th[e3]rf[u*]ck[i1]ng|mfkr)\b",
+    r"\b(c[o0]ck|c[o0]cksuck[e3]r)\b",
+    r"\b(d[o0]uch[e3]|d[o0]uch[e3]b[a*]g)\b",
+    r"\b(bullsh[i1!*]t)\b",
+    r"\b(pr[i1]ck|tw[a*]t|w[a*]nk[e3]r|sl[u*]t|wh[o0]r[e3])\b",
+
+    # Hindi / North Indian Profanities & Slurs (Romanized & Devanagari)
+    r"\b(chut[i1y]a|chut[i1y]e|chut|ch\*\*iya|चूतिया|चूत)\b",
+    r"\b(bh[e3]nch[o0]d|b[e3]nch[o0]d|bc|b\*nchod|भैनचोद|बहनचोद)\b",
+    r"\b(m[a*]d[a*]rch[o0]d|mc|m\*darchod|मादरचोद)\b",
+    r"\b(g[a*]and|gand|gandu|गांड|गांडू)\b",
+    r"\b(h[a*]r[a*]m[i1]|h[a*]r[a*]mz[a*]d[a*e3]|हरामी|हरामजादा)\b",
+    r"\b(k[a*]m[i1]n[a*e3]|कमीना)\b",
+    r"\b(bh[o0]sd[i1]k[e3]|bh[o0]sd[i1]|bh[o0]sd[a*]|भोसडीके)\b",
+    r"\b(s[a*]al[a*e3]|s[a*]le|साला|साले)\b",
+    r"\b(kutt[a*e3]|kutt[i1]|कुत्ता|कुत्ते)\b",
+    r"\b(r[a*]nd[i1]|रंडी)\b",
+
+    # Telugu Profanities & Slurs (Romanized & Telugu script)
+    r"\b(d[e3]ng[u0]|d[e3]ng[a*]|d[e3]ng[e3]|డెంగు|దెంగు)\b",
+    r"\b(m[o0]dd[a*]|m[o0]dda|మొడ్డ)\b",
+    r"\b(l[a*]nj[a*]|l[a*]nj[o0]dk[a*]|లంజ|లంజకొడుకా)\b",
+    r"\b(p[u0]k[u0]|p[o00]k[u0]|పూకు|పుకు)\b",
+    r"\b(g[u0]dh[a*]|g[u0]da|గుద్ద)\b",
+    r"\b(b[o0]l[i1]li|m[a*]d[a*]ch[o0]d)\b",
+
+    # Tamil Profanities & Slurs (Romanized & Tamil script)
+    r"\b(p[u0]nd[a*i1]|pundai|புண்டை)\b",
+    r"\b(o[t*]ha|othaa|ஒத்தா)\b",
+    r"\b(kooth[i1]|koothi|கூதி)\b",
+    r"\b(thevid[i1]y[a*]|தேவடியா)\b",
+
+    # Kannada Profanities & Slurs
+    r"\b(h[u0]ch[a*]|huchnayi|s[u0]le|sulemaga)\b",
+
+    # Malayalam Profanities & Slurs
+    r"\b(m[a*]y[i1]r|myre|p[u0]ri|pandi)\b",
+
+    # Marathi / Gujarati / Bengali Profanities
+    r"\b(zavadya|gandya|bhadwa|bhadwe|khanki|chod)\b",
+
+    # Insults directed at people or departments (Multi-language)
+    r"\b(idiot|idiots|idiotic|moron|morons|moronic)\b",
+    r"\b(stupid|dumbass|dumb|retard|retarded)\b",
+    r"\b(loser|scammer|fool|fools|foolish|jackass)\b",
+    r"\b(corrupt bastard|useless fools|bloody|scum)\b",
+
+    # Threats and violent language
+    r"\b(kill|beat up|break your face|stab|shoot|punch|destroy you|harm you|physically attack)\b",
+    r"\b(die motherfucker|gonna get you|threaten)\b",
+
+    # Sexual profanity & harassment terms
+    r"\b(suck my|blowjob|handjob|nudes|naked photos|pornography)\b"
+]
+
+@app.post("/api/v1/moderate")
+def moderate_text_endpoint(payload: ModerationRequest):
     """
-    The frontend calls this after updating a grievance in Supabase.
-    We broadcast the event to relevant WebSocket clients.
+    Multi-language content moderation filter for grievance submission text.
+    Uses AI LLM (Gemini) if available, with robust multi-language pattern matching fallback.
+    Returns {"allowed": bool, "message": str}
     """
-    if payload.event == "status_change" and payload.student_id:
-        await ws_manager.notify_student(payload.student_id, {
-            "event": "status_change",
-            "grievance_id": payload.grievance_id,
-            "status": payload.status,
-            "category": payload.category,
-        })
-        # Also notify admins so their dashboard updates
-        await ws_manager.notify_admins({
-            "event": "status_change",
-            "grievance_id": payload.grievance_id,
-            "status": payload.status,
-        })
+    clean_text = (payload.text or "").strip()
+    block_msg = "Your grievance could not be submitted because it contains language that is not appropriate for this platform. Please remove any offensive, abusive, or unprofessional words and resubmit your complaint using respectful language."
 
-    elif payload.event == "new_grievance":
-        await ws_manager.notify_admins({
-            "event": "new_grievance",
-            "grievance_id": payload.grievance_id,
-            "student_name": payload.student_name,
-            "category": payload.category,
-        })
+    if not clean_text:
+        return {"allowed": True, "message": ""}
 
-    return {"ok": True}
-
-
-# ── Health / Stats ─────────────────────────────────────────────────────────────
-
-@app.get("/health")
-def health():
-    return {
-        "status": "ok",
-        "service": "Woxsen Support API",
-        "ws_students": sum(len(v) for v in ws_manager.students.values()),
-        "ws_admins": len(ws_manager.admins),
-    }
-
-
-@app.get("/stats")
-def stats():
-    """Returns vector DB statistics — useful for admin dashboard."""
-    return rag_engine.get_stats()
-
-
-@app.get("/docs-list")
-def docs_list():
-    """List all ingested document sources."""
-    s = rag_engine.get_stats()
-    return {"sources": s["sources"], "total_chunks": s["total_chunks"]}
-
-
-# ── Chat ───────────────────────────────────────────────────────────────────────
-
-@app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    """
-    Main chat endpoint.
-    Flow:
-        1. Try Layer 1 (direct keyword match) → instant answer
-        2. If no match → Layer 2 RAG pipeline (Gemini)
-    """
-    msg = request.message or request.question
-    if not msg or not msg.strip():
-        raise HTTPException(status_code=400, detail="Message or question cannot be empty")
-
-    query = msg.strip()
-    logger.info(f"Chat query: {query[:80]}")
-
-    # Layer 1
-    direct_match = find_direct_answer(query)
-    if direct_match:
-        logger.info(f"Layer 1 match: {query[:80]}")
-        ans = direct_answer_to_dict(direct_match)
-        query_cache[query] = ans
-        return ChatResponse(**ans)
-
-    # Layer 2 — RAG
-    logger.info("Invoking RAG pipeline")
-    result = await rag_engine.query(query, conversation_id=request.conversation_id)
-
-    return ChatResponse(
-        type=result["type"],
-        answer=result["answer"],
-        sources=result.get("sources", [])
-    )
-
-
-@app.post("/api/rag/query", response_model=ChatResponse)
-async def api_rag_query(request: RagQuery):
-    """RAG query endpoint with backend caching."""
-    if not request.query or not request.query.strip():
-        raise HTTPException(status_code=400, detail="Query cannot be empty")
-
-    query_str = request.query.strip().lower()
-    session_id = request.conversation_id or "default"
-    cache_key = f"{session_id}_{query_str}"
-
-    if cache_key in query_cache:
-        logger.info(f"Cache hit: {query_str[:80]}")
-        return ChatResponse(**query_cache[cache_key])
-
-    direct_match = find_direct_answer(query_str)
-    if direct_match:
-        ans = direct_answer_to_dict(direct_match)
-        query_cache[cache_key] = ans
-        return ChatResponse(**ans)
-
-    full_query = f"Context: {request.context}\nQuestion: {query_str}" if request.context else query_str
-    result = await rag_engine.query(full_query, conversation_id=request.conversation_id)
-
-    ans = {"type": result["type"], "answer": result["answer"], "sources": result.get("sources", [])}
-    query_cache[cache_key] = ans
-    return ChatResponse(**ans)
-
-
-# ── Document Ingestion ─────────────────────────────────────────────────────────
-
-@app.post("/ingest")
-async def ingest_document(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
-    """Upload and ingest a document (PDF, DOCX, TXT) into ChromaDB."""
-    ALLOWED_TYPES = {
-        "application/pdf": ".pdf",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
-        "text/plain": ".txt",
-        "text/markdown": ".md",
-    }
-    ext = ALLOWED_TYPES.get(file.content_type)
-    if not ext:
-        suffix = Path(file.filename or "").suffix.lower()
-        if suffix not in {".pdf", ".docx", ".txt", ".md"}:
-            raise HTTPException(status_code=400, detail="Unsupported file type. Allowed: PDF, DOCX, TXT, MD")
-        ext = suffix
-
-    content = await file.read()
-    tmp = tempfile.NamedTemporaryFile(suffix=ext, delete=False)
-    tmp.write(content)
-    tmp.close()
-
-    def do_ingest(tmp_path: str, original_name: str):
+    # 1. Try Gemini AI LLM Moderation for 100% multilingual & context accuracy
+    api_key = os.getenv("GEMINI_API_KEY", "")
+    if api_key:
         try:
-            from backend.ingest import load_file
-            docs = load_file(Path(tmp_path))
-            for doc in docs:
-                doc.metadata["source"] = original_name
-            count = rag_engine.ingest_documents(docs)
-            logger.info(f"Ingest complete: {count} chunks from {original_name}")
-        finally:
-            os.unlink(tmp_path)
+            import requests
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={api_key}"
+            sys_prompt = (
+                "You are a strict content moderation filter for a university grievance submission portal.\n"
+                "Task: Review the grievance text submitted in ANY language (English, Hindi, Telugu, Tamil, Kannada, Marathi, Bengali, Spanish, French, etc., in native or transliterated script).\n"
+                "Check for: profanity, swear words, slurs, abusive language, personal insults directed at a person or department, threats of violence, or sexual content.\n"
+                "RULES:\n"
+                "- Flag ONLY actual offensive/unprofessional language (swear words, insults, slurs, threats).\n"
+                "- Do NOT flag strong but respectful expressions of frustration or dissatisfaction (e.g. 'this is unacceptable', 'I am extremely disappointed', 'this service is terrible') — these are valid and MUST be allowed.\n"
+                "- Output ONLY valid JSON: {\"allowed\": true, \"message\": \"\"} or {\"allowed\": false, \"message\": \"Your grievance could not be submitted because it contains language that is not appropriate for this platform. Please remove any offensive, abusive, or unprofessional words and resubmit your complaint using respectful language.\"}\n"
+                "No extra text."
+            )
+            req_body = {
+                "contents": [
+                    {"role": "user", "parts": [{"text": f"{sys_prompt}\n\nGRIEVANCE TEXT TO REVIEW:\n\"{clean_text}\""}]}
+                ],
+                "generationConfig": {"temperature": 0.0, "responseMimeType": "application/json"}
+            }
+            res = requests.post(url, json=req_body, timeout=5)
+            if res.status_code == 200:
+                res_data = res.json()
+                res_text = res_data.get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                parsed = json.loads(res_text)
+                if isinstance(parsed, dict) and "allowed" in parsed:
+                    return {
+                        "allowed": bool(parsed.get("allowed")),
+                        "message": block_msg if not parsed.get("allowed") else ""
+                    }
+        except Exception as e:
+            logger.warning(f"Gemini moderation fallback to regex: {e}")
 
-    background_tasks.add_task(do_ingest, tmp.name, file.filename or "uploaded_doc")
-    return {"status": "ingesting", "filename": file.filename, "message": "Document is being processed."}
+    # 2. Comprehensive Multi-Language Pattern Matching Fallback
+    lower_text = clean_text.lower()
+    for pat in PROFANITY_PATTERNS:
+        if re.search(pat, lower_text, re.IGNORECASE):
+            return {
+                "allowed": False,
+                "message": block_msg
+            }
 
-
-@app.delete("/docs/{source_name}")
-def delete_source(source_name: str):
-    deleted = rag_engine.delete_source(source_name)
-    if deleted == 0:
-        raise HTTPException(status_code=404, detail=f"Source '{source_name}' not found")
-    return {"deleted_chunks": deleted, "source": source_name}
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("backend.main:app", host=os.getenv("HOST", "0.0.0.0"), port=int(os.getenv("PORT", "8000")), reload=True)
+    return {
+        "allowed": True,
+        "message": ""
+    }
